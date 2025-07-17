@@ -1,0 +1,202 @@
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  transform: translateZ(0);
+}
+
+.custom-border {
+  position: relative;
+  border: none;
+  padding: 10px;
+}
+
+.custom-border::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  z-index: -1;
+  border-radius: 8px;
+}
+
+/* Updated text background and gradient */
+.custom-text-bg {
+  background-color: #f5f5f5; /* Light gray to match the image's neutral tones */
+}
+
+.custom-text-bg h1 {
+  background: linear-gradient(to right, #a52a2a, #228b22); /* Red to green gradient inspired by the house and trees */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* New text gradient effect */
+.custom-border {
+  background-image: linear-gradient(to right, #00c4cc, #ffd700); /* Teal to yellow gradient */
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes fadeInSlideUp {
+  0% { opacity: 0; transform: translateY(60px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  0% { opacity: 0; transform: translateX(120px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulseSlow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+@keyframes fadeInDelayed {
+  0% { opacity: 0; }
+  50% { opacity: 0; }
+  100% { opacity: 0.9; }
+}
+
+@keyframes scaleIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleInDelayed {
+  0% { opacity: 0; transform: scale(0.8); }
+  60% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleInDelayed2 {
+  0% { opacity: 0; transform: scale(0.8); }
+  65% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleInDelayed3 {
+  0% { opacity: 0; transform: scale(0.8); }
+  70% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulseButton {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-fade-in-slide-up {
+  animation: fadeInSlideUp 1.2s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 1.2s ease-out forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 3.5s infinite;
+}
+
+.animate-fade-in-delayed {
+  animation: fadeInDelayed 1.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 1.5s ease-out forwards;
+}
+
+.animate-scale-in-delayed {
+  animation: scaleInDelayed 1.5s ease-out forwards;
+}
+
+.animate-scale-in-delayed-2 {
+  animation: scaleInDelayed2 1.5s ease-out forwards;
+}
+
+.animate-scale-in-delayed-3 {
+  animation: scaleInDelayed3 1.5s ease-out forwards;
+}
+
+.animate-pulse-button {
+  animation: pulseButton 2s infinite;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #000000, #9b8862, #ccae73);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.custom-button {
+  /* Base button styles */
+  position: relative;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(to right, #000000, #9b8862, #ccae73);
+
+  /* Background image border effect using pseudo-element */
+  overflow: hidden;
+}
+
+.custom-button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: url('your-image-url.jpg') no-repeat center/cover; /* Replace with your image URL */
+  z-index: -1;
+  border-radius: 10px;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover animation */
+.custom-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to right, #1a1a1a, #a59770, #d9bc85); /* Slightly lighter gradient on hover */
+}
+
+.custom-button:hover::before {
+  opacity: 0.5; /* Increase border image visibility on hover */
+}
+
+/* Active state */
+.custom-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.custom-button {
+  animation: pulse 2s infinite;
+}
+
+/* Responsive font size */
+@media (min-width: 640px) {
+  .custom-button {
+    font-size: 18px;
+    padding: 12px 32px;
+  }
+}
