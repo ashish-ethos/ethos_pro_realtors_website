@@ -4,6 +4,7 @@ import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
 import Footer from './components/Footer/Footer'
 import PremiumProperties from './components/PremiumProperties/PremiumProperties'
+import DifferentCities from './components/DifferentCities/DifferentCities'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <main id="main-content">
         <Home />
         <PremiumProperties />
+        <DifferentCities />
 
         <h1 className="text-3xl font-bold underline text-center">
           Welcome to Ethos Pro Realtors
