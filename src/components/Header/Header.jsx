@@ -3,6 +3,7 @@ import "./Header.css";
 import CompanyHeaderLogo from "../../assets/images/logo/ethos_pro_realtors_logo.jpg";
 import { FaBars, FaTimes, FaCaretDown } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
+import { Dropdown } from "antd";
 
 function Header() {
   const [isVisible, setIsVisible] = useState(false);
@@ -40,9 +41,8 @@ function Header() {
 
   return (
     <header
-      className={`fixed w-full top-0 z-50 bg-gradient-to-r from-gray-50 via-white to-gray-100 text-gray-900 shadow-md transition-all duration-1000 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
-      }`}
+      className={`fixed w-full top-0 z-50 bg-gradient-to-r from-gray-50 via-white to-gray-100 text-gray-900 shadow-md transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full"
+        }`}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
@@ -52,7 +52,6 @@ function Header() {
             alt="Ethos Pro Realtors Logo"
             className="h-14 w-auto object-contain"
           />
-          
         </div>
 
         {/* Hamburger */}
@@ -74,18 +73,9 @@ function Header() {
               onMouseLeave={item === "Projects" ? handleMouseLeave : undefined}
             >
               {item === "Projects" ? (
-                <div className="relative">
-                  <a
-                    href={`#${item.toLowerCase()}`}
-                    className="relative text-xl font-semibold transition-all duration-300 hover:text-yellow-500 flex items-center nav-link"
-                    style={{ animationDelay: `${index * 0.2}s` }}
-                    onClick={toggleProjectsDropdown}
-                  >
-                    {item} <IoIosArrowDown className="ml-1 mt-1" />
-                    <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-yellow-500 group-hover:w-8 transition-all duration-300 glow rounded-full"></span>
-                  </a>
-                  {isProjectsDropdownOpen && (
-                    <div className="absolute top-full left-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden transition-all duration-300 z-50">
+                <Dropdown
+                  overlay={
+                    <div className="bg-white rounded-md shadow-md overflow-hidden py-2">
                       <a
                         href="#residential"
                         className="block px-4 py-2 text-gray-800 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
@@ -99,8 +89,21 @@ function Header() {
                         Commercial
                       </a>
                     </div>
-                  )}
-                </div>
+                  }
+                  trigger={["hover"]}
+                  placement="bottomLeft"
+                >
+                  <a
+                    href="#projects"
+                    className="relative text-xl font-semibold transition-all duration-300 hover:text-yellow-500 flex items-center nav-link"
+                    style={{ animationDelay: `${index * 0.2}s` }}
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    {item}
+                    <IoIosArrowDown className="ml-1 mt-1" />
+                    <span className="absolute left-0 bottom-0 h-0.5 w-0 bg-yellow-500 group-hover:w-8 transition-all duration-300 glow rounded-full"></span>
+                  </a>
+                </Dropdown>
               ) : (
                 <a
                   href={`#${item.toLowerCase()}`}
@@ -116,17 +119,19 @@ function Header() {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          <button className="bg-yellow-500 text-gray-900 font-bold py-2 px-6 rounded-full hover:bg-yellow-400 transition-all duration-300 ripple">
-            Get Started
-          </button>
+          <a class="fancy" href="#">
+            <span class="top-key"></span>
+            <span class="text">Get Started</span>
+            <span class="bottom-key-1"></span>
+            <span class="bottom-key-2"></span>
+          </a>
         </div>
       </div>
 
       {/* Mobile Nav */}
       <nav
-        className={`md:hidden fixed top-16 right-0 w-64 bg-white shadow-xl transform transition-all duration-700 ease-in-out ${
-          isMobileMenuOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
-        }`}
+        className={`md:hidden fixed top-16 right-0 w-64 bg-white shadow-xl transform transition-all duration-700 ease-in-out ${isMobileMenuOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
+          }`}
       >
         <ul className="flex flex-col items-center py-6 space-y-6">
           {navItems.map((item, index) => (

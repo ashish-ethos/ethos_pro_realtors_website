@@ -1,82 +1,144 @@
 import React from "react";
-import HomeBackground from "../../assets/images/home/background.jpg";
+import {
+  Dropdown,
+  Button,
+  Space,
+  Input,
+  Menu,
+  InputNumber,
+  Row,
+  Col,
+  Card,
+} from "antd";
+import { DownOutlined } from "@ant-design/icons";
 import { FiMapPin } from "react-icons/fi";
 import { MdOutlineHomeWork } from "react-icons/md";
-import "./Home.css"; // Import the CSS file for styles
+import BackgroundImage from "../../assets/images/home/background.jpg";
+import "./Home.css";
 
-function Home() {
+const propertyTypeMenu = (
+  <Menu
+    items={[
+      { label: "Apartment", key: "1" },
+      { label: "Villa", key: "2" },
+      { label: "Commercial", key: "3" },
+    ]}
+  />
+);
+
+const Home = () => {
+  const onPriceChange = (value) => {
+    console.log("Price changed:", value);
+  };
+
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-gray-100">
-      {/* Parallax Background Image */}
+    <section className="relative w-full h-screen overflow-hidden parallax">
+      {/* Background */}
       <div className="absolute inset-0">
         <img
-          src={HomeBackground}
+          src={BackgroundImage}
           alt="Real Estate Background"
-          className="w-full h-full object-cover transition-transform duration-1000 ease-out parallax"
+          className="w-full h-full object-cover brightness-75"
         />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-12 text-gray-800 animate-fade-in-slide-up">
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 text-center drop-shadow-md tracking-wider leading-snug animate-pulse-slow text-gradient">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8 text-white text-center">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight text-gradient animate-fade-in-slide-up">
           Ethos Pro Realtors
         </h1>
-
-        <p className="text-lg sm:text-xl lg:text-2xl mb-10 text-center opacity-90 max-w-4xl font-medium animate-fade-in-delayed">
-          Discover the best properties for sale and rent.
+        <p className="text-base sm:text-lg lg:text-xl mb-10 max-w-3xl text-white/90 leading-relaxed animate-fade-in-delayed">
+          Discover luxury properties for sale and rent with advanced search options.
         </p>
 
-        {/* Modern Search Bar */}
-        <div className="bg-white rounded-lg shadow-lg p-4 w-full max-w-5xl flex flex-wrap md:flex-nowrap gap-4 items-center transition-all duration-500 animate-slide-in-right hover:shadow-xl custom-text-bg">
-          {/* Location */}
-          <div className="flex items-center gap-2 text-gray-700 w-full md:w-1/4 animate-scale-in">
-            <FiMapPin className="text-xl" />
-            <input
-              type="text"
-              placeholder="Location"
-              className="bg-transparent placeholder-gray-400 focus:outline-none w-full text-sm sm:text-lg"
-            />
-          </div>
+        {/* Advanced Search Card */}
+        <Card
+          className="w-full max-w-5xl mx-auto bg-white/95 shadow-2xl backdrop-blur-lg rounded-2xl p-4 sm:p-6 custom-border animate-scale-in"
+          bodyStyle={{ padding: 0 }}
+        >
+          <Row
+            align="middle"
+            justify="center"
+            wrap={false}
+            style={{ gap: "15px", flexWrap: "wrap" }}
+          >
+            {/* Location */}
+            <Col flex="1 1 200px">
+              <Input
+                size="large"
+                placeholder="Enter Location"
+                prefix={<FiMapPin className="text-gray-400" />}
+                style={{ height: "40px", lineHeight: "48px", paddingTop: "0", paddingBottom: "0" }}
+                className="rounded-lg border-gray-200 hover:border-blue-400 transition-colors animate-scale-in-delayed"
+              />
 
-          {/* Property Type */}
-          <div className="flex items-center gap-2 text-gray-700 w-full md:w-1/4 animate-scale-in-delayed">
-            <MdOutlineHomeWork className="text-xl" />
-            <select className="bg-transparent w-full text-gray-700 focus:outline-none text-sm sm:text-lg appearance-none cursor-pointer">
-              <option>Property Type</option>
-              <option>Apartment</option>
-              <option>Villa</option>
-              <option>Commercial</option>
-            </select>
-          </div>
+            </Col>
 
-          {/* Min Price */}
-          <div className="flex items-center gap-2 text-gray-700 w-full md:w-1/4 animate-scale-in-delayed-2">
-            <span className="text-xl">$</span>
-            <input
-              type="number"
-              placeholder="Min Price"
-              className="bg-transparent placeholder-gray-400 focus:outline-none w-full text-sm sm:text-lg"
-            />
-          </div>
+            {/* Property Type */}
+            <Col flex="1 1 160px">
+              <Dropdown overlay={propertyTypeMenu} trigger={["click"]}>
+                <Button
+                  size="large"
+                  style={{ height: "40px" }}
+                  className="w-full text-left rounded-lg border border-gray-200 hover:border-blue-400 transition-colors animate-scale-in-delayed-2"
+                  icon={<MdOutlineHomeWork className="text-gray-400 mr-2" />}
+                >
+                  <Space>
+                    Property Type
+                    <DownOutlined />
+                  </Space>
+                </Button>
+              </Dropdown>
+            </Col>
 
-          {/* Max Price */}
-          <div className="flex items-center gap-2 text-gray-700 w-full md:w-1/4 animate-scale-in-delayed-3">
-            <span className="text-xl">-</span>
-            <input
-              type="number"
-              placeholder="Max Price"
-              className="bg-transparent placeholder-gray-400 focus:outline-none w-full text-sm sm:text-lg"
-            />
-          </div>
+            {/* Min Price */}
+            <Col flex="1 1 100px">
+              <InputNumber
+                size="large"
+                min={0}
+                placeholder="$"
+                style={{ height: "40px", width: "100%" }}
+                className="rounded-lg border-gray-200 hover:border-blue-400 transition-colors animate-scale-in-delayed-3"
+                formatter={(value) =>
+                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                }
+                parser={(value) => value?.replace(/\$\s?|(,*)/g, "")}
+                onChange={onPriceChange}
+              />
+            </Col>
 
-          {/* Search Button */}
-          <button className="custom-button">
-            Search
-          </button>
-        </div>
+            {/* Max Price */}
+            <Col flex="1 1 100px">
+              <InputNumber
+                size="large"
+                min={0}
+                placeholder="$"
+                style={{ height: "40px", width: "100%" }}
+                className="rounded-lg border-gray-200 hover:border-blue-400 transition-colors animate-scale-in-delayed-3"
+                formatter={(value) =>
+                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                }
+                parser={(value) => value?.replace(/\$\s?|(,*)/g, "")}
+                onChange={onPriceChange}
+              />
+            </Col>
+
+            {/* Search Button */}
+            <Col flex="1 1 100px">
+              <Button
+                type="primary"
+                size="large"
+                style={{ height: "40px" }}
+                className="w-full rounded-lg custom-button animate-pulse-button"
+              >
+                Search 
+              </Button>
+            </Col>
+          </Row>
+        </Card>
       </div>
     </section>
   );
-}
+};
 
 export default Home;
