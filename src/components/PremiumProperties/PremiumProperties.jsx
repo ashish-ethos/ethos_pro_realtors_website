@@ -143,10 +143,10 @@ function PremiumProperties() {
                 {/* Header */}
                 <div className="text-center mb-16">
                     <div className="inline-block">
-                        <h1 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-slate-900 via-amber-700 to-amber-500 bg-clip-text text-transparent animate-pulse">
+                        <h1 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
                             Top Handpicked Deals
                         </h1>
-                        <div className="h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent rounded-full animate-pulse"></div>
+                        <div className="h-1 bg-gradient-to-r from-transparent via-[#c99913] to-transparent rounded-full animate-pulse"></div>
                     </div>
                     <p className="text-xl text-gray-600 mt-6 font-light max-w-2xl mx-auto">
                         Premium Properties at the Best Prices!
@@ -158,7 +158,7 @@ function PremiumProperties() {
                     <button
                         onClick={() => setIsAutoPlaying(!isAutoPlaying)}
                         className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${isAutoPlaying
-                                ? 'bg-amber-500 text-white shadow-lg'
+                                ? 'bg-gradient-to-r from-black via-[#474236] to-[#c99913] text-white shadow-lg'
                                 : 'bg-white text-gray-600 border border-gray-300'
                             }`}
                     >
@@ -170,7 +170,7 @@ function PremiumProperties() {
                                 key={i}
                                 onClick={() => setCurrentIndex(i * visibleCards)}
                                 className={`w-3 h-3 rounded-full transition-all ${Math.floor(currentIndex / visibleCards) === i
-                                        ? 'bg-amber-500 scale-125'
+                                        ? 'bg-gradient-to-r from-black via-[#474236] to-[#c99913] scale-125'
                                         : 'bg-gray-300 hover:bg-gray-400'
                                     }`}
                             />
@@ -225,11 +225,11 @@ function PremiumProperties() {
                                         {/* Top badges */}
                                         <div className="absolute top-4 left-4 flex flex-col gap-2">
                                             {property.featured && (
-                                                <span className="px-3 py-1 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
+                                                <span className="px-3 py-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
                                                     FEATURED
                                                 </span>
                                             )}
-                                            <span className="px-3 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold rounded-full shadow-lg">
+                                            <span className="px-3 py-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] text-white text-xs font-bold rounded-full shadow-lg">
                                                 {property.discount}
                                             </span>
                                         </div>
@@ -261,7 +261,7 @@ function PremiumProperties() {
                                         {/* Price */}
                                         <div className="flex items-center gap-3 mb-4">
                                             <span className="text-2xl font-bold text-gray-900">{property.price}</span>
-                                            <span className="text-sm text-gray-500  bg-gray-100 px-2 py-1 rounded">
+                                            <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">
                                                 {property.basePrice}
                                             </span>
                                         </div>
@@ -301,15 +301,20 @@ function PremiumProperties() {
 
                                         {/* Action Buttons */}
                                         <div className="flex gap-3 justify-end">
-                                            
-                                            <button className="px-4 py-1  border-2 border-amber-500 text-amber-600 font-semibold rounded-xl hover:bg-amber-50 transition-all duration-300">
+                                            <button
+                                                className="px-4 py-1 border-2 border-gradient-to-r from-black via-[#474236] to-[#c99913] text-gradient-to-r from-black via-[#474236] to-[#c99913] font-semibold rounded-xl hover:bg-gradient-to-r from-black via-[#474236] to-[#c99913] hover:text-white transition-all duration-300"
+                                                style={{
+                                                    background: 'none',
+                                                    borderImage: 'linear-gradient(to right, #000000, #474236, #c99913) 1',
+                                                }}
+                                            >
                                                 Details
                                             </button>
                                         </div>
                                     </div>
 
                                     {/* Hover glow effect */}
-                                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-amber-500/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-black via-[#474236] to-[#c99913] opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"></div>
                                 </div>
                             </div>
                         ))}

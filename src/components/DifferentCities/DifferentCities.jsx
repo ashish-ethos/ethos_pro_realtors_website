@@ -1,7 +1,20 @@
+
 import React, { useState, useEffect } from "react";
 import { Button } from "antd";
 import { RiBuilding2Line, RiMapPin2Line, RiLineChartLine, RiArrowRightLine } from "react-icons/ri";
 import AdvancedPropertySearch from './AdvancedPropertySearch';
+import DLFCamellias from "../../assets/images/premiumproperties/dlfthecamilias.jpg";
+import ElanTheEmperor from "../../assets/images/premiumproperties/Elan-The-Emperor.jpg";
+import KrisumiWaterfall from "../../assets/images/premiumproperties/krisumiwaterfall.jpg";
+import TrinitySkyPlazao from "../../assets/images/premiumproperties/skyplazzo.jpg";
+import M3Mmansion from "../../assets/images/premiumproperties/m3mmansion.jpg";
+import AIPLAutograph from "../../assets/images/exploreproperties/aipl-autograph.jpg";
+import CentralPark from "../../assets/images/exploreproperties/central-park.jpg"
+import AIPLBusiness from "../../assets/images/exploreproperties/aipl-bussiness.jpg";
+import ReachAriaMall from "../../assets/images/exploreproperties/aria-mall.jpg";
+import TrumpTower from "../../assets/images/exploreproperties/trump-tower.jpg";
+import PioneerUrban from "../../assets/images/exploreproperties/pioneer-urban.jpg";
+import PioneerAraya from "../../assets/images/exploreproperties/pioner-araya.jpg";
 
 function DifferentCities() {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,7 +39,7 @@ function DifferentCities() {
   const [yearBuilt, setYearBuilt] = useState([]);
   const [priceRange, setPriceRange] = useState([3000000, 600000000]);
 
-  // Property data (updated with image content)
+  // Property data with images
   const [properties, setProperties] = useState([
     {
       id: 1,
@@ -37,6 +50,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale",
       featured: true,
+      image: AIPLAutograph,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -50,6 +64,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale",
       featured: false,
+      image: CentralPark,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -63,6 +78,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale",
       featured: true,
+      image: AIPLBusiness,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -76,6 +92,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale, Hot Offer",
       featured: true,
+      image: M3Mmansion,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -89,6 +106,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale, Hot Offer",
       featured: false,
+      image: DLFCamellias,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -102,6 +120,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale, Hot Offer",
       featured: true,
+      image: ReachAriaMall,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -115,6 +134,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale, Hot Offer",
       featured: false,
+      image: ElanTheEmperor,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -128,6 +148,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale, Hot Offer",
       featured: true,
+      image: ElanTheEmperor,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -141,6 +162,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale, Hot Offer",
       featured: false,
+      image: TrumpTower,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -154,6 +176,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale",
       featured: true,
+      image: PioneerUrban,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -167,6 +190,7 @@ function DifferentCities() {
       price: "",
       status: "Ready to Move",
       featured: false,
+      image: PioneerAraya,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -180,6 +204,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale, Hot Offer",
       featured: true,
+      image: KrisumiWaterfall,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -193,6 +218,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale, Hot Offer",
       featured: false,
+      image: M3Mmansion,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -206,6 +232,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale, Hot Offer",
       featured: true,
+      image: TrinitySkyPlazao,
       countryId: 101,
       stateId: 4047,
       cityId: 57650,
@@ -219,6 +246,7 @@ function DifferentCities() {
       price: "",
       status: "For Rent, For Sale, Hot Offer",
       featured: false,
+      image: ElanTheEmperor,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
@@ -264,8 +292,8 @@ function DifferentCities() {
       const matchesArea = !area.length || area.some((a) => prop.location.toLowerCase().includes(a.toLowerCase()));
       const matchesStatus = !status.length || status.includes(prop.status);
       const matchesType = !type.length || type.some((t) => prop.type.toLowerCase().includes(t.toLowerCase()));
-      const matchesBedrooms = !bedrooms.length || bedrooms.some((b) => prop.bedrooms.includes(b));
-      const matchesBathrooms = !bathrooms.length || bathrooms.some((b) => prop.bathrooms.includes(b));
+      const matchesBedrooms = !bedrooms.length || bedrooms.some((b) => prop.bedrooms?.includes(b));
+      const matchesBathrooms = !bathrooms.length || bathrooms.some((b) => prop.bathrooms?.includes(b));
       
       // Parse area range for filtering
       const areaNumbers = prop.area.match(/\d+/g);
@@ -275,10 +303,10 @@ function DifferentCities() {
       const matchesMinArea = !minArea || propMinArea >= minArea;
       const matchesMaxArea = !maxArea || propMaxArea <= maxArea;
       const matchesLabel = !label.length || (label.includes("featured") && prop.featured);
-      const matchesYear = !yearBuilt.length || yearBuilt.includes(prop.yearBuilt.toString());
+      const matchesYear = !yearBuilt.length || yearBuilt.includes(prop.yearBuilt?.toString());
 
       // Parse price for filtering
-      const propPrice = parseInt(prop.price.replace(/[^0-9]/g, ""));
+      const propPrice = parseInt(prop.price.replace(/[^0-9]/g, "")) || 0;
       const matchesPrice = propPrice >= priceRange[0] && propPrice <= priceRange[1];
 
       return (
@@ -322,14 +350,14 @@ function DifferentCities() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+    <div className="relative h-auto overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black py-4 sm:py-8">
       <style>
         {`
           .custom-select .ant-select-selector {
             background-color: #e5e7eb !important;
             border-color: #d1d5db !important;
             color: #374151 !important;
-            height: 44px !important;
+            height: 40px !important;
             display: flex;
             align-items: center;
           }
@@ -363,18 +391,18 @@ function DifferentCities() {
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-yellow-600/10 to-amber-600/10 animate-pulse"></div>
         <div
-          className="absolute w-96 h-96 bg-gradient-to-r from-yellow-500/10 to-amber-500/10 rounded-full blur-3xl transition-all duration-1000"
+          className="absolute w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-r from-yellow-500/10 to-amber-500/10 rounded-full blur-3xl transition-all duration-1000"
           style={{
             left: `${mousePosition.x / 10}px`,
             top: `${mousePosition.y / 10}px`,
           }}
         ></div>
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-l from-amber-500/10 to-yellow-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-0 right-0 w-80 sm:w-[600px] h-80 sm:h-[600px] bg-gradient-to-l from-amber-500/10 to-yellow-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
       {/* Cityscape silhouette */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black/30 to-transparent">
-        <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-r from-transparent via-yellow-400/5 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-24 sm:h-32 bg-gradient-to-t from-black/30 to-transparent">
+        <div className="absolute bottom-0 left-0 w-full h-16 sm:h-20 bg-gradient-to-r from-transparent via-yellow-400/5 to-transparent"></div>
       </div>
 
       {/* Floating particles */}
@@ -382,29 +410,29 @@ function DifferentCities() {
         {[...Array(15)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-yellow-400/20 rounded-full animate-pulse"
+            className="absolute w-1 sm:w-2 h-1 sm:h-2 bg-yellow-400/20 rounded-full animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`,
             }}
           ></div>
         ))}
       </div>
 
       {/* Main content container */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto text-center">
+      <div className="relative z-10 h-auto py-4 sm:py-8 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="max-w-full sm:max-w-5xl mx-auto text-center">
           {/* Decorative top element */}
-          <div className={`inline-flex items-center gap-2 mb-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-            <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
-            <RiBuilding2Line className="text-yellow-400 animate-pulse" size={20} />
-            <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
+          <div className={`inline-flex items-center gap-2 mb-6 sm:mb-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
+            <RiBuilding2Line className="text-yellow-400 animate-pulse" size={16} sm={20} />
+            <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
           </div>
 
           {/* Main heading */}
-          <h1 className={`text-5xl sm:text-6xl lg:text-7xl font-black mb-8 transition-all duration-1200 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h1 className={`text-3xl sm:text-5xl lg:text-7xl font-black mb-6 sm:mb-8 transition-all duration-1200 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <span className="bg-gradient-to-r from-white via-yellow-200 to-yellow-400 bg-clip-text text-transparent animate-pulse">
               Popular Places
             </span>
@@ -415,9 +443,9 @@ function DifferentCities() {
           </h1>
 
           {/* Subtitle */}
-          <div className={`max-w-4xl mx-auto mb-12 transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-            <div className="bg-black/20 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-yellow-400/20">
-              <p className="text-lg sm:text-xl text-gray-200 leading-relaxed font-light">
+          <div className={`max-w-full sm:max-w-4xl mx-auto mb-8 sm:mb-12 transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+            <div className="bg-black/20 backdrop-blur-md rounded-2xl p-4 sm:p-8 shadow-2xl border border-yellow-400/20">
+              <p className="text-sm sm:text-lg text-gray-200 leading-relaxed font-light">
                 Discover premium real estate opportunities with
                 <span className="text-yellow-400 font-medium"> Ethos Pro Realtors</span>.
                 Whether you're seeking a
@@ -430,20 +458,20 @@ function DifferentCities() {
           </div>
 
           {/* Featured cities carousel */}
-          <div className={`mb-12 transition-all duration-1000 delay-600 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className={`mb-8 sm:mb-12 transition-all duration-1000 delay-600 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
               {featuredCities.map((city, index) => (
                 <div
                   key={city.name}
-                  className="group bg-black/20 backdrop-blur-sm rounded-xl p-4 border border-yellow-400/20 hover:bg-black/30 hover:border-yellow-400/40 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  className="group bg-black/20 backdrop-blur-sm rounded-xl p-3 sm:p-4 border border-yellow-400/20 hover:bg-black/30 hover:border-yellow-400/40 transition-all duration-300 hover:scale-105 hover:shadow-xl w-full sm:w-auto"
                   style={{ animationDelay: `${index * 200}ms` }}
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">{city.icon}</span>
+                  <div className="flex items-center gap-2 sm:gap-3">
+                    <span className="text-xl sm:text-2xl">{city.icon}</span>
                     <div>
-                      <div className="text-white font-semibold text-sm">{city.name}</div>
-                      <div className="flex items-center gap-1 text-yellow-400 text-xs">
-                        <RiLineChartLine size={12} />
+                      <div className="text-white font-semibold text-xs sm:text-sm">{city.name}</div>
+                      <div className="flex items-center gap-1 text-yellow-400 text-[10px] sm:text-xs">
+                        <RiLineChartLine size={10} sm={12} />
                         {city.growth}
                       </div>
                     </div>
@@ -457,22 +485,22 @@ function DifferentCities() {
           <div className={`transition-all duration-1000 delay-800 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <button
               onClick={showDrawer}
-              className="group relative inline-flex items-center gap-4 px-12 py-4 bg-transparent border-2 border-yellow-300 text-gray-300 font-bold text-lg rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-[inset_0_0_12px_rgba(255,255,255,0.1),0_0_20px_rgba(234,179,8,0.4)] hover:border-yellow-400"
+              className="group relative inline-flex items-center gap-3 sm:gap-4 px-8 sm:px-12 py-3 sm:py-4 bg-transparent border-2 border-yellow-300 text-gray-300 font-bold text-sm sm:text-lg rounded-2xl shadow-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-[inset_0_0_12px_rgba(255,255,255,0.1),0_0_20px_rgba(234,179,8,0.4)] hover:border-yellow-400"
             >
               <span className="absolute left-[-75%] top-0 w-[50%] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent rotate-12 group-hover:animate-[shine_1.2s_ease-in-out_forwards] pointer-events-none"></span>
-              <div className="relative z-10 flex items-center gap-4 text-gray-100 group-hover:text-yellow-100 transition-colors duration-300">
-                <RiMapPin2Line className="group-hover:scale-125 group-hover:text-yellow-300 transition-transform duration-300" size={20} />
-                <span className="tracking-wide group-hover:text-yellow-200 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-300">
+              <div className="relative z-10 flex items-center gap-3 sm:gap-4 text-gray-100 group-hover:text-yellow-100 transition-colors duration-300">
+                <RiMapPin2Line className="group-hover:scale-125 group-hover:text-yellow-300 transition-transform duration-300" size={16} sm={20} />
+                <span className="tracking-wide cursor-pointer group-hover:text-yellow-200 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all duration-300">
                   Explore Properties by Cities
                 </span>
-                <RiArrowRightLine className="group-hover:translate-x-2 group-hover:rotate-12 text-yellow-300 transition-all duration-300" size={20} />
+                <RiArrowRightLine className="group-hover:translate-x-2 group-hover:rotate-12 text-yellow-300 transition-all duration-300" size={16} sm={20} />
               </div>
               <div className="absolute inset-0 rounded-2xl pointer-events-none ring-0 group-hover:ring-2 ring-yellow-400/50 transition duration-500"></div>
             </button>
 
             {/* Secondary CTA */}
-            <div className="mt-6">
-              <button className="text-gray-300 hover:text-yellow-400 font-medium text-sm underline decoration-yellow-400 underline-offset-4 hover:decoration-2 transition-all duration-300 hover:drop-shadow-[0_0_6px_rgba(234,179,8,0.7)]">
+            <div className="mt-4 sm:mt-6">
+              <button className="text-gray-300 hover:text-yellow-400 font-medium text-xs sm:text-sm underline decoration-yellow-400 underline-offset-4 hover:decoration-2 transition-all duration-300 hover:drop-shadow-[0_0_6px_rgba(234,179,8,0.7)]">
                 Download Investment Guide
               </button>
             </div>
