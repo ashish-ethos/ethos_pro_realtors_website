@@ -1,12 +1,43 @@
-# React + Vite
+# 🏡 Ethos Pro Realtors
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Ethos Pro Realtors** is a modern, high-performance real estate website built using **React**, **Vite**, **Tailwind CSS**, and other modern libraries. This project supports hot module replacement (HMR), fast refresh, and is optimized for scalability.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔗 Demo
 
-## Expanding the ESLint configuration
+Coming soon...
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Features
+
+- ⚡ Fast build and HMR using Vite
+- ✨ Styled with Tailwind CSS
+- 🎥 Animations via Framer Motion
+- 📱 Fully responsive design
+- 🌐 Country/State/City filters with `react-country-state-city`
+- 🔍 Advanced property filters with Ant Design
+- 🧩 Modular and maintainable component structure
+
+---
+
+## 📦 Tech Stack
+
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Ant Design](https://ant.design/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [react-country-state-city](https://www.npmjs.com/package/react-country-state-city)
+
+---
+
+## 🛠️ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/ashish-ethos/ethos_pro_realtors_website.git
+cd ethos-pro-realtors

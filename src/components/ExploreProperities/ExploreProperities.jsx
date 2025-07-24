@@ -2,12 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Heart, MapPin, Ruler, Eye, Star } from 'lucide-react';
 import { FiPhone } from "react-icons/fi";
 import { MdOutlineEmail, MdOutlineWhatsapp } from "react-icons/md";
+import AIPLAutography from "../../assets/images/exploreproperties/aipl-autograph.jpg";
+import AriaMall from "../../assets/images/exploreproperties/aria-mall.jpg";
+import Omaxstate from "../../assets/images/exploreproperties/omaxstate.webp";
+import M3Mantalya from "../../assets/images/exploreproperties/m3m_antalya.avif";
+import EmeraldHills from "../../assets/images/exploreproperties/emerald-hills.jpg";
+import WorldTrade from "../../assets/images/exploreproperties/worldtrader-center.jpg";
+import CentralPark from "../../assets/images/exploreproperties/central-park.jpg";
+import M3MMansion from "../../assets/images/exploreproperties/m3m-mansion.jpg";
+import Krisumi from "../../assets/images/exploreproperties/krisumi-waterfall.jpg";
+import Tulip from "../../assets/images/exploreproperties/tulip-monsella.jpg";
+import SmartWorld from "../../assets/images/exploreproperties/smartworld-dxp.jpg";
+import AIPLBusinessClub from "../../assets/images/exploreproperties/aipl-business.jpg";
+import Cygnett from "../../assets/images/exploreproperties/cygnett-retreat.jpg";
+import Sobha from "../../assets/images/exploreproperties/sobha-international.webp";
 
 const ExploreProperties = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
   const [favorites, setFavorites] = useState(new Set());
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [visibleProperties, setVisibleProperties] = useState(6); 
 
   const properties = [
     {
@@ -17,7 +32,7 @@ const ExploreProperties = () => {
       location: 'Airia Mall, Sector 68, Gurgaon, Haryana, India',
       size: '300 - 8000 Sq Ft',
       price: '₹2.5 Cr - ₹8.5 Cr',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop',
+      image: AriaMall,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
       views: 1200
@@ -29,7 +44,7 @@ const ExploreProperties = () => {
       location: 'AIPL Business Club, Sector 62, Gurgaon, Haryana, India',
       size: '500 - 5000 Sq Ft',
       price: '₹1.8 Cr - ₹6.2 Cr',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop',
+      image: AIPLAutography,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.6,
       views: 890
@@ -41,7 +56,7 @@ const ExploreProperties = () => {
       location: 'The Omaxe State, Sector 19B, Dwarka, Delhi, India',
       size: '50 - 10000 Sq Ft',
       price: '₹50 L - ₹12 Cr',
-      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop',
+      image: Omaxstate,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.5,
       views: 2100
@@ -49,14 +64,14 @@ const ExploreProperties = () => {
     {
       id: '4',
       type: 'Residential',
-      name: 'DLF Cyber City',
-      location: 'DLF Cyber City, Sector 25, Gurgaon, Haryana, India',
-      size: '1200 - 3500 Sq Ft',
-      price: '₹1.2 Cr - ₹4.5 Cr',
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=300&fit=crop',
-      options: ['FOR SALE', 'PREMIUM'],
+      name: 'M3M Antalya Hills',
+      location: 'M3M Antalya Hills, Sector 79, Gurugram, Haryana, India',
+      size: '1138 – 1642 Sq Ft',
+      price: '₹1.15 Cr – ₹1.62 Cr',
+      image: M3Mantalya,
+      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.7,
-      views: 1800
+      views: 1200
     },
     {
       id: '5',
@@ -65,7 +80,7 @@ const ExploreProperties = () => {
       location: 'Emerald Hills, Sector 65, Gurgaon, Haryana, India',
       size: '2500 - 5000 Sq Ft',
       price: '₹3.5 Cr - ₹8 Cr',
-      image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=400&h=300&fit=crop',
+      image: EmeraldHills,
       options: ['FOR SALE', 'LUXURY'],
       rating: 4.9,
       views: 950
@@ -77,7 +92,7 @@ const ExploreProperties = () => {
       location: 'WTC, Sector 16, Noida, UP, India',
       size: '800 - 4000 Sq Ft',
       price: '₹80 L - ₹5 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: WorldTrade,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.4,
       views: 1350
@@ -89,7 +104,7 @@ const ExploreProperties = () => {
       location: 'M3M Antalya Hills, Sector 79, Gurugram, Haryana, India',
       size: '1138 – 1642 Sq Ft',
       price: '₹1.15 Cr – ₹1.62 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: M3Mantalya,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.7,
       views: 1200
@@ -101,7 +116,7 @@ const ExploreProperties = () => {
       location: 'The Room, Central Park II, Sector 48, Gurugram, Haryana, India',
       size: 'NA',
       price: '₹85 L – ₹1.45 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: CentralPark,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.5,
       views: 970
@@ -113,7 +128,7 @@ const ExploreProperties = () => {
       location: 'M3M Mansion, Sector 113, Bajghera, Gurugram, Haryana, India',
       size: '1638 – 6695 Sq Ft',
       price: '₹1.8 Cr – ₹8.2 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: M3MMansion,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.9,
       views: 2400
@@ -125,7 +140,7 @@ const ExploreProperties = () => {
       location: 'Krisumi Waterfall Residences, Sector 36A, Gurugram, Haryana, India',
       size: '1448 – 6569 Sq Ft',
       price: '₹1.25 Cr – ₹6.5 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: Krisumi,
       options: ['FEATURED', 'FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.6,
       views: 1870
@@ -137,7 +152,7 @@ const ExploreProperties = () => {
       location: 'Tulip Monsella, Sector 53, Gurugram, Haryana, India',
       size: '1368 – 4503 Sq Ft',
       price: '₹3.75 Cr – ₹9 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: Tulip,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.8,
       views: 1650
@@ -149,7 +164,7 @@ const ExploreProperties = () => {
       location: 'Smartworld ONE DXP, Sector 113, Bajghera, Gurugram, Haryana, India',
       size: '2450 – 3203 Sq Ft',
       price: '₹2.95 Cr – ₹5 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: SmartWorld,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.6,
       views: 2100
@@ -161,7 +176,7 @@ const ExploreProperties = () => {
       location: 'Airia Mall, Sector 68, Gurugram, Haryana, India',
       size: '300 – 8000 Sq Ft',
       price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: AriaMall,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.7,
       views: 1700
@@ -173,7 +188,7 @@ const ExploreProperties = () => {
       location: 'AIPL Business Club, Sector 62, Gurugram, Haryana, India',
       size: '500 – 20000 Sq Ft',
       price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: AIPLBusinessClub,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.6,
       views: 1500
@@ -185,7 +200,7 @@ const ExploreProperties = () => {
       location: 'The Omaxe State, Sector 198, Sector 24 Dwarka, Dwarka, Delhi, India',
       size: '50 – 10000 Sq Ft',
       price: '₹30,000+ Sq Ft',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: Omaxstate,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
       views: 2100
@@ -197,7 +212,7 @@ const ExploreProperties = () => {
       location: 'AIPL Joy Street, Badshahpur, Sector 66, Gurugram, Haryana, India',
       size: '300 – 8000 Sq Ft',
       price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: AIPLAutography,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.5,
       views: 1400
@@ -209,7 +224,7 @@ const ExploreProperties = () => {
       location: 'Pahadi Kothi, Bagar Road, Pangot, Uttarakhand, India',
       size: '800 Sq Ft',
       price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: Cygnett,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.9,
       views: 1300
@@ -221,7 +236,7 @@ const ExploreProperties = () => {
       location: 'M3M IFC, Golf Course Extension Road, Badshahpur, Sector 66, Gurugram, Haryana, India',
       size: '500 – 18000 Sq Ft',
       price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: M3MMansion,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.7,
       views: 1900
@@ -233,7 +248,7 @@ const ExploreProperties = () => {
       location: 'Pahadi Kothi, Bagar Road, Pangot, Uttarakhand, India',
       size: '800 Sq Ft',
       price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: Cygnett,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.9,
       views: 1300
@@ -245,7 +260,7 @@ const ExploreProperties = () => {
       location: 'Sobha International City, Dwarka Expressway, Sector 109, Gurugram, Haryana, India',
       size: '3153 – 7330 Sq Ft',
       price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: Sobha,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
       views: 1650
@@ -257,7 +272,7 @@ const ExploreProperties = () => {
       location: 'AIPL Business Club, Sector 62, Gurugram, Haryana, India',
       size: 'Size on Request',
       price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: AIPLBusinessClub,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.7,
       views: 980
@@ -269,7 +284,7 @@ const ExploreProperties = () => {
       location: 'M3M IFC, Golf Course Extension Road, Badshahpur, Sector 66, Gurugram, Haryana, India',
       size: '500 – 18000 Sq Ft',
       price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: M3MMansion,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.9,
       views: 1200
@@ -281,7 +296,7 @@ const ExploreProperties = () => {
       location: 'AIPL Autograph Corporate Office Space, Sector 66, Gurugram, Haryana, India',
       size: 'Size on Request',
       price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
+      image: AIPLAutography,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
       views: 1400
@@ -328,7 +343,12 @@ const ExploreProperties = () => {
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 1500);
-  }, []);
+    setVisibleProperties(6); // Reset visible properties when tab changes
+  }, [activeTab]);
+
+  const handleViewMore = () => {
+    setVisibleProperties(getFilteredProperties().length); // Show all properties
+  };
 
   const PropertyCard = ({ property, index }) => {
     const isHovered = hoveredCard === property.id;
@@ -396,7 +416,7 @@ const ExploreProperties = () => {
               <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 text-amber-700" />
               <p className="text-xs sm:text-sm leading-relaxed line-clamp-2">{property.location}</p>
             </div>
-            <div className="flex items-center space-x-2 text-gray-600">
+            <div className="flex items-center space-x-2 text-gray-600 ">
               <Ruler className="w-3 h-3 sm:w-4 sm:h-4 text-amber-700" />
               <p className="text-xs sm:text-sm">{property.size}</p>
             </div>
@@ -455,7 +475,7 @@ const ExploreProperties = () => {
       </p>
       <div className="mt-4 sm:mt-6">
         <button
-          className="px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-black via-[#474236] to-[#c99913] hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg text-sm sm:text-base"
+          className="px-4 sm:px-6 py-2 sm:py-3 cursor-pointer rounded-xl font-semibold text-white bg-gradient-to-r from-black via-[#474236] to-[#c99913] hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg text-sm sm:text-base"
           onClick={() => setActiveTab('all')}
         >
           View All Properties
@@ -515,11 +535,23 @@ const ExploreProperties = () => {
         ) : getFilteredProperties().length === 0 ? (
           <NoResults />
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-            {getFilteredProperties().map((property, index) => (
-              <PropertyCard key={property.id} property={property} index={index} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+              {getFilteredProperties().slice(0, visibleProperties).map((property, index) => (
+                <PropertyCard key={property.id} property={property} index={index} />
+              ))}
+            </div>
+            {visibleProperties < getFilteredProperties().length && (
+              <div className="text-center mt-8">
+                <button
+                  className="px-6 py-3 rounded-xl font-semibold cursor-pointer text-white bg-gradient-to-r from-black via-[#474236] to-[#c99913] hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg text-base"
+                  onClick={handleViewMore}
+                >
+                  View More
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
       <style jsx>{`
