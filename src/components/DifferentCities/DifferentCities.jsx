@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "antd";
 import { RiBuilding2Line, RiMapPin2Line, RiLineChartLine, RiArrowRightLine } from "react-icons/ri";
@@ -9,7 +8,7 @@ import KrisumiWaterfall from "../../assets/images/premiumproperties/krisumiwater
 import TrinitySkyPlazao from "../../assets/images/premiumproperties/skyplazzo.jpg";
 import M3Mmansion from "../../assets/images/premiumproperties/m3mmansion.jpg";
 import AIPLAutograph from "../../assets/images/exploreproperties/aipl-autograph.jpg";
-import CentralPark from "../../assets/images/exploreproperties/central-park.jpg"
+import CentralPark from "../../assets/images/exploreproperties/central-park.jpg";
 import AIPLBusiness from "../../assets/images/exploreproperties/aipl-bussiness.jpg";
 import ReachAriaMall from "../../assets/images/exploreproperties/aria-mall.jpg";
 import TrumpTower from "../../assets/images/exploreproperties/trump-tower.jpg";
@@ -20,7 +19,7 @@ function DifferentCities() {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [open, setOpen] = useState(false);
-  const [size, setSize] = useState("large");
+  const [size] = useState("large");
 
   // Dynamic location state
   const [countryId, setCountryId] = useState([]);
@@ -37,19 +36,25 @@ function DifferentCities() {
   const [maxArea, setMaxArea] = useState(10000);
   const [label, setLabel] = useState([]);
   const [yearBuilt, setYearBuilt] = useState([]);
-  const [priceRange, setPriceRange] = useState([3000000, 600000000]);
+  const [priceRange, setPriceRange] = useState([1000000, 1000000000]);
 
-  // Property data with images
-  const [properties, setProperties] = useState([
+  // Property data with images and complete fields
+  const [properties] = useState([
     {
       id: 1,
       name: "AIPL Autograph",
       location: "AIPL Autograph Corporate Office Space, Sector 66, Gurgram, Haryana, India",
-      area: "Food Court, Office, Shop, Commercial",
-      type: "Office, Commercial",
-      price: "",
-      status: "For Rent, For Sale",
+      area: "Sector 66, Gurgaon",
+      areaValue: 5000,
+      type: "Commercial",
+      price: "₹5,00,00,000",
+      priceValue: 500000000,
+      status: "For Sale",
       featured: true,
+      label: "featured",
+      bedrooms: null,
+      bathrooms: null,
+      yearBuilt: 2021,
       image: AIPLAutograph,
       countryId: 101,
       stateId: 4030,
@@ -59,11 +64,17 @@ function DifferentCities() {
       id: 2,
       name: "Central Park Flower Valley The Room",
       location: "The Room, Central Park II, Sector 48, Gurgram, Haryana, India",
-      area: "Apartment, Studio, Residential",
-      type: "Apartment, Residential",
-      price: "",
-      status: "For Rent, For Sale",
+      area: "Sector 48, Gurgaon",
+      areaValue: 1500,
+      type: "Apartment",
+      price: "₹1,50,00,000",
+      priceValue: 150000000,
+      status: "For Rent",
       featured: false,
+      label: null,
+      bedrooms: 2,
+      bathrooms: 2,
+      yearBuilt: 2020,
       image: CentralPark,
       countryId: 101,
       stateId: 4030,
@@ -73,11 +84,17 @@ function DifferentCities() {
       id: 3,
       name: "AIPL Business Club",
       location: "AIPL Business Club, Sector 62, Gurgram, Haryana, India",
-      area: "Office, Commercial",
-      type: "Office, Commercial",
-      price: "",
-      status: "For Rent, For Sale",
+      area: "Sector 62, Gurgaon",
+      areaValue: 4000,
+      type: "Commercial",
+      price: "₹4,00,00,000",
+      priceValue: 400000000,
+      status: "For Sale",
       featured: true,
+      label: "featured",
+      bedrooms: null,
+      bathrooms: null,
+      yearBuilt: 2022,
       image: AIPLBusiness,
       countryId: 101,
       stateId: 4030,
@@ -87,11 +104,17 @@ function DifferentCities() {
       id: 4,
       name: "M3M Antalya Hills",
       location: "M3M Antalya Hills, Sector 79, Gurgram, Haryana, India",
-      area: "1138 - 1642 Sq Ft",
-      type: "Apartment, Residential",
-      price: "",
-      status: "For Rent, For Sale, Hot Offer",
+      area: "Sector 79, Gurgaon",
+      areaValue: 1642,
+      type: "Apartment",
+      price: "₹1,80,00,000",
+      priceValue: 180000000,
+      status: "Hot Offer",
       featured: true,
+      label: "featured",
+      bedrooms: 3,
+      bathrooms: 3,
+      yearBuilt: 2021,
       image: M3Mmansion,
       countryId: 101,
       stateId: 4030,
@@ -101,11 +124,17 @@ function DifferentCities() {
       id: 5,
       name: "DLF The Arbour",
       location: "DLF, Sector 63, Gurgram, Haryana, India",
-      area: "3800 - 3956 Sq Ft",
-      type: "Apartment, Residential",
-      price: "",
-      status: "For Rent, For Sale, Hot Offer",
+      area: "Sector 63, Gurgaon",
+      areaValue: 3956,
+      type: "Apartment",
+      price: "₹3,50,00,000",
+      priceValue: 350000000,
+      status: "For Sale",
       featured: false,
+      label: null,
+      bedrooms: 4,
+      bathrooms: 4,
+      yearBuilt: 2022,
       image: DLFCamellias,
       countryId: 101,
       stateId: 4030,
@@ -115,11 +144,17 @@ function DifferentCities() {
       id: 6,
       name: "Reach Aria Mall",
       location: "Aria Mall, Sector 68, Gurgram, Haryana, India",
-      area: "300 - 8000 Sq Ft",
-      type: "Shop, Commercial",
-      price: "",
-      status: "For Rent, For Sale, Hot Offer",
+      area: "Sector 68, Gurgaon",
+      areaValue: 8000,
+      type: "Commercial",
+      price: "₹6,00,00,000",
+      priceValue: 600000000,
+      status: "Hot Offer",
       featured: true,
+      label: "featured",
+      bedrooms: null,
+      bathrooms: null,
+      yearBuilt: 2020,
       image: ReachAriaMall,
       countryId: 101,
       stateId: 4030,
@@ -129,11 +164,17 @@ function DifferentCities() {
       id: 7,
       name: "Elan The Mark",
       location: "Elan The Mark, Block R, New Palam Vihar Phase 1, Sector 106, Gurgram, Pawala Khusrupur, Haryana, India",
-      area: "500 - 2200 Sq Ft",
-      type: "Shop, Commercial",
-      price: "",
-      status: "For Rent, For Sale, Hot Offer",
+      area: "Sector 106, Gurgaon",
+      areaValue: 2200,
+      type: "Commercial",
+      price: "₹2,50,00,000",
+      priceValue: 250000000,
+      status: "For Sale",
       featured: false,
+      label: null,
+      bedrooms: null,
+      bathrooms: null,
+      yearBuilt: 2021,
       image: ElanTheEmperor,
       countryId: 101,
       stateId: 4030,
@@ -143,11 +184,17 @@ function DifferentCities() {
       id: 8,
       name: "Elan Epic Mall",
       location: "Elan Epic Mall, Sector 70, Gurgram, Haryana, India",
-      area: "250 - 1609 Sq Ft",
-      type: "Shop, Commercial",
-      price: "",
-      status: "For Rent, For Sale, Hot Offer",
+      area: "Sector 70, Gurgaon",
+      areaValue: 1609,
+      type: "Commercial",
+      price: "₹2,00,00,000",
+      priceValue: 200000000,
+      status: "Hot Offer",
       featured: true,
+      label: "featured",
+      bedrooms: null,
+      bathrooms: null,
+      yearBuilt: 2022,
       image: ElanTheEmperor,
       countryId: 101,
       stateId: 4030,
@@ -157,11 +204,17 @@ function DifferentCities() {
       id: 9,
       name: "Trump Towers",
       location: "Trump Tower, Golf Course Extension Road, Sector 65, Gurgram, Haryana, India",
-      area: "3525 - 6050 Sq Ft",
-      type: "Apartment, Residential",
-      price: "",
-      status: "For Rent, For Sale, Hot Offer",
+      area: "Sector 65, Gurgaon",
+      areaValue: 6050,
+      type: "Apartment",
+      price: "₹5,50,00,000",
+      priceValue: 550000000,
+      status: "For Sale",
       featured: false,
+      label: null,
+      bedrooms: 4,
+      bathrooms: 4,
+      yearBuilt: 2021,
       image: TrumpTower,
       countryId: 101,
       stateId: 4030,
@@ -171,11 +224,17 @@ function DifferentCities() {
       id: 10,
       name: "Pioneer Urban Presidia",
       location: "Pioneer Presidia, Sector 62, Gurgram, Ghata, Haryana",
-      area: "2279 - 6159 Sq Ft",
-      type: "Apartment, Residential",
-      price: "",
-      status: "For Rent, For Sale",
+      area: "Sector 62, Gurgaon",
+      areaValue: 6159,
+      type: "Apartment",
+      price: "₹4,50,00,000",
+      priceValue: 450000000,
+      status: "For Sale",
       featured: true,
+      label: "featured",
+      bedrooms: 4,
+      bathrooms: 4,
+      yearBuilt: 2020,
       image: PioneerUrban,
       countryId: 101,
       stateId: 4030,
@@ -185,11 +244,17 @@ function DifferentCities() {
       id: 11,
       name: "Pioneer Araya",
       location: "Pioneer Araya, Tower D, Pioneer, Haryana, India",
-      area: "3498 - 10019 Sq Ft",
-      type: "Apartment, Residential",
-      price: "",
+      area: "Sector 62, Gurgaon",
+      areaValue: 10019,
+      type: "Apartment",
+      price: "₹7,00,00,000",
+      priceValue: 700000000,
       status: "Ready to Move",
       featured: false,
+      label: null,
+      bedrooms: 5,
+      bathrooms: 5,
+      yearBuilt: 2019,
       image: PioneerAraya,
       countryId: 101,
       stateId: 4030,
@@ -199,11 +264,17 @@ function DifferentCities() {
       id: 12,
       name: "Sobha International City",
       location: "Sobha International City, Dwarka Expressway, Sector 109, Gurgram, Haryana, India",
-      area: "3155 - 7330 Sq Ft",
-      type: "Villa, Residential",
-      price: "",
-      status: "For Rent, For Sale, Hot Offer",
+      area: "Sector 109, Gurgaon",
+      areaValue: 7330,
+      type: "Villa",
+      price: "₹6,50,00,000",
+      priceValue: 650000000,
+      status: "Hot Offer",
       featured: true,
+      label: "featured",
+      bedrooms: 5,
+      bathrooms: 5,
+      yearBuilt: 2021,
       image: KrisumiWaterfall,
       countryId: 101,
       stateId: 4030,
@@ -213,11 +284,17 @@ function DifferentCities() {
       id: 13,
       name: "M3M Golf Estate",
       location: "M3M Golfestate, Golf Course Extension Road, Sector 65, Gurgram, Haryana, India",
-      area: "2124 - 13343 Sq Ft",
-      type: "Apartment, Residential",
-      price: "",
-      status: "For Rent, For Sale, Hot Offer",
+      area: "Sector 65, Gurgaon",
+      areaValue: 13343,
+      type: "Apartment",
+      price: "₹8,00,00,000",
+      priceValue: 800000000,
+      status: "Hot Offer",
       featured: false,
+      label: null,
+      bedrooms: 5,
+      bathrooms: 5,
+      yearBuilt: 2022,
       image: M3Mmansion,
       countryId: 101,
       stateId: 4030,
@@ -227,11 +304,17 @@ function DifferentCities() {
       id: 14,
       name: "Cygnett Retreat",
       location: "Pahadi Kothi, Bagar Road, Pangoot, Uttarakhand, India",
-      area: "800 Sq Ft",
-      type: "Villa, Commercial",
-      price: "",
-      status: "For Rent, For Sale, Hot Offer",
+      area: "Pangoot, Uttarakhand",
+      areaValue: 800,
+      type: "Villa",
+      price: "₹1,20,00,000",
+      priceValue: 120000000,
+      status: "Hot Offer",
       featured: true,
+      label: "featured",
+      bedrooms: 3,
+      bathrooms: 2,
+      yearBuilt: 2020,
       image: TrinitySkyPlazao,
       countryId: 101,
       stateId: 4047,
@@ -241,20 +324,23 @@ function DifferentCities() {
       id: 15,
       name: "Elan The Presidential",
       location: "Elan The Presidential, Northern Peripheral Road, Panwala Khusropur, Sector 106, Gurgram, Haryana, India",
-      area: "1347 - 4100 Sq Ft",
-      type: "Apartment, Residential",
-      price: "",
-      status: "For Rent, For Sale, Hot Offer",
+      area: "Sector 106, Gurgaon",
+      areaValue: 4100,
+      type: "Apartment",
+      price: "₹3,80,00,000",
+      priceValue: 380000000,
+      status: "Hot Offer",
       featured: false,
+      label: null,
+      bedrooms: 4,
+      bathrooms: 4,
+      yearBuilt: 2022,
       image: ElanTheEmperor,
       countryId: 101,
       stateId: 4030,
       cityId: 57510,
     },
   ]);
-
-  // Store original properties for reset
-  const [originalProperties] = useState([...properties]);
 
   // Featured cities data
   const featuredCities = [
@@ -276,56 +362,11 @@ function DifferentCities() {
   }, []);
 
   const showDrawer = () => {
-    setSize("large");
     setOpen(true);
   };
 
   const onClose = () => {
     setOpen(false);
-  };
-
-  const handleSearch = () => {
-    const filteredProperties = originalProperties.filter((prop) => {
-      const matchesCountry = !countryId.length || countryId.includes(prop.countryId.toString());
-      const matchesState = !stateId.length || stateId.includes(prop.stateId.toString());
-      const matchesCity = !cityId.length || cityId.includes(prop.cityId.toString());
-      const matchesArea = !area.length || area.some((a) => prop.location.toLowerCase().includes(a.toLowerCase()));
-      const matchesStatus = !status.length || status.includes(prop.status);
-      const matchesType = !type.length || type.some((t) => prop.type.toLowerCase().includes(t.toLowerCase()));
-      const matchesBedrooms = !bedrooms.length || bedrooms.some((b) => prop.bedrooms?.includes(b));
-      const matchesBathrooms = !bathrooms.length || bathrooms.some((b) => prop.bathrooms?.includes(b));
-      
-      // Parse area range for filtering
-      const areaNumbers = prop.area.match(/\d+/g);
-      const propMinArea = areaNumbers ? parseInt(areaNumbers[0]) : 0;
-      const propMaxArea = areaNumbers ? parseInt(areaNumbers[1] || areaNumbers[0]) : 10000;
-
-      const matchesMinArea = !minArea || propMinArea >= minArea;
-      const matchesMaxArea = !maxArea || propMaxArea <= maxArea;
-      const matchesLabel = !label.length || (label.includes("featured") && prop.featured);
-      const matchesYear = !yearBuilt.length || yearBuilt.includes(prop.yearBuilt?.toString());
-
-      // Parse price for filtering
-      const propPrice = parseInt(prop.price.replace(/[^0-9]/g, "")) || 0;
-      const matchesPrice = propPrice >= priceRange[0] && propPrice <= priceRange[1];
-
-      return (
-        matchesCountry &&
-        matchesState &&
-        matchesCity &&
-        matchesArea &&
-        matchesStatus &&
-        matchesType &&
-        matchesBedrooms &&
-        matchesBathrooms &&
-        matchesMinArea &&
-        matchesMaxArea &&
-        matchesLabel &&
-        matchesYear &&
-        matchesPrice
-      );
-    });
-    setProperties(filteredProperties);
   };
 
   const handlePriceChange = (value) => {
@@ -345,8 +386,7 @@ function DifferentCities() {
     setMaxArea(10000);
     setLabel([]);
     setYearBuilt([]);
-    setPriceRange([3000000, 600000000]);
-    setProperties(originalProperties);
+    setPriceRange([1000000, 1000000000]);
   };
 
   return (
@@ -537,7 +577,6 @@ function DifferentCities() {
         setYearBuilt={setYearBuilt}
         priceRange={priceRange}
         handlePriceChange={handlePriceChange}
-        handleSearch={handleSearch}
         handleClearFilters={handleClearFilters}
         properties={properties}
       />
