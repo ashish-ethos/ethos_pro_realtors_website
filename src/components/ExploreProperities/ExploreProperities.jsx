@@ -22,7 +22,7 @@ const ExploreProperties = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [favorites, setFavorites] = useState(new Set());
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [visibleProperties, setVisibleProperties] = useState(6); 
+  const [visibleProperties, setVisibleProperties] = useState(6);
 
   const properties = [
     {
@@ -356,7 +356,7 @@ const ExploreProperties = () => {
 
     return (
       <div
-        className={`group relative bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-700 ease-in-out hover:scale-105 hover:shadow-2xl ${isHovered ? 'z-10' : ''}`}
+        className="parent"
         style={{
           animationDelay: `${index * 100}ms`,
           animation: isLoading ? 'none' : 'slideInUp 0.6s ease-out forwards'
@@ -364,102 +364,106 @@ const ExploreProperties = () => {
         onMouseEnter={() => setHoveredCard(property.id)}
         onMouseLeave={() => setHoveredCard(null)}
       >
-        <div className="relative overflow-hidden h-64 sm:h-56">
-          <img
-            src={property.image}
-            alt={property.name}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <button
-            onClick={() => toggleFavorite(property.id)}
-            className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-sm transition-all duration-300 ${isFavorite
-              ? 'bg-gradient-to-r from-amber-700 to-amber-500 text-white scale-110'
-              : 'bg-white/80 text-gray-600 hover:bg-gradient-to-r hover:from-amber-700 hover:to-amber-500 hover:text-white'
-              }`}
-          >
-            <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
-          </button>
-          <div className="absolute top-3 left-3 flex flex-wrap gap-1 sm:gap-2">
-            {property.options.map((option, idx) => (
-              <span
-                key={option}
-                className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${getOptionColor(option)} transform transition-all duration-300`}
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                {option}
-              </span>
-            ))}
-          </div>
-          <div className="absolute bottom-3 left-3 flex items-center space-x-3 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="flex items-center space-x-1 bg-slate-900/50 rounded-full px-2 py-1">
-              <Eye className="w-3 h-3" />
-              <span className="text-[10px] sm:text-xs">{property.views}</span>
+        <div className={`card relative bg-white rounded-2xl shadow-lg overflow-hidden ${isHovered ? 'z-10' : ''}`}>
+          <div className="relative overflow-hidden h-64 sm:h-56">
+            <img
+              src={property.image}
+              alt={property.name}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <button
+              onClick={() => toggleFavorite(property.id)}
+              className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-sm transition-all duration-300 ${isFavorite
+                ? 'bg-gradient-to-r from-amber-700 to-amber-500 text-white scale-110'
+                : 'bg-white/80 text-gray-600 hover:bg-gradient-to-r hover:from-amber-700 hover:to-amber-500 hover:text-white'
+                }`}
+            >
+              <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
+            </button>
+            <div className="absolute top-3 left-3 flex flex-wrap gap-1 sm:gap-2">
+              {property.options.map((option, idx) => (
+                <span
+                  key={option}
+                  className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${getOptionColor(option)} transform transition-all duration-300`}
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
+                  {option}
+                </span>
+              ))}
             </div>
-            <div className="flex items-center space-x-1 bg-slate-900/50 rounded-full px-2 py-1">
-              <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
-              <span className="text-[10px] sm:text-xs cursor-pointer">{property.rating}</span>
-            </div>
-          </div>
-        </div>
-        <div className="p-4 sm:p-6">
-          <div className="mb-2 sm:mb-3">
-            <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-1 group-hover:text-amber-700 transition-colors duration-300 line-clamp-1">
-              {property.name}
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-500 uppercase tracking-wide font-medium line-clamp-1">
-              {property.type}
-            </p>
-          </div>
-          <div className="space-y-1 sm:space-y-2 mb-3 sm:mb-4">
-            <div className="flex items-start space-x-2 text-gray-600">
-              <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 text-amber-700" />
-              <p className="text-xs sm:text-sm leading-relaxed line-clamp-2">{property.location}</p>
-            </div>
-            <div className="flex items-center space-x-2 text-gray-600 ">
-              <Ruler className="w-3 h-3 sm:w-4 sm:h-4 text-amber-700" />
-              <p className="text-xs sm:text-sm">{property.size}</p>
+            <div className="absolute bottom-3 left-3 flex items-center space-x-3 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="flex items-center space-x-1 bg-slate-900/50 rounded-full px-2 py-1">
+                <Eye className="w-3 h-3" />
+                <span className="text-[10px] sm:text-xs">{property.views}</span>
+              </div>
+              <div className="flex items-center space-x-1 bg-slate-900/50 rounded-full px-2 py-1">
+                <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+                <span className="text-[10px] sm:text-xs cursor-pointer">{property.rating}</span>
+              </div>
             </div>
           </div>
-          <div className="mb-3 sm:mb-4">
-            <p className="text-base sm:text-xl font-bold text-amber-700 line-clamp-1">{property.price}</p>
+          <div className="p-4 sm:p-6">
+            <div className="mb-2 sm:mb-3">
+              <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-1 group-hover:text-amber-700 transition-colors duration-300 line-clamp-1">
+                {property.name}
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-500 uppercase tracking-wide font-medium line-clamp-1">
+                {property.type}
+              </p>
+            </div>
+            <div className="space-y-1 sm:space-y-2 mb-3 sm:mb-4">
+              <div className="flex items-start space-x-2 text-gray-600">
+                <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 text-amber-700" />
+                <p className="text-xs sm:text-sm leading-relaxed line-clamp-2">{property.location}</p>
+              </div>
+              <div className="flex items-center space-x-2 text-gray-600">
+                <Ruler className="w-3 h-3 sm:w-4 sm:h-4 text-amber-700" />
+                <p className="text-xs sm:text-sm">{property.size}</p>
+              </div>
+            </div>
+            <div className="mb-3 sm:mb-4">
+              <p className="text-base sm:text-xl font-bold text-amber-700 line-clamp-1">{property.price}</p>
+            </div>
+            <div className="flex space-x-1 sm:space-x-2">
+              {[
+                { icon: FiPhone, label: 'Call', color: 'hover:bg-gradient-to-r hover:from-black hover:via-[#474236] hover:to-[#c99913] hover:text-white cursor-pointer' },
+                { icon: MdOutlineEmail, label: 'Email', color: 'hover:bg-gradient-to-r hover:from-black hover:via-[#474236] hover:to-[#c99913] hover:text-white cursor-pointer' },
+                { icon: MdOutlineWhatsapp, label: 'WhatsApp', color: 'hover:bg-gradient-to-r hover:from-black hover:via-[#474236] hover:to-[#c99913] hover:text-white cursor-pointer' }
+              ].map((action, idx) => (
+                <button
+                  key={action.label}
+                  className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-2 px-2 sm:px-3 rounded-lg bg-gray-100 text-gray-700 transition-all duration-300 transform hover:scale-105 ${action.color}`}
+                  style={{ transitionDelay: `${idx * 50}ms` }}
+                >
+                  <action.icon className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="text-[10px] sm:text-sm font-medium">{action.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
-          <div className="flex space-x-1 sm:space-x-2">
-            {[
-              { icon: FiPhone, label: 'Call', color: 'hover:bg-gradient-to-r hover:from-black hover:via-[#474236] hover:to-[#c99913] hover:text-white cursor-pointer' },
-              { icon: MdOutlineEmail, label: 'Email', color: 'hover:bg-gradient-to-r hover:from-black hover:via-[#474236] hover:to-[#c99913] hover:text-white cursor-pointer' },
-              { icon: MdOutlineWhatsapp, label: 'WhatsApp', color: 'hover:bg-gradient-to-r hover:from-black hover:via-[#474236] hover:to-[#c99913] hover:text-white cursor-pointer' }
-            ].map((action, idx) => (
-              <button
-                key={action.label}
-                className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-2 px-2 sm:px-3 rounded-lg bg-gray-100 text-gray-700 transition-all duration-300 transform hover:scale-105 ${action.color}`}
-                style={{ transitionDelay: `${idx * 50}ms` }}
-              >
-                <action.icon className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span className="text-[10px] sm:text-sm font-medium">{action.label}</span>
-              </button>
-            ))}
+          <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-black via-[#474236] to-[#c99913] blur-xl opacity-20" />
           </div>
-        </div>
-        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-black via-[#474236] to-[#c99913] blur-xl opacity-20" />
         </div>
       </div>
     );
   };
 
   const LoadingSkeleton = () => (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
-      <div className="h-64 sm:h-56 bg-gray-300" />
-      <div className="p-4 sm:p-6">
-        <div className="h-4 bg-gray-300 rounded mb-2" />
-        <div className="h-3 bg-gray-300 rounded mb-4 w-3/4" />
-        <div className="h-3 bg-gray-300 rounded mb-2" />
-        <div className="h-3 bg-gray-300 rounded mb-4 w-1/2" />
-        <div className="flex space-x-1 sm:space-x-2">
-          <div className="flex-1 h-8 bg-gray-300 rounded" />
-          <div className="flex-1 h-8 bg-gray-300 rounded" />
-          <div className="flex-1 h-8 bg-gray-300 rounded" />
+    <div className="parent">
+      <div className="card bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
+        <div className="h-64 sm:h-56 bg-gray-300" />
+        <div className="p-4 sm:p-6">
+          <div className="h-4 bg-gray-300 rounded mb-2" />
+          <div className="h-3 bg-gray-300 rounded mb-4 w-3/4" />
+          <div className="h-3 bg-gray-300 rounded mb-2" />
+          <div className="h-3 bg-gray-300 rounded mb-4 w-1/2" />
+          <div className="flex space-x-1 sm:space-x-2">
+            <div className="flex-1 h-8 bg-gray-300 rounded" />
+            <div className="flex-1 h-8 bg-gray-300 rounded" />
+            <div className="flex-1 h-8 bg-gray-300 rounded" />
+          </div>
         </div>
       </div>
     </div>
@@ -579,6 +583,22 @@ const ExploreProperties = () => {
         }
         .scrollbar-hidden::-webkit-scrollbar {
           display: none; /* Chrome, Safari, Opera */
+        }
+        .parent {
+          perspective: 1200px;
+        }
+        .card {
+          transition: all 0.6s ease-in-out;
+          transform-style: preserve-3d;
+          box-shadow:
+            rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+            rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+        }
+        .parent:hover .card {
+          transform: rotate3d(1, -1, 0, 25deg);
+          box-shadow:
+            rgba(30, 30, 60, 0.3) 30px 50px 25px -40px,
+            rgba(30, 30, 60, 0.15) 0px 25px 30px 0px;
         }
       `}</style>
     </div>

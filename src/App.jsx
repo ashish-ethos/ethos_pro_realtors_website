@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer'
 import PremiumProperties from './components/PremiumProperties/PremiumProperties'
 import DifferentCities from './components/DifferentCities/DifferentCities'
 import ExploreProperties from './components/ExploreProperities/ExploreProperities'
+import Testimonial from './components/Testimoinal/Testimonial'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <PremiumProperties />
         <DifferentCities />
         <ExploreProperties/>
+        <Testimonial/>
 
         <h1 className="text-3xl font-bold underline text-center">
           Welcome to Ethos Pro Realtors
