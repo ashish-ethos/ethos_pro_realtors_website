@@ -1,584 +1,529 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Phone, Mail, MessageCircle, MapPin, Ruler, Eye, Star } from 'lucide-react';
+import { Drawer, Avatar, Tag, Divider, Progress } from 'antd';
+import { UserOutlined, PhoneOutlined, MailOutlined, StarFilled } from '@ant-design/icons';
+import MohitSharma from "../../assets/images/home/Mohit-Sharma.png";
+import ArunGodara from "../../assets/images/home/Arun-Godara.png";
+import Satya from "../../assets/images/home/Satya.jpg";
+import Chiranjeev from "../../assets/images/home/Chiranjeev.jpg";
+import DeepakBhati from "../../assets/images/home/Deepak-Bhati-150x150.png";
+import Prerna from "../../assets/images/home/Prerna-150x150.jpg";
+import Avantika from "../../assets/images/home/Avantika-150x150.jpg";
 
-const ExploreProperties = () => {
-  const [activeTab, setActiveTab] = useState('residential');
-  const [isLoading, setIsLoading] = useState(true);
-  const [favorites, setFavorites] = useState(new Set());
-  const [hoveredCard, setHoveredCard] = useState(null);
-
-  const properties = [
+const teamMembers = [
     {
-      id: '101',
-      type: 'Apartment, Residential',
-      name: 'M3M Antalya Hills',
-      location: 'M3M Antalya Hills, Sector 79, Gurugram, Haryana, India',
-      size: '1138 – 1642 Sq Ft',
-      price: '₹1.15 Cr – ₹1.62 Cr',
-      image: '/assets/img/residential/antalya.png',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.7,
-      views: 1200
+        id: 1,
+        name: "Mohit Sharma",
+        position: "Managing Director",
+        image: MohitSharma,
+        bio: "Visionary leader with 15+ years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
+        skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
+        experience: "15+ Years",
+        projects: "500+ Properties",
+        phone: "+91 98765 43213",
+        email: "mohit.sharma@company.com",
+        rating: 5.0,
+        achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
+        specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
     },
     {
-      id: '102',
-      type: 'Apartment, Studio, Residential',
-      name: 'Central Park Flower Valley The Room',
-      location: 'The Room, Central Park II, Sector 48, Gurugram, Haryana, India',
-      size: 'NA',
-      price: '₹85 L – ₹1.45 Cr',
-      image: '/assets/img/residential/central-park.png',
-      options: ['FOR RENT', 'FOR SALE'],
-      rating: 4.5,
-      views: 970
+        id: 2,
+        name: "Arun Godara",
+        position: "Director",
+        image: ArunGodara,
+        bio: "Visionary leader with 15+ years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
+        skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
+        experience: "15+ Years",
+        projects: "500+ Properties",
+        phone: "+91 98765 43213",
+        email: "mohit.sharma@company.com",
+        rating: 5.0,
+        achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
+        specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
     },
     {
-      id: '103',
-      type: 'Apartment, Residential',
-      name: 'M3M Mansion Sector 113, Gurgaon',
-      location: 'M3M Mansion, Sector 113, Bajghera, Gurugram, Haryana, India',
-      size: '1638 – 6695 Sq Ft',
-      price: '₹1.8 Cr – ₹8.2 Cr',
-      image: '/assets/img/residential/mansion.png',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.9,
-      views: 2400
+        id: 3,
+        name: "Satya Mandal",
+        position: "Sr. Sales Manager",
+        image: Satya,
+        bio: "Visionary leader with 15+ years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
+        skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
+        experience: "15+ Years",
+        projects: "500+ Properties",
+        phone: "+91 98765 43213",
+        email: "mohit.sharma@company.com",
+        rating: 5.0,
+        achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
+        specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
     },
     {
-      id: '104',
-      type: 'Apartment, Studio, Residential',
-      name: 'Krisumi Waterfall Residences',
-      location: 'Krisumi Waterfall Residences, Sector 36A, Gurugram, Haryana, India',
-      size: '1448 – 6569 Sq Ft',
-      price: '₹1.25 Cr – ₹6.5 Cr',
-      image: '/assets/img/residential/krisumi.png',
-      options: ['FEATURED', 'FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.6,
-      views: 1870
+        id: 4,
+        name: "Chiranjeev Nanda",
+        position: "Sr. Sales Expert",
+        image: Chiranjeev,
+        bio: "Expert in luxury property sales with 8+ years of experience in premium real estate markets. Specializes in high-end residential and commercial properties with a focus on client satisfaction and long-term relationships.",
+        skills: ["Luxury Sales", "Client Relations", "Market Analysis", "Property Valuation", "Negotiation"],
+        experience: "8+ Years",
+        projects: "250+ Properties",
+        phone: "+91 98765 43210",
+        email: "deepak.bhati@company.com",
+        rating: 4.9,
+        achievements: ["Top Performer 2023", "Client Choice Award", "Luxury Sales Expert"],
+        specializations: ["Residential", "Commercial", "Luxury Properties"]
     },
     {
-      id: '105',
-      type: 'Apartment, Residential',
-      name: 'Tulip Monsella',
-      location: 'Tulip Monsella, Sector 53, Gurugram, Haryana, India',
-      size: '1368 – 4503 Sq Ft',
-      price: '₹3.75 Cr – ₹9 Cr',
-      image: '/assets/img/residential/monsella.png',
-      options: ['FOR RENT', 'FOR SALE'],
-      rating: 4.8,
-      views: 1650
+        id: 4,
+        name: "Deepak Bhati",
+        position: "Sr. Sales Expert",
+        image: DeepakBhati,
+        bio: "Expert in luxury property sales with 8+ years of experience in premium real estate markets. Specializes in high-end residential and commercial properties with a focus on client satisfaction and long-term relationships.",
+        skills: ["Luxury Sales", "Client Relations", "Market Analysis", "Property Valuation", "Negotiation"],
+        experience: "8+ Years",
+        projects: "250+ Properties",
+        phone: "+91 98765 43210",
+        email: "deepak.bhati@company.com",
+        rating: 4.9,
+        achievements: ["Top Performer 2023", "Client Choice Award", "Luxury Sales Expert"],
+        specializations: ["Residential", "Commercial", "Luxury Properties"]
     },
     {
-      id: '106',
-      type: 'Apartment, Residential',
-      name: 'Smartworld One DXP',
-      location: 'Smartworld ONE DXP, Sector 113, Bajghera, Gurugram, Haryana, India',
-      size: '2450 – 3203 Sq Ft',
-      price: '₹2.95 Cr – ₹5 Cr',
-      image: '/assets/img/residential/smartworld.png',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.6,
-      views: 2100
+        id: 2,
+        name: "Prerna Kapuria",
+        position: "Sr. Sales Expert",
+        image: Prerna,
+        bio: "Specialized in residential properties and investment consulting with exceptional client satisfaction. Known for her analytical approach and ability to match clients with their perfect properties.",
+        skills: ["Residential Sales", "Investment Advice", "Negotiation", "Market Research", "Client Management"],
+        experience: "6+ Years",
+        projects: "180+ Properties",
+        phone: "+91 98765 43211",
+        email: "prerna.kapuria@company.com",
+        rating: 4.8,
+        achievements: ["Rising Star 2023", "Customer Satisfaction Award", "Investment Specialist"],
+        specializations: ["Residential", "Investment Properties", "First-time Buyers"]
     },
-  ];
+    {
+        id: 3,
+        name: "Avantika Kapuria",
+        position: "Sr. Sales Expert",
+        image: Avantika,
+        bio: "Commercial real estate specialist with proven track record in corporate deals. Expert in analyzing market trends and providing strategic advice for commercial investments.",
+        skills: ["Commercial Sales", "Property Valuation", "Market Research", "Corporate Deals", "Strategic Planning"],
+        experience: "7+ Years",
+        projects: "120+ Properties",
+        phone: "+91 98765 43212",
+        email: "avantika.kapuria@company.com",
+        rating: 4.9,
+        achievements: ["Commercial Expert 2023", "Deal Maker Award", "Market Analyst"],
+        specializations: ["Commercial", "Office Spaces", "Retail Properties"]
+    },
 
-  const tabs = [
-    { key: 'residential', label: 'Residential', count: properties.length }
-  ];
+];
 
-  const toggleFavorite = (id) => {
-    setFavorites(prev => {
-      const newFavorites = new Set(prev);
-      if (newFavorites.has(id)) {
-        newFavorites.delete(id);
-      } else {
-        newFavorites.add(id);
-      }
-      return newFavorites;
-    });
-  };
-
-  const getOptionColor = (option) => {
-    switch (option) {
-      case 'HOT OFFER': return 'bg-gradient-to-r from-amber-700 to-amber-500 text-white';
-      case 'LUXURY': return 'bg-gradient-to-r from-amber-600 to-amber-400 text-white';
-      case 'PREMIUM': return 'bg-gradient-to-r from-amber-500 to-yellow-500 text-white';
-      case 'FOR SALE': return 'bg-gradient-to-r from-slate-900 to-amber-700 text-white';
-      case 'FOR RENT': return 'bg-gradient-to-r from-amber-700 to-slate-900 text-white';
-      case 'FEATURED': return 'bg-gradient-to-r from-green-600 to-green-400 text-white';
-      default: return 'bg-gray-200 text-gray-700';
-    }
-  };
-
-  useEffect(() => {
-    setTimeout(() => setIsLoading(false), 1500);
-  }, []);
-
-  const PropertyCard = ({ property, index }) => {
-    const isHovered = hoveredCard === property.id;
-    const isFavorite = favorites.has(property.id);
+const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const [isFlipped, setIsFlipped] = useState(false);
 
     return (
-      <div
-        className={`group relative bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-700 ease-in-out hover:scale-105 hover:shadow-2xl ${isHovered ? 'z-10' : ''}`}
-        style={{
-          animationDelay: `${index * 100}ms`,
-          animation: isLoading ? 'none' : 'slideInUp 0.6s ease-out forwards'
-        }}
-        onMouseEnter={() => setHoveredCard(property.id)}
-        onMouseLeave={() => setHoveredCard(null)}
-      >
-        <div className="relative overflow-hidden h-64">
-          <img
-            src={property.image}
-            alt={property.name}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          <button
-            onClick={() => toggleFavorite(property.id)}
-            className={`absolute top-4 right-4 p-2 rounded-full backdrop-blur-sm transition-all duration-300 ${isFavorite
-              ? 'bg-gradient-to-r from-amber-700 to-amber-500 text-white scale-110'
-              : 'bg-white/80 text-gray-600 hover:bg-gradient-to-r hover:from-amber-700 hover:to-amber-500 hover:text-white'
-              }`}
-          >
-            <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
-          </button>
-          <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-            {property.options.map((option, idx) => (
-              <span
-                key={option}
-                className={`px-3 py-1 rounded-full text-xs font-semibold ${getOptionColor(option)} transform transition-all duration-300`}
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                {option}
-              </span>
-            ))}
-          </div>
-          <div className="absolute bottom-4 left-4 flex items-center space-x-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="flex items-center space-x-1 bg-slate-900/50 rounded-full px-2 py-1">
-              <Eye className="w-3 h-3" />
-              <span className="text-xs">{property.views}</span>
-            </div>
-            <div className="flex items-center space-x-1 bg-slate-900/50 rounded-full px-2 py-1">
-              <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
-              <span className="text-xs cursor-pointer">{property.rating}</span>
-            </div>
-          </div>
-        </div>
-        <div className="p-6">
-          <div className="mb-3">
-            <h3 className="text-lg font-bold text-gray-800 mb-1 group-hover:text-amber-700 transition-colors duration-300">
-              {property.name}
-            </h3>
-            <p className="text-sm text-gray-500 uppercase tracking-wide font-medium">
-              {property.type}
-            </p>
-          </div>
-          <div className="space-y-2 mb-4">
-            <div className="flex items-start space-x-2 text-gray-600">
-              <MapPin className="w-4 h-4 mt-0.5 text-amber-700" />
-              <p className="text-sm leading-relaxed">{property.location}</p>
-            </div>
-            <div className="flex items-center space-x-2 text-gray-600">
-              <Ruler className="w-4 h-4 text-amber-700" />
-              <p className="text-sm">{property.size}</p>
-            </div>
-          </div>
-          <div className="mb-4">
-            <p className="text-xl font-bold text-amber-700">{property.price}</p>
-          </div>
-          <div className="flex space-x-2">
-            {[{ icon: Phone, label: 'Call' }, { icon: Mail, label: 'Email' }, { icon: MessageCircle, label: 'WhatsApp' }].map((action, idx) => (
-              <button
-                key={action.label}
-                className="flex-1 flex items-center justify-center space-x-2 py-2 px-3 rounded-lg bg-gray-100 text-gray-700 hover:bg-gradient-to-r hover:from-black hover:via-[#474236] hover:to-[#c99913] hover:text-white transition-all transform hover:scale-105"
-                style={{ transitionDelay: `${idx * 50}ms` }}
-              >
-                <action.icon className="w-4 h-4" />
-                <span className="text-sm font-medium">{action.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-black via-[#474236] to-[#c99913] blur-xl opacity-20" />
-        </div>
-      </div>
-    );
-  };
-
-  const LoadingSkeleton = () => (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
-      <div className="h-64 bg-gray-300" />
-      <div className="p-6 space-y-3">
-        <div className="h-4 bg-gray-300 rounded w-2/3" />
-        <div className="h-3 bg-gray-300 rounded w-1/2" />
-        <div className="h-3 bg-gray-300 rounded w-full" />
-        <div className="flex space-x-2">
-          <div className="flex-1 h-8 bg-gray-300 rounded" />
-          <div className="flex-1 h-8 bg-gray-300 rounded" />
-          <div className="flex-1 h-8 bg-gray-300 rounded" />
-        </div>
-      </div>
-    </div>
-  );
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-amber-50 to-amber-100 py-12 px-4">
-      <div className="max-w-7xl mx-auto mb-12 text-center">
-        <h1 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
-          Explore Premium Properties
-        </h1>
-        <div className="h-1 bg-gradient-to-r from-transparent via-[#c99913] to-transparent rounded-full animate-pulse"></div>
-        <p className="text-gray-600 text-lg max-w-2xl mx-auto mt-2 font-[Inter]">
-          Discover a diverse collection of premium properties, from luxurious residences to high-end commercial spaces. 
-          Browse through the latest listings, featuring stunning architecture, prime locations, and exceptional investment opportunities.
-        </p>
-      </div>
-
-      <div className="max-w-7xl mx-auto mb-12">
-        <div className="flex flex-wrap justify-center gap-4 p-2 bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg">
-          {tabs.map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all cursor-pointer duration-300 transform hover:scale-105 ${activeTab === tab.key
-                ? 'text-white shadow-lg'
-                : 'text-gray-600 hover:text-white'
+        <div
+            className={`group relative w-full h-[420px] perspective-1000 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
                 }`}
-              style={{
-                background: activeTab === tab.key
-                  ? 'linear-gradient(to right, #000000, #474236, #c99913)'
-                  : 'transparent',
-              }}
-              onMouseEnter={e => activeTab !== tab.key && (e.currentTarget.style.background = 'linear-gradient(to right, #000000, #474236, #c99913)')}
-              onMouseLeave={e => activeTab !== tab.key && (e.currentTarget.style.background = 'transparent')}
+            style={{ transitionDelay: `${index * 200}ms` }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            <div
+                className={`relative w-full h-full transform-style-preserve-3d transition-transform duration-700 ${isFlipped ? 'rotate-y-180' : ''
+                    }`}
             >
-              {tab.label}
-              <span className={`ml-2 px-2 py-1 rounded-full text-xs ${activeTab === tab.key
-                ? 'bg-white/20 text-white'
-                : 'bg-gray-200 text-gray-600'
-                }`}>
-                {tab.count}
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
+                {/* FRONT SIDE */}
+                <div className="absolute inset-0 w-full h-full backface-hidden">
+                    <div className="relative w-full h-full bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 transition-all duration-500">
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913]"></div>
+                        <div className="relative h-56 overflow-hidden">
+                            <img
+                                src={member.image}
+                                alt={member.name}
+                                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#474236]/10 to-[#c99913]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div className={`absolute top-4 right-4 space-y-2 transform transition-all duration-500 ${isHovered ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
+                                }`}>
+                                <div className="bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-[#474236] shadow-lg">
+                                    {member.experience}
+                                </div>
+                                <div className="bg-gradient-to-r from-[#c99913] to-[#474236] text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                                    {member.projects}
+                                </div>
+                            </div>
+                            <button
+                                onClick={() => setIsFlipped(!isFlipped)}
+                                className={`absolute bottom-4 right-4 w-10 h-10 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg transform transition-all duration-500 hover:scale-110 hover:bg-[#c99913] hover:text-white ${isHovered ? 'scale-100 rotate-0' : 'scale-0 rotate-180'
+                                    }`}
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m0-4l-4-4" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div className="p-6 space-y-4">
+                            <div className="text-center space-y-2">
+                                <h3 className="text-xl font-black bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent">
+                                    {member.name}
+                                </h3>
+                                <p className="text-[#474236] font-bold text-sm uppercase tracking-wider">
+                                    {member.position}
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => onViewProfile(member)}
+                                className="w-full py-3.5 gradient-border font-bold rounded-xl"
+                            >
+                                <span className="flex items-center justify-center gap-2 text-sm">
+                                    <UserOutlined />
+                                    View Full Profile
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {isLoading
-            ? Array.from({ length: 6 }).map((_, index) => (
-              <LoadingSkeleton key={index} />
-            ))
-            : properties.map((property, index) => (
-              <PropertyCard key={property.id} property={property} index={index} />
-            ))
-          }
-        </div>
-      </div>
+                {/* BACK SIDE */}
+                <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
+                    <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl shadow-xl border border-gray-200 flex flex-col">
+                        {/* Scrollable content */}
+                        <div className="flex-1 overflow-y-auto p-4">
+                            <h3 className="text-lg font-black mb-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent">
+                                {member.name}
+                            </h3>
+                            <p className="text-[#474236] font-semibold text-sm mb-2">
+                                {member.position}
+                            </p>
+                            <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                                {member.bio}
+                            </p>
 
-      <style jsx>{`
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-    </div>
-  );
+                            <h4 className="text-[#474236] font-bold text-sm uppercase tracking-wide mb-2">Expertise</h4>
+                            <div className="flex flex-wrap gap-2">
+                                {member.skills.slice(0, 3).map((skill, skillIndex) => (
+                                    <span
+                                        key={skillIndex}
+                                        className="px-3 py-1 bg-gradient-to-r from-[#c99913]/20 to-[#474236]/20 border border-[#c99913]/30 text-[#474236] text-xs rounded-full font-medium"
+                                    >
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Fixed Bottom Button */}
+                        <div className="p-4">
+                            <button
+                                onClick={() => setIsFlipped(false)}
+                                className="w-full py-3 gradient-border font-bold rounded-xl"
+                            >
+                                <span className="flex items-center justify-center gap-2">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                    Back to Profile
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
-export default ExploreProperties;
 
+const ProfileDrawer = ({ member, visible, onClose }) => {
+    if (!member) return null;
 
+    return (
+        <Drawer
+            title={null}
+            placement="right"
+            onClose={onClose}
+            open={visible}
+            width={450}
+            styles={{
+                body: { padding: 0 },
+                header: { display: 'none' }
+            }}
+        >
+            <div className="h-full bg-gradient-to-br from-white to-gray-50">
+                <div className="relative h-48 overflow-hidden">
+                    <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
+                    <div className="absolute inset-0 flex items-end p-6">
+                        <div className="text-white">
+                            <h2 className="text-2xl font-black mb-1">{member.name}</h2>
+                            <p className="text-[#c99913] font-semibold">{member.position}</p>
+                        </div>
+                    </div>
+                    <button
+                        onClick={onClose}
+                        className="absolute top-4 right-4 w-8 h-8 bg-gray/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white"
+                    >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div className="p-6 space-y-6">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1">
+                                {[...Array(5)].map((_, i) => (
+                                    <StarFilled
+                                        key={i}
+                                        className={`text-sm ${i < Math.floor(member.rating) ? 'text-[#c99913]' : 'text-gray-300'}`}
+                                    />
+                                ))}
+                            </div>
+                            <span className="text-sm font-semibold text-gray-600">{member.rating}</span>
+                        </div>
+                        <div className="text-right">
+                            <div className="text-lg font-bold text-[#474236]">{member.projects}</div>
+                            <div className="text-xs text-gray-500">Projects Completed</div>
+                        </div>
+                    </div>
+                    <div className="space-y-3">
+                        <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Contact Information</h3>
+                        <div className="space-y-2">
+                            <div className="flex items-center gap-3 text-gray-600">
+                                <PhoneOutlined className="text-[#c99913]" />
+                                <span className="text-sm">{member.phone}</span>
+                            </div>
+                            <div className="flex items-center gap-3 text-gray-600">
+                                <MailOutlined className="text-[#c99913]" />
+                                <span className="text-sm">{member.email}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <Divider />
+                    <div className="space-y-3">
+                        <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">About</h3>
+                        <p className="text-gray-700 leading-relaxed text-sm break-words">
+                            {member.bio}
+                        </p>
+                    </div>
+                    <Divider />
+                    <div className="space-y-3">
+                        <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Skills & Expertise</h3>
+                        <div className="flex flex-wrap gap-2">
+                            {member.skills.map((skill, index) => (
+                                <Tag
+                                    key={index}
+                                    color="gold"
+                                    className="border-[#c99913] text-[#474236] font-medium"
+                                >
+                                    {skill}
+                                </Tag>
+                            ))}
+                        </div>
+                    </div>
+                    <Divider />
+                    <div className="space-y-3">
+                        <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Achievements</h3>
+                        <div className="space-y-2">
+                            {member.achievements.map((achievement, index) => (
+                                <div key={index} className="flex items-center gap-2">
+                                    <div className="w-2 h-2 bg-[#c99913] rounded-full"></div>
+                                    <span className="text-sm text-gray-700">{achievement}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <Divider />
+                    <div className="space-y-3">
+                        <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Specializations</h3>
+                        <div className="grid grid-cols-1 gap-2">
+                            {member.specializations.map((spec, index) => (
+                                <div key={index} className="bg-gradient-to-r from-[#c99913]/10 to-[#474236]/10 p-3 rounded-lg border border-[#c99913]/20">
+                                    <span className="text-sm font-medium text-[#474236]">{spec}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <button className="w-full py-3 gradient-border font-bold rounded-xl">
+                        <span className="flex items-center justify-center gap-2">
+                            <PhoneOutlined />
+                            Contact {member.name.split(' ')[0]}
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </Drawer>
+    );
+};
 
+const OurTeam = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const [selectedMember, setSelectedMember] = useState(null);
+    const [drawerVisible, setDrawerVisible] = useState(false);
 
- const properties = [
-    {
-      id: '1',
-      type: 'Shop/Commercial',
-      name: 'Airia Mall',
-      location: 'Airia Mall, Sector 68, Gurgaon, Haryana, India',
-      size: '300 - 8000 Sq Ft',
-      price: '₹2.5 Cr - ₹8.5 Cr',
-      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.8,
-      views: 1200
-    },
-    {
-      id: '2',
-      type: 'Office/Commercial',
-      name: 'AIPL Business Club',
-      location: 'AIPL Business Club, Sector 62, Gurgaon, Haryana, India',
-      size: '500 - 5000 Sq Ft',
-      price: '₹1.8 Cr - ₹6.2 Cr',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE'],
-      rating: 4.6,
-      views: 890
-    },
-    {
-      id: '3',
-      type: 'Shop/Commercial',
-      name: 'The Omaxe State',
-      location: 'The Omaxe State, Sector 19B, Dwarka, Delhi, India',
-      size: '50 - 10000 Sq Ft',
-      price: '₹50 L - ₹12 Cr',
-      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE'],
-      rating: 4.5,
-      views: 2100
-    },
-    {
-      id: '4',
-      type: 'Residential/Plot',
-      name: 'DLF Cyber City',
-      location: 'DLF Cyber City, Sector 25, Gurgaon, Haryana, India',
-      size: '1200 - 3500 Sq Ft',
-      price: '₹1.2 Cr - ₹4.5 Cr',
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=300&fit=crop',
-      options: ['FOR SALE', 'PREMIUM'],
-      rating: 4.7,
-      views: 1800
-    },
-    {
-      id: '5',
-      type: 'Villa',
-      name: 'Emerald Hills Villa',
-      location: 'Emerald Hills, Sector 65, Gurgaon, Haryana, India',
-      size: '2500 - 5000 Sq Ft',
-      price: '₹3.5 Cr - ₹8 Cr',
-      image: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=400&h=300&fit=crop',
-      options: ['FOR SALE', 'LUXURY'],
-      rating: 4.9,
-      views: 950
-    },
-    {
-      id: '6',
-      type: 'Office/Studio',
-      name: 'World Trade Center',
-      location: 'WTC, Sector 16, Noida, UP, India',
-      size: '800 - 4000 Sq Ft',
-      price: '₹80 L - ₹5 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE'],
-      rating: 4.4,
-      views: 1350
-    },
-    {
-      id: '7',
-      type: 'Residential',
-      name: 'M3M Antalya Hills',
-      location: 'M3M Antalya Hills, Sector 79, Gurugram, Haryana, India',
-      size: '1138 – 1642 Sq Ft',
-      price: '₹1.15 Cr – ₹1.62 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.7,
-      views: 1200
-    },
-    {
-      id: '8',
-      type: ' Residential',
-      name: 'Central Park Flower Valley The Room',
-      location: 'The Room, Central Park II, Sector 48, Gurugram, Haryana, India',
-      size: 'NA',
-      price: '₹85 L – ₹1.45 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE'],
-      rating: 4.5,
-      views: 970
-    },
-    {
-      id: '9',
-      type: ' Residential',
-      name: 'M3M Mansion Sector 113, Gurgaon',
-      location: 'M3M Mansion, Sector 113, Bajghera, Gurugram, Haryana, India',
-      size: '1638 – 6695 Sq Ft',
-      price: '₹1.8 Cr – ₹8.2 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.9,
-      views: 2400
-    },
-    {
-      id: '10',
-      type: ' Residential',
-      name: 'Krisumi Waterfall Residences',
-      location: 'Krisumi Waterfall Residences, Sector 36A, Gurugram, Haryana, India',
-      size: '1448 – 6569 Sq Ft',
-      price: '₹1.25 Cr – ₹6.5 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FEATURED', 'FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.6,
-      views: 1870
-    },
-    {
-      id: '11',
-      type: 'Residential',
-      name: 'Tulip Monsella',
-      location: 'Tulip Monsella, Sector 53, Gurugram, Haryana, India',
-      size: '1368 – 4503 Sq Ft',
-      price: '₹3.75 Cr – ₹9 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE'],
-      rating: 4.8,
-      views: 1650
-    },
-    {
-      id: '12',
-      type: ' Residential',
-      name: 'Smartworld One DXP',
-      location: 'Smartworld ONE DXP, Sector 113, Bajghera, Gurugram, Haryana, India',
-      size: '2450 – 3203 Sq Ft',
-      price: '₹2.95 Cr – ₹5 Cr',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.6,
-      views: 2100
-    },
-    {
-      id: '13',
-      type: ' Commercial',
-      name: 'Reach Airia Mall',
-      location: 'Airia Mall, Sector 68, Gurugram, Haryana, India',
-      size: '300 – 8000 Sq Ft',
-      price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.7,
-      views: 1700
-    },
-    {
-      id: '14',
-      type: ' Commercial',
-      name: 'AIPL Business Club',
-      location: 'AIPL Business Club, Sector 62, Gurugram, Haryana, India',
-      size: '500 – 20000 Sq Ft',
-      price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE'],
-      rating: 4.6,
-      views: 1500
-    },
-    {
-      id: '15',
-      type: 'Commercial',
-      name: 'The Omaxe State',
-      location: 'The Omaxe State, Sector 198, Sector 24 Dwarka, Dwarka, Delhi, India',
-      size: '50 – 10000 Sq Ft',
-      price: '₹30,000+ Sq Ft',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.8,
-      views: 2100
-    },
-    {
-      id: '16',
-      type: 'Commercial',
-      name: 'AIPL Joy Street',
-      location: 'AIPL Joy Street, Badshahpur, Sector 66, Gurugram, Haryana, India',
-      size: '300 – 8000 Sq Ft',
-      price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE'],
-      rating: 4.5,
-      views: 1400
-    },
-    {
-      id: '17',
-      type: 'Commercial',
-      name: 'Cygnett Retreat',
-      location: 'Pahadi Kothi, Bagar Road, Pangot, Uttarakhand, India',
-      size: '800 Sq Ft',
-      price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.9,
-      views: 1300
-    },
-    {
-      id: '18',
-      type: ' Commercial',
-      name: 'M3M IFC',
-      location: 'M3M IFC, Golf Course Extension Road, Badshahpur, Sector 66, Gurugram, Haryana, India',
-      size: '500 – 18000 Sq Ft',
-      price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.7,
-      views: 1900
-    },
-    {
-      id: '19',
-      type: 'Villa',
-      name: 'Cygnett Retreat',
-      location: 'Pahadi Kothi, Bagar Road, Pangot, Uttarakhand, India',
-      size: '800 Sq Ft',
-      price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.9,
-      views: 1300
-    },
-    {
-      id: '20',
-      type: 'Villa',
-      name: 'Sobha International City',
-      location: 'Sobha International City, Dwarka Expressway, Sector 109, Gurugram, Haryana, India',
-      size: '3153 – 7330 Sq Ft',
-      price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.8,
-      views: 1650
-    },
-    {
-      id: '21',
-      type: 'Office',
-      name: 'AIPL Business Club',
-      location: 'AIPL Business Club, Sector 62, Gurugram, Haryana, India',
-      size: 'Size on Request',
-      price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE'],
-      rating: 4.7,
-      views: 980
-    },
-    {
-      id: '22',
-      type: 'Office',
-      name: 'M3M IFC',
-      location: 'M3M IFC, Golf Course Extension Road, Badshahpur, Sector 66, Gurugram, Haryana, India',
-      size: '500 – 18000 Sq Ft',
-      price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.9,
-      views: 1200
-    },
-    {
-      id: '23',
-      type: ' Office',
-      name: 'AIPL Autograph',
-      location: 'AIPL Autograph Corporate Office Space, Sector 66, Gurugram, Haryana, India',
-      size: 'Size on Request',
-      price: 'Price on Request',
-      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
-      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
-      rating: 4.8,
-      views: 1400
-    }
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVisible(true);
+        }, 100);
+        return () => clearTimeout(timer);
+    }, []);
 
+    const handleViewProfile = (member) => {
+        setSelectedMember(member);
+        setDrawerVisible(true);
+    };
 
+    const handleCloseDrawer = () => {
+        setDrawerVisible(false);
+        setTimeout(() => setSelectedMember(null), 300);
+    };
 
-  ];
+    return (
+        <div className="min-h-screen main-bg py-16 px-4 relative overflow-hidden">
+            <div className="max-w-7xl mx-auto relative z-10">
+                <div className="text-center mb-16">
+                    <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                        }`}>
+                        <h3 className="text-4xl md:text-5xl font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+                            Meet Our Team
+                        </h3>
+                        <div className="w-32 h-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] mx-auto mb-4 rounded-full"></div>
+                        <p className="text-lg text-gray-600 max-w-xl mx-auto leading-relaxed font-medium">
+                            "Your Real Estate Experts, Ready to Serve"
+                        </p>
+                    </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    {teamMembers.map((member, index) => (
+                        <TeamCard
+                            key={member.id}
+                            member={member}
+                            index={index}
+                            isVisible={isVisible}
+                            onViewProfile={handleViewProfile}
+                        />
+                    ))}
+                </div>
+                <div className={`flex justify-center gap-4 transform transition-all duration-1000 delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                    }`}>
+                    <button className="px-8 py-3 gradient-border font-bold rounded-xl">
+                        <span className="flex items-center gap-2">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                            Prev
+                        </span>
+                    </button>
+                    <button className="px-8 py-3 gradient-border font-bold rounded-xl">
+                        <span className="flex items-center gap-2">
+                            Next
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <ProfileDrawer
+                member={selectedMember}
+                visible={drawerVisible}
+                onClose={handleCloseDrawer}
+            />
+            <style jsx>{`
+        .gradient-border {
+          border: 2px solid transparent;
+          border-image: linear-gradient(to right, #000000, #474236, #c99913) 1;
+          background: transparent;
+          position: relative;
+          overflow: hidden;
+        }
+        .gradient-border::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 10px;
+          padding: 2px;
+          background: linear-gradient(to right, #c99913, #474236, #000000);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          opacity: 0;
+        }
+        .gradient-border:hover::before {
+          opacity: 0; /* Disable hover effect */
+        }
+        .gradient-border:hover {
+          transform: none; /* Remove scale transform */
+          box-shadow: none; /* Remove shadow */
+        }
+        .gradient-border span {
+          position: relative;
+          z-index: 1;
+          color: #474236;
+        }
+        .gradient-border:hover span {
+          color: #474236; /* Remove color change on hover */
+        }
+        .main-bg {
+          background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+          position: relative;
+          overflow: hidden;
+        }
+        .main-bg::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><defs><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></defs><rect width="800" height="800" filter="url(#noise)" opacity="0.05"/></svg>') repeat;
+          opacity: 0.1;
+          animation: subtleMove 20s infinite linear;
+        }
+        .main-bg::after {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle at center, rgba(201, 153, 19, 0.1) 0%, transparent 70%);
+          animation: rotateGradient 30s infinite linear;
+        }
+        @keyframes subtleMove {
+          0% { transform: translate(0, 0); }
+          50% { transform: translate(20px, 20px); }
+          100% { transform: translate(0, 0); }
+        }
+        @keyframes rotateGradient {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        .transform-style-preserve-3d {
+          transform-style: preserve-3d;
+        }
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+      `}</style>
+        </div>
+    );
+};
+
+export default OurTeam;

@@ -18,13 +18,13 @@ const StatCard = ({ value, label, delay, numericValue }) => {
     // Counter animation
     let start = 0;
     const end = numericValue;
-    const duration = 2; 
-    const incrementTime = (duration * 1000) / end; 
+    const duration = 2;
+    const incrementTime = (duration * 1000) / end;
 
     const counter = setInterval(() => {
       start += Math.ceil(end / (duration * 1000 / incrementTime));
       if (start >= end) {
-        setDisplayValue(value); 
+        setDisplayValue(value);
         clearInterval(counter);
       } else {
         setDisplayValue(
@@ -42,7 +42,7 @@ const StatCard = ({ value, label, delay, numericValue }) => {
       transition: { duration: 0.6, delay, ease: [0.6, -0.05, 0.01, 0.99] },
     });
 
-    return () => clearInterval(counter); 
+    return () => clearInterval(counter);
   }, [numericValue, value, delay, controls]);
 
   return (
@@ -78,7 +78,7 @@ const StatCard = ({ value, label, delay, numericValue }) => {
   );
 };
 
-const Testimonial = () => {
+const SetsApart = () => {
   const backgroundControls = useAnimation();
 
   useEffect(() => {
@@ -102,9 +102,10 @@ const Testimonial = () => {
         transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
         className="relative z-10 max-w-6xl mx-auto text-center mb-12"
       >
-        <h2 className="text-3xl md:text-5xl font-bold text-white">
+        <h2 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
           What Sets Us Apart
         </h2>
+        
       </motion.div>
       <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {stats.map((item, index) => (
@@ -136,11 +137,12 @@ const Testimonial = () => {
           z-index: -1;
         }
         .stat-card:hover::before {
-          opacity: 1;
+          
+          background:none;
         }
       `}</style>
     </div>
   );
 };
 
-export default Testimonial;
+export default SetsApart;
