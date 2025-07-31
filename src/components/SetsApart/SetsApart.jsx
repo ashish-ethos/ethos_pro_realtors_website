@@ -91,7 +91,7 @@ const SetsApart = () => {
   }, [backgroundControls]);
 
   return (
-    <div className="relative bg-cover bg-center py-16 px-4 sm:px-8">
+    <div className="relative bg-cover bg-center py-10 px-4 sm:px-8">
       <motion.div
         className="absolute inset-0 bg-black z-0"
         animate={backgroundControls}
@@ -102,7 +102,7 @@ const SetsApart = () => {
         transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
         className="relative z-10 max-w-6xl mx-auto text-center mb-12"
       >
-        <h2 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+        <h2 className="text-3xl md:text-5xl font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
           What Sets Us Apart
         </h2>
         

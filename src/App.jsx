@@ -9,6 +9,8 @@ import ExploreProperties from './components/ExploreProperities/ExploreProperitie
 import SetsApart from './components/SetsApart/SetsApart'
 import WhyChooseUs from './components/WhyChooseus/WhyChooseus'
 import OurTeam from './components/OurTeam/OurTeam'
+import Testimonial from './components/Testimonials/Testimonials'
+import OurBlog from './components/OurBlog/OurBlog'
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
         <SetsApart />
         <WhyChooseUs />
         <OurTeam />
+        <Testimonial />
+        <OurBlog />
 
         <h1 className="text-3xl font-bold underline text-center">
           Welcome to Ethos Pro Realtors

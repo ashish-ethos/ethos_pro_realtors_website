@@ -8,6 +8,7 @@ import Chiranjeev from "../../assets/images/home/Chiranjeev.jpg";
 import DeepakBhati from "../../assets/images/home/Deepak-Bhati-150x150.png";
 import Prerna from "../../assets/images/home/Prerna-150x150.jpg";
 import Avantika from "../../assets/images/home/Avantika-150x150.jpg";
+import { FaArrowRightArrowLeft } from "react-icons/fa6";
 
 const teamMembers = [
     {
@@ -55,21 +56,7 @@ const teamMembers = [
         achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
         specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
     },
-    {
-        id: 4,
-        name: "Chiranjeev Nanda",
-        position: "Sr. Sales Expert",
-        image: Chiranjeev,
-        bio: "Expert in luxury property sales with 8+ years of experience in premium real estate markets. Specializes in high-end residential and commercial properties with a focus on client satisfaction and long-term relationships.",
-        skills: ["Luxury Sales", "Client Relations", "Market Analysis", "Property Valuation", "Negotiation"],
-        experience: "8+ Years",
-        projects: "250+ Properties",
-        phone: "+91 98765 43210",
-        email: "deepak.bhati@company.com",
-        rating: 4.9,
-        achievements: ["Top Performer 2023", "Client Choice Award", "Luxury Sales Expert"],
-        specializations: ["Residential", "Commercial", "Luxury Properties"]
-    },
+   
     {
         id: 4,
         name: "Deepak Bhati",
@@ -86,7 +73,7 @@ const teamMembers = [
         specializations: ["Residential", "Commercial", "Luxury Properties"]
     },
     {
-        id: 2,
+        id: 5,
         name: "Prerna Kapuria",
         position: "Sr. Sales Expert",
         image: Prerna,
@@ -101,7 +88,7 @@ const teamMembers = [
         specializations: ["Residential", "Investment Properties", "First-time Buyers"]
     },
     {
-        id: 3,
+        id: 6,
         name: "Avantika Kapuria",
         position: "Sr. Sales Expert",
         image: Avantika,
@@ -156,9 +143,7 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
                 onClick={() => setIsFlipped(!isFlipped)}
                 className={`absolute cursor-pointer bottom-4 right-4 w-10 h-10 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg transform transition-all duration-500 hover:scale-110 hover:bg-[#c99913] hover:text-white ${isHovered ? 'scale-100 rotate-0' : 'scale-0 rotate-180'}`}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m0-4l-4-4" />
-                </svg>
+                <FaArrowRightArrowLeft/>
               </button>
             </div>
             <div className="p-6 space-y-4">

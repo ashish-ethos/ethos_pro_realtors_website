@@ -1,529 +1,190 @@
 import React, { useState, useEffect } from 'react';
-import { Drawer, Avatar, Tag, Divider, Progress } from 'antd';
-import { UserOutlined, PhoneOutlined, MailOutlined, StarFilled } from '@ant-design/icons';
-import MohitSharma from "../../assets/images/home/Mohit-Sharma.png";
-import ArunGodara from "../../assets/images/home/Arun-Godara.png";
-import Satya from "../../assets/images/home/Satya.jpg";
-import Chiranjeev from "../../assets/images/home/Chiranjeev.jpg";
-import DeepakBhati from "../../assets/images/home/Deepak-Bhati-150x150.png";
-import Prerna from "../../assets/images/home/Prerna-150x150.jpg";
-import Avantika from "../../assets/images/home/Avantika-150x150.jpg";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Calendar,
+  User,
+  Tag,
+  ArrowRight,
+  TrendingUp,
+  Building,
+  Home
+} from 'lucide-react';
+import BuyProperties from "../../assets/images/premiumproperties/buying-properties.jpg";
+import CalculateROI from "../../assets/images/premiumproperties/Calculate-ROI.jpg";
+import GoodBadInvest from "../../assets/images/premiumproperties/good-vs-bad-investment.jpg";
+import KeyThings from "../../assets/images/premiumproperties/Key-Things.jpg";
 
-const teamMembers = [
+const OurBlog = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const visibleCards = 3;
+
+  const blogPosts = [
     {
-        id: 1,
-        name: "Mohit Sharma",
-        position: "Managing Director",
-        image: MohitSharma,
-        bio: "Visionary leader with 15+ years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
-        skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
-        experience: "15+ Years",
-        projects: "500+ Properties",
-        phone: "+91 98765 43213",
-        email: "mohit.sharma@company.com",
-        rating: 5.0,
-        achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
-        specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
+      id: 1,
+      image: BuyProperties,
+      date: 'June 17, 2025',
+      category: 'Investment',
+      tags: ['Investment', 'Real Estate'],
+      title: 'How To Calculate ROI On Real Estate Investments - A Complete Guide',
+      excerpt: 'Understanding the Return on Investment (ROI) is crucial when it comes to real estate investing decisions...',
+      author: 'Ethos Team',
+      icon: <TrendingUp className="w-5 h-5" />
     },
     {
-        id: 2,
-        name: "Arun Godara",
-        position: "Director",
-        image: ArunGodara,
-        bio: "Visionary leader with 15+ years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
-        skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
-        experience: "15+ Years",
-        projects: "500+ Properties",
-        phone: "+91 98765 43213",
-        email: "mohit.sharma@company.com",
-        rating: 5.0,
-        achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
-        specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
+      id: 2,
+      image: CalculateROI,
+      date: 'February 20, 2025',
+      category: 'Investment',
+      tags: ['Investment', 'Real Estate'],
+      title: 'Why Buying Property Through An Authorized Channel Partner Is A Smart Choice?',
+      excerpt: 'Buying property is a significant financial decision, and having the right guidance throughout the process...',
+      author: 'Ethos Team',
+      icon: <Home className="w-5 h-5" />
     },
     {
-        id: 3,
-        name: "Satya Mandal",
-        position: "Sr. Sales Manager",
-        image: Satya,
-        bio: "Visionary leader with 15+ years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
-        skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
-        experience: "15+ Years",
-        projects: "500+ Properties",
-        phone: "+91 98765 43213",
-        email: "mohit.sharma@company.com",
-        rating: 5.0,
-        achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
-        specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
+      id: 3,
+      image: GoodBadInvest,
+      date: 'March 10, 2025',
+      category: 'Investment',
+      tags: ['Investment', 'Real Estate'],
+      title: 'Good vs. Bad Real Estate Investments: What To Watch Out For',
+      excerpt: 'There are clear signs that differentiate a good investment from a poor one in real estate. Learn them here...',
+      author: 'Ethos Team',
+      icon: <TrendingUp className="w-5 h-5" />
     },
     {
-        id: 4,
-        name: "Chiranjeev Nanda",
-        position: "Sr. Sales Expert",
-        image: Chiranjeev,
-        bio: "Expert in luxury property sales with 8+ years of experience in premium real estate markets. Specializes in high-end residential and commercial properties with a focus on client satisfaction and long-term relationships.",
-        skills: ["Luxury Sales", "Client Relations", "Market Analysis", "Property Valuation", "Negotiation"],
-        experience: "8+ Years",
-        projects: "250+ Properties",
-        phone: "+91 98765 43210",
-        email: "deepak.bhati@company.com",
-        rating: 4.9,
-        achievements: ["Top Performer 2023", "Client Choice Award", "Luxury Sales Expert"],
-        specializations: ["Residential", "Commercial", "Luxury Properties"]
-    },
-    {
-        id: 4,
-        name: "Deepak Bhati",
-        position: "Sr. Sales Expert",
-        image: DeepakBhati,
-        bio: "Expert in luxury property sales with 8+ years of experience in premium real estate markets. Specializes in high-end residential and commercial properties with a focus on client satisfaction and long-term relationships.",
-        skills: ["Luxury Sales", "Client Relations", "Market Analysis", "Property Valuation", "Negotiation"],
-        experience: "8+ Years",
-        projects: "250+ Properties",
-        phone: "+91 98765 43210",
-        email: "deepak.bhati@company.com",
-        rating: 4.9,
-        achievements: ["Top Performer 2023", "Client Choice Award", "Luxury Sales Expert"],
-        specializations: ["Residential", "Commercial", "Luxury Properties"]
-    },
-    {
-        id: 2,
-        name: "Prerna Kapuria",
-        position: "Sr. Sales Expert",
-        image: Prerna,
-        bio: "Specialized in residential properties and investment consulting with exceptional client satisfaction. Known for her analytical approach and ability to match clients with their perfect properties.",
-        skills: ["Residential Sales", "Investment Advice", "Negotiation", "Market Research", "Client Management"],
-        experience: "6+ Years",
-        projects: "180+ Properties",
-        phone: "+91 98765 43211",
-        email: "prerna.kapuria@company.com",
-        rating: 4.8,
-        achievements: ["Rising Star 2023", "Customer Satisfaction Award", "Investment Specialist"],
-        specializations: ["Residential", "Investment Properties", "First-time Buyers"]
-    },
-    {
-        id: 3,
-        name: "Avantika Kapuria",
-        position: "Sr. Sales Expert",
-        image: Avantika,
-        bio: "Commercial real estate specialist with proven track record in corporate deals. Expert in analyzing market trends and providing strategic advice for commercial investments.",
-        skills: ["Commercial Sales", "Property Valuation", "Market Research", "Corporate Deals", "Strategic Planning"],
-        experience: "7+ Years",
-        projects: "120+ Properties",
-        phone: "+91 98765 43212",
-        email: "avantika.kapuria@company.com",
-        rating: 4.9,
-        achievements: ["Commercial Expert 2023", "Deal Maker Award", "Market Analyst"],
-        specializations: ["Commercial", "Office Spaces", "Retail Properties"]
-    },
+      id: 4,
+      image: KeyThings,
+      date: 'June 17, 2025',
+      category: 'Investment',
+      tags: ['Investment', 'Real Estate'],
+      title: 'Key Things To Consider Before Buying Commercial Or Residential Property',
+      excerpt: 'Investing in real estate—whether commercial or residential—is a major financial commitment that requires...',
+      author: 'Ethos Team',
+      icon: <Building className="w-5 h-5" />
+    }
+  ];
 
-];
+  const nextSlide = () => {
+    if (currentSlide + visibleCards < blogPosts.length) {
+      setCurrentSlide((prev) => prev + 1);
+    }
+  };
 
-const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
-    const [isHovered, setIsHovered] = useState(false);
-    const [isFlipped, setIsFlipped] = useState(false);
+  const prevSlide = () => {
+    if (currentSlide > 0) {
+      setCurrentSlide((prev) => prev - 1);
+    }
+  };
 
-    return (
-        <div
-            className={`group relative w-full h-[420px] perspective-1000 transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
-                }`}
-            style={{ transitionDelay: `${index * 200}ms` }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-        >
-            <div
-                className={`relative w-full h-full transform-style-preserve-3d transition-transform duration-700 ${isFlipped ? 'rotate-y-180' : ''
-                    }`}
-            >
-                {/* FRONT SIDE */}
-                <div className="absolute inset-0 w-full h-full backface-hidden">
-                    <div className="relative w-full h-full bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 transition-all duration-500">
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913]"></div>
-                        <div className="relative h-56 overflow-hidden">
-                            <img
-                                src={member.image}
-                                alt={member.name}
-                                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#474236]/10 to-[#c99913]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            <div className={`absolute top-4 right-4 space-y-2 transform transition-all duration-500 ${isHovered ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
-                                }`}>
-                                <div className="bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-[#474236] shadow-lg">
-                                    {member.experience}
-                                </div>
-                                <div className="bg-gradient-to-r from-[#c99913] to-[#474236] text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
-                                    {member.projects}
-                                </div>
-                            </div>
-                            <button
-                                onClick={() => setIsFlipped(!isFlipped)}
-                                className={`absolute bottom-4 right-4 w-10 h-10 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg transform transition-all duration-500 hover:scale-110 hover:bg-[#c99913] hover:text-white ${isHovered ? 'scale-100 rotate-0' : 'scale-0 rotate-180'
-                                    }`}
-                            >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m0-4l-4-4" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div className="p-6 space-y-4">
-                            <div className="text-center space-y-2">
-                                <h3 className="text-xl font-black bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent">
-                                    {member.name}
-                                </h3>
-                                <p className="text-[#474236] font-bold text-sm uppercase tracking-wider">
-                                    {member.position}
-                                </p>
-                            </div>
-                            <button
-                                onClick={() => onViewProfile(member)}
-                                className="w-full py-3.5 gradient-border font-bold rounded-xl"
-                            >
-                                <span className="flex items-center justify-center gap-2 text-sm">
-                                    <UserOutlined />
-                                    View Full Profile
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* BACK SIDE */}
-                <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
-                    <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl shadow-xl border border-gray-200 flex flex-col">
-                        {/* Scrollable content */}
-                        <div className="flex-1 overflow-y-auto p-4">
-                            <h3 className="text-lg font-black mb-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent">
-                                {member.name}
-                            </h3>
-                            <p className="text-[#474236] font-semibold text-sm mb-2">
-                                {member.position}
-                            </p>
-                            <p className="text-gray-700 text-sm leading-relaxed mb-4">
-                                {member.bio}
-                            </p>
-
-                            <h4 className="text-[#474236] font-bold text-sm uppercase tracking-wide mb-2">Expertise</h4>
-                            <div className="flex flex-wrap gap-2">
-                                {member.skills.slice(0, 3).map((skill, skillIndex) => (
-                                    <span
-                                        key={skillIndex}
-                                        className="px-3 py-1 bg-gradient-to-r from-[#c99913]/20 to-[#474236]/20 border border-[#c99913]/30 text-[#474236] text-xs rounded-full font-medium"
-                                    >
-                                        {skill}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Fixed Bottom Button */}
-                        <div className="p-4">
-                            <button
-                                onClick={() => setIsFlipped(false)}
-                                className="w-full py-3 gradient-border font-bold rounded-xl"
-                            >
-                                <span className="flex items-center justify-center gap-2">
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                    </svg>
-                                    Back to Profile
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <div className="min-h-screen bg-white py-20 px-4 overflow-hidden relative">
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-16">
+          <div className="text-center md:text-left">
+            <div className="inline-block mb-4">
+              <span className="px-4 py-2 text-sm font-semibold rounded-full shadow text-white" style={{
+                background: 'linear-gradient(to right, #c99913, #474236, #000000)'
+              }}>
+                Latest Insights
+              </span>
             </div>
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent leading-tight mb-4" style={{
+              backgroundImage: 'linear-gradient(to right, #c99913, #474236, #000000)'
+            }}>
+              Read From Our Blog
+            </h2>
+            <p className="text-gray-700 text-lg max-w-xl">
+              Stay updated with the latest real estate trends, tips, and insights on our blog!
+            </p>
+          </div>
+
+          {/* Top Right Explore Button */}
+          <div className="mt-6 md:mt-0">
+            <button className="group inline-flex items-center gap-2 text-white px-6 py-3 rounded-full font-semibold shadow-lg border"
+              style={{
+                background: 'linear-gradient(to right, #c99913, #474236, #000000)',
+                borderImage: 'linear-gradient(to right, #000000, #474236, #c99913) 1'
+              }}>
+              <span>Explore Blog</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
         </div>
-    );
-};
 
+        {/* Blog Cards */}
+        <div className="relative">
+          <button
+            onClick={prevSlide}
+            className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-white border rounded-full shadow hover:bg-yellow-100 transition"
+            style={{ borderImage: 'linear-gradient(to right, #000000, #474236, #c99913) 1' }}
+          >
+            <ChevronLeft className="w-6 h-6 text-yellow-600" />
+          </button>
 
-const ProfileDrawer = ({ member, visible, onClose }) => {
-    if (!member) return null;
+          <button
+            onClick={nextSlide}
+            className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-white border rounded-full shadow hover:bg-yellow-100 transition"
+            style={{ borderImage: 'linear-gradient(to right, #000000, #474236, #c99913) 1' }}
+          >
+            <ChevronRight className="w-6 h-6 text-yellow-600" />
+          </button>
 
-    return (
-        <Drawer
-            title={null}
-            placement="right"
-            onClose={onClose}
-            open={visible}
-            width={450}
-            styles={{
-                body: { padding: 0 },
-                header: { display: 'none' }
-            }}
-        >
-            <div className="h-full bg-gradient-to-br from-white to-gray-50">
-                <div className="relative h-48 overflow-hidden">
-                    <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
-                    <div className="absolute inset-0 flex items-end p-6">
-                        <div className="text-white">
-                            <h2 className="text-2xl font-black mb-1">{member.name}</h2>
-                            <p className="text-[#c99913] font-semibold">{member.position}</p>
-                        </div>
-                    </div>
-                    <button
-                        onClick={onClose}
-                        className="absolute top-4 right-4 w-8 h-8 bg-gray/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white"
-                    >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+          <div className="grid md:grid-cols-3 gap-8 px-4">
+            {blogPosts.slice(currentSlide, currentSlide + visibleCards).map((post) => (
+              <div key={post.id} className="bg-white border rounded-3xl shadow-xl overflow-hidden group transition"
+                style={{ borderImage: 'linear-gradient(to right, #000000, #474236, #c99913) 1' }}>
+                <div className="relative h-64 overflow-hidden">
+                  <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 text-xs font-bold text-white rounded-full shadow" style={{
+                      background: 'linear-gradient(to right, #c99913, #474236, #000000)'
+                    }}>
+                      {post.category}
+                    </span>
+                  </div>
                 </div>
-                <div className="p-6 space-y-6">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            <div className="flex items-center gap-1">
-                                {[...Array(5)].map((_, i) => (
-                                    <StarFilled
-                                        key={i}
-                                        className={`text-sm ${i < Math.floor(member.rating) ? 'text-[#c99913]' : 'text-gray-300'}`}
-                                    />
-                                ))}
-                            </div>
-                            <span className="text-sm font-semibold text-gray-600">{member.rating}</span>
-                        </div>
-                        <div className="text-right">
-                            <div className="text-lg font-bold text-[#474236]">{member.projects}</div>
-                            <div className="text-xs text-gray-500">Projects Completed</div>
-                        </div>
+                <div className="p-6">
+                  <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-4 h-4 text-yellow-500" />
+                      <span>{post.date}</span>
                     </div>
-                    <div className="space-y-3">
-                        <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Contact Information</h3>
-                        <div className="space-y-2">
-                            <div className="flex items-center gap-3 text-gray-600">
-                                <PhoneOutlined className="text-[#c99913]" />
-                                <span className="text-sm">{member.phone}</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-gray-600">
-                                <MailOutlined className="text-[#c99913]" />
-                                <span className="text-sm">{member.email}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <Divider />
-                    <div className="space-y-3">
-                        <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">About</h3>
-                        <p className="text-gray-700 leading-relaxed text-sm break-words">
-                            {member.bio}
-                        </p>
-                    </div>
-                    <Divider />
-                    <div className="space-y-3">
-                        <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Skills & Expertise</h3>
-                        <div className="flex flex-wrap gap-2">
-                            {member.skills.map((skill, index) => (
-                                <Tag
-                                    key={index}
-                                    color="gold"
-                                    className="border-[#c99913] text-[#474236] font-medium"
-                                >
-                                    {skill}
-                                </Tag>
-                            ))}
-                        </div>
-                    </div>
-                    <Divider />
-                    <div className="space-y-3">
-                        <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Achievements</h3>
-                        <div className="space-y-2">
-                            {member.achievements.map((achievement, index) => (
-                                <div key={index} className="flex items-center gap-2">
-                                    <div className="w-2 h-2 bg-[#c99913] rounded-full"></div>
-                                    <span className="text-sm text-gray-700">{achievement}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <Divider />
-                    <div className="space-y-3">
-                        <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Specializations</h3>
-                        <div className="grid grid-cols-1 gap-2">
-                            {member.specializations.map((spec, index) => (
-                                <div key={index} className="bg-gradient-to-r from-[#c99913]/10 to-[#474236]/10 p-3 rounded-lg border border-[#c99913]/20">
-                                    <span className="text-sm font-medium text-[#474236]">{spec}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <button className="w-full py-3 gradient-border font-bold rounded-xl">
-                        <span className="flex items-center justify-center gap-2">
-                            <PhoneOutlined />
-                            Contact {member.name.split(' ')[0]}
+                    <div className="flex gap-2">
+                      {post.tags.map((tag, idx) => (
+                        <span key={idx} className="flex items-center gap-1">
+                          <Tag className="w-3 h-3 text-yellow-500" />
+                          <span>{tag}</span>
                         </span>
-                    </button>
-                </div>
-            </div>
-        </Drawer>
-    );
-};
-
-const OurTeam = () => {
-    const [isVisible, setIsVisible] = useState(false);
-    const [selectedMember, setSelectedMember] = useState(null);
-    const [drawerVisible, setDrawerVisible] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsVisible(true);
-        }, 100);
-        return () => clearTimeout(timer);
-    }, []);
-
-    const handleViewProfile = (member) => {
-        setSelectedMember(member);
-        setDrawerVisible(true);
-    };
-
-    const handleCloseDrawer = () => {
-        setDrawerVisible(false);
-        setTimeout(() => setSelectedMember(null), 300);
-    };
-
-    return (
-        <div className="min-h-screen main-bg py-16 px-4 relative overflow-hidden">
-            <div className="max-w-7xl mx-auto relative z-10">
-                <div className="text-center mb-16">
-                    <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                        }`}>
-                        <h3 className="text-4xl md:text-5xl font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
-                            Meet Our Team
-                        </h3>
-                        <div className="w-32 h-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] mx-auto mb-4 rounded-full"></div>
-                        <p className="text-lg text-gray-600 max-w-xl mx-auto leading-relaxed font-medium">
-                            "Your Real Estate Experts, Ready to Serve"
-                        </p>
+                      ))}
                     </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                    {teamMembers.map((member, index) => (
-                        <TeamCard
-                            key={member.id}
-                            member={member}
-                            index={index}
-                            isVisible={isVisible}
-                            onViewProfile={handleViewProfile}
-                        />
-                    ))}
-                </div>
-                <div className={`flex justify-center gap-4 transform transition-all duration-1000 delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-                    }`}>
-                    <button className="px-8 py-3 gradient-border font-bold rounded-xl">
-                        <span className="flex items-center gap-2">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                            </svg>
-                            Prev
-                        </span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-yellow-600 transition">
+                    {post.title}
+                  </h3>
+                  <p className="text-gray-600 mt-3 mb-5">{post.excerpt}</p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <User className="w-4 h-4 text-yellow-500" />
+                      <span>by {post.author}</span>
+                    </div>
+                    <button className="px-4 py-2 text-white text-sm font-semibold rounded-full shadow"
+                      style={{
+                        background: 'linear-gradient(to right, #c99913, #474236, #000000)'
+                      }}>
+                      Continue reading
                     </button>
-                    <button className="px-8 py-3 gradient-border font-bold rounded-xl">
-                        <span className="flex items-center gap-2">
-                            Next
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                        </span>
-                    </button>
+                  </div>
                 </div>
-            </div>
-            <ProfileDrawer
-                member={selectedMember}
-                visible={drawerVisible}
-                onClose={handleCloseDrawer}
-            />
-            <style jsx>{`
-        .gradient-border {
-          border: 2px solid transparent;
-          border-image: linear-gradient(to right, #000000, #474236, #c99913) 1;
-          background: transparent;
-          position: relative;
-          overflow: hidden;
-        }
-        .gradient-border::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: 10px;
-          padding: 2px;
-          background: linear-gradient(to right, #c99913, #474236, #000000);
-          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          opacity: 0;
-        }
-        .gradient-border:hover::before {
-          opacity: 0; /* Disable hover effect */
-        }
-        .gradient-border:hover {
-          transform: none; /* Remove scale transform */
-          box-shadow: none; /* Remove shadow */
-        }
-        .gradient-border span {
-          position: relative;
-          z-index: 1;
-          color: #474236;
-        }
-        .gradient-border:hover span {
-          color: #474236; /* Remove color change on hover */
-        }
-        .main-bg {
-          background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
-          position: relative;
-          overflow: hidden;
-        }
-        .main-bg::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><defs><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></defs><rect width="800" height="800" filter="url(#noise)" opacity="0.05"/></svg>') repeat;
-          opacity: 0.1;
-          animation: subtleMove 20s infinite linear;
-        }
-        .main-bg::after {
-          content: '';
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: radial-gradient(circle at center, rgba(201, 153, 19, 0.1) 0%, transparent 70%);
-          animation: rotateGradient 30s infinite linear;
-        }
-        @keyframes subtleMove {
-          0% { transform: translate(0, 0); }
-          50% { transform: translate(20px, 20px); }
-          100% { transform: translate(0, 0); }
-        }
-        @keyframes rotateGradient {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        .transform-style-preserve-3d {
-          transform-style: preserve-3d;
-        }
-        .backface-hidden {
-          backface-visibility: hidden;
-        }
-        .rotate-y-180 {
-          transform: rotateY(180deg);
-        }
-      `}</style>
+              </div>
+            ))}
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
-export default OurTeam;
+export default OurBlog;
