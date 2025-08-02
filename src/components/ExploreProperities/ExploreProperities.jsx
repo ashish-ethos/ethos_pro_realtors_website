@@ -363,6 +363,7 @@ const ExploreProperties = () => {
         }}
         onMouseEnter={() => setHoveredCard(property.id)}
         onMouseLeave={() => setHoveredCard(null)}
+        id="explore-properties"
       >
         <div className={`card relative bg-white rounded-2xl shadow-lg overflow-hidden ${isHovered ? 'z-10' : ''}`}>
           <div className="relative overflow-hidden h-64 sm:h-56">

@@ -4,7 +4,7 @@ import { UserOutlined, PhoneOutlined, MailOutlined, StarFilled } from '@ant-desi
 import MohitSharma from "../../assets/images/home/Mohit-Sharma.png";
 import ArunGodara from "../../assets/images/home/Arun-Godara.png";
 import Satya from "../../assets/images/home/Satya.jpg";
-import Chiranjeev from "../../assets/images/home/Chiranjeev.jpg";
+
 import DeepakBhati from "../../assets/images/home/Deepak-Bhati-150x150.png";
 import Prerna from "../../assets/images/home/Prerna-150x150.jpg";
 import Avantika from "../../assets/images/home/Avantika-150x150.jpg";
@@ -56,7 +56,6 @@ const teamMembers = [
         achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
         specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
     },
-   
     {
         id: 4,
         name: "Deepak Bhati",
@@ -102,7 +101,6 @@ const teamMembers = [
         achievements: ["Commercial Expert 2023", "Deal Maker Award", "Market Analyst"],
         specializations: ["Commercial", "Office Spaces", "Retail Properties"]
     },
-
 ];
 
 const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
@@ -157,7 +155,7 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
               </div>
               <button
                 onClick={() => onViewProfile(member)}
-                className="w-full py-3.5 cursor-pointer gradient-border font-bold rounded-xl"
+                className="w-full py-2.5 cursor-pointer gradient-border font-bold rounded-xl"
               >
                 <span className="flex items-center justify-center gap-2 text-sm">
                   <UserOutlined />
@@ -380,7 +378,7 @@ const OurTeam = () => {
   };
 
   return (
-    <div className=" main-bg py-10 px-4 relative overflow-hidden">
+    <div className=" main-bg py-10 px-4 relative overflow-hidden" id='our-team'>
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
@@ -414,10 +412,10 @@ const OurTeam = () => {
           <button
             onClick={handlePrev}
             disabled={currentIndex === 0}
-            className={`px-8 py-2 gradient-border cursor-pointer font-bold rounded-xl ${currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`px-4 py-1.5 gradient-border cursor-pointer font-bold rounded-xl ${currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <span className="flex items-center gap-2">
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
               Prev
@@ -426,7 +424,7 @@ const OurTeam = () => {
           <button
             onClick={handleNext}
             disabled={currentIndex === maxIndex}
-            className={`px-8 py-3 gradient-border cursor-pointer font-bold rounded-xl ${currentIndex === maxIndex ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`px-4 py-1.5 gradient-border cursor-pointer font-bold rounded-xl ${currentIndex === maxIndex ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <span className="flex items-center gap-2">
               Next

@@ -489,7 +489,7 @@ const OurBlog = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-24 px-4 relative overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-24 px-4 relative overflow-hidden" id='our-blog'>
             {/* Animated Background */}
             <div className="absolute inset-0">
                 <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-blue-200/40 to-purple-200/30 rounded-full blur-3xl animate-pulse"></div>

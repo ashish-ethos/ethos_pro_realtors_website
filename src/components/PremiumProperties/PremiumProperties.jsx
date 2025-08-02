@@ -131,7 +131,7 @@ function PremiumProperties() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 py-16 px-4 relative overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 py-16 px-4 relative overflow-hidden" id="premium-properties">
             {/* Background decorative elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl animate-pulse"></div>
@@ -141,7 +141,7 @@ function PremiumProperties() {
 
             <div className="container mx-auto relative z-10">
                 {/* Header */}
-                <div className="text-center mb-16">
+                <div className="text-center mb-10">
                     <div className="inline-block">
                         <h1 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
                             Top Handpicked Deals
@@ -181,14 +181,14 @@ function PremiumProperties() {
                 {/* Navigation Buttons */}
                 <button
                     onClick={prevProperty}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 p-4 rounded-full bg-white/90 backdrop-blur-sm text-gray-800 shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 border border-gray-200"
+                    className="absolute left-4 top-1/2 cursor-pointer transform -translate-y-1/2 z-30 p-4 rounded-full bg-white/90 backdrop-blur-sm text-gray-800 shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 border border-gray-200"
                 >
                     <ChevronLeft size={24} />
                 </button>
 
                 <button
                     onClick={nextProperty}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 z-30 p-4 rounded-full bg-white/90 backdrop-blur-sm text-gray-800 shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 border border-gray-200"
+                    className="absolute right-4 top-1/2 cursor-pointer transform -translate-y-1/2 z-30 p-4 rounded-full bg-white/90 backdrop-blur-sm text-gray-800 shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300 border border-gray-200"
                 >
                     <ChevronRight size={24} />
                 </button>

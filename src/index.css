@@ -1,1 +1,10 @@
 @import "tailwindcss";
+/* Global fix to remove horizontal scrolling */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+}
+
+* {
+  box-sizing: border-box;
+}

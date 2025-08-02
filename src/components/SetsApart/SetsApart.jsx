@@ -91,7 +91,7 @@ const SetsApart = () => {
   }, [backgroundControls]);
 
   return (
-    <div className="relative bg-cover bg-center py-10 px-4 sm:px-8">
+    <div className="relative bg-cover bg-center py-10 px-4 sm:px-8" id="sets-apart">
       <motion.div
         className="absolute inset-0 bg-black z-0"
         animate={backgroundControls}

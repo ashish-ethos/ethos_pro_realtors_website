@@ -62,7 +62,7 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 py-20 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 py-20 px-4" id="why-choose-us">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16 animate-fade-in">

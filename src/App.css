@@ -17,3 +17,12 @@ body {
 #main-content {
   padding-top: 5rem; /* adjust based on header height */
 }
+/* Global fix to remove horizontal scrolling */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+}
+
+* {
+  box-sizing: border-box;
+}

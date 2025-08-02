@@ -84,7 +84,7 @@ const Testimonial = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 py-10 px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 py-10 px-4 relative overflow-hidden" id='testimonials'>
       {/* Background Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-purple-200 to-pink-200 rounded-full opacity-20 blur-3xl animate-pulse"></div>

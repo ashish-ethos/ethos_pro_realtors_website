@@ -390,7 +390,7 @@ function DifferentCities() {
   };
 
   return (
-    <div className="relative h-auto overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black py-4 sm:py-8">
+    <div className="relative h-auto overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black py-4 sm:py-8" id="different-cities">
       <style>
         {`
           .custom-select .ant-select-selector {

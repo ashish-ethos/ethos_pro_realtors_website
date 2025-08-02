@@ -1,54 +1,34 @@
-import { useState } from 'react'
-import './App.css'
-import Header from './components/Header/Header'
-import Home from './pages/Home/Home'
-import Footer from './components/Footer/Footer'
-import PremiumProperties from './components/PremiumProperties/PremiumProperties'
-import DifferentCities from './components/DifferentCities/DifferentCities'
-import ExploreProperties from './components/ExploreProperities/ExploreProperities'
-import SetsApart from './components/SetsApart/SetsApart'
-import WhyChooseUs from './components/WhyChooseus/WhyChooseus'
-import OurTeam from './components/OurTeam/OurTeam'
-import Testimonial from './components/Testimonials/Testimonials'
-import OurBlog from './components/OurBlog/OurBlog'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+
+// Pages
+import Home from "./pages/Home/Home";
+import Project from "./pages/Projects/Project";
+import About from "./pages/About/About";
+import Blog from "./pages/Blog/Blog";
+import Contact from "./pages/Contact/Contact";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 
 function App() {
   return (
-    <>
+    <Router>
       <Header />
 
       <main id="main-content">
-        <Home />
-        <PremiumProperties />
-        <DifferentCities />
-        <ExploreProperties />
-        <SetsApart />
-        <WhyChooseUs />
-        <OurTeam />
-        <Testimonial />
-        <OurBlog />
-
-        <h1 className="text-3xl font-bold underline text-center">
-          Welcome to Ethos Pro Realtors
-        </h1>
-        <p className="text-center mt-4">
-          Leading Real Estate Consultants in India
-        </p>
-
-        <p className="text-center mt-2">Click the button to increase the count</p>
-
-        <div className="mt-8">
-          <h2 className="text-2xl font-semibold text-center">Get Started</h2>
-          <p className="text-center">
-            Explore our services and find your dream property.
-          </p>
-          <h1 className="text-white bg-black text-center p-2 font-[Inter]">Hello World</h1>
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<Project />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </main>
+
       <Footer />
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
