@@ -165,14 +165,14 @@ function Footer() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email for exclusive deals..."
-                    className="w-full px-6 py-4 bg-transparent text-white placeholder-gray-400 focus:outline-none text-lg"
+                    className="w-full px-6 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none text-lg"
                   />
                   <div className="absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r from-emerald-400 to-blue-400 transform scale-x-0 transition-transform duration-300 focus-within:scale-x-100" />
                 </div>
                 <button
                   onClick={handleNewsletterSubmit}
                   disabled={isSubmitting}
-                  className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-400 hover:to-blue-400 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 disabled:opacity-70 flex items-center gap-3 relative overflow-hidden group"
+                  className="px-8 py-2 bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-400 hover:to-blue-400 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 disabled:opacity-70 flex items-center gap-3 relative overflow-hidden group"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                   {isSubmitting ? (
@@ -235,7 +235,7 @@ function Footer() {
       </div>
 
       {/* Main Footer Content */}
-      <div className="relative container mx-auto px-6 py-20">
+      <div className="relative container mx-auto px-6 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
           {/* Company Section - Enhanced */}

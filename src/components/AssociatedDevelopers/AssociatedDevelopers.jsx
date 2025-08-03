@@ -189,11 +189,11 @@ const AssociatedDevelopers = () => {
         }
         
         .animate-float-right {
-          animation: float-right 120s linear infinite;
+          animation: float-right 100s linear infinite;
         }
         
         .animate-float-left {
-          animation: float-left 80s linear infinite;
+          animation: float-left 120s linear infinite;
         }
         
         .animate-shimmer {
