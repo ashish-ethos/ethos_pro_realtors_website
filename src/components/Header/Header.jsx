@@ -79,13 +79,13 @@ function Header() {
                   overlay={
                     <div className="bg-white rounded-md shadow-md overflow-hidden py-2">
                       <Link
-                        to="/projects#residential"
+                        to="/projects/residential"
                         className="block px-4 py-2 text-gray-800 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
                       >
                         Residential
                       </Link>
                       <Link
-                        to="/projects#commercial"
+                        to="/projects/commercial"
                         className="block px-4 py-2 text-gray-800 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
                       >
                         Commercial
@@ -154,14 +154,14 @@ function Header() {
                   {isProjectsDropdownOpen && (
                     <div className="mt-2 w-full bg-white shadow-md rounded-md">
                       <Link
-                        to="/projects#residential"
+                        to="/projects/residential"
                         className="block px-4 py-2 text-gray-800 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         Residential
                       </Link>
                       <Link
-                        to="/projects#commercial"
+                        to="/projects/commercial"
                         className="block px-4 py-2 text-gray-800 hover:bg-yellow-50 hover:text-yellow-600 transition-colors duration-200"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Drawer, Avatar, Tag, Divider } from 'antd';
-import { UserOutlined, PhoneOutlined, MailOutlined, StarFilled } from '@ant-design/icons';
+import { UserOutlined, PhoneOutlined, MailOutlined, StarFilled,CloseOutlined } from '@ant-design/icons';
+import { IoMdClose } from "react-icons/io";
 import MohitSharma from "../../assets/images/home/Mohit-Sharma.png";
 import ArunGodara from "../../assets/images/home/Arun-Godara.png";
 import Satya from "../../assets/images/home/Satya.jpg";
-
 import DeepakBhati from "../../assets/images/home/Deepak-Bhati-150x150.png";
 import Prerna from "../../assets/images/home/Prerna-150x150.jpg";
 import Avantika from "../../assets/images/home/Avantika-150x150.jpg";
@@ -35,8 +35,8 @@ const teamMembers = [
         skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
         experience: "15+ Years",
         projects: "500+ Properties",
-        phone: "+91 98765 43213",
-        email: "mohit.sharma@company.com",
+        phone: "+91 98765 43214",
+        email: "arun.godara@company.com",
         rating: 5.0,
         achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
         specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
@@ -50,8 +50,8 @@ const teamMembers = [
         skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
         experience: "15+ Years",
         projects: "500+ Properties",
-        phone: "+91 98765 43213",
-        email: "mohit.sharma@company.com",
+        phone: "+91 98765 43215",
+        email: "satya.mandal@company.com",
         rating: 5.0,
         achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
         specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
@@ -125,7 +125,7 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
               <img
                 src={member.image}
                 alt={member.name}
-                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                className="w-full h-full object-contain transition-all duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-[#474236]/10 to-[#c99913]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -141,7 +141,7 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
                 onClick={() => setIsFlipped(!isFlipped)}
                 className={`absolute cursor-pointer bottom-4 right-4 w-10 h-10 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg transform transition-all duration-500 hover:scale-110 hover:bg-[#c99913] hover:text-white ${isHovered ? 'scale-100 rotate-0' : 'scale-0 rotate-180'}`}
               >
-                <FaArrowRightArrowLeft/>
+                <FaArrowRightArrowLeft />
               </button>
             </div>
             <div className="p-6 space-y-4">
@@ -233,7 +233,7 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
           <img
             src={member.image}
             alt={member.name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain bg-gray-100"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
           <div className="absolute inset-0 flex items-end p-6">
@@ -244,11 +244,9 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
           </div>
           <button
             onClick={onClose}
-            className="absolute cursor-pointer top-4 right-4 w-8 h-8 bg-gray/80 backdrop-blur-sm rounded-full flex items-center justify-center text-white"
+            className="absolute cursor-pointer top-4 right-4 w-9 h-9 bg-gray/80 backdrop-blur-sm rounded-full flex items-center justify-center "
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <CloseOutlined />
           </button>
         </div>
         <div className="p-6 space-y-6">
