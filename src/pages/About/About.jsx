@@ -5,6 +5,10 @@ import { BiSupport } from "react-icons/bi";
 import { TbHomeBitcoin } from "react-icons/tb";
 import OurTeam from '../../components/OurTeam/OurTeam';
 import AboutImg from '../../assets/images/about/about_image.jpg';
+import backgroundImg from '../../assets/images/about/about_background.png';
+import SetsApart from '../../components/SetsApart/SetsApart';
+import Testimonial from '../../components/Testimonials/Testimonials';
+import OurBlog from '../../components/OurBlog/OurBlog';
 
 const About = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -32,66 +36,56 @@ const About = () => {
     ];
 
     const values = [
-        { 
-            title: "Expert Guidance", 
+        {
+            title: "Expert Guidance",
             description: "Our team of seasoned professionals provides personalized advice, helping you navigate the real estate market with ease. We offer in-depth market research, area development forecasts, and pricing trends to empower you with the knowledge needed to make confident investments.",
-            icon: Users 
+            icon: Users
         },
-        { 
-            title: "Property Portfolio", 
+        {
+            title: "Property Portfolio",
             description: "Discover diverse residential, commercial, and lucrative investment opportunities tailored to your unique needs and budget. Enjoy exclusive early access to prime pre-launch projects, priority bookings, and exclusive special offers, securing properties at the best prices.",
-            icon: Home 
+            icon: Home
         },
-        { 
-            title: "Transaction Support", 
+        {
+            title: "Transaction Support",
             description: "Enjoy a seamless real estate journey with our end-to-end assistance. From property visits and negotiations to legal paperwork and final registrations, we handle it all. We ensure that all legal formalities and property registrations are accurate, transparent, and completed on time.",
-            icon: IoDocumentAttachOutline 
+            icon: IoDocumentAttachOutline
         },
-        { 
-            title: "Financial Assistance", 
+        {
+            title: "Financial Assistance",
             description: "Buying a property often involves financial complexities, but we’re here to simplify the process. We assist with home loan approvals, EMI options, and financing plans, making it easier for you to secure your dream property.",
-            icon: DollarSign 
+            icon: DollarSign
         },
-        { 
-            title: "Priority Allotment", 
+        {
+            title: "Priority Allotment",
             description: "Gain a competitive edge in securing your desired property with our priority allotment service. Get early access to high-demand projects, ensuring you don’t miss out on preferred options, and secure the best properties at the best prices.",
-            icon: TbHomeBitcoin 
+            icon: TbHomeBitcoin
         },
-        { 
-            title: "Post-Sale Support", 
+        {
+            title: "Post-Sale Support",
             description: "Our commitment continues beyond the purchase. We provide ongoing support with project updates, possession timelines, and address any queries, all at no extra cost to you, as developers compensate us for our premium services.",
-            icon: BiSupport 
+            icon: BiSupport
         }
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+        <div className="min-h-screen bg-gradient-to-br  from-slate-50 via-blue-50 to-indigo-100">
             {/* Hero Section */}
-            <div className="relative overflow-hidden bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900">
-                <div className="absolute inset-0 bg-black/30"></div>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
+            <div className="relative w-full overflow-hidden">
+                {/* Full-width Background Image Section */}
+                <div
+                    className="w-full h-[500px] border-2 border-red bg-cover bg-center bg-no-repeat"
+                    style={{ backgroundImage: `url(${backgroundImg})` }}
+                ></div>
 
-                {/* Animated background elements */}
-                <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-
-                <div className="relative container mx-auto px-6 py-24">
-                    <div className={`text-center transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                            About <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Ethos Pro</span>
-                        </h1>
-                        <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-                            Transforming real estate experiences through innovation, integrity, and unparalleled service excellence
-                        </p>
-                        <div className="flex justify-center">
-                            <ChevronDown className="w-8 h-8 text-white animate-bounce" />
-                        </div>
-                    </div>
+                {/* Centered Chevron Icon */}
+                <div className="flex justify-center -mt-4">
+                    <ChevronDown className="w-8 h-8 text-white animate-bounce" />
                 </div>
             </div>
 
             {/* Stats Section */}
-            <div className="py-20 bg-white/50 backdrop-blur-sm">
+            <div className="py-10 bg-white/50 backdrop-blur-sm">
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         {stats.map((stat, index) => (
@@ -119,16 +113,19 @@ const About = () => {
             </div>
 
             {/* Main Content */}
-            <div className="py-20">
+            <div className="pt-10">
                 <div className="container mx-auto px-6">
                     <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
                         <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
                             <p className="text-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4 tracking-wider uppercase">
                                 Our Story
                             </p>
-                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-                                Building Dreams, Creating Futures
-                            </h2>
+                            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6 mr-1 leading-tight">
+                                Building Dreams 
+                                <span className="bg-gradient-to-r ml-2 from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                                    Creating Futures
+                                </span>
+                            </h3>
                             <p className="text-lg text-slate-600 mb-6 leading-relaxed">
                                 Welcome to Ethos Pro Realtors, your trusted partner in real estate. As a leading channel partner with top developers,
                                 we specialize in connecting clients with exceptional properties that suit their lifestyle and investment goals. With a deep understanding of the real estate market,
@@ -150,7 +147,7 @@ const About = () => {
                                         className="w-full h-96 object-cover rounded-2xl"
                                     />
                                 </div>
-                                <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-6 shadow-2xl">
+                                <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-2xl">
                                     <div className="flex items-center gap-2 mb-2">
                                         {[...Array(5)].map((_, i) => (
                                             <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
@@ -209,8 +206,8 @@ const About = () => {
 
                         <div className="grid md:grid-cols-3 gap-8">
                             {values.map((value, index) => (
-                                <div 
-                                    key={index} 
+                                <div
+                                    key={index}
                                     className={`bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${activeSection === index ? 'ring-2 ring-blue-500/50 scale-105' : ''}`}
                                 >
                                     <div className="bg-gradient-to-br from-blue-500 to-purple-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
@@ -223,12 +220,31 @@ const About = () => {
                         </div>
                     </div>
 
-                    {/* Team Section */}
-                    <OurTeam />
                 </div>
+                <SetsApart className="w-full mb-4" />
+                {/* Team Section */}
+                <OurTeam />
+                <Testimonial />
+                <OurBlog />
             </div>
         </div>
     );
 };
 
 export default About;
+
+
+
+
+// <button
+//                                 className="px-6 py-3 rounded-2xl font-semibold text-black flex items-center gap-2 hover:shadow-xl hover:scale-105 transition-all duration-300"
+//                                 style={{
+//                                     border: '3px solid transparent',
+//                                     borderRadius: '1rem',
+//                                     background:
+//                                         'linear-gradient(white, white) padding-box, linear-gradient(to right, #3b82f6, #8b5cf6) border-box',
+//                                     backgroundClip: 'padding-box, border-box',
+//                                 }}
+//                             >
+//                                 Learn More <ArrowRight className="w-5 h-5" />
+//                             </button>
