@@ -8,3 +8,19 @@ html, body {
 * {
   box-sizing: border-box;
 }
+/* Hero.css */
+.custom-select .ant-select-selector {
+  height: 40px !important;        /* match input height */
+  display: flex;
+  align-items: center;            /* vertical alignment */
+  padding: 0 11px !important;     /* match Input padding */
+}
+
+.custom-select .ant-select-selection-placeholder {
+  line-height: normal !important; /* fix placeholder vertical position */
+}
+
+.custom-select .ant-select-selection-item {
+  display: flex;
+  align-items: center;
+}

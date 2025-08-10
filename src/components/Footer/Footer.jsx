@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { MapPin, Phone, Mail, ArrowRight, Facebook, Instagram, MessageCircle, Linkedin, Youtube, Send, Sparkles, Building, Users, Award, TrendingUp, ChevronUp } from "lucide-react";
 import { BsWhatsapp } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import logotab from "../../assets/images/logo/logotab.png";
 
 function Footer() {
   const [email, setEmail] = useState("");
@@ -241,14 +242,15 @@ function Footer() {
           {/* Company Section - Enhanced */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-emerald-400 to-blue-400 rounded-2xl flex items-center justify-center">
-                  <Building className="w-6 h-6 text-white" />
+              <div className="flex items-center gap-3 mb-6 group">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-emerald-400 to-blue-400 flex items-center justify-center transition-transform group-hover:scale-105">
+                  <img src={logotab} alt="Logo" className="w-10 h-10 rounded-xl" />
                 </div>
-                <h3 className="text-3xl font-black bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
+                <h3 className="text-3xl font-black bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent transition-all duration-300 group-hover:brightness-110">
                   Ethos Pro Realtors
                 </h3>
               </div>
+
 
               <p className="text-gray-300 leading-relaxed text-lg mb-6">
                 Your property, Our Priority. As trusted channel partners with top builders, we're dedicated to connecting you with the finest properties that meet your goals.

@@ -1,145 +1,145 @@
 import React from "react";
 import {
-  Dropdown,
   Button,
-  Space,
   Input,
-  Menu,
-  InputNumber,
   Row,
   Col,
   Card,
+  Select,
 } from "antd";
-import { DownOutlined } from "@ant-design/icons";
 import { FiMapPin } from "react-icons/fi";
 import { MdOutlineHomeWork } from "react-icons/md";
-import BackgroundImage from "../../assets/images/home/background.jpg";
+import { DownOutlined } from "@ant-design/icons";
+import BackgroundImage from "../../assets/images/home/main_background.jpg";
 import "./Hero.css";
 
-const propertyTypeMenu = (
-  <Menu
-    items={[
-      { label: "Apartment", key: "1" },
-      { label: "Villa", key: "2" },
-      { label: "Commercial", key: "3" },
-    ]}
-  />
-);
+const { Option, OptGroup } = Select;
 
-const Hero = () => {
-  const onPriceChange = (value) => {
-    console.log("Price changed:", value);
+const Hero = ({ onSearchChange }) => {
+
+   const handleSearch = (value) => {
+    onSearchChange({ search: value }); // Update search text
+  };
+
+  const handleTypeSelect = (value) => {
+    onSearchChange({ type: value }); // Update property type
+  };
+
+  const handleCitySelect = (value) => {
+    onSearchChange({ city: value }); // Update city
   };
 
   return (
-    <section className="relative w-full h-screen overflow-hidden parallax" id="home">
+    <section
+      className="relative w-full h-[40vh] overflow-hidden parallax"
+      id="home"
+    >
       {/* Background */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 h-full mt-20">
         <img
           src={BackgroundImage}
           alt="Real Estate Background"
-          className="w-full object-cover brightness-75"
+          className="w-full h-full object-cover brightness-85"
         />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8 text-white text-center">
+      <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-white text-center hero-content">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight text-gradient animate-fade-in-slide-up">
           Ethos Pro Realtors
         </h1>
         <p className="text-base sm:text-lg lg:text-xl mb-10 max-w-3xl text-white/90 leading-relaxed animate-fade-in-delayed">
-          Discover luxury properties for sale and rent with advanced search options.
+          Discover luxury properties for sale and rent with advanced search
+          options.
         </p>
 
         {/* Advanced Search Card */}
         <Card
-          className="w-full max-w-5xl mx-auto bg-white/95 shadow-2xl backdrop-blur-lg rounded-2xl p-4 sm:p-6 custom-border animate-scale-in"
+          className="w-full max-w-6xl mx-auto bg-white/95 shadow-2xl backdrop-blur-lg rounded-2xl p-4 sm:p-6 custom-border animate-scale-in"
           bodyStyle={{ padding: 0 }}
         >
-          <Row
-            align="middle"
-            justify="center"
-            wrap={false}
-            style={{ gap: "15px", flexWrap: "wrap" }}
-          >
+          <Row gutter={[12, 12]} align="middle" justify="center" wrap>
             {/* Location */}
-            <Col flex="1 1 200px">
+            <Col xs={24} sm={12} md={6}>
               <Input
                 size="large"
                 placeholder="Enter Location"
                 prefix={<FiMapPin className="text-gray-400" />}
-                style={{ height: "40px", lineHeight: "48px", paddingTop: "0", paddingBottom: "0" }}
-                className="rounded-lg border-gray-200 hover:border-blue-400 transition-colors animate-scale-in-delayed"
+                style={{ height: 48 }}
+                className="rounded-lg border-gray-200 hover:border-blue-400 transition-colors"
               />
-
             </Col>
 
             {/* Property Type */}
-            <Col flex="1 1 160px">
-              <Dropdown overlay={propertyTypeMenu} trigger={["click"]}>
-                <Button
-                  size="large"
-                  style={{ height: "40px" }}
-                  className="w-full text-left rounded-lg border border-gray-200 hover:border-blue-400 transition-colors animate-scale-in-delayed-2"
-                  icon={<MdOutlineHomeWork className="text-gray-400 mr-2" />}
-                >
-                  <Space>
+            <Col xs={24} sm={12} md={6}>
+              <Select
+                size="large"
+                style={{
+                  width: "100%",
+                  height: 48,
+                }}
+                placeholder={
+                  <span style={{ display: "flex", alignItems: "center" }}>
+                    <MdOutlineHomeWork className="text-gray-400 mr-2" />
                     Property Type
-                    <DownOutlined />
-                  </Space>
-                </Button>
-              </Dropdown>
+                  </span>
+                }
+                suffixIcon={<DownOutlined />}
+                onChange={handleTypeSelect}
+                dropdownStyle={{ minWidth: 200 }}
+              >
+                <OptGroup label="Commercial">
+                  <Option value="food-court">Food Court</Option>
+                  <Option value="office">Office</Option>
+                  <Option value="plot-commercial">Plot</Option>
+                  <Option value="shop">Shop</Option>
+                  <Option value="villa-commercial">Villa</Option>
+                </OptGroup>
+                <OptGroup label="Residential">
+                  <Option value="apartment">Apartment</Option>
+                  <Option value="penthouse">Penthouse</Option>
+                  <Option value="plot-residential">Plot</Option>
+                  <Option value="studio">Studio</Option>
+                  <Option value="villa-residential">Villa</Option>
+                </OptGroup>
+              </Select>
             </Col>
 
-            {/* Min Price */}
-            <Col flex="1 1 100px">
-              <InputNumber
+            {/* City */}
+            <Col xs={24} sm={12} md={6}>
+              <Select
                 size="large"
-                min={0}
-                placeholder="$"
-                style={{ height: "40px", width: "100%" }}
-                className="rounded-lg border-gray-200 hover:border-blue-400 transition-colors animate-scale-in-delayed-3"
-                formatter={(value) =>
-                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-                parser={(value) => value?.replace(/\$\s?|(,*)/g, "")}
-                onChange={onPriceChange}
-              />
-            </Col>
-
-            {/* Max Price */}
-            <Col flex="1 1 100px">
-              <InputNumber
-                size="large"
-                min={0}
-                placeholder="$"
-                style={{ height: "40px", width: "100%" }}
-                className="rounded-lg border-gray-200 hover:border-blue-400 transition-colors animate-scale-in-delayed-3"
-                formatter={(value) =>
-                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-                parser={(value) => value?.replace(/\$\s?|(,*)/g, "")}
-                onChange={onPriceChange}
-              />
+                style={{
+                  width: "100%",
+                  height: 48,
+                }}
+                placeholder="Select City"
+              >
+                <Option value="gurgaon">Gurgaon</Option>
+                <Option value="delhi">Delhi</Option>
+                <Option value="noida">Noida</Option>
+                <Option value="mumbai">Mumbai</Option>
+                <Option value="bangalore">Bangalore</Option>
+                <Option value="chennai">Chennai</Option>
+                <Option value="pune">Pune</Option>
+              </Select>
             </Col>
 
             {/* Search Button */}
-            <Col flex="1 1 100px">
+            <Col xs={24} sm={12} md={6}>
               <Button
                 type="primary"
                 size="large"
-                style={{ height: "40px" }}
-                className="w-full rounded-lg custom-button animate-pulse-button"
+                className="w-full rounded-lg custom-button"
+                style={{ height: 48 }}
               >
-                Search 
+                Search
               </Button>
             </Col>
           </Row>
         </Card>
       </div>
     </section>
-
-    
   );
 };
 

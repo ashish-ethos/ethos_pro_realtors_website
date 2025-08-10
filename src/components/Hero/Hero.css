@@ -13,7 +13,7 @@
 }
 
 .custom-border::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -5px;
   left: -5px;
@@ -48,13 +48,17 @@
 }
 
 .custom-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -2px;
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(to right, #00c4cc, #ffd700); /* Teal to yellow gradient */
+  background: linear-gradient(
+    to right,
+    #00c4cc,
+    #ffd700
+  ); /* Teal to yellow gradient */
   z-index: -1;
   border-radius: 10px;
   opacity: 0.3;
@@ -78,42 +82,92 @@
 
 /* Animations */
 @keyframes fadeInSlideUp {
-  0% { opacity: 0; transform: translateY(60px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeInDelayed {
-  0% { opacity: 0; }
-  50% { opacity: 0; }
-  100% { opacity: 0.9; }
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.9;
+  }
 }
 
 @keyframes scaleIn {
-  0% { opacity: 0; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes scaleInDelayed {
-  0% { opacity: 0; transform: scale(0.8); }
-  60% { opacity: 0; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  60% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes scaleInDelayed2 {
-  0% { opacity: 0; transform: scale(0.8); }
-  65% { opacity: 0; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  65% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes scaleInDelayed3 {
-  0% { opacity: 0; transform: scale(0.8); }
-  70% { opacity: 0; transform: scale(0.8); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes pulseButton {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 .animate-fade-in-slide-up {
@@ -196,4 +250,27 @@ section {
     font-size: 1rem !important;
     max-width: 90% !important;
   }
+}
+/* Align Select height & text with Input */
+.custom-select .ant-select-selector {
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 11px !important;
+}
+
+.custom-select .ant-select-selection-placeholder {
+  line-height: normal !important;
+  display: flex;
+  align-items: center;
+}
+
+.custom-select .ant-select-selection-item {
+  display: flex;
+  align-items: center;
+}
+
+/* Center content in reduced height hero */
+.hero-content {
+  padding-top: 5vh;
 }

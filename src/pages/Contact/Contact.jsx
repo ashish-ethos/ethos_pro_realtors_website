@@ -63,15 +63,15 @@ const Contact = () => {
                     {/* Left Column: Form + Map */}
                     <div className="space-y-8">
                         {/* Contact Form */}
-                        <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12 relative overflow-hidden">
+                        <div className="bg-white rounded-3xl shadow-2xl p-4 lg:p-6 relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-100 to-transparent rounded-full -mr-16 -mt-16"></div>
                             <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-indigo-100 to-transparent rounded-full -ml-12 -mb-12"></div>
 
                             <div className="relative z-10">
-                                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-3">
+                                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-1">
                                     Get In Touch
                                 </h2>
-                                <p className="text-blue-600 font-medium mb-8">We’d love to hear from you</p>
+                                <p className="text-blue-600 font-medium mb-4">We’d love to hear from you</p>
 
                                 {submitted ? (
                                     <div className="text-center py-12">
@@ -84,10 +84,10 @@ const Contact = () => {
                                         <p className="text-gray-600">We'll get back to you soon.</p>
                                     </div>
                                 ) : (
-                                    <form onSubmit={handleSubmit} className="space-y-6">
-                                        <div className="grid md:grid-cols-2 gap-6">
+                                    <form onSubmit={handleSubmit} className="space-y-4">
+                                        <div className="grid md:grid-cols-2 gap-4">
                                             <div>
-                                                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                                <label className="block text-sm font-semibold text-gray-700 mb-1">
                                                     First Name <span className="text-red-500">*</span>
                                                 </label>
                                                 <input
@@ -97,11 +97,11 @@ const Contact = () => {
                                                     onChange={handleChange}
                                                     placeholder="First Name"
                                                     required
-                                                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
+                                                    className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                                <label className="block text-sm font-semibold text-gray-700 mb-1">
                                                     Last Name <span className="text-red-500">*</span>
                                                 </label>
                                                 <input
@@ -111,13 +111,13 @@ const Contact = () => {
                                                     onChange={handleChange}
                                                     placeholder="Last Name"
                                                     required
-                                                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
+                                                    className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
                                                 />
                                             </div>
                                         </div>
 
                                         <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                            <label className="block text-sm font-semibold text-gray-700 mb-1">
                                                 Mobile <span className="text-red-500">*</span>
                                             </label>
                                             <input
@@ -127,12 +127,12 @@ const Contact = () => {
                                                 onChange={handleChange}
                                                 placeholder="Mobile Number"
                                                 required
-                                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
+                                                className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
                                             />
                                         </div>
 
                                         <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                                            <label className="block text-sm font-semibold text-gray-700 mb-1">
                                                 Email <span className="text-red-500">*</span>
                                             </label>
                                             <input
@@ -142,12 +142,12 @@ const Contact = () => {
                                                 onChange={handleChange}
                                                 placeholder="Email Address"
                                                 required
-                                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
+                                                className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
                                             />
                                         </div>
 
                                         <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
+                                            <label className="block text-sm font-semibold text-gray-700 mb-1">Message</label>
                                             <textarea
                                                 name="message"
                                                 value={formData.message}
@@ -158,20 +158,29 @@ const Contact = () => {
                                             />
                                         </div>
 
-                                        <button
-                                            type="submit"
-                                            disabled={loading}
-                                            className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
-                                        >
-                                            {loading ? (
-                                                <div className="flex items-center justify-center">
-                                                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                                                    Submitting...
-                                                </div>
-                                            ) : (
-                                                'Submit'
-                                            )}
-                                        </button>
+                                        <div className='flex justify-center'>
+                                            <button
+                                                type="submit"
+                                                disabled={loading}
+                                                className="w-auto items-center
+                                             text-black font-semibold py-2 cursor-pointer px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed border-2 bg-transparent"
+                                                style={{
+                                                    borderImage: 'linear-gradient(to right, #000000, #474236, #c99913) 1',
+                                                    borderStyle: 'solid',
+                                                    background: 'transparent',
+                                                }}
+                                            >
+                                                {loading ? (
+                                                    <div className="flex items-center justify-center">
+                                                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                                                        Submitting...
+                                                    </div>
+                                                ) : (
+                                                    'Submit'
+                                                )}
+                                            </button>
+
+                                        </div>
                                     </form>
                                 )}
                             </div>
@@ -180,9 +189,10 @@ const Contact = () => {
                         {/* Map Card below form */}
                         <div className="bg-white rounded-3xl shadow-xl overflow-hidden max-w-4xl mx-auto mt-12">
                             {/* Gradient Header */}
-                            <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-3">
+                            <div className="bg-gradient-to-r from-black via-[#474236] to-[#c99913] p-3">
                                 <h2 className="text-2xl font-bold text-white">Our Location</h2>
                             </div>
+
 
                             {/* Map Embed */}
                             <div className="h-[400px] w-full">
@@ -222,16 +232,16 @@ const Contact = () => {
                                     </div>
                                 </div>
                                 <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-6 rounded-2xl border border-emerald-100">
-                                    <h3 className="font-semibold text-gray-800 text-lg mb-1">Chiranjeev Nanda</h3>
+                                    <h3 className="font-semibold text-gray-800 text-lg mb-1">Avantika</h3>
                                     <p className="text-emerald-600 text-sm mb-4">(Investment Advisor)</p>
                                     <div className="space-y-3">
                                         <div className="flex items-center">
                                             <Phone className="w-4 h-4 text-emerald-600 mr-3" />
-                                            <span className="text-gray-700">+91 98116 50894</span>
+                                            <span className="text-gray-700">+91 81300 16627</span>
                                         </div>
                                         <div className="flex items-center">
                                             <Mail className="w-4 h-4 text-emerald-600 mr-3" />
-                                            <span className="text-gray-700">chiranjeev@ethosrealtors.com</span>
+                                            <span className="text-gray-700">avantika@ethosrealtors.com</span>
                                         </div>
                                     </div>
                                 </div>

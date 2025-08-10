@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Heart, MapPin, Ruler, Eye, Star } from 'lucide-react';
 import { FiPhone } from "react-icons/fi";
 import { MdOutlineEmail, MdOutlineWhatsapp } from "react-icons/md";
@@ -17,13 +17,15 @@ import AIPLBusinessClub from "../../assets/images/exploreproperties/aipl-busines
 import Cygnett from "../../assets/images/exploreproperties/cygnett-retreat.jpg";
 import Sobha from "../../assets/images/exploreproperties/sobha-international.webp";
 
-const ExploreProperties = () => {
+const ExploreProperties = ({ filters = {} }) => {
   const [activeTab, setActiveTab] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
   const [favorites, setFavorites] = useState(new Set());
   const [hoveredCard, setHoveredCard] = useState(null);
   const [visibleProperties, setVisibleProperties] = useState(6);
+  const [showAll, setShowAll] = useState(false);
 
+  // === your properties array (kept intact) ===
   const properties = [
     {
       id: '1',
@@ -111,7 +113,7 @@ const ExploreProperties = () => {
     },
     {
       id: '8',
-      type: ' Residential',
+      type: 'Residential',
       name: 'Central Park Flower Valley The Room',
       location: 'The Room, Central Park II, Sector 48, Gurugram, Haryana, India',
       size: 'NA',
@@ -123,7 +125,7 @@ const ExploreProperties = () => {
     },
     {
       id: '9',
-      type: ' Residential',
+      type: 'Residential',
       name: 'M3M Mansion Sector 113, Gurgaon',
       location: 'M3M Mansion, Sector 113, Bajghera, Gurugram, Haryana, India',
       size: '1638 – 6695 Sq Ft',
@@ -135,7 +137,7 @@ const ExploreProperties = () => {
     },
     {
       id: '10',
-      type: ' Residential',
+      type: 'Residential',
       name: 'Krisumi Waterfall Residences',
       location: 'Krisumi Waterfall Residences, Sector 36A, Gurugram, Haryana, India',
       size: '1448 – 6569 Sq Ft',
@@ -159,7 +161,7 @@ const ExploreProperties = () => {
     },
     {
       id: '12',
-      type: ' Residential',
+      type: 'Residential',
       name: 'Smartworld One DXP',
       location: 'Smartworld ONE DXP, Sector 113, Bajghera, Gurugram, Haryana, India',
       size: '2450 – 3203 Sq Ft',
@@ -171,7 +173,7 @@ const ExploreProperties = () => {
     },
     {
       id: '13',
-      type: ' Commercial',
+      type: 'Commercial',
       name: 'Reach Airia Mall',
       location: 'Airia Mall, Sector 68, Gurugram, Haryana, India',
       size: '300 – 8000 Sq Ft',
@@ -183,7 +185,7 @@ const ExploreProperties = () => {
     },
     {
       id: '14',
-      type: ' Commercial',
+      type: 'Commercial',
       name: 'AIPL Business Club',
       location: 'AIPL Business Club, Sector 62, Gurugram, Haryana, India',
       size: '500 – 20000 Sq Ft',
@@ -231,7 +233,7 @@ const ExploreProperties = () => {
     },
     {
       id: '18',
-      type: ' Commercial',
+      type: 'Commercial',
       name: 'M3M IFC',
       location: 'M3M IFC, Golf Course Extension Road, Badshahpur, Sector 66, Gurugram, Haryana, India',
       size: '500 – 18000 Sq Ft',
@@ -291,7 +293,7 @@ const ExploreProperties = () => {
     },
     {
       id: '23',
-      type: ' Office',
+      type: 'Office',
       name: 'AIPL Autograph',
       location: 'AIPL Autograph Corporate Office Space, Sector 66, Gurugram, Haryana, India',
       size: 'Size on Request',
@@ -303,6 +305,7 @@ const ExploreProperties = () => {
     }
   ];
 
+  // === tabs (keeps original counts) ===
   const tabs = [
     { key: 'all', label: 'All Properties', count: properties.length },
     { key: 'residential', label: 'Residential', count: properties.filter(p => p.type.toLowerCase().includes('residential')).length },
@@ -313,11 +316,69 @@ const ExploreProperties = () => {
     { key: 'plot', label: 'Plot', count: properties.filter(p => p.type.toLowerCase().includes('plot')).length },
   ];
 
-  const getFilteredProperties = () => {
-    if (activeTab === 'all') return properties;
-    return properties.filter(p => p.type.toLowerCase().includes(activeTab));
+  // === helper: normalize filters (safe) ===
+  const normalizedFilters = useMemo(() => {
+    const f = filters || {};
+    return {
+      search: f.search ? String(f.search).trim().toLowerCase() : '',
+      type: f.type ? String(f.type).trim().toLowerCase() : '',
+      city: f.city ? String(f.city).trim().toLowerCase() : '',
+      // add more keys if needed in future
+    };
+  }, [filters]);
+
+  // === combined filtered properties (applies activeTab + filters) ===
+  const getCombinedFiltered = () => {
+    // start with full set
+    let list = properties.slice();
+
+    // Normalize property fields for matching
+    list = list.map(p => ({
+      ...p,
+      _type: p.type ? String(p.type).trim().toLowerCase() : '',
+      _name: p.name ? String(p.name).toLowerCase() : '',
+      _location: p.location ? String(p.location).toLowerCase() : '',
+      _price: p.price ? String(p.price).toLowerCase() : '',
+    }));
+
+    // 1) apply activeTab (tabs by type key)
+    if (activeTab && activeTab !== 'all') {
+      const tabKey = activeTab.toLowerCase();
+      list = list.filter(p => p._type.includes(tabKey));
+    }
+
+    // 2) apply explicit filters (from Hero)
+    const { search, type, city } = normalizedFilters;
+
+    if (type) {
+      // match against type substring
+      const t = type.toLowerCase();
+      list = list.filter(p => p._type.includes(t) || p._name.includes(t) || p._location.includes(t));
+    }
+
+    if (city) {
+      const c = city.toLowerCase();
+      // match against location (contains city)
+      list = list.filter(p => p._location.includes(c));
+    }
+
+    if (search) {
+      const s = search.toLowerCase();
+      list = list.filter(p =>
+        p._name.includes(s) ||
+        p._location.includes(s) ||
+        p._type.includes(s) ||
+        p._price.includes(s)
+      );
+    }
+
+    return list;
   };
 
+  // memoize final filtered array so repeated renders are lighter
+  const filteredProperties = useMemo(getCombinedFiltered, [activeTab, filters]);
+
+  // === rest of your original functions (unchanged) ===
   const toggleFavorite = (id) => {
     setFavorites(prev => {
       const newFavorites = new Set(prev);
@@ -342,14 +403,22 @@ const ExploreProperties = () => {
   };
 
   useEffect(() => {
+    // simulate loading
     setTimeout(() => setIsLoading(false), 1500);
     setVisibleProperties(6); // Reset visible properties when tab changes
   }, [activeTab]);
 
   const handleViewMore = () => {
-    setVisibleProperties(getFilteredProperties().length); // Show all properties
+    setVisibleProperties(filteredProperties.length);
+    setShowAll(true);
   };
 
+  const handleViewLess = () => {
+    setVisibleProperties(6);
+    setShowAll(false);
+  };
+
+  // PropertyCard (kept your UI, added `group` class so group-hover works)
   const PropertyCard = ({ property, index }) => {
     const isHovered = hoveredCard === property.id;
     const isFavorite = favorites.has(property.id);
@@ -365,7 +434,7 @@ const ExploreProperties = () => {
         onMouseLeave={() => setHoveredCard(null)}
         id="explore-properties"
       >
-        <div className={`card relative bg-white rounded-2xl shadow-lg overflow-hidden ${isHovered ? 'z-10' : ''}`}>
+        <div className={`card relative bg-white rounded-2xl shadow-lg overflow-hidden group ${isHovered ? 'z-10' : ''}`}>
           <div className="relative overflow-hidden h-64 sm:h-56">
             <img
               src={property.image}
@@ -385,7 +454,7 @@ const ExploreProperties = () => {
             <div className="absolute top-3 left-3 flex flex-wrap gap-1 sm:gap-2">
               {property.options.map((option, idx) => (
                 <span
-                  key={option}
+                  key={option + idx}
                   className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${getOptionColor(option)} transform transition-all duration-300`}
                   style={{ animationDelay: `${idx * 100}ms` }}
                 >
@@ -433,7 +502,7 @@ const ExploreProperties = () => {
                 { icon: MdOutlineWhatsapp, label: 'WhatsApp', color: 'hover:bg-gradient-to-r hover:from-black hover:via-[#474236] hover:to-[#c99913] hover:text-white cursor-pointer' }
               ].map((action, idx) => (
                 <button
-                  key={action.label}
+                  key={action.label + idx}
                   className={`flex-1 flex items-center justify-center space-x-1 sm:space-x-2 py-2 px-2 sm:px-3 rounded-lg bg-gray-100 text-gray-700 transition-all duration-300 transform hover:scale-105 ${action.color}`}
                   style={{ transitionDelay: `${idx * 50}ms` }}
                 >
@@ -489,6 +558,7 @@ const ExploreProperties = () => {
     </div>
   );
 
+  // === Render ===
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-amber-50 to-amber-100 py-8 sm:py-12 px-4">
       <div className="max-w-full sm:max-w-7xl mx-auto mb-8 sm:mb-12 text-center">
@@ -502,6 +572,7 @@ const ExploreProperties = () => {
           and exceptional investment opportunities. Discover the perfect investment or dream residence with ease.
         </p>
       </div>
+
       <div className="max-w-full sm:max-w-7xl mx-auto mb-8 sm:mb-12">
         <div className="flex overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 sm:gap-4 p-2 bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg scrollbar-hidden">
           {tabs.map((tab) => (
@@ -530,6 +601,7 @@ const ExploreProperties = () => {
           ))}
         </div>
       </div>
+
       <div className="max-w-full sm:max-w-7xl mx-auto">
         {isLoading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
@@ -537,28 +609,39 @@ const ExploreProperties = () => {
               <LoadingSkeleton key={index} />
             ))}
           </div>
-        ) : getFilteredProperties().length === 0 ? (
+        ) : filteredProperties.length === 0 ? (
           <NoResults />
         ) : (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
-              {getFilteredProperties().slice(0, visibleProperties).map((property, index) => (
+              {filteredProperties.slice(0, visibleProperties).map((property, index) => (
                 <PropertyCard key={property.id} property={property} index={index} />
               ))}
             </div>
-            {visibleProperties < getFilteredProperties().length && (
+
+            {filteredProperties.length > 6 && (
               <div className="text-center mt-8">
-                <button
-                  className="px-6 py-3 rounded-xl font-semibold cursor-pointer text-white bg-gradient-to-r from-black via-[#474236] to-[#c99913] hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg text-base"
-                  onClick={handleViewMore}
-                >
-                  View More
-                </button>
+                {!showAll ? (
+                  <button
+                    className="px-6 py-3 rounded-xl font-semibold cursor-pointer text-white bg-gradient-to-r from-black via-[#474236] to-[#c99913] hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg text-base"
+                    onClick={handleViewMore}
+                  >
+                    View More
+                  </button>
+                ) : (
+                  <button
+                    className="px-6 py-3 rounded-xl font-semibold cursor-pointer border text-black bg-transparent via-[#474236] to-black hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg text-base"
+                    onClick={handleViewLess}
+                  >
+                    View Less
+                  </button>
+                )}
               </div>
             )}
           </>
         )}
       </div>
+
       <style jsx>{`
         @keyframes slideInUp {
           from {

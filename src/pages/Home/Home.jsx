@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PremiumProperties from '../../components/PremiumProperties/PremiumProperties';
 import DifferentCities from '../../components/DifferentCities/DifferentCities';
 import ExploreProperties from '../../components/ExploreProperities/ExploreProperities';
@@ -9,14 +10,23 @@ import OurBlog from '../../components/OurBlog/OurBlog';
 import AssociatedDevelopers from '../../components/AssociatedDevelopers/AssociatedDevelopers';
 import Hero from '../../components/Hero/Hero';
 
-
 const Home = () => {
+  const [filters, setFilters] = useState({ search: "", type: "", city: "" });
+
+  const handleSearchChange = (newFilters) => {
+    setFilters((prev) => ({ ...prev, ...newFilters }));
+  };
+
   return (
     <>
-      <Hero />
+      {/* Pass search change function to Hero */}
+      <Hero onSearchChange={handleSearchChange} />
+
+      {/* Pass filters to ExploreProperties */}
+      <ExploreProperties filters={filters} />
+
       <PremiumProperties />
       <DifferentCities />
-      <ExploreProperties />
       <SetsApart />
       <WhyChooseUs />
       <OurTeam />

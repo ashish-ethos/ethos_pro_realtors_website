@@ -539,11 +539,11 @@ function DifferentCities() {
             </button>
 
             {/* Secondary CTA */}
-            <div className="mt-4 sm:mt-6">
+            {/* <div className="mt-4 sm:mt-6">
               <button className="text-gray-300 hover:text-yellow-400 font-medium text-xs sm:text-sm underline decoration-yellow-400 underline-offset-4 hover:decoration-2 transition-all duration-300 hover:drop-shadow-[0_0_6px_rgba(234,179,8,0.7)]">
                 Download Investment Guide
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
