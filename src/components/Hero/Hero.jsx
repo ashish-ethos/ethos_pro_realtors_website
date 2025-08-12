@@ -31,7 +31,7 @@ const Hero = ({ onSearchChange }) => {
 
   return (
     <section
-      className="relative w-full h-[40vh] overflow-hidden parallax"
+      className="relative w-full h-[60vh] overflow-hidden parallax"
       id="home"
     >
       {/* Background */}
@@ -63,8 +63,8 @@ const Hero = ({ onSearchChange }) => {
             <Col xs={24} sm={12} md={6}>
               <Input
                 size="large"
-                placeholder="Enter Location"
-                prefix={<FiMapPin className="text-gray-400" />}
+                placeholder="Search"
+         
                 style={{ height: 48 }}
                 className="rounded-lg border-gray-200 hover:border-blue-400 transition-colors"
               />
