@@ -4,3 +4,40 @@
   background-clip: text;
   color: transparent;
 }
+.premium-drawer .ant-drawer-mask {
+  background: rgb(189 189 189 / 19%) !important;
+}
+.premium-drawer .ant-drawer .ant-drawer-mask {
+  background: rgb(189 189 189 / 19%) !important;
+}
+.card-properties-details {
+  font-family: 'Inter', sans-serif;
+}
+
+.card-properties-details img {
+  transition: transform 0.3s ease;
+}
+
+.card-properties-details img:hover {
+  transform: scale(1.02);
+}
+
+.card-properties-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.card-properties-details ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-properties-details ul li strong {
+  min-width: 120px;
+  color: #1f2937;
+}
+
+.card-properties-details .bg-white {
+  border: 1px solid #e5e7eb;
+}

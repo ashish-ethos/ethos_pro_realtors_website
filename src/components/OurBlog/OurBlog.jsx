@@ -609,7 +609,7 @@ const OurBlog = () => {
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
                                             <div className="absolute top-6 left-6">
-                                                <div className="px-4 py-2 text-white font-bold text-sm rounded-xl shadow-lg transform hover:scale-105 transition-transform border-2 bg-white/10 backdrop-blur-sm"
+                                                <div className="px-4 py-2 text-black font-[Inter] font-bold text-sm shadow-lg transform hover:scale-105 transition-transform border-1 bg-white/40 backdrop-blur-sm"
                                                     style={{
                                                         borderImage: 'linear-gradient(to right, #000000, #474236, #c99913) 1'
                                                     }}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Input,
@@ -12,21 +12,46 @@ import { MdOutlineHomeWork } from "react-icons/md";
 import { DownOutlined } from "@ant-design/icons";
 import BackgroundImage from "../../assets/images/home/main_background.jpg";
 import "./Hero.css";
+import AdvancedPropertySearch from "../DifferentCities/AdvancedPropertySearch";
+// import AdvancedPropertySearch from "./AdvancedPropertySearch"; 
 
 const { Option, OptGroup } = Select;
 
 const Hero = ({ onSearchChange }) => {
+  const [searchText, setSearchText] = useState("");
+  const [propertyType, setPropertyType] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-   const handleSearch = (value) => {
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchText(value);
     onSearchChange({ search: value }); // Update search text
   };
 
   const handleTypeSelect = (value) => {
+    setPropertyType(value);
     onSearchChange({ type: value }); // Update property type
   };
 
   const handleCitySelect = (value) => {
+    setSelectedCity(value);
+    setIsDrawerOpen(true); // Open the drawer when a city is selected
     onSearchChange({ city: value }); // Update city
+  };
+
+  const handleDrawerClose = () => {
+    setIsDrawerOpen(false);
+  };
+
+  const cityIdMap = {
+    gurgaon: "56798",
+    delhi: "110001",
+    noida: "201301",
+    mumbai: "400001",
+    bangalore: "560001",
+    chennai: "600001",
+    pune: "411001",
   };
 
   return (
@@ -64,7 +89,8 @@ const Hero = ({ onSearchChange }) => {
               <Input
                 size="large"
                 placeholder="Search"
-         
+                value={searchText}
+                onChange={handleSearch}
                 style={{ height: 48 }}
                 className="rounded-lg border-gray-200 hover:border-blue-400 transition-colors"
               />
@@ -114,6 +140,8 @@ const Hero = ({ onSearchChange }) => {
                   height: 48,
                 }}
                 placeholder="Select City"
+                onChange={handleCitySelect}
+                dropdownStyle={{ minWidth: 200 }}
               >
                 <Option value="gurgaon">Gurgaon</Option>
                 <Option value="delhi">Delhi</Option>
@@ -138,6 +166,39 @@ const Hero = ({ onSearchChange }) => {
             </Col>
           </Row>
         </Card>
+
+        {/* Advanced Property Search Drawer */}
+        <AdvancedPropertySearch
+          open={isDrawerOpen}
+          onClose={handleDrawerClose}
+          countryId={selectedCity ? [cityIdMap[selectedCity] || ""] : []}
+          setCountryId={() => {}}
+          stateId={[]}
+          setStateId={() => {}}
+          cityId={selectedCity ? [cityIdMap[selectedCity] || ""] : []}
+          setCityId={() => {}}
+          area={[]}
+          setArea={() => {}}
+          status={[]}
+          setStatus={() => {}}
+          type={propertyType ? [propertyType] : []}
+          setType={() => {}}
+          bedrooms={[]}
+          setBedrooms={() => {}}
+          bathrooms={[]}
+          setBathrooms={() => {}}
+          minArea={0}
+          setMinArea={() => {}}
+          maxArea={10000}
+          setMaxArea={() => {}}
+          label={[]}
+          setLabel={() => {}}
+          yearBuilt={[]}
+          setYearBuilt={() => {}}
+          priceRange={[1000000, 1000000000]}
+          handlePriceChange={() => {}}
+          properties={[]}
+        />
       </div>
     </section>
   );

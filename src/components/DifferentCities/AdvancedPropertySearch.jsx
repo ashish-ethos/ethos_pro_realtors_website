@@ -110,7 +110,7 @@ const AdvancedPropertySearch = ({
       featured: true,
       countryId: 101,
       stateId: 4030,
-      cityId: 56798,
+      cityId: "56798",
     },
     {
       id: 2,
@@ -130,7 +130,7 @@ const AdvancedPropertySearch = ({
       featured: false,
       countryId: 101,
       stateId: 4030,
-      cityId: 56798,
+      cityId: "56798",
     },
     {
       id: 3,
@@ -150,7 +150,7 @@ const AdvancedPropertySearch = ({
       featured: true,
       countryId: 101,
       stateId: 4030,
-      cityId: 56798,
+      cityId: "56798",
     },
   ];
 
@@ -289,7 +289,7 @@ const AdvancedPropertySearch = ({
           case "area-large":
             return b.areaValue - a.areaValue;
           case "area-small":
-          return a.areaValue - b.areaValue;
+            return a.areaValue - b.areaValue;
           case "newest":
             return b.yearBuilt - a.yearBuilt;
           default:
@@ -800,6 +800,12 @@ const AdvancedPropertySearch = ({
                       showSearch
                     >
                       <Option value="56798">Gurgaon</Option>
+                      <Option value="110001">Delhi</Option>
+                      <Option value="201301">Noida</Option>
+                      <Option value="400001">Mumbai</Option>
+                      <Option value="560001">Bangalore</Option>
+                      <Option value="600001">Chennai</Option>
+                      <Option value="411001">Pune</Option>
                     </Select>
                   </div>
                 </Space>

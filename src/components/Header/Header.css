@@ -76,11 +76,11 @@ header img {
   transition: transform 0.5s ease;
 }
 
-button:focus,
+/* button:focus,
 a:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.5);
-}
+} */
 /* From Uiverse.io by cssbuttons-io */ 
 .fancy {
  background-color: transparent;

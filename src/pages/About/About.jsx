@@ -121,7 +121,7 @@ const About = () => {
                                 Our Story
                             </p>
                             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6 mr-1 leading-tight">
-                                Building Dreams 
+                                Building Dreams
                                 <span className="bg-gradient-to-r ml-2 from-blue-400 to-purple-400 bg-clip-text text-transparent">
                                     Creating Futures
                                 </span>
@@ -140,7 +140,7 @@ const About = () => {
 
                         <div className={`transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
                             <div className="relative">
-                                <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl p-1">
+                                <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-md p-1">
                                     <img
                                         src={AboutImg}
                                         alt="Modern home interior"
@@ -162,9 +162,19 @@ const About = () => {
                     {/* Mission & Vision */}
                     <div className="grid lg:grid-cols-2 gap-12 mb-20">
                         <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300">
-                            <div className="bg-gradient-to-br from-blue-500 to-purple-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                                <Award className="w-8 h-8 text-white" />
+                            <div
+                                className="w-14 h-14 flex items-center justify-center border-[3px] rounded-2xl bg-white"
+                                style={{
+                                    borderImage: "linear-gradient(to bottom right, #3b82f6, #9333ea) 1",
+                                    borderImageSlice: 1,
+                                    clipPath: "inset(0 round 1rem)" // matches rounded-2xl (1rem radius)
+                                }}
+                            >
+                                <Award className="w-8 h-8 text-black" />
                             </div>
+
+
+
                             <h3 className="text-3xl font-bold text-slate-900 mb-4">Our Mission</h3>
                             <p className="text-slate-600 leading-relaxed">
                                 At Ethos Pro Realtors, our mission is to empower clients with exceptional real estate solutions. We strive to connect people with properties that fulfill their dreams,
@@ -174,9 +184,17 @@ const About = () => {
                         </div>
 
                         <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300">
-                            <div className="bg-gradient-to-br from-purple-500 to-pink-600 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                                <TrendingUp className="w-8 h-8 text-white" />
+                            <div
+                                className="w-14 h-14 flex items-center justify-center border-[3px] rounded-2xl bg-white"
+                                style={{
+                                    borderImage: "linear-gradient(to bottom right, #a855f7, #ec4899) 1", // purple-500 to pink-600
+                                    borderImageSlice: 1,
+                                    clipPath: "inset(0 round 1rem)" // matches rounded-2xl radius
+                                }}
+                            >
+                                <TrendingUp className="w-8 h-8 text-black" />
                             </div>
+
                             <h3 className="text-3xl font-bold text-slate-900 mb-4">Our Vision</h3>
                             <p className="text-slate-600 leading-relaxed">
                                 Our vision is to be a trusted leader in the real estate industry, setting new standards for excellence.

@@ -497,9 +497,23 @@ const ExploreProperties = ({ filters = {} }) => {
             </div>
             <div className="flex space-x-1 sm:space-x-2">
               {[
-                { icon: FiPhone, label: 'Call', color: 'hover:bg-gradient-to-r hover:from-black hover:via-[#474236] hover:to-[#c99913] hover:text-white cursor-pointer' },
-                { icon: MdOutlineEmail, label: 'Email', color: 'hover:bg-gradient-to-r hover:from-black hover:via-[#474236] hover:to-[#c99913] hover:text-white cursor-pointer' },
-                { icon: MdOutlineWhatsapp, label: 'WhatsApp', color: 'hover:bg-gradient-to-r hover:from-black hover:via-[#474236] hover:to-[#c99913] hover:text-white cursor-pointer' }
+                {
+                  icon: FiPhone,
+                  label: 'Call',
+                  color: 'border border-transparent hover:border-[#c99913] cursor-pointer'
+                },
+                {
+                  icon: MdOutlineEmail,
+                  label: 'Email',
+                  color: 'border border-transparent hover:border-[#c99913] cursor-pointer'
+                },
+                {
+                  icon: MdOutlineWhatsapp,
+                  label: 'WhatsApp',
+                  color: 'border border-transparent hover:border-[#c99913] cursor-pointer'
+                }
+
+
               ].map((action, idx) => (
                 <button
                   key={action.label + idx}
