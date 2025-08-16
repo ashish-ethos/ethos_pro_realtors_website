@@ -60,7 +60,7 @@ const Hero = ({ onSearchChange }) => {
       id="home"
     >
       {/* Background */}
-      <div className="absolute inset-0 h-full mt-20">
+      <div className="absolute inset-0 h-full">
         <img
           src={BackgroundImage}
           alt="Real Estate Background"

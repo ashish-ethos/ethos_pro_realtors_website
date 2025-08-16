@@ -361,7 +361,7 @@ function Footer() {
           </div>
 
           {/* Navigation Sections */}
-          <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-8">
             {/* Quick Links */}
             <div>
               <h4 className="text-xl font-bold mb-6 relative">
@@ -369,16 +369,28 @@ function Footer() {
                 <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500" />
               </h4>
               <ul className="space-y-4">
-                {["Home", "Residential", "Commercial", "About Us", "Our Blog", "Contact", "Careers", "Press", "FAQs", "Support"].map((link, index) => (
-                  <li key={link}>
+                {[
+                  { to: "/", label: "Home" },
+                  { to: "/projects", label: "Projects" },
+                  { to: "/projects/residential", label: "Residential" },
+                  { to: "/projects/commercial", label: "Commercial" },
+                  { to: "/about", label: "About" },
+                  { to: "/blog", label: "Blog" },
+                  { to: "/contact", label: "Contact" },
+                  
+                ].map((item, idx) => (
+                  <li key={idx}>
                     <Link
-                      to={`/${link.toLowerCase() === "home" ? "" : link.toLowerCase().replace(" ", "-")}`}
+                      to={item.to}
                       className="group flex items-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
                     >
-                      <ArrowRight className="w-4 h-4 mr-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-emerald-400" />
-                      <span className="relative">
-                        {link}
-                        <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-400 to-blue-400 group-hover:w-full transition-all duration-300" />
+                      {/* Arrow */}
+                      <ArrowRight className="w-4 h-4 mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-emerald-400" />
+
+                      {/* Label + underline wrapper */}
+                      <span className="relative inline-block">
+                        {item.label}
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>
                       </span>
                     </Link>
                   </li>
@@ -386,29 +398,7 @@ function Footer() {
               </ul>
             </div>
 
-            {/* Projects */}
-            <div>
-              <h4 className="text-xl font-bold mb-6 relative">
-                Projects
-                <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500" />
-              </h4>
-              <ul className="space-y-4">
-                {["All Properties", "Luxury Homes", "Apartments", "Commercial", "New Launches", "Resale"].map((project) => (
-                  <li key={project}>
-                    <Link
-                      to={`/projects#${project.toLowerCase().replace(" ", "-")}`}
-                      className="group flex items-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
-                    >
-                      <ArrowRight className="w-4 h-4 mr-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-emerald-400" />
-                      <span className="relative">
-                        {project}
-                        <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-400 to-blue-400 group-hover:w-full transition-all duration-300" />
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            
           </div>
 
           {/* Contact Section - Ultra Enhanced */}

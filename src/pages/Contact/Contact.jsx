@@ -71,7 +71,6 @@ const Contact = () => {
                                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-1">
                                     Get In Touch
                                 </h2>
-                                <p className="text-blue-600 font-medium mb-4">We’d love to hear from you</p>
 
                                 {submitted ? (
                                     <div className="text-center py-12">
@@ -187,10 +186,10 @@ const Contact = () => {
                         </div>
 
                         {/* Map Card below form */}
-                        <div className="bg-white rounded-3xl shadow-xl overflow-hidden max-w-4xl mx-auto mt-12">
+                        <div className="bg-white rounded-xl shadow-xl overflow-hidden max-w-4xl mx-auto mt-12">
                             {/* Gradient Header */}
-                            <div className="bg-gradient-to-r from-black via-[#474236] to-[#c99913] p-3">
-                                <h2 className="text-2xl font-bold text-white">Our Location</h2>
+                            <div className="bg-transparent from-black p-2">
+                                <h2 className="text-xl font-bold text-black">Our Location</h2>
                             </div>
 
 

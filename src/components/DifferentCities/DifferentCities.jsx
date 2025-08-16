@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "antd";
 import { RiBuilding2Line, RiMapPin2Line, RiLineChartLine, RiArrowRightLine } from "react-icons/ri";
 import AdvancedPropertySearch from './AdvancedPropertySearch';
@@ -20,6 +21,8 @@ function DifferentCities() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [open, setOpen] = useState(false);
   const [size] = useState("large");
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Dynamic location state
   const [countryId, setCountryId] = useState([]);
@@ -361,13 +364,31 @@ function DifferentCities() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
+  // const showDrawer = () => {
+  //   setOpen(true);
+  // };
+
+  // const onClose = () => {
+  //   setOpen(false);
+  // };
   const showDrawer = () => {
+    navigate("/location");
     setOpen(true);
   };
 
   const onClose = () => {
     setOpen(false);
+    navigate(-1);
   };
+
+  // Sync drawer state with route
+  useEffect(() => {
+    if (location.pathname === "/location") {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  }, [location.pathname]);
 
   const handlePriceChange = (value) => {
     setPriceRange(value);

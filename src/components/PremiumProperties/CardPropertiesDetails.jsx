@@ -156,7 +156,7 @@ const CardPropertiesDetails = ({ property }) => {
                 {property.configurations && (
                   <div className="flex justify-between items-center py-2 border-b border-gray-200">
                     <span className="text-sm font-medium text-gray-600">Configurations</span>
-                    <span className="text-sm text-gray-900">{property.configurations}</span>
+                    <span className="text-sm text-gray-900 text-end">{property.configurations}</span>
                   </div>
                 )}
                 <div className="flex justify-between items-center py-2">
@@ -211,12 +211,13 @@ const CardPropertiesDetails = ({ property }) => {
                 <div className="pt-4">
                   <button
                     onClick={handleViewMap}
-                    className="w-full inline-flex items-center justify-center px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-700 font-medium rounded-full border border-gray-300 shadow-sm hover:shadow-md hover:bg-gray-50 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
-                    <MapPin className="w-5 h-5 mr-2" />
+                    <MapPin className="w-5 h-5 text-red-500" />
                     View on Map
-                    <ExternalLink className="w-4 h-4 ml-2" />
+                    <ExternalLink className="w-4 h-4 text-gray-400" />
                   </button>
+
                 </div>
               </div>
             </div>

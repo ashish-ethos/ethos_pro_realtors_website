@@ -8,12 +8,16 @@ import M3Mmansion from "../../assets/images/premiumproperties/m3mmansion.jpg";
 import DLFTheCrest from "../../assets/images/premiumproperties/dlfthecrest.jpg";
 import { Drawer } from "antd";
 import "./PremiumProperties.css";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 import CardPropertiesDetails from "./CardPropertiesDetails";
 
 function PremiumProperties() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredCard, setHoveredCard] = useState(null);
   const visibleCards = 3;
+  const navigate = useNavigate();
+  const { propertyName } = useParams();
 
   const properties = [
     {
@@ -193,11 +197,27 @@ function PremiumProperties() {
     },
   ];
 
+  useEffect(() => {
+    if (propertyName) {
+      const property = properties.find(
+        (p) => p.name.toLowerCase().replace(/\s+/g, "-") === propertyName
+      );
+      if (property) {
+        setSelectedProperty(property);
+        setDrawerOpen(true);
+      }
+    } else {
+      setDrawerOpen(false);
+      setSelectedProperty(null);
+    }
+  }, [propertyName]);
+
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
 
   const openDetails = (property) => {
-    setSelectedProperty(property);
+    const slug = property.name.toLowerCase().replace(/\s+/g, "-");
+    navigate(`/premiumproperties/${slug}`);
     setDrawerOpen(true);
   };
 
@@ -258,9 +278,8 @@ function PremiumProperties() {
             {properties.map((property) => (
               <div
                 key={property.id}
-                className={`relative flex-shrink-0 w-[calc(100%/${visibleCards}-2rem)] transition-all duration-700 ${
-                  hoveredCard === property.id ? "scale-105 z-20" : "scale-100"
-                }`}
+                className={`relative flex-shrink-0 w-[calc(100%/${visibleCards}-2rem)] transition-all duration-700 ${hoveredCard === property.id ? "scale-105 z-20" : "scale-100"
+                  }`}
                 onMouseEnter={() => setHoveredCard(property.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
@@ -329,7 +348,7 @@ function PremiumProperties() {
         title={<span className="text-xl font-bold text-gray-800">Property Details</span>}
         placement="right"
         width={1000}
-        onClose={() => setDrawerOpen(false)}
+        onClose={() => navigate("/home")}
         open={drawerOpen}
         styles={{
           header: { borderBottom: "1px solid #e5e7eb" },

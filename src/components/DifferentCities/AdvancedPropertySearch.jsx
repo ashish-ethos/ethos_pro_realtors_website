@@ -31,12 +31,14 @@ import {
   FaCalendarAlt,
   FaDollarSign,
   FaStar,
+  IndianRupee,
   FaEye,
   FaHeart,
   FaTh,
   FaList as FaListIcon,
 } from "react-icons/fa";
 import { FaList } from "react-icons/fa";
+import { IndianRupee } from "lucide-react";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -634,10 +636,6 @@ const AdvancedPropertySearch = ({
               <Panel header={<b>Advanced Filters</b>} key="advanced">
                 <Space direction="vertical" size="middle" style={{ width: "100%" }}>
                   <div>
-                    <span className="flex items-center font-semibold">
-                      <FaDollarSign style={{ marginRight: 8 }} />
-                      Price Range
-                    </span>
                     <Slider
                       range
                       min={1000000}
@@ -653,10 +651,11 @@ const AdvancedPropertySearch = ({
                         handlePriceChange([Math.min(min, max), Math.max(min, max)]);
                       }}
                       tooltip={{
-                        open: true,
                         formatter: (value) => {
                           const crores = value / 10000000;
-                          return Number.isInteger(crores) ? `₹${crores} Cr` : `₹${crores.toFixed(1)} Cr`;
+                          return Number.isInteger(crores)
+                            ? `₹${crores} Cr`
+                            : `₹${crores.toFixed(1)} Cr`;
                         },
                       }}
                       style={{ margin: "16px 0" }}
