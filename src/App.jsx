@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 // Pages
 import Home from "./pages/Home/Home";
 import Project from "./pages/Projects/Project";
@@ -7,13 +6,17 @@ import Project from "./pages/Projects/Project";
 import About from "./pages/About/About";
 import Blog from "./pages/Blog/Blog";
 import Contact from "./pages/Contact/Contact";
-
 // Layout
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Residentials from "./pages/Projects/Residentials";
 import Commercial from "./pages/Projects/Commercial";
 import PremiumProperties from "./components/PremiumProperties/PremiumProperties";
+import Privacy from "./pages/Privacy/Privacy";
+import Terms from "./pages/Terms/Terms";
+import FAQPage from "./pages/F&Q/F&Qs";
+import Disclaimer from "./pages/Disclaimer/Disclaimer";
+import OurTeam from "./components/OurTeam/OurTeam";
 
 function App() {
   return (
@@ -34,6 +37,12 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<Privacy />}/>
+          <Route path="/terms&conditions" element={<Terms/>}/>
+          <Route path="/f&qs" element={<FAQPage />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/team/:name" element={<Home />} />
+          {/* <Route path="/team" element={<OurTeam />} /> */}
         </Routes>
       </main>
       <Footer />

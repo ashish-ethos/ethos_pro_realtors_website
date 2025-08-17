@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Drawer, Avatar, Tag, Divider } from 'antd';
-import { UserOutlined, PhoneOutlined, MailOutlined, StarFilled,CloseOutlined } from '@ant-design/icons';
+import { UserOutlined, PhoneOutlined, MailOutlined, StarFilled, CloseOutlined } from '@ant-design/icons';
 import { IoMdClose } from "react-icons/io";
 import MohitSharma from "../../assets/images/home/Mohit-Sharma.png";
 import ArunGodara from "../../assets/images/home/Arun-Godara.png";
@@ -9,98 +9,142 @@ import DeepakBhati from "../../assets/images/home/Deepak-Bhati-150x150.png";
 import Prerna from "../../assets/images/home/Prerna-150x150.jpg";
 import Avantika from "../../assets/images/home/Avantika-150x150.jpg";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
+import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { useParams, useNavigate } from "react-router-dom";
+import './OurTeam.css';
 
 const teamMembers = [
-    {
-        id: 1,
-        name: "Mohit Sharma",
-        position: "Managing Director",
-        image: MohitSharma,
-        bio: "Visionary leader with 15+ years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
-        skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
-        experience: "15+ Years",
-        projects: "500+ Properties",
-        phone: "+91 98765 43213",
-        email: "mohit.sharma@company.com",
-        rating: 5.0,
-        achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
-        specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
-    },
-    {
-        id: 2,
-        name: "Arun Godara",
-        position: "Director",
-        image: ArunGodara,
-        bio: "Visionary leader with 15+ years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
-        skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
-        experience: "15+ Years",
-        projects: "500+ Properties",
-        phone: "+91 98765 43214",
-        email: "arun.godara@company.com",
-        rating: 5.0,
-        achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
-        specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
-    },
-    {
-        id: 3,
-        name: "Satya Mandal",
-        position: "Sr. Sales Manager",
-        image: Satya,
-        bio: "Visionary leader with 15+ years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
-        skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
-        experience: "15+ Years",
-        projects: "500+ Properties",
-        phone: "+91 98765 43215",
-        email: "satya.mandal@company.com",
-        rating: 5.0,
-        achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
-        specializations: ["Strategic Planning", "Business Development", "Team Leadership"]
-    },
-    {
-        id: 4,
-        name: "Deepak Bhati",
-        position: "Sr. Sales Expert",
-        image: DeepakBhati,
-        bio: "Expert in luxury property sales with 8+ years of experience in premium real estate markets. Specializes in high-end residential and commercial properties with a focus on client satisfaction and long-term relationships.",
-        skills: ["Luxury Sales", "Client Relations", "Market Analysis", "Property Valuation", "Negotiation"],
-        experience: "8+ Years",
-        projects: "250+ Properties",
-        phone: "+91 98765 43210",
-        email: "deepak.bhati@company.com",
-        rating: 4.9,
-        achievements: ["Top Performer 2023", "Client Choice Award", "Luxury Sales Expert"],
-        specializations: ["Residential", "Commercial", "Luxury Properties"]
-    },
-    {
-        id: 5,
-        name: "Prerna Kapuria",
-        position: "Sr. Sales Expert",
-        image: Prerna,
-        bio: "Specialized in residential properties and investment consulting with exceptional client satisfaction. Known for her analytical approach and ability to match clients with their perfect properties.",
-        skills: ["Residential Sales", "Investment Advice", "Negotiation", "Market Research", "Client Management"],
-        experience: "6+ Years",
-        projects: "180+ Properties",
-        phone: "+91 98765 43211",
-        email: "prerna.kapuria@company.com",
-        rating: 4.8,
-        achievements: ["Rising Star 2023", "Customer Satisfaction Award", "Investment Specialist"],
-        specializations: ["Residential", "Investment Properties", "First-time Buyers"]
-    },
-    {
-        id: 6,
-        name: "Avantika Kapuria",
-        position: "Sr. Sales Expert",
-        image: Avantika,
-        bio: "Commercial real estate specialist with proven track record in corporate deals. Expert in analyzing market trends and providing strategic advice for commercial investments.",
-        skills: ["Commercial Sales", "Property Valuation", "Market Research", "Corporate Deals", "Strategic Planning"],
-        experience: "7+ Years",
-        projects: "120+ Properties",
-        phone: "+91 98765 43212",
-        email: "avantika.kapuria@company.com",
-        rating: 4.9,
-        achievements: ["Commercial Expert 2023", "Deal Maker Award", "Market Analyst"],
-        specializations: ["Commercial", "Office Spaces", "Retail Properties"]
-    },
+  {
+    id: 1,
+    name: "Mohit Sharma",
+    position: "Managing Director",
+    image: MohitSharma,
+    bio: "Visionary leader with years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
+    skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
+    projects: "500+ Properties",
+    phone: "+91 98765 43213",
+    email: "mohit.sharma@company.com",
+    rating: 5.0,
+    achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
+    specializations: ["Strategic Planning", "Business Development", "Team Leadership"],
+    socialIcons: [
+      { icon: "FaFacebook", link: "https://www.facebook.com/mohitsharma" },
+      { icon: "FaTwitter", link: "https://www.twitter.com/mohitsharma" },
+      { icon: "FaLinkedin", link: "https://www.linkedin.com/in/mohitsharma" },
+      { icon: "FaWhatsapp", link: "https://wa.me/919876543213" },
+      { icon: "FaInstagram", link: "https://www.instagram.com/mohitsharma" }
+    ]
+  },
+  {
+    id: 2,
+    name: "Arun Godara",
+    position: "Director",
+    image: ArunGodara,
+    bio: "Visionary leader with 10+ Years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
+    skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
+    experience: "10+ Years",
+    projects: "500+ Properties",
+    phone: "+91 98765 43214",
+    email: "arun.godara@company.com",
+    rating: 5.0,
+    achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
+    specializations: ["Strategic Planning", "Business Development", "Team Leadership"],
+    socialIcons: [
+      { icon: "FaFacebook", link: "https://www.facebook.com/arungodara" },
+      { icon: "FaTwitter", link: "https://www.twitter.com/arungodara" },
+      { icon: "FaLinkedin", link: "https://www.linkedin.com/in/arungodara" },
+      { icon: "FaWhatsapp", link: "https://wa.me/919876543214" },
+      { icon: "FaInstagram", link: "https://www.instagram.com/arungodara" }
+    ]
+  },
+  {
+    id: 3,
+    name: "Satya Mandal",
+    position: "Sr. Sales Manager",
+    image: Satya,
+    bio: "Visionary leader with 8+ Years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
+    skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
+    experience: "8+ Years",
+    projects: "500+ Properties",
+    phone: "+91 98765 43215",
+    email: "satya.mandal@company.com",
+    rating: 5.0,
+    achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
+    specializations: ["Strategic Planning", "Business Development", "Team Leadership"],
+    socialIcons: [
+      { icon: "FaFacebook", link: "https://www.facebook.com/satyamandal" },
+      { icon: "FaTwitter", link: "https://www.twitter.com/satyamandal" },
+      { icon: "FaLinkedin", link: "https://www.linkedin.com/in/satyamandal" },
+      { icon: "FaWhatsapp", link: "https://wa.me/919876543216" },
+      { icon: "FaInstagram", link: "https://www.instagram.com/satyamandal" }
+    ]
+  },
+  {
+    id: 4,
+    name: "Deepak Bhati",
+    position: "Sr. Sales Expert",
+    image: DeepakBhati,
+    bio: "Expert in luxury property sales with 7+ years of experience in premium real estate markets. Specializes in high-end residential and commercial properties with a focus on client satisfaction and long-term relationships.",
+    skills: ["Luxury Sales", "Client Relations", "Market Analysis", "Property Valuation", "Negotiation"],
+    experience: "7+ Years",
+    projects: "250+ Properties",
+    phone: "+91 98765 43210",
+    email: "deepak.bhati@company.com",
+    rating: 4.9,
+    achievements: ["Top Performer 2023", "Client Choice Award", "Luxury Sales Expert"],
+    specializations: ["Residential", "Commercial", "Luxury Properties"],
+    socialIcons: [
+      { icon: "FaFacebook", link: "https://www.facebook.com/deepakbhati" },
+      { icon: "FaTwitter", link: "https://www.twitter.com/deepakbhati" },
+      { icon: "FaLinkedin", link: "https://www.linkedin.com/in/deepakbhati" },
+      { icon: "FaWhatsapp", link: "https://wa.me/919876543210" },
+      { icon: "FaInstagram", link: "https://www.instagram.com/deepakbhati" }
+    ]
+  },
+  {
+    id: 5,
+    name: "Prerna Kapuria",
+    position: "Sr. Sales Expert",
+    image: Prerna,
+    bio: "Specialized in residential properties and investment consulting with exceptional client satisfaction. Known for her analytical approach and ability to match clients with their perfect properties.",
+    skills: ["Residential Sales", "Investment Advice", "Negotiation", "Market Research", "Client Management"],
+    experience: "6+ Years",
+    projects: "180+ Properties",
+    phone: "+91 98765 43211",
+    email: "prerna.kapuria@company.com",
+    rating: 4.8,
+    achievements: ["Rising Star 2023", "Customer Satisfaction Award", "Investment Specialist"],
+    specializations: ["Residential", "Investment Properties", "First-time Buyers"],
+    socialIcons: [
+      { icon: "FaFacebook", link: "https://www.facebook.com/prernakapuria" },
+      { icon: "FaTwitter", link: "https://www.twitter.com/prernakapuria" },
+      { icon: "FaLinkedin", link: "https://www.linkedin.com/in/prernakapuria" },
+      { icon: "FaWhatsapp", link: "https://wa.me/919876543211" },
+      { icon: "FaInstagram", link: "https://www.instagram.com/prernakapuria" }
+    ]
+  },
+  {
+    id: 6,
+    name: "Avantika Kapuria",
+    position: "Sr. Sales Expert",
+    image: Avantika,
+    bio: "Commercial real estate specialist with proven track record in corporate deals. Expert in analyzing market trends and providing strategic advice for commercial investments.",
+    skills: ["Commercial Sales", "Property Valuation", "Market Research", "Corporate Deals", "Strategic Planning"],
+    experience: "6+ Years",
+    projects: "120+ Properties",
+    phone: "+91 98765 43212",
+    email: "avantika.kapuria@company.com",
+    rating: 4.9,
+    achievements: ["Commercial Expert 2023", "Deal Maker Award", "Market Analyst"],
+    specializations: ["Commercial", "Office Spaces", "Retail Properties"],
+    socialIcons: [
+      { icon: "FaFacebook", link: "https://www.facebook.com/avantikakapuria" },
+      { icon: "FaTwitter", link: "https://www.twitter.com/avantikakapuria" },
+      { icon: "FaLinkedin", link: "https://www.linkedin.com/in/avantikakapuria" },
+      { icon: "FaWhatsapp", link: "https://wa.me/919876543212" },
+      { icon: "FaInstagram", link: "https://www.instagram.com/avantikakapuria" }
+    ]
+  },
 ];
 
 const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
@@ -331,6 +375,31 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
               Contact {member.name.split(' ')[0]}
             </span>
           </button>
+          <div className='w-full items-center justify-center flex flex-col'>
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm mb-2">Follow on Social Media</h3>
+            <div className="flex items-center gap-3">
+              {member.socialIcons && member.socialIcons.map((icon, index) => {
+                const IconComponent = {
+                  FaFacebook,
+                  FaTwitter,
+                  FaLinkedin,
+                  FaInstagram,
+                  FaWhatsapp
+                }[icon.icon];
+                return IconComponent ? (
+                  <a
+                    key={index}
+                    href={icon.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#c99913] hover:text-[#474236] transition-colors duration-300"
+                  >
+                    <IconComponent className="text-xl" />
+                  </a>
+                ) : null;
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </Drawer>
@@ -345,22 +414,39 @@ const OurTeam = () => {
   const cardsPerPage = 4;
   const totalCards = teamMembers.length;
   const maxIndex = Math.ceil(totalCards / cardsPerPage) - 1;
+  const { name } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
+
+    // Check if name param exists in URL and set selectedMember and drawerVisible
+    if (name) {
+      const member = teamMembers.find(
+        (m) => m.name.toLowerCase().replace(/\s+/g, "-") === name.toLowerCase()
+      );
+      if (member) {
+        setSelectedMember(member);
+        setDrawerVisible(true);
+      }
+    }
+
     return () => clearTimeout(timer);
-  }, []);
+  }, [name]);
 
   const handleViewProfile = (member) => {
-    setSelectedMember(member);
-    setDrawerVisible(true);
+    const nameSlug = member.name.toLowerCase().replace(/\s+/g, "-");
+    navigate(`/team/${nameSlug}`);
   };
 
   const handleCloseDrawer = () => {
     setDrawerVisible(false);
-    setTimeout(() => setSelectedMember(null), 300);
+    setTimeout(() => {
+      setSelectedMember(null);
+      navigate('/'); // Navigate back to a base team page
+    }, 300);
   };
 
   const handleNext = () => {
@@ -395,7 +481,7 @@ const OurTeam = () => {
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {teamMembers.map((member, index) => (
-              <div key={member.id} className="w-full md:w-1/2 lg:w-1/4 flex-shrink-0 px-4">
+              <div key={member.id} className="w-full md: w-1/2 lg:w-1/4 flex-shrink-0 px-4">
                 <TeamCard
                   member={member}
                   index={index}
@@ -406,7 +492,7 @@ const OurTeam = () => {
             ))}
           </div>
         </div>
-        <div className={` mt-4 flex justify-center gap-4 transform transition-all duration-1000 delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div className={`mt-4 flex justify-center gap-4 transform transition-all duration-1000 delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <button
             onClick={handlePrev}
             disabled={currentIndex === 0}
@@ -438,89 +524,6 @@ const OurTeam = () => {
         visible={drawerVisible}
         onClose={handleCloseDrawer}
       />
-      <style jsx>{`
-        .gradient-border {
-          border: 2px solid transparent;
-          border-image: linear-gradient(to right, #000000, #474236, #c99913) 1;
-          background: transparent;
-          position: relative;
-          overflow: hidden;
-        }
-        .gradient-border::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: 10px;
-          padding: 2px;
-          background: linear-gradient(to right, #c99913, #474236, #000000);
-          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          opacity: 0;
-        }
-        .gradient-border:hover::before {
-          opacity: 0;
-        }
-        .gradient-border:hover {
-          transform: none;
-          box-shadow: none;
-        }
-        .gradient-border span {
-          position: relative;
-          z-index: 1;
-          color: #474236;
-        }
-        .gradient-border:hover span {
-          color: #474236;
-        }
-        .main-bg {
-          background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
-          position: relative;
-          overflow: hidden;
-        }
-        .main-bg::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><defs><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></defs><rect width="800" height="800" filter="url(#noise)" opacity="0.05"/></svg>') repeat;
-          opacity: 0.1;
-          animation: subtleMove 20s infinite linear;
-        }
-        .main-bg::after {
-          content: '';
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: radial-gradient(circle at center, rgba(201, 153, 19, 0.1) 0%, transparent 70%);
-          animation: rotateGradient 30s infinite linear;
-        }
-        @keyframes subtleMove {
-          0% { transform: translate(0, 0); }
-          50% { transform: translate(20px, 20px); }
-          100% { transform: translate(0, 0); }
-        }
-        @keyframes rotateGradient {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        .perspective-1000 {
-          perspective: 1000px;
-        }
-        .transform-style-preserve-3d {
-          transform-style: preserve-3d;
-        }
-        .backface-hidden {
-          backface-visibility: hidden;
-        }
-        .rotate-y-180 {
-          transform: rotateY(180deg);
-        }
-      `}</style>
     </div>
   );
 };

@@ -186,3 +186,9 @@ a:focus {
  right: 0;
  width: 0;
 }
+
+@media (max-width: 900px) {
+  .header-started{
+    display: none !important;
+  }
+}

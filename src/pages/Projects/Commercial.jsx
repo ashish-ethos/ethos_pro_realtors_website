@@ -36,7 +36,7 @@ const properties = [
     image: CentralPark,
     featured: true,
     amenities: ['Pool', 'Gym', 'Garden', 'Security'],
-    addressMap: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.863360441167!2d77.03493257549314!3d28.42337957577965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d191ab1c1c09b%3A0xe8981596d5b56301!2sThe%20Room!5e0!3m2!1sen!2sin!4v1754210749929!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+    addressMap: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.863360441167!2d77.03493257549314!3d28.42337957577965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d191ab1c1c09b%3A0xe8981596d5b56301!2sThe%20Room!5e0!3m2!1sen!2sin!4v1754210749929!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
 
   },
   {
@@ -55,7 +55,7 @@ const properties = [
     image: M3Mmansion,
     featured: false,
     amenities: ['Garden', 'Parking', 'Security', 'Clubhouse'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3511.0514500484305!2d76.97008157549077!3d28.357294075816153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d3d08fd4687b7%3A0x74bc7b179b80852!2sM3M%20Antalya%20Hills!5e0!3m2!1sen!2sin!4v1754210958417!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3511.0514500484305!2d76.97008157549077!3d28.357294075816153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d3d08fd4687b7%3A0x74bc7b179b80852!2sM3M%20Antalya%20Hills!5e0!3m2!1sen!2sin!4v1754210958417!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
 
   },
   {
@@ -74,7 +74,7 @@ const properties = [
     image: DLFCamellias,
     featured: true,
     amenities: ['Private Pool', 'Garden', 'Gym', 'Security', 'Concierge'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.731731114595!2d77.07934317601016!3d28.39716959472888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d2376bf488c31%3A0xb4a7d53c84ccdc16!2sDLF%20Arbour!5e0!3m2!1sen!2sin!4v1754211014525!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.731731114595!2d77.07934317601016!3d28.39716959472888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d2376bf488c31%3A0xb4a7d53c84ccdc16!2sDLF%20Arbour!5e0!3m2!1sen!2sin!4v1754211014525!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
 
   },
   {
@@ -93,7 +93,7 @@ const properties = [
     image: ReachAriaMall,
     featured: false,
     amenities: ['Metro Nearby', 'Parking', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.1948247691957!2d77.05033447600975!3d28.383182995359352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d22fecb57f373%3A0xcc4398c9599fcdd7!2sAiria%20Mall!5e0!3m2!1sen!2sin!4v1754211512723!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.1948247691957!2d77.05033447600975!3d28.383182995359352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d22fecb57f373%3A0xcc4398c9599fcdd7!2sAiria%20Mall!5e0!3m2!1sen!2sin!4v1754211512723!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
   },
   {
     id: 5,
@@ -111,7 +111,7 @@ const properties = [
     image: AIPLAutograph,
     featured: false,
     amenities: ['Gym', 'Security', 'High-speed Internet'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.72070962259!2d77.06025357601011!3d28.397502394713946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d23b8092a653b%3A0x8de37e83207cd640!2sAIPL%20Autograph%20Sec%2066%7C%20Corporate%20office%20Space%20Gurugram%20%7C%20Professional%20Business%20Center%20Gurgaon!5e0!3m2!1sen!2sin!4v1754211120972!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.72070962259!2d77.06025357601011!3d28.397502394713946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d23b8092a653b%3A0x8de37e83207cd640!2sAIPL%20Autograph%20Sec%2066%7C%20Corporate%20office%20Space%20Gurugram%20%7C%20Professional%20Business%20Center%20Gurgaon!5e0!3m2!1sen!2sin!4v1754211120972!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
 
   },
   {
@@ -130,7 +130,7 @@ const properties = [
     image: AIPLBusiness,
     featured: true,
     amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.5792444865574!2d77.08228407601032!3d28.40177369452129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d223e7bd826cf%3A0xbdbbf829f05e9a5d!2sAipl%20Business%20Club%2C%20Sector%2062%2C%20Gurugram%2C%20Haryana%20122098!5e0!3m2!1sen!2sin!4v1754211562552!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.5792444865574!2d77.08228407601032!3d28.40177369452129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d223e7bd826cf%3A0xbdbbf829f05e9a5d!2sAipl%20Business%20Club%2C%20Sector%2062%2C%20Gurugram%2C%20Haryana%20122098!5e0!3m2!1sen!2sin!4v1754211562552!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
   },
   {
     id: 7,
@@ -148,7 +148,7 @@ const properties = [
     image: ElanTheEmperor,
     featured: true,
     amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.289764770307!2d77.00450517601296!3d28.500928490043837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1700b8332841%3A0x1a820bf6925742bd!2sElan%20The%20Mark!5e0!3m2!1sen!2sin!4v1754211657266!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.289764770307!2d77.00450517601296!3d28.500928490043837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1700b8332841%3A0x1a820bf6925742bd!2sElan%20The%20Mark!5e0!3m2!1sen!2sin!4v1754211657266!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
   },
   {
     id: 8,
@@ -166,7 +166,7 @@ const properties = [
     image: PioneerAraya,
     featured: true,
     amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.213483651477!2d77.0861129760106!3d28.412814494023355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d237a6358d52d%3A0x85137a3710a6197!2sPioneer%20Araya%2C%20Tower%20D!5e0!3m2!1sen!2sin!4v1754211151159!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.213483651477!2d77.0861129760106!3d28.412814494023355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d237a6358d52d%3A0x85137a3710a6197!2sPioneer%20Araya%2C%20Tower%20D!5e0!3m2!1sen!2sin!4v1754211151159!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
 
   },
   {
@@ -185,7 +185,7 @@ const properties = [
     image: TrumpTower,
     featured: true,
     amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.6347789904416!2d77.06961287601024!3d28.400096994596865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d226f68d5844d%3A0xd0bf0c398f09d05e!2sTrump%20Tower!5e0!3m2!1sen!2sin!4v1754211194888!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.6347789904416!2d77.06961287601024!3d28.400096994596865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d226f68d5844d%3A0xd0bf0c398f09d05e!2sTrump%20Tower!5e0!3m2!1sen!2sin!4v1754211194888!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
 
   },
   {
@@ -204,7 +204,7 @@ const properties = [
     image: PioneerUrban,
     featured: true,
     amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1754.6121159845757!2d77.08775338883909!3d28.412490103071157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d2210efcc50d7%3A0x711f24390ec4fd5d!2sPioneer%20Presidia%2C%20Sector%2062%2C%20Ghata%2C%20Gurugram%2C%20Haryana%20122098!5e0!3m2!1sen!2sin!4v1754211246279!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1754.6121159845757!2d77.08775338883909!3d28.412490103071157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d2210efcc50d7%3A0x711f24390ec4fd5d!2sPioneer%20Presidia%2C%20Sector%2062%2C%20Ghata%2C%20Gurugram%2C%20Haryana%20122098!5e0!3m2!1sen!2sin!4v1754211246279!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
 
   },
   {
@@ -223,7 +223,7 @@ const properties = [
     image: ElanTheEmperor,
     featured: true,
     amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.8954763998113!2d77.02786267601!3d28.39222479495188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d23007483c609%3A0x4bf398ae7e61c375!2sElan%20Epic!5e0!3m2!1sen!2sin!4v1754211750584!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.8954763998113!2d77.02786267601!3d28.39222479495188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d23007483c609%3A0x4bf398ae7e61c375!2sElan%20Epic!5e0!3m2!1sen!2sin!4v1754211750584!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
   },
   {
     id: 12,
@@ -241,7 +241,7 @@ const properties = [
     image: KrisumiWaterfall,
     featured: true,
     amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.8648188526845!2d76.99439727601327!3d28.51371458946548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d10ad1732bb97%3A0xb3229fb8929e6a8d!2sSobha%20International%20City!5e0!3m2!1sen!2sin!4v1754211291277!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.8648188526845!2d76.99439727601327!3d28.51371458946548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d10ad1732bb97%3A0xb3229fb8929e6a8d!2sSobha%20International%20City!5e0!3m2!1sen!2sin!4v1754211291277!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
 
   },
   {
@@ -260,7 +260,7 @@ const properties = [
     image: M3Mmansion,
     featured: true,
     amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.5916321176837!2d77.0613437260102!3d28.401399694538387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d22613759d2ef%3A0x33c234317fc5ea64!2sM3M%20Golfestate!5e0!3m2!1sen!2sin!4v1754211334893!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.5916321176837!2d77.0613437260102!3d28.401399694538387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d22613759d2ef%3A0x33c234317fc5ea64!2sM3M%20Golfestate!5e0!3m2!1sen!2sin!4v1754211334893!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
 
   },
   {
@@ -279,7 +279,7 @@ const properties = [
     image: TrinitySkyPlazao,
     featured: true,
     amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3475.493112242733!2d79.39137807603782!3d29.414380948146913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a0a1003e30499f%3A0xbb9f40126bddcab0!2sCygnett%20Retreat%20Pangot%20bagar%20road%20smanro%20range%20nanital!5e0!3m2!1sen!2sin!4v1754211389578!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3475.493112242733!2d79.39137807603782!3d29.414380948146913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a0a1003e30499f%3A0xbb9f40126bddcab0!2sCygnett%20Retreat%20Pangot%20bagar%20road%20smanro%20range%20nanital!5e0!3m2!1sen!2sin!4v1754211389578!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
 
   },
 ];
@@ -377,15 +377,15 @@ const Commercial = () => {
               key={status}
               className={`px-3 py-1 text-xs font-semibold rounded-full ${
                 status === 'FOR SALE'
-                  ? 'bg-blue-600 text-white'
+                  ? 'border-blue-600 text-white border-1'
                   : status === 'FOR RENT'
-                  ? 'bg-green-600 text-white'
+                  ? 'border-green-600 text-white border-1'
                   : status === 'HOT OFFER'
-                  ? 'bg-red-500 text-white'
+                  ? 'border-red-500 text-white border-1'
                   : status === 'NEW LAUNCH'
-                  ? 'bg-purple-600 text-white'
+                  ? 'border-purple-600 text-white border-1'
                   : status === 'EXCLUSIVE'
-                  ? 'bg-yellow-500 text-white border-1 border-white'
+                  ? 'border-yellow-500 text-white border-1 '
                   : 'bg-gray-600 text-white'
               }`}
             >

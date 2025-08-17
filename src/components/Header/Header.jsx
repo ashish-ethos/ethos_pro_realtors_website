@@ -33,14 +33,13 @@ function Header() {
 
   return (
     <header
-      className={`fixed w-full top-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-white shadow-md" : "bg-transparent"
-      }`}
+      className={`fixed w-full top-0 z-50 transition-all duration-500 ${scrolled ? "bg-white shadow-md" : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3">
-          <img src={CompanyHeaderLogo} alt="Logo" className="h-14 w-auto" />
+          <img src={CompanyHeaderLogo} alt="Logo" className="h-14 w-auto cursor-pointer" />
         </Link>
 
         {/* Desktop Nav */}
@@ -57,8 +56,7 @@ function Header() {
                       key={sub.name}
                       to={sub.path}
                       className={({ isActive }) =>
-                        `block px-4 py-2 text-sm hover:bg-yellow-50 ${
-                          isActive ? "text-yellow-600 font-semibold" : "text-gray-800"
+                        `block px-4 py-2 text-sm hover:bg-yellow-50 ${isActive ? "text-yellow-600 font-semibold" : "text-gray-800"
                         }`
                       }
                     >
@@ -72,8 +70,7 @@ function Header() {
                 key={item.name}
                 to={item.path}
                 className={({ isActive }) =>
-                  `relative font-medium hover:text-yellow-600 transition ${
-                    isActive ? "text-yellow-600" : "text-gray-800"
+                  `relative font-medium hover:text-yellow-600 transition ${isActive ? "text-yellow-600" : "text-gray-800"
                   }`
                 }
               >
@@ -84,7 +81,7 @@ function Header() {
         </nav>
 
         {/* CTA Button */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden lg:flex items-center space-x-4 header-started">
           <a className="fancy" href="#">
             <span className="top-key"></span>
             <span className="text">Get Started</span>
@@ -104,9 +101,8 @@ function Header() {
 
       {/* Mobile Nav */}
       <div
-        className={`md:hidden bg-white shadow-lg fixed top-16 right-0 w-64 h-screen transition-transform duration-500 ${
-          mobileOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`md:hidden bg-white shadow-lg fixed top-16 right-0 w-64 h-screen transition-transform duration-500 ${mobileOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <ul className="flex flex-col p-6 space-y-4">
           {navItems.map((item) =>

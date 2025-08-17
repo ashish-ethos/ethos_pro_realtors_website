@@ -31,7 +31,7 @@ import {
   FaCalendarAlt,
   FaDollarSign,
   FaStar,
-  IndianRupee,
+  
   FaEye,
   FaHeart,
   FaTh,

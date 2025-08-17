@@ -377,6 +377,7 @@ function Footer() {
                   { to: "/about", label: "About" },
                   { to: "/blog", label: "Blog" },
                   { to: "/contact", label: "Contact" },
+                  {to:"/disclaimer", label: "Disclaimer"},
                   
                 ].map((item, idx) => (
                   <li key={idx}>
@@ -475,26 +476,26 @@ function Footer() {
 
       {/* Bottom Bar - Enhanced */}
       <div className="relative border-t border-gray-800/50 bg-black/80 backdrop-blur-sm">
-        <div className="container mx-auto px-6 py-8">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-            <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-gray-400">
+            <div className="flex flex-col sm:flex-row items-center text-center gap-4 text-sm text-gray-400">
               <p>© {new Date().getFullYear()} Ethos Pro Realtors. All Rights Reserved.</p>
               <div className="flex items-center gap-4">
                 <Link to="/privacy-policy" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
                 <span>•</span>
-                <Link to="/terms" className="hover:text-emerald-400 transition-colors">Terms</Link>
+                <Link to="/terms&conditions" className="hover:text-emerald-400 transition-colors">Terms</Link>
                 <span>•</span>
-                <Link to="/sitemap" className="hover:text-emerald-400 transition-colors">Sitemap</Link>
+                <Link to="/f&qs" className="hover:text-emerald-400 transition-colors">F&Q</Link>
               </div>
             </div>
 
-            <div className="flex items-center gap-4">
+            {/* <div className="flex items-center gap-4">
               <span className="text-sm text-gray-400">Made with ❤️ in India</span>
               <div className="flex items-center gap-2 text-sm text-gray-400">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 <span>All systems operational</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
