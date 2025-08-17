@@ -31,7 +31,7 @@ const teamMembers = [
       { icon: "FaFacebook", link: "https://www.facebook.com/mohitsharma" },
       { icon: "FaTwitter", link: "https://www.twitter.com/mohitsharma" },
       { icon: "FaLinkedin", link: "https://www.linkedin.com/in/mohitsharma" },
-      { icon: "FaWhatsapp", link: "https://wa.me/919876543213" },
+      { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
       { icon: "FaInstagram", link: "https://www.instagram.com/mohitsharma" }
     ]
   },
@@ -44,7 +44,7 @@ const teamMembers = [
     skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
     experience: "10+ Years",
     projects: "500+ Properties",
-    phone: "+91 98765 43214",
+    phone: "+91 8744964496",
     email: "arun.godara@company.com",
     rating: 5.0,
     achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
@@ -53,7 +53,7 @@ const teamMembers = [
       { icon: "FaFacebook", link: "https://www.facebook.com/arungodara" },
       { icon: "FaTwitter", link: "https://www.twitter.com/arungodara" },
       { icon: "FaLinkedin", link: "https://www.linkedin.com/in/arungodara" },
-      { icon: "FaWhatsapp", link: "https://wa.me/919876543214" },
+      { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
       { icon: "FaInstagram", link: "https://www.instagram.com/arungodara" }
     ]
   },
@@ -66,7 +66,7 @@ const teamMembers = [
     skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
     experience: "8+ Years",
     projects: "500+ Properties",
-    phone: "+91 98765 43215",
+    phone: "+91 87449 64496",
     email: "satya.mandal@company.com",
     rating: 5.0,
     achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
@@ -75,7 +75,7 @@ const teamMembers = [
       { icon: "FaFacebook", link: "https://www.facebook.com/satyamandal" },
       { icon: "FaTwitter", link: "https://www.twitter.com/satyamandal" },
       { icon: "FaLinkedin", link: "https://www.linkedin.com/in/satyamandal" },
-      { icon: "FaWhatsapp", link: "https://wa.me/919876543216" },
+      { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
       { icon: "FaInstagram", link: "https://www.instagram.com/satyamandal" }
     ]
   },
@@ -88,7 +88,7 @@ const teamMembers = [
     skills: ["Luxury Sales", "Client Relations", "Market Analysis", "Property Valuation", "Negotiation"],
     experience: "7+ Years",
     projects: "250+ Properties",
-    phone: "+91 98765 43210",
+    phone: "+91 87449 64496",
     email: "deepak.bhati@company.com",
     rating: 4.9,
     achievements: ["Top Performer 2023", "Client Choice Award", "Luxury Sales Expert"],
@@ -97,7 +97,7 @@ const teamMembers = [
       { icon: "FaFacebook", link: "https://www.facebook.com/deepakbhati" },
       { icon: "FaTwitter", link: "https://www.twitter.com/deepakbhati" },
       { icon: "FaLinkedin", link: "https://www.linkedin.com/in/deepakbhati" },
-      { icon: "FaWhatsapp", link: "https://wa.me/919876543210" },
+      { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
       { icon: "FaInstagram", link: "https://www.instagram.com/deepakbhati" }
     ]
   },
@@ -110,7 +110,7 @@ const teamMembers = [
     skills: ["Residential Sales", "Investment Advice", "Negotiation", "Market Research", "Client Management"],
     experience: "6+ Years",
     projects: "180+ Properties",
-    phone: "+91 98765 43211",
+    phone: "+91 87449 64496",
     email: "prerna.kapuria@company.com",
     rating: 4.8,
     achievements: ["Rising Star 2023", "Customer Satisfaction Award", "Investment Specialist"],
@@ -119,7 +119,7 @@ const teamMembers = [
       { icon: "FaFacebook", link: "https://www.facebook.com/prernakapuria" },
       { icon: "FaTwitter", link: "https://www.twitter.com/prernakapuria" },
       { icon: "FaLinkedin", link: "https://www.linkedin.com/in/prernakapuria" },
-      { icon: "FaWhatsapp", link: "https://wa.me/919876543211" },
+      { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
       { icon: "FaInstagram", link: "https://www.instagram.com/prernakapuria" }
     ]
   },
@@ -132,7 +132,7 @@ const teamMembers = [
     skills: ["Commercial Sales", "Property Valuation", "Market Research", "Corporate Deals", "Strategic Planning"],
     experience: "6+ Years",
     projects: "120+ Properties",
-    phone: "+91 98765 43212",
+    phone: "+91 87449 64496",
     email: "avantika.kapuria@company.com",
     rating: 4.9,
     achievements: ["Commercial Expert 2023", "Deal Maker Award", "Market Analyst"],
@@ -141,7 +141,7 @@ const teamMembers = [
       { icon: "FaFacebook", link: "https://www.facebook.com/avantikakapuria" },
       { icon: "FaTwitter", link: "https://www.twitter.com/avantikakapuria" },
       { icon: "FaLinkedin", link: "https://www.linkedin.com/in/avantikakapuria" },
-      { icon: "FaWhatsapp", link: "https://wa.me/919876543212" },
+      { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
       { icon: "FaInstagram", link: "https://www.instagram.com/avantikakapuria" }
     ]
   },
