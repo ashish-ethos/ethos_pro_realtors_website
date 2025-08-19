@@ -464,7 +464,7 @@ const AdvancedPropertySearch = ({
             <Button type="primary" danger onClick={handleClearFilters} style={{ borderRadius: 6 }}>
               Clear All
             </Button>
-            <Button icon={<FaTimes />} onClick={onClose} style={{ borderRadius: 6 }} />
+            {/* <Button icon={<FaTimes />} onClick={onClose} style={{ borderRadius: 6 }} /> */}
           </Space>
         </div>
       }
