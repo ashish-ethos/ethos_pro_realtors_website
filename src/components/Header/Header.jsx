@@ -10,6 +10,7 @@ function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -46,11 +47,11 @@ function Header() {
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) =>
             item.dropdown ? (
-              <div className="relative group" key={item.name}>
+              <div className="relative" key={item.name} onMouseEnter={() => setHoveredItem(item.name)} onMouseLeave={() => setHoveredItem(null)}>
                 <span className="flex items-center font-medium cursor-pointer">
                   {item.name} <IoIosArrowDown className="ml-1 mt-1" />
                 </span>
-                <div className="absolute left-0 mt-2 hidden group-hover:block bg-white shadow-md rounded-md">
+                <div className={`absolute left-0 mt-2 ${item.name === hoveredItem ? 'block' : 'hidden'} bg-white shadow-md rounded-md`} onMouseEnter={() => setHoveredItem(item.name)} onMouseLeave={() => setHoveredItem(null)}>
                   {item.dropdown.map((sub) => (
                     <NavLink
                       key={sub.name}

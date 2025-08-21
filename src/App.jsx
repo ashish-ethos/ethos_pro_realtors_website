@@ -17,11 +17,13 @@ import Terms from "./pages/Terms/Terms";
 import FAQPage from "./pages/F&Q/F&Qs";
 import Disclaimer from "./pages/Disclaimer/Disclaimer";
 import OurTeam from "./components/OurTeam/OurTeam";
+import ScrollToTop from "./utils/ScrollToTopComponent";
 
 function App() {
   return (
     <Router>
       <Header />
+      <ScrollToTop />
       <main className="pt-20">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -32,13 +34,16 @@ function App() {
           <Route path="/projects" element={<Project />} />
           <Route path="/projects/residential" element={<Residentials />} />
           <Route path="/projects/commercial" element={<Commercial />} />
-          <Route path="/premiumproperties/:propertyName" element={<PremiumProperties />} />
+          <Route
+            path="/premiumproperties/:propertyName"
+            element={<PremiumProperties />}
+          />
 
           <Route path="/about" element={<About />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/privacy-policy" element={<Privacy />}/>
-          <Route path="/terms&conditions" element={<Terms/>}/>
+          <Route path="/privacy-policy" element={<Privacy />} />
+          <Route path="/terms&conditions" element={<Terms />} />
           <Route path="/f&qs" element={<FAQPage />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/team/:name" element={<Home />} />
