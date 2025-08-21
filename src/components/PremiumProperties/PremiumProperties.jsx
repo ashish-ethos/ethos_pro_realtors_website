@@ -283,13 +283,13 @@ function PremiumProperties() {
                 onMouseEnter={() => setHoveredCard(property.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className="group relative bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 hover:-translate-y-4 transition-all">
+                <div className={`group relative bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 transition-all ${hoveredCard === property.id ? "-translate-y-4" : ""}`}>
                   {/* Image */}
                   <div className="relative overflow-hidden">
                     <img
                       src={property.image}
                       alt={property.name}
-                      className="w-full h-64 object-cover transition-transform group-hover:scale-110"
+                      className={`w-full h-64 object-cover transition-transform ${hoveredCard === property.id ? "scale-110" : "scale-100"}`}
                     />
                     <div className="absolute top-4 left-4 flex flex-col gap-2">
                       {property.featured && (
