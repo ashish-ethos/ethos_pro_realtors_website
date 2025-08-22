@@ -21,7 +21,6 @@ const ExploreProperties = ({ filters = {} }) => {
   const [activeTab, setActiveTab] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
   const [favorites, setFavorites] = useState(new Set());
-  const [hoveredCard, setHoveredCard] = useState(null);
   const [visibleProperties, setVisibleProperties] = useState(6);
   const [showAll, setShowAll] = useState(false);
 
@@ -359,7 +358,7 @@ const ExploreProperties = ({ filters = {} }) => {
     if (city) {
       const c = city.toLowerCase();
       // match against location (contains city)
-      list = list.filter(p => p._location.includes(c));
+      list = list.filter(p => p._location.toLowerCase().includes(c));
     }
 
     if (search) {
