@@ -475,7 +475,7 @@ const OurTeam = () => {
             </p>
           </div>
         </div>
-        <div className="overflow-hidden">
+        <div className="overflow-hidden py-4">
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}

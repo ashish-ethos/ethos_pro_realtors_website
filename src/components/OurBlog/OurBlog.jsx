@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
     ChevronLeft,
     ChevronRight,
@@ -337,6 +338,8 @@ const OurBlog = () => {
     const [selectedPost, setSelectedPost] = useState(null);
     const [isExploreDrawerOpen, setIsExploreDrawerOpen] = useState(false);
     const visibleCards = 4;
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const blogPosts = [
         {
@@ -451,12 +454,26 @@ const OurBlog = () => {
     };
 
     const openExploreDrawer = () => {
+        // setIsExploreDrawerOpen(true);
+        // navigate("/all-articles", { replace: false });
+        setIsDrawerOpen(false);
+        setSelectedPost(null);
         setIsExploreDrawerOpen(true);
+        navigate("/all-articles", { replace: false });
     };
 
     const closeExploreDrawer = () => {
         setIsExploreDrawerOpen(false);
+        navigate("/");
     };
+    useEffect(() => {
+        if (location.pathname === "/all-articles") {
+            // setIsExploreDrawerOpen(true);
+            setIsDrawerOpen(false);
+            setSelectedPost(null);
+            setIsExploreDrawerOpen(true);
+        }
+    }, [location.pathname]);
 
     // Convert markdown-like content to JSX
     const renderContent = (content) => {
@@ -530,9 +547,7 @@ const OurBlog = () => {
                             <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent">
                                 Our Blog
                             </span>
-                            <span className="block text-4xl lg:text-5xl text-gray-600 font-normal mt-4">
-                                Stories That Matter
-                            </span>
+
                         </h1>
 
                         <p className="text-xl text-gray-600 max-w-2xl leading-relaxed mb-8">
@@ -578,7 +593,7 @@ const OurBlog = () => {
                         </Button>
                     </div>
 
-                    <div className="overflow-hidden">
+                    <div className="overflow-hidden py-4">
                         <div
                             className="flex transition-transform duration-1000 ease-out"
                             style={{ transform: `translateX(-${currentSlide * (100 / visibleCards)}%)` }}
@@ -663,19 +678,6 @@ const OurBlog = () => {
                             ))}
                         </div>
                     </div>
-
-                    {/* <div className="flex justify-center gap-3 mt-16">
-                        {Array.from({ length: Math.max(1, blogPosts.length - visibleCards + 1) }).map((_, index) => (
-                            <Button
-                                key={index}
-                                onClick={() => goToSlide(index)}
-                                className={`h-2 rounded-full transition-all duration-500 ${currentSlide === index
-                                    ? 'w-12 bg-gradient-to-r from-blue-500 to-purple-600'
-                                    : 'w-8 bg-gray-300 hover:bg-gray-400'
-                                    }`}
-                            />
-                        ))}
-                    </div> */}
                 </div>
 
                 {/* Article Content Drawer */}

@@ -12,6 +12,9 @@ import {
   List,
   ArrowLeft,
 } from "lucide-react";
+import { Input, Select, Button } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+
 import BuyProperties from "../../assets/images/premiumproperties/buying-properties.jpg";
 import CalculateROI from "../../assets/images/premiumproperties/Calculate-ROI.jpg";
 import GoodBadInvest from "../../assets/images/premiumproperties/good-vs-bad-investment.jpg";
@@ -299,8 +302,11 @@ const BlogExploreArticles = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedPost, setSelectedPost] = useState(blogPosts[0]);
   const [hoveredPost, setHoveredPost] = useState(null);
-  const [viewMode, setViewMode] = useState("grid");
+  const [viewMode, setViewMode] = useState("list");
   const [filterCategory, setFilterCategory] = useState("all");
+  const { Search } = Input;
+  const { Option } = Select;
+
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -402,50 +408,59 @@ const BlogExploreArticles = () => {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
             {/* Search Bar */}
-            <div className="relative flex-1 max-w-2xl">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="text"
+            <div className="flex-1 max-w-2xl">
+              <Input
+                placeholder="Search articles, topics, or categories..."
                 value={searchTerm}
                 onChange={handleInputChange}
-                placeholder="Search articles, topics, or categories..."
-                className="w-full pl-12 pr-4 py-3 bg-white border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 shadow-sm"
+                allowClear
+                prefix={<SearchOutlined className="text-gray-400" />}
+                size="middle"
+                className="!rounded-xl h-[40px] items-center shadow-sm"
+
               />
             </div>
 
             {/* Controls */}
             <div className="flex items-center gap-3">
-              <select
+              {/* Category Select */}
+              <Select
                 value={filterCategory}
-                onChange={(e) => setFilterCategory(e.target.value)}
-                className="bg-white border border-gray-300 rounded-xl px-4 py-2 focus:ring-2 focus:ring-blue-500 text-gray-700"
+                onChange={(value) => setFilterCategory(value)}
+                size="middle"
+                style={{ width: 200 }}
+                className="!rounded-xl !h-10 shadow-sm"
+                dropdownStyle={{ borderRadius: "10px" }}
               >
-                <option value="all">All Categories</option>
-                <option value="investment">Investment</option>
-                <option value="market trends">Market Trends</option>
-              </select>
+                <Option value="all">All Categories</Option>
+                <Option value="investment">Investment</Option>
+                <Option value="market trends">Market Trends</Option>
+              </Select>
 
-              <div className="flex bg-white border border-gray-300 rounded-xl p-1">
-                <button
-                  onClick={() => {setViewMode("grid"); setSelectedPost(null);}}
-                  className={`p-2 rounded-lg transition-all ${
-                    viewMode === "grid"
-                      ? "bg-blue-500 text-white"
-                      : "text-gray-500 hover:text-gray-700"
-                  }`}
-                >
-                  <Grid className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => {setViewMode("list"); setSelectedPost(blogPosts[0]);}}
-                  className={`p-2 rounded-lg transition-all ${
-                    viewMode === "list"
-                      ? "bg-blue-500 text-white"
-                      : "text-gray-500 hover:text-gray-700"
-                  }`}
-                >
-                  <List className="w-4 h-4" />
-                </button>
+              {/* View Toggle */}
+              <div className="flex bg-white border border-gray-300 rounded-xl shadow-sm p-1">
+                <Button
+                  type={viewMode === "grid" ? "primary" : "text"}
+                  icon={<Grid className="w-4 h-4" />}
+                  onClick={() => {
+                    setViewMode("grid");
+                    setSelectedPost(null);
+                  }}
+                  size="middle"
+                  className={`!rounded-lg !h-8 w-8 flex items-center justify-center ${viewMode === "grid" ? "shadow" : ""
+                    }`}
+                />
+                <Button
+                  type={viewMode === "list" ? "primary" : "text"}
+                  icon={<List className="w-4 h-4" />}
+                  onClick={() => {
+                    setViewMode("list");
+                    setSelectedPost(blogPosts[0]);
+                  }}
+                  size="middle"
+                  className={`!rounded-lg !h-8 w-8 flex items-center justify-center ${viewMode === "list" ? "shadow" : ""
+                    }`}
+                />
               </div>
             </div>
           </div>
@@ -467,18 +482,17 @@ const BlogExploreArticles = () => {
                   </h3>
                 </div>
 
-                <div className="space-y-4 max-h-[calc(100vh-250px)] overflow-y-auto scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-gray-100">
+                <div className="space-y-4 max-h-[calc(100vh-250px)] overflow-y-auto scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-gray-100 overflow-x-hidden">
                   {(searchTerm.trim() || filterCategory !== "all"
                     ? filteredPosts
                     : blogPosts
                   ).map((post) => (
                     <div
                       key={post.id}
-                      className={`group relative p-4 rounded-2xl cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02] ${
-                        selectedPost.id === post.id
-                          ? "bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg"
-                          : "bg-white/80 hover:bg-white text-gray-900 border border-gray-200/50"
-                      }`}
+                      className={`group relative p-4 rounded-2xl cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02] ${selectedPost.id === post.id
+                        ? "bg-transparent text-black border-1  shadow-lg"
+                        : "bg-white/80 hover:bg-white text-gray-900 border border-gray-200/50"
+                        }`}
                       onClick={() => setSelectedPost(post)}
                     >
                       <div className="flex gap-3">
@@ -489,11 +503,10 @@ const BlogExploreArticles = () => {
                         />
                         <div className="flex-1 min-w-0">
                           <h4
-                            className={`font-semibold text-sm leading-tight mb-2 line-clamp-2 ${
-                              selectedPost.id === post.id
-                                ? "text-white"
-                                : "text-gray-900"
-                            }`}
+                            className={`font-semibold text-sm leading-tight mb-2 line-clamp-2 ${selectedPost.id === post.id
+                              ? "text-gray-600"
+                              : "text-gray-900"
+                              }`}
                           >
                             {post.title}
                           </h4>
@@ -523,11 +536,10 @@ const BlogExploreArticles = () => {
               ).map((post) => (
                 <div
                   key={post.id}
-                  className={`group relative p-4 rounded-2xl cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02] ${
-                    hoveredPost === post.id
-                      ? "bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-lg"
-                      : "bg-white/80 hover:bg-white text-gray-900 border border-gray-200/50"
-                  }`}
+                  className={`group relative p-4 rounded-2xl cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.02]  ${hoveredPost === post.id
+                    ? "bg-transparent text-black shadow-lg"
+                    : "bg-white/80 hover:bg-white text-gray-900 border border-gray-200/50"
+                    }`}
                   onClick={() => setSelectedPost(post)}
                   onMouseEnter={() => setHoveredPost(post.id)}
                   onMouseLeave={() => setHoveredPost(null)}
@@ -538,9 +550,8 @@ const BlogExploreArticles = () => {
                     className="w-full h-40 object-cover rounded-xl mb-4"
                   />
                   <h4
-                    className={`font-semibold text-sm leading-tight mb-2 line-clamp 2 ${
-                      hoveredPost === post.id ? "text-white" : "text-gray-900"
-                    }`}
+                    className={`font-semibold text-sm leading-tight mb-2 line-clamp 2 ${hoveredPost === post.id ? "text-black" : "text-gray-900"
+                      }`}
                   >
                     {post.title}
                   </h4>

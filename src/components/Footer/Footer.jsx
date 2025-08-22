@@ -294,14 +294,7 @@ function Footer() {
                     label: "Instagram",
                     link: "https://www.instagram.com/ethosprorealtors/"
                   },
-                  {
-                    icon: BsWhatsapp,
-                    baseColor: "from-green-500/20 to-emerald-600/20",
-                    hoverColor: "hover:from-green-500 hover:to-emerald-600",
-                    shadowColor: "hover:shadow-green-500/50",
-                    label: "WhatsApp",
-                    link: "https://api.whatsapp.com/send/?phone=918744964496&text=Hi%2C+I+want+more+details+regarding+this+project.&type=phone_number&app_absent=0"
-                  },
+                  
                   {
                     icon: Linkedin,
                     baseColor: "from-blue-600/20 to-blue-800/20",

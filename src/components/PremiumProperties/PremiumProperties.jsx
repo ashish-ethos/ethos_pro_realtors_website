@@ -267,7 +267,7 @@ function PremiumProperties() {
         </button>
 
         {/* Carousel */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden py-4">
           <div
             className="flex transition-transform duration-1000 ease-out gap-8"
             style={{
@@ -348,7 +348,7 @@ function PremiumProperties() {
         title={<span className="text-xl font-bold text-gray-800">Property Details</span>}
         placement="right"
         width={1000}
-        onClose={() => navigate("/home")}
+        onClose={() => navigate("/")}
         open={drawerOpen}
         styles={{
           header: { borderBottom: "1px solid #e5e7eb" },
