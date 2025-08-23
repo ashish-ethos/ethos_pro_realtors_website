@@ -1,5 +1,5 @@
 @import "tailwindcss";
-/* Global fix to remove horizontal scrolling */
+
 html, body {
   overflow-x: hidden !important;
   width: 100% !important;
@@ -12,12 +12,12 @@ html, body {
 .custom-select .ant-select-selector {
   /* height: 40px !important;         */
   display: flex;
-  align-items: center;            /* vertical alignment */
-  padding: 0 11px !important;     /* match Input padding */
+  align-items: center;            
+  padding: 0 11px !important;   
 }
 
 .custom-select .ant-select-selection-placeholder {
-  line-height: normal !important; /* fix placeholder vertical position */
+  line-height: normal !important; 
 }
 
 .custom-select .ant-select-selection-item {
@@ -27,21 +27,122 @@ html, body {
 /* Hero.css */
 .ant-select-selector {
   border-radius: 0.75rem !important;
-  /* height: 3rem !important; */
+
   display: flex !important;
   align-items: center !important;
-  /* padding: 0 1rem !important; */
+
   box-shadow: none !important;
-  border: 1px solid #d1d5db !important; /* Tailwind gray-300 */
+  border: 1px solid #d1d5db !important; 
   transition: all 0.2s ease;
 }
 
 .ant-select-selector:hover,
 .ant-select-focused .ant-select-selector {
-  border-color: #2563eb !important; /* Tailwind blue-600 */
+  border-color: #2563eb !important; 
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2) !important;
 }
 .common-select .ant-select-selection-placeholder {
   display: flex;
   align-items: center;
+}
+.ant-btn-variant-solid {
+  color: #000 !important;
+}
+/* ExploreProperties.css */
+.property-card-action-button {
+
+
+  align-items: center !important;
+  gap: 4px !important; 
+  padding: 8px !important; 
+  border-radius: 8px !important; 
+  background-color: #c3cbdb !important; 
+  color: #4b5563 !important; 
+  transition: all 300ms ease !important; 
+  border: 1px solid transparent !important; 
+  cursor: pointer !important;
+}
+
+@media (min-width: 640px) { 
+  .property-card-action-button {
+    gap: 8px !important; 
+    padding: 12px 12px !important; 
+  }
+}
+
+.property-card-action-button:hover {
+  transform: scale(1.05) !important; 
+  border-color: #c99913 !important; 
+}
+
+.property-card-action-button svg {
+  width: 12px !important; 
+  height: 12px !important; 
+}
+
+@media (min-width: 640px) { 
+  .property-card-action-button svg {
+    width: 16px !important; 
+    height: 16px !important; 
+  }
+}
+
+.property-card-action-button span {
+  font-size: 10px !important; 
+  font-weight: 500 !important; 
+}
+
+@media (min-width: 640px) { 
+  .property-card-action-button span {
+    font-size: 14px !important; 
+  }
+}
+
+.gradient-border-active {
+  position: relative;
+  border: none !important;
+}
+
+.gradient-border-active::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 14px;
+  padding: 2px;
+  background: linear-gradient(to right, #000000, #474236, #c99913);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.cancelButton {
+  border: 1px solid #ef4444; 
+  color: #ef4444;           
+  background-color: transparent;
+  transition: all 0.3s ease; 
+}
+
+.cancelButton:hover {
+  background-color: #ef4444; 
+  border-color: #ef4444;     
+  color: #ffffff;           
+}
+
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+.ant-list-split .ant-list-item{
+  border: 1px solid #e5e7eb;
+  padding: 10px;
+  border-radius: 5px;
+}
+.ant-btn-variant-solid:not(:disabled):not(.ant-btn-disabled):hover{
+  background: none !important;
 }

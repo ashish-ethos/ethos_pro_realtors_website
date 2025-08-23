@@ -1,26 +1,8 @@
-
 /* From Uiverse.io by chase2k25, adapted for property card */
-.parent {
+.advancedproperty-parent{
   width: 300px;
   height: 400px; /* Increased height to accommodate image and details */
   perspective: 1200px;
-}
-
-.card {
-  height: 100%;
-  border-radius: 40px;
-  background: linear-gradient(
-    135deg,
-    rgb(106, 90, 205) 0%,
-    rgb(147, 112, 219) 100%
-  );
-  transition: all 0.6s ease-in-out;
-  transform-style: preserve-3d;
-  box-shadow:
-    rgba(30, 30, 60, 0) 40px 50px 25px -40px,
-    rgba(30, 30, 60, 0.2) 0px 25px 25px -5px;
-  position: relative;
-  overflow: hidden;
 }
 
 .glass {
@@ -124,21 +106,15 @@
 }
 
 .bottom .social-buttons-container .social-button:first-child {
-  transition:
-    transform 0.3s ease-in-out 0.3s,
-    box-shadow 0.3s ease-in-out 0.3s;
+  transition: transform 0.3s ease-in-out 0.3s, box-shadow 0.3s ease-in-out 0.3s;
 }
 
 .bottom .social-buttons-container .social-button:nth-child(2) {
-  transition:
-    transform 0.3s ease-in-out 0.5s,
-    box-shadow 0.3s ease-in-out 0.5s;
+  transition: transform 0.3s ease-in-out 0.5s, box-shadow 0.3s ease-in-out 0.5s;
 }
 
 .bottom .social-buttons-container .social-button:nth-child(3) {
-  transition:
-    transform 0.3s ease-in-out 0.7s,
-    box-shadow 0.3s ease-in-out 0.7s;
+  transition: transform 0.3s ease-in-out 0.7s, box-shadow 0.3s ease-in-out 0.7s;
 }
 
 .bottom .social-buttons-container .social-button .svg {
@@ -227,34 +203,6 @@
   fill: #ffffff;
 }
 
-.parent:hover .card {
-  transform: rotate3d(1, -1, 0, 25deg);
-  box-shadow:
-    rgba(30, 30, 60, 0.3) 30px 50px 25px -40px,
-    rgba(30, 30, 60, 0.15) 0px 25px 30px 0px;
-}
-
-.parent:hover .card .bottom .social-buttons-container .social-button {
-  transform: translate3d(0, 0, 60px);
-  box-shadow: rgba(30, 30, 60, 0.25) 5px 20px 10px 0px;
-}
-
-.parent:hover .card .logo .circle2 {
-  transform: translate3d(0, 0, 65px);
-}
-
-.parent:hover .card .logo .circle3 {
-  transform: translate3d(0, 0, 85px);
-}
-
-.parent:hover .card .logo .circle4 {
-  transform: translate3d(0, 0, 105px);
-}
-
-.parent:hover .card .logo .circle5 {
-  transform: translate3d(0, 0, 125px);
-}
-
 /* Additional styles for property image and details */
 .property-image {
   position: absolute;
@@ -297,4 +245,357 @@
 .property-details .details-grid span {
   font-weight: medium;
   color: #3c2f80;
+}
+
+.search-and-filters {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.advanced-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.advanced-property-drawer {
+  padding: 0;
+  display: flex;
+  min-height: 70vh;
+}
+
+.noactive-main {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.filters-panel {
+  width: 340px;
+  /* padding: 10px 20px; */
+  border-right: 1px solid #f0f0f0;
+  overflow-y: auto;
+}
+
+.filters-panel-contain {
+  position: sticky;
+  top: 0;
+  padding-bottom: 12px;
+  background: #fafafa;
+  z-index: 2;
+}
+
+/* New CSS classes for converted inline styles */
+.filters-space {
+  width: 100%;
+}
+
+.search-input {
+  border-radius: 8px;
+  height: 40px;
+  align-items: center;
+}
+
+.chips-container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip-tag {
+  cursor: pointer;
+}
+
+.filters-divider {
+  margin: 0;
+}
+
+.filter-label {
+  font-weight: bold;
+}
+
+.filter-icon {
+  margin-right: 8px;
+}
+
+.filter-select {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.price-slider {
+  margin: 16px 0;
+}
+
+.price-inputs {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.price-input {
+  width: 48%;
+  border-radius: 6px;
+}
+
+.area-inputs {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.area-input {
+  flex: 1;
+  border-radius: 6px;
+}
+
+.filters-footer {
+  position: sticky;
+  bottom: 0;
+  background: #fafafa;
+  padding-top: 12px;
+}
+
+.filters-footer-buttons {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.properties-container {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.properties-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.view-mode-container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.radio-group-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-mode-radio {
+  display: inline-flex;
+  flex-direction: row;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.radio-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+}
+
+.search-input-header {
+  width: 320px;
+  border-radius: 8px;
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  font-size: 16px;
+  color: #888;
+}
+
+.property-card {
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.card-image-container {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.card-tags {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.featured-tag {
+  background: linear-gradient(45deg, #ff9800, #ff5722);
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+.status-tag {
+  color: #fff;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+.status-tag.for-sale {
+  background: green;
+}
+
+.status-tag.for-rent {
+  background: blue;
+}
+
+.status-tag.hot-offer {
+  background: red;
+}
+
+.status-tag.new-launch,
+.status-tag.ready-to-move {
+  background: purple;
+}
+
+.card-actions {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.action-button {
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  background: rgba(255, 255, 255, 0.6);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.favorite-icon.active {
+  color: #ff4d4f;
+}
+
+.favorite-icon {
+  color: #333;
+}
+
+.card-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 14px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+  color: #fff;
+}
+
+.card-footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-price {
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.card-area {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.card-title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.card-location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.location-icon {
+  color: #c99913;
+}
+
+.card-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-details-content {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.card-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.list-title {
+  font-weight: 700;
+}
+
+.list-details {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+}
+
+.list-tags {
+  margin-top: 8px;
+}
+
+.pagination-container {
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
+}
+
+.no-properties {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.no-properties-icon {
+  font-size: 64px;
+  color: #d9d9d9;
+}
+
+.no-properties-button {
+  margin-top: 16px;
 }

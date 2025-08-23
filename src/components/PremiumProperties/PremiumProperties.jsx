@@ -11,6 +11,7 @@ import "./PremiumProperties.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import CardPropertiesDetails from "./CardPropertiesDetails";
+import CustomButton from "../ui/Button";
 
 function PremiumProperties() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -322,7 +323,7 @@ function PremiumProperties() {
                       ))}
                     </div>
                     <div className="flex justify-end">
-                      <button
+                      <CustomButton
                         onClick={() => openDetails(property)}
                         className="px-4 py-1 font-semibold rounded-xl cursor-pointer"
                         style={{
@@ -333,7 +334,7 @@ function PremiumProperties() {
                         }}
                       >
                         Details
-                      </button>
+                      </CustomButton>
                     </div>
                   </div>
                 </div>

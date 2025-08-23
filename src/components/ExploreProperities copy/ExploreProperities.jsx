@@ -432,7 +432,7 @@ const ExploreProperties = ({ filters = {} }) => {
         id="explore-properties"
       >
         <div
-          className={`explore-card relative bg-white rounded-2xl shadow-lg overflow-hidden group`}
+          className={`card relative bg-white rounded-2xl shadow-lg overflow-hidden group`}
         >
           <div className="relative overflow-hidden h-64 sm:h-56">
             <img
@@ -557,7 +557,7 @@ const ExploreProperties = ({ filters = {} }) => {
 
   const LoadingSkeleton = () => (
     <div className="parent">
-      <div className="explore-card bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
+      <div className="card bg-white rounded-2xl shadow-lg overflow-hidden animate-pulse">
         <div className="h-64 sm:h-56 bg-gray-300" />
         <div className="p-4 sm:p-6">
           <div className="h-4 bg-gray-300 rounded mb-2" />
@@ -654,10 +654,10 @@ const ExploreProperties = ({ filters = {} }) => {
             </div>
 
             {filteredProperties.length > 6 && (
-              <div className="text-center flex items-center w-full justify-center mt-8">
+              <div className="text-center  mt-8">
                 {!showAll ? (
                   <CustomButton
-                    className="px-6 py-3 flex items-center rounded-xl w-auto cursor-pointer property-card-action-button"
+                    className="px-6 py-3 flex items-center rounded-xl cursor-pointer property-card-action-button"
                     onClick={handleViewMore}
                   >
                     View More

@@ -214,7 +214,7 @@ const Hero = ({ onSearchChange }) => {
               <CustomButton
                 type="primary"
                 size="large"
-                className="w-full rounded-lg custom-button transition-all duration-300"
+                className="w-full rounded-lg property-card-action-button transition-all duration-300"
                 style={{ height: 40 }}
               >
                 Search

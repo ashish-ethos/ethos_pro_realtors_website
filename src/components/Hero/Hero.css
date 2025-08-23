@@ -135,7 +135,7 @@ section {
 
 /* Ensure the select container expands with tags */
 .ant-select-selector {
-  height: 40px !important;
+  /* height: 40px !important; */
   display: flex !important;
   align-items: center !important;
   padding: 0 8px !important;

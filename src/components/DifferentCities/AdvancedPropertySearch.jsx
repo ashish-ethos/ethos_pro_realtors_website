@@ -2,9 +2,6 @@ import React, { useState, useEffect, useMemo } from "react";
 import {
   Drawer,
   Typography,
-  Button,
-  Input,
-  Select,
   Slider,
   InputNumber,
   Pagination,
@@ -31,7 +28,6 @@ import {
   FaCalendarAlt,
   FaDollarSign,
   FaStar,
-  
   FaEye,
   FaHeart,
   FaTh,
@@ -39,15 +35,74 @@ import {
 } from "react-icons/fa";
 import { FaList } from "react-icons/fa";
 import { IndianRupee } from "lucide-react";
+import CustomInput from "../ui/Input";
+import CustomSelect from "../ui/Select";
+import CustomButton from "../ui/Button";
+import "./AdvancedPropertySearch.css";
 
 const { Title, Text } = Typography;
-const { Option } = Select;
 const { Panel } = Collapse;
 
-// NOTE: This component is a UI-upgrade of your original AdvancedPropertySearch.
-// All props, filtering logic and handlers are preserved. Styling, layout and
-// small UX improvements (filter chips, sticky sidebar, card overlays, hover
-// animations) are added without removing existing behavior.
+// Custom options for CustomSelect
+const areaOptions = [
+  { value: "All Areas", label: "All Areas" },
+  { value: "Sector 54, Gurgaon", label: "Sector 54, Gurgaon" },
+  { value: "Marine Drive, Mumbai", label: "Marine Drive, Mumbai" },
+  { value: "Electronic City, Bangalore", label: "Electronic City, Bangalore" },
+];
+
+const typeOptions = [
+  { value: "Apartment", label: "Apartment" },
+  { value: "Villa", label: "Villa" },
+  { value: "Penthouse", label: "Penthouse" },
+  { value: "Residential", label: "Residential" },
+  { value: "Commercial", label: "Commercial" },
+];
+
+const statusOptions = [
+  { value: "For Sale", label: "For Sale" },
+  { value: "For Rent", label: "For Rent" },
+  { value: "Hot Offer", label: "Hot Offer" },
+  { value: "New Launch", label: "New Launch" },
+  { value: "Ready to Move", label: "Ready to Move" },
+];
+
+const bedroomOptions = [
+  { value: "Any", label: "Any" },
+  { value: "1", label: "1 Bedroom" },
+  { value: "2", label: "2 Bedrooms" },
+  { value: "3", label: "3 Bedrooms" },
+  { value: "4+", label: "4+ Bedrooms" },
+];
+
+const bathroomOptions = [
+  { value: "Any", label: "Any" },
+  { value: "1", label: "1 Bathroom" },
+  { value: "2", label: "2 Bathrooms" },
+  { value: "3", label: "3 Bathrooms" },
+  { value: "4+", label: "4+ Bathrooms" },
+];
+
+const labelOptions = [
+  { value: "Any", label: "Any" },
+  { value: "featured", label: "Featured" },
+  { value: "hot", label: "Hot" },
+  { value: "new", label: "New" },
+];
+
+const countryOptions = [{ value: "101", label: "India" }];
+
+const stateOptions = [{ value: "4030", label: "Haryana" }];
+
+const cityOptions = [
+  { value: "56798", label: "Gurgaon" },
+  { value: "110001", label: "Delhi" },
+  { value: "201301", label: "Noida" },
+  { value: "400001", label: "Mumbai" },
+  { value: "560001", label: "Bangalore" },
+  { value: "600001", label: "Chennai" },
+  { value: "411001", label: "Pune" },
+];
 
 const AdvancedPropertySearch = ({
   open,
@@ -91,7 +146,7 @@ const AdvancedPropertySearch = ({
 
   const currentYear = new Date().getFullYear();
 
-  // Mock properties (preserved)
+  // Mock properties
   const mockProperties = [
     {
       id: 1,
@@ -114,51 +169,12 @@ const AdvancedPropertySearch = ({
       stateId: 4030,
       cityId: "56798",
     },
-    {
-      id: 2,
-      name: "Modern Villa with Garden",
-      location: "Sector 66, Gurgaon",
-      area: "Sector 66, Gurgaon",
-      price: 65000000,
-      priceValue: 65000000,
-      image:
-        "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop",
-      type: "Villa",
-      status: "For Rent",
-      bedrooms: 3,
-      bathrooms: 2,
-      areaValue: 2000,
-      yearBuilt: 2021,
-      featured: false,
-      countryId: 101,
-      stateId: 4030,
-      cityId: "56798",
-    },
-    {
-      id: 3,
-      name: "Cozy Apartment Downtown",
-      location: "Sector 48, Gurgaon",
-      area: "Sector 48, Gurgaon",
-      price: 35000000,
-      priceValue: 35000000,
-      image:
-        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop",
-      type: "Apartment",
-      status: "Hot Offer",
-      bedrooms: 2,
-      bathrooms: 2,
-      areaValue: 1200,
-      yearBuilt: 2020,
-      featured: true,
-      countryId: 101,
-      stateId: 4030,
-      cityId: "56798",
-    },
+    
   ];
 
   const displayProperties = properties.length > 0 ? properties : mockProperties;
 
-  // Gurgaon sectors (preserved)
+  // Gurgaon sectors
   const gurgaonSectors = [
     "Sector 54, Gurgaon",
     "Sector 66, Gurgaon",
@@ -188,9 +204,8 @@ const AdvancedPropertySearch = ({
   const getFormattedPrice = (property) => {
     let rawPrice = property.price ?? property.priceValue ?? 0;
 
-    // Convert to number safely
     if (typeof rawPrice === "string") {
-      rawPrice = rawPrice.replace(/[^0-9.]/g, ""); // remove ₹, commas, text
+      rawPrice = rawPrice.replace(/[^0-9.]/g, "");
     }
 
     const numPrice = parseFloat(rawPrice);
@@ -199,10 +214,8 @@ const AdvancedPropertySearch = ({
       return "N/A";
     }
 
-    // Convert to Crores
     let crores = numPrice / 10000000;
 
-    // If integer, no decimal
     if (Number.isInteger(crores)) {
       return `${crores} Cr`;
     }
@@ -210,7 +223,7 @@ const AdvancedPropertySearch = ({
     return `${crores.toFixed(1)} Cr`;
   };
 
-  // Filtering + sorting (preserved logic) but uses debouncedQuery
+  // Filtering + sorting
   const filteredProperties = useMemo(() => {
     return displayProperties
       .filter((property) => {
@@ -333,7 +346,7 @@ const AdvancedPropertySearch = ({
     setFavoriteProperties(newFavorites);
   };
 
-  // Clear all filters (preserved)
+  // Clear all filters
   const handleClearFilters = () => {
     setCountryId([]);
     setStateId([]);
@@ -392,7 +405,7 @@ const AdvancedPropertySearch = ({
     }
   };
 
-  // Helpers to remove specific filter items when clicking filter chips
+  // Helpers to remove specific filter items
   const removeFilterValue = (filterKey, value) => {
     switch (filterKey) {
       case "area":
@@ -430,7 +443,6 @@ const AdvancedPropertySearch = ({
     }
   };
 
-  // Build list of active filter chips to display
   const activeChips = [];
   area.forEach((a) => a && activeChips.push({ key: `area:${a}`, label: a, filterKey: "area" }));
   type.forEach((t) => t && activeChips.push({ key: `type:${t}`, label: t, filterKey: "type" }));
@@ -443,28 +455,29 @@ const AdvancedPropertySearch = ({
   stateId.forEach((s) => s && activeChips.push({ key: `state:${s}`, label: `State:${s}`, filterKey: "stateId" }));
   cityId.forEach((c) => c && activeChips.push({ key: `city:${c}`, label: `City:${c}`, filterKey: "cityId" }));
 
+  // Year options for CustomSelect
+  const yearOptions = Array.from({ length: 126 }, (_, i) => currentYear - i).map((year) => ({
+    value: year.toString(),
+    label: year.toString(),
+  }));
+
   return (
     <Drawer
       title={
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div className="advanced-title">
           <Space>
-            <Title level={4} style={{ margin: 0 }}>
+            <Title level={4} className="m-0">
               Advanced Property Search
             </Title>
             <Text type="secondary">{filteredProperties.length} properties found</Text>
           </Space>
           <Space>
-            <Button
-              icon={<FaFilter />}
-              onClick={() => setShowFilters(!showFilters)}
-              style={{ borderRadius: 6 }}
-            >
+            <CustomButton className="property-card-action-button" icon={<FaFilter />} onClick={() => setShowFilters(!showFilters)}>
               {showFilters ? "Hide Filters" : "Show Filters"}
-            </Button>
-            <Button type="primary" danger onClick={handleClearFilters} style={{ borderRadius: 6 }}>
+            </CustomButton>
+            <CustomButton type="danger" onClick={handleClearFilters} className="cancelButton">
               Clear All
-            </Button>
-            {/* <Button icon={<FaTimes />} onClick={onClose} style={{ borderRadius: 6 }} /> */}
+            </CustomButton>
           </Space>
         </div>
       }
@@ -472,33 +485,22 @@ const AdvancedPropertySearch = ({
       onClose={onClose}
       open={open}
       width="95%"
-      bodyStyle={{ padding: 0, display: "flex", minHeight: "70vh" }}
+      className="advanced-property-drawer"
     >
-      <div style={{ display: "flex", height: "100%", width: "100%" }}>
+      <div className="noactive-main">
         {showFilters && (
-          <div
-            style={{
-              width: 340,
-              padding: "10px 20px",
-              borderRight: "1px solid #f0f0f0",
-              overflowY: "auto",
-              backgroundColor: "#fafafa",
-              // make sidebar feel "sticky" inside the drawer
-              position: "relative",
-            }}
-          >
-            <div style={{ position: "sticky", top: 0, background: "#fafafa", paddingBottom: 12, zIndex: 2 }}>
-              <Space direction="vertical" size="small" style={{ width: "100%" }}>
-                <Input
+          <div className="filters-panel">
+            <div className="filters-panel-contain">
+              <Space direction="vertical" size="small" className="filters-space">
+                <CustomInput
                   prefix={<FaSearch />}
                   placeholder="Search by name or location..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  style={{ borderRadius: 8, height: 40, alignItems: "center" }}
+                  className="search-input"
                 />
 
-                {/* Active filter chips */}
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                <div className="chips-container">
                   {activeChips.length === 0 ? (
                     <Text type="secondary">No active filters</Text>
                   ) : (
@@ -507,7 +509,7 @@ const AdvancedPropertySearch = ({
                         key={chip.key}
                         closable
                         onClose={() => removeFilterValue(chip.filterKey, chip.label)}
-                        style={{ cursor: "pointer" }}
+                        className="chip-tag"
                       >
                         {chip.label}
                       </Tag>
@@ -515,126 +517,102 @@ const AdvancedPropertySearch = ({
                   )}
                 </div>
 
-                <Divider style={{ margin: "0" }} />
+                <Divider className="filters-divider" />
               </Space>
             </div>
 
             <Collapse defaultActiveKey={["basic", "advanced"]} ghost>
               <Panel header={<b>Basic Filters</b>} key="basic">
-                <Space direction="vertical" size="middle" style={{ width: "100%", margin: "0px 0" }}>
+                <Space direction="vertical" size="middle" className="filters-space">
                   <div>
-                    <span strong className="flex items-center">
-                      <FaMapMarkerAlt style={{ marginRight: 8 }} />
+                    <span className="filter-label flex items-center">
+                      <FaMapMarkerAlt className="filter-icon" />
                       Location
                     </span>
-                    <Select
+                    <CustomSelect
                       mode="multiple"
                       placeholder="Select Areas"
                       value={area}
                       onChange={setArea}
-                      style={{ width: "100%", marginTop: 8 }}
+                      className="filter-select"
                       allowClear
                       showSearch
-                    >
-                      <Option value="All Areas">All Areas</Option>
-                      <Option value="Sector 54, Gurgaon">Sector 54, Gurgaon</Option>
-                      <Option value="Marine Drive, Mumbai">Marine Drive, Mumbai</Option>
-                      <Option value="Electronic City, Bangalore">Electronic City, Bangalore</Option>
-                    </Select>
+                      options={areaOptions}
+                    />
                   </div>
 
                   <div>
-                    <span strong className="flex items-center">
-                      <FaHome style={{ marginRight: 8 }} />
+                    <span className="filter-label flex items-center">
+                      <FaHome className="filter-icon" />
                       Property Type
                     </span>
-                    <Select
+                    <CustomSelect
                       mode="multiple"
                       placeholder="Select Types"
                       value={type}
                       onChange={setType}
-                      style={{ width: "100%", marginTop: 8 }}
+                      className="filter-select"
                       allowClear
                       showSearch
-                    >
-                      <Option value="Apartment">Apartment</Option>
-                      <Option value="Villa">Villa</Option>
-                      <Option value="Penthouse">Penthouse</Option>
-                      <Option value="Residential">Residential</Option>
-                      <Option value="Commercial">Commercial</Option>
-                    </Select>
+                      options={typeOptions}
+                    />
                   </div>
 
                   <div>
-                    <span strong className="flex items-center">
-                      <FaStar style={{ marginRight: 8 }} />
+                    <span className="filter-label flex items-center">
+                      <FaStar className="filter-icon" />
                       Status
                     </span>
-                    <Select
+                    <CustomSelect
                       mode="multiple"
                       placeholder="Select Status"
                       value={status}
                       onChange={setStatus}
-                      style={{ width: "100%", marginTop: 8 }}
+                      className="filter-select"
                       allowClear
                       showSearch
-                    >
-                      <Option value="For Sale">For Sale</Option>
-                      <Option value="For Rent">For Rent</Option>
-                      <Option value="Hot Offer">Hot Offer</Option>
-                      <Option value="New Launch">New Launch</Option>
-                      <Option value="Ready to Move">Ready to Move</Option>
-                    </Select>
+                      options={statusOptions}
+                    />
                   </div>
 
                   <div>
-                    <span strong className="flex items-center">
-                      <FaBed style={{ marginRight: 8 }} />
+                    <span className="filter-label flex items-center">
+                      <FaBed className="filter-icon" />
                       Bedrooms
                     </span>
-                    <Select
+                    <CustomSelect
                       mode="multiple"
                       placeholder="Select Bedrooms"
                       value={bedrooms}
                       onChange={setBedrooms}
-                      style={{ width: "100%", marginTop: 8 }}
+                      className="filter-select"
                       allowClear
                       showSearch
-                    >
-                      <Option value="Any">Any</Option>
-                      <Option value="1">1 Bedroom</Option>
-                      <Option value="2">2 Bedrooms</Option>
-                      <Option value="3">3 Bedrooms</Option>
-                      <Option value="4+">4+ Bedrooms</Option>
-                    </Select>
+                      options={bedroomOptions}
+                    />
                   </div>
 
                   <div>
-                    <span strong className="flex items-center">
-                      <FaBath style={{ marginRight: 8 }} />
+                    <span className="filter-label flex items-center">
+                      <FaBath className="filter-icon" />
                       Bathrooms
                     </span>
-                    <Select
+                    <CustomSelect
                       mode="multiple"
                       placeholder="Select Bathrooms"
                       value={bathrooms}
                       onChange={setBathrooms}
-                      style={{ width: "100%", marginTop: 8 }}
+                      className="filter-select"
                       allowClear
                       showSearch
-                    >
-                      <Option value="Any">Any</Option>
-                      <Option value="1">1 Bathroom</Option>
-                      <Option value="2">2 Bathrooms</Option>
-                      <Option value="3">3 Bathrooms</Option>
-                      <Option value="4+">4+ Bathrooms</Option>
-                    </Select>
+                      options={bathroomOptions}
+                    />
                   </div>
                 </Space>
               </Panel>
 
               <Panel header={<b>Advanced Filters</b>} key="advanced">
-                <Space direction="vertical" size="middle" style={{ width: "100%" }}>
+                <Space direction="vertical" size="middle" className="filters-space">
                   <div>
                     <Slider
                       range
@@ -658,9 +636,9 @@ const AdvancedPropertySearch = ({
                             : `₹${crores.toFixed(1)} Cr`;
                         },
                       }}
-                      style={{ margin: "16px 0" }}
+                      className="price-slider"
                     />
-                    <Space style={{ width: "100%", justifyContent: "space-between" }}>
+                    <Space className="price-inputs">
                       <InputNumber
                         value={priceRange[0]}
                         onChange={(value) => handlePriceChange([value || 1000000, priceRange[1]])}
@@ -669,7 +647,7 @@ const AdvancedPropertySearch = ({
                           return Number.isInteger(crores) ? `₹${crores} Cr` : `₹${crores.toFixed(1)} Cr`;
                         }}
                         parser={(value) => parseFloat(value.replace(/[^0-9.]/g, "")) * 10000000}
-                        style={{ width: "48%", borderRadius: 6 }}
+                        className="price-input"
                       />
                       <InputNumber
                         value={priceRange[1]}
@@ -679,232 +657,189 @@ const AdvancedPropertySearch = ({
                           return Number.isInteger(crores) ? `₹${crores} Cr` : `₹${crores.toFixed(1)} Cr`;
                         }}
                         parser={(value) => parseFloat(value.replace(/[^0-9.]/g, "")) * 10000000}
-                        style={{ width: "48%", borderRadius: 6 }}
+                        className="price-input"
                       />
                     </Space>
                   </div>
 
                   <div>
-                    <span strong className="flex items-center">
-                      <FaHome style={{ marginRight: 8 }} />
+                    <span className="filter-label flex items-center">
+                      <FaHome className="filter-icon" />
                       Area Range (Sq Ft)
                     </span>
-                    <Space style={{ width: "100%", marginTop: 8 }}>
+                    <Space className="area-inputs">
                       <InputNumber
                         placeholder="Min"
                         value={minArea}
                         onChange={(value) => setMinArea(value || 0)}
-                        style={{ flex: 1, borderRadius: 6 }}
+                        className="area-input"
                       />
                       <InputNumber
                         placeholder="Max"
                         value={maxArea}
                         onChange={(value) => setMaxArea(value || 10000)}
-                        style={{ flex: 1, borderRadius: 6 }}
+                        className="area-input"
                       />
                     </Space>
                   </div>
 
                   <div>
-                    <span strong className="flex items-center">
-                      <FaCalendarAlt style={{ marginRight: 8 }} />
+                    <span className="filter-label flex items-center">
+                      <FaCalendarAlt className="filter-icon" />
                       Year Built
                     </span>
-                    <Select
+                    <CustomSelect
                       mode="multiple"
                       placeholder="Select Years"
                       value={yearBuilt}
                       onChange={setYearBuilt}
-                      style={{ width: "100%", marginTop: 8 }}
+                      className="filter-select"
                       allowClear
                       showSearch
-                    >
-                      {Array.from({ length: 126 }, (_, i) => currentYear - i).map((year) => (
-                        <Option key={year} value={year.toString()}>
-                          {year}
-                        </Option>
-                      ))}
-                    </Select>
+                      options={yearOptions}
+                    />
                   </div>
 
                   <div>
-                    <span strong className="flex items-center">
-                      <FaStar style={{ marginRight: 8 }} />
+                    <span className="filter-label flex items-center">
+                      <FaStar className="filter-icon" />
                       Labels
                     </span>
-                    <Select
+                    <CustomSelect
                       mode="multiple"
                       placeholder="Select Labels"
                       value={label}
                       onChange={setLabel}
-                      style={{ width: "100%", marginTop: 8 }}
+                      className="filter-select"
                       allowClear
                       showSearch
-                    >
-                      <Option value="Any">Any</Option>
-                      <Option value="featured">Featured</Option>
-                      <Option value="hot">Hot</Option>
-                      <Option value="new">New</Option>
-                    </Select>
+                      options={labelOptions}
+                    />
                   </div>
 
                   <div>
-                    <span strong className="flex items-center">
-                      <FaMapMarkerAlt style={{ marginRight: 8 }} />
+                    <span className="filter-label flex items-center">
+                      <FaMapMarkerAlt className="filter-icon" />
                       Country
                     </span>
-                    <Select
+                    <CustomSelect
                       mode="multiple"
                       placeholder="Select Countries"
                       value={countryId}
                       onChange={setCountryId}
-                      style={{ width: "100%", marginTop: 8 }}
+                      className="filter-select"
                       allowClear
                       showSearch
-                    >
-                      <Option value="101">India</Option>
-                    </Select>
+                      options={countryOptions}
+                    />
                   </div>
 
                   <div>
-                    <span strong className="flex items-center">
-                      <FaMapMarkerAlt style={{ marginRight: 8 }} />
+                    <span className="filter-label flex items-center">
+                      <FaMapMarkerAlt className="filter-icon" />
                       State
                     </span>
-                    <Select
+                    <CustomSelect
                       mode="multiple"
                       placeholder="Select States"
                       value={stateId}
                       onChange={setStateId}
-                      style={{ width: "100%", marginTop: 8 }}
+                      className="filter-select"
                       allowClear
                       showSearch
-                    >
-                      <Option value="4030">Haryana</Option>
-                    </Select>
+                      options={stateOptions}
+                    />
                   </div>
 
                   <div>
-                    <span strong className="flex items-center">
-                      <FaMapMarkerAlt style={{ marginRight: 8 }} />
+                    <span className="filter-label flex items-center">
+                      <FaMapMarkerAlt className="filter-icon" />
                       City
                     </span>
-                    <Select
+                    <CustomSelect
                       mode="multiple"
                       placeholder="Select Cities"
                       value={cityId}
                       onChange={setCityId}
-                      style={{ width: "100%", marginTop: 8 }}
+                      className="filter-select"
                       allowClear
                       showSearch
-                    >
-                      <Option value="56798">Gurgaon</Option>
-                      <Option value="110001">Delhi</Option>
-                      <Option value="201301">Noida</Option>
-                      <Option value="400001">Mumbai</Option>
-                      <Option value="560001">Bangalore</Option>
-                      <Option value="600001">Chennai</Option>
-                      <Option value="411001">Pune</Option>
-                    </Select>
+                      options={cityOptions}
+                    />
                   </div>
                 </Space>
               </Panel>
             </Collapse>
 
-            <div style={{ position: "sticky", bottom: 0, background: "#fafafa", paddingTop: 12 }}>
-              <Space style={{ width: "100%", justifyContent: "space-between" }}>
-                <Button onClick={handleClearFilters}>Reset</Button>
-                <Button type="primary" onClick={() => setShowFilters(false)}>
+            <div className="filters-footer">
+              <Space className="filters-footer-buttons bg-white">
+                <CustomButton onClick={handleClearFilters} className="property-card-action-button">Reset</CustomButton>
+                <CustomButton type="primary" onClick={() => setShowFilters(false)} className="property-card-action-button">
                   Apply
-                </Button>
+                </CustomButton>
               </Space>
             </div>
           </div>
         )}
 
-        <div style={{ flex: 1, padding: 24, overflowY: "auto" }}>
-          {/* Header: view toggles, sort, and active filters summary */}
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, marginBottom: 16 }}>
-            <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div className="properties-container">
+          <div className="properties-header">
+            <div className="view-mode-container">
+              <div className="radio-group-container">
                 <Radio.Group
                   value={viewMode}
                   onChange={(e) => setViewMode(e.target.value)}
                   buttonStyle="solid"
-                  style={{
-                    display: "inline-flex", // ensures horizontal layout
-                    flexDirection: "row",
-                    borderRadius: 8,
-                    overflow: "hidden",
-                  }}
+                  className="view-mode-radio"
                 >
-                  <Radio.Button
-                    value="grid"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      padding: "6px 12px",
-                    }}
-                  >
+                  <Radio.Button value="grid" className="radio-button">
                     <FaTh />
                   </Radio.Button>
-                  <Radio.Button
-                    value="list"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      padding: "6px 12px",
-                    }}
-                  >
+                  <Radio.Button value="list" className="radio-button">
                     <FaList />
                   </Radio.Button>
                 </Radio.Group>
               </div>
 
-              <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+              <div className="sort-select-wrapper">
                 <Text type="secondary">Sort</Text>
-                <Select value={sortBy} onChange={setSortBy} style={{ width: 220 }} placeholder="Sort by">
-                  <Option value="price-low">Price: Low to High</Option>
-                  <Option value="price-high">Price: High to Low</Option>
-                  <Option value="area-large">Area: Large to Small</Option>
-                  <Option value="area-small">Area: Small to Large</Option>
-                  <Option value="newest">Newest First</Option>
-                </Select>
+                <CustomSelect
+                  value={sortBy}
+                  onChange={setSortBy}
+                  className="sort-select"
+                  placeholder="Sort by"
+                  options={[
+                    { value: "price-low", label: "Price: Low to High" },
+                    { value: "price-high", label: "Price: High to Low" },
+                    { value: "area-large", label: "Area: Large to Small" },
+                    { value: "area-small", label: "Area: Small to Large" },
+                    { value: "newest", label: "Newest First" },
+                  ]}
+                />
               </div>
             </div>
 
-            <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end" }}>
-              {/* Search (keeps original search input but placed here for quick access) */}
-              <Input
-                prefix={<FaSearch style={{ fontSize: 16, color: "#888" }} />}
+            <div className="search-and-filters">
+              <CustomInput
+                prefix={<FaSearch className="search-icon" />}
                 placeholder="Search properties..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                  width: 320,
-                  borderRadius: 8,
-                  height: 40,
-                  lineHeight: "40px", // ensures vertical alignment
-                  display: "flex",
-                  alignItems: "center",
-                }}
+                 className="search-input"
               />
 
-              <Button onClick={() => setShowFilters(!showFilters)} icon={<FaFilter />}>
+              <CustomButton className="property-card-action-button" onClick={() => setShowFilters(!showFilters)} icon={<FaFilter />}>
                 {showFilters ? "Hide Filters" : "Show Filters"}
-              </Button>
+              </CustomButton>
 
-              <Button type="primary" danger onClick={handleClearFilters}>
+              <CustomButton type="danger" onClick={handleClearFilters} className="cancelButton">
                 Clear
-              </Button>
+              </CustomButton>
             </div>
           </div>
 
-          {/* Active filters full list */}
           {activeChips.length > 0 && (
-            <div style={{ marginBottom: 16, display: "flex", gap: 8, flexWrap: "wrap" }}>
+            <div className="chips-container">
               {activeChips.map((chip) => (
                 <Tag key={chip.key} closable onClose={() => removeFilterValue(chip.filterKey, chip.label)}>
                   {chip.label}
@@ -913,7 +848,6 @@ const AdvancedPropertySearch = ({
             </div>
           )}
 
-          {/* Results */}
           {filteredProperties.length > 0 ? (
             <>
               {viewMode === "grid" ? (
@@ -923,141 +857,78 @@ const AdvancedPropertySearch = ({
                       <Card
                         hoverable
                         bodyStyle={{ padding: 18 }}
-                        style={{
-                          borderRadius: 16,
-                          overflow: "hidden",
-                          position: "relative",
-                          transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                          boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
-                        }}
+                        className="property-card"
                         onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-8px)")}
                         onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
                         cover={
-                          <div style={{ position: "relative", height: 220, overflow: "hidden" }}>
+                          <div className="card-image-container">
                             <img
                               alt={property.name}
                               src={property.image}
-                              style={{
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "cover",
-                                display: "block",
-                                transition: "transform 0.4s ease",
-                              }}
+                              className="card-image"
                               onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.08)")}
                               onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
                             />
 
-                            {/* Badges */}
-                            <div style={{ position: "absolute", left: 12, top: 12, display: "flex", gap: 8 }}>
+                            <div className="card-tags">
                               {property.featured && (
-                                <Tag
-                                  style={{
-                                    background: "linear-gradient(45deg, #ff9800, #ff5722)",
-                                    color: "#fff",
-                                    borderRadius: 6,
-                                    padding: "4px 8px",
-                                  }}
-                                  icon={<FaStar />}
-                                >
+                                <Tag className="featured-tag">
                                   Featured
                                 </Tag>
                               )}
-                              <Tag
-                                style={{
-                                  background: getStatusColor(property.status),
-                                  color: "#fff",
-                                  borderRadius: 6,
-                                  padding: "4px 8px",
-                                }}
-                              >
+                              <Tag className={`status-tag ${property.status.toLowerCase().replace(" ", "-")}`}>
                                 {property.status}
                               </Tag>
                             </div>
 
-                            {/* Actions */}
-                            <div style={{ position: "absolute", right: 12, top: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+                            <div className="card-actions">
                               <Tooltip title="Favorite">
                                 <div
                                   onClick={() => toggleFavorite(property.id)}
-                                  style={{
-                                    cursor: "pointer",
-                                    backdropFilter: "blur(6px)",
-                                    background: "rgba(255,255,255,0.6)",
-                                    padding: 8,
-                                    borderRadius: 8,
-                                  }}
+                                  className="action-button"
                                 >
-                                  <FaHeart style={{ color: favoriteProperties.has(property.id) ? "#ff4d4f" : "#333" }} />
+                                  <FaHeart className={favoriteProperties.has(property.id) ? "favorite-icon active" : "favorite-icon"} />
                                 </div>
                               </Tooltip>
                               <Tooltip title="View">
-                                <div
-                                  style={{
-                                    cursor: "pointer",
-                                    backdropFilter: "blur(6px)",
-                                    background: "rgba(255,255,255,0.6)",
-                                    padding: 8,
-                                    borderRadius: 8,
-                                  }}
-                                >
+                                <div className="action-button">
                                   <FaEye />
                                 </div>
                               </Tooltip>
                             </div>
 
-                            {/* Price Overlay */}
-                            <div
-                              style={{
-                                position: "absolute",
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                padding: 14,
-                                background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%)",
-                                color: "#fff",
-                              }}
-                            >
-                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                <div style={{ fontWeight: 800, fontSize: 18 }}>
-                                  <span>{getFormattedPrice(property)}</span>
-                                </div>
-                                <div style={{ fontSize: 13, opacity: 0.9 }}>{property.areaValue} sq ft</div>
+                            <div className="card-footer">
+                              <div className="card-footer-content">
+                                <div className="card-price">{getFormattedPrice(property)}</div>
+                                <div className="card-area">{property.areaValue} sq ft</div>
                               </div>
                             </div>
                           </div>
                         }
                       >
                         <Card.Meta
-                          title={<div style={{ fontWeight: 700, fontSize: 16, marginBottom: 6 }}>{property.name}</div>}
+                          title={<div className="card-title">{property.name}</div>}
                           description={
-                            <div>
-                              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10, color: "#555" }}>
-                                <FaMapMarkerAlt style={{ color: "#c99913" }} /> {property.location}
+                            <div className="card-description p-2">
+                              <div className="card-location">
+                                <FaMapMarkerAlt className="location-icon" /> {property.location}
                               </div>
-                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-                                  <Text style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                              <div className="card-details">
+                                <div className="card-details-content">
+                                  <Text className="card-detail-item">
                                     <FaBed /> {property.bedrooms} Beds
                                   </Text>
-                                  <Text style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                                  <Text className="card-detail-item">
                                     <FaBath /> {property.bathrooms} Baths
                                   </Text>
                                   <Tag color="default">{property.type}</Tag>
                                 </div>
-                                <Button
+                                <CustomButton
                                   type="primary"
-                                  style={{
-                                    background: "white",
-                                    color: "#474236",
-                                    borderWidth: "2px",
-                                    borderStyle: "solid",
-                                    borderImage: "linear-gradient(to right, #c99913, #474236) 1",
-                                    borderRadius: 6,
-                                  }}
+                                  className="property-card-action-button"
                                 >
                                   View Details
-                                </Button>
+                                </CustomButton>
                               </div>
                             </div>
                           }
@@ -1073,24 +944,24 @@ const AdvancedPropertySearch = ({
                   renderItem={(property) => (
                     <List.Item
                       actions={[
-                        <Button type="primary" key="view">
+                        <CustomButton type="primary" key="view" className="property-card-action-button">
                           View Details
-                        </Button>,
+                        </CustomButton>,
                       ]}
-                      extra={<img width={340} alt={property.name} src={property.image} style={{ borderRadius: 8 }} />}
+                      extra={<img width={340} alt={property.name} src={property.image} className="cehcek" />}
                     >
                       <List.Item.Meta
-                        title={<div style={{ fontWeight: 700 }}>{property.name}</div>}
+                        title={<div className="list-title">{property.name}</div>}
                         description={
-                          <div>
+                          <div className="checked ">
                             <Text><FaMapMarkerAlt /> {property.location}</Text>
-                            <div style={{ marginTop: 8, display: "flex", gap: 12 }}>
+                            <div className="list-details">
                               <Text><FaBed /> {property.bedrooms} Beds</Text>
                               <Text><FaBath /> {property.bathrooms} Baths</Text>
                               <Text><FaHome /> {property.areaValue} sq ft</Text>
                               <Text><FaCalendarAlt /> {property.yearBuilt}</Text>
                             </div>
-                            <div style={{ marginTop: 8 }}>
+                            <div className="list-tags">
                               <Tag color="gray">{property.type}</Tag>
                               <Tag color={getStatusColor(property.status)}>{property.status}</Tag>
                             </div>
@@ -1102,17 +973,17 @@ const AdvancedPropertySearch = ({
                 />
               )}
 
-              <div style={{ marginTop: 22, display: "flex", justifyContent: "center" }}>
+              <div className="pagination-container">
                 <Pagination current={currentPage} total={filteredProperties.length} pageSize={pageSize} onChange={handlePageChange} />
               </div>
             </>
           ) : (
-            <div style={{ textAlign: "center", marginTop: 100 }}>
-              <FaHome style={{ fontSize: 64, color: "#d9d9d9" }} />
+            <div className="no-properties">
+              <FaHome className="no-properties-icon" />
               <Title level={3}>No Properties Found</Title>
               <Text>We couldn't find any properties matching your search criteria. Try adjusting your filters or search terms.</Text>
-              <div style={{ marginTop: 16 }}>
-                <Button type="primary" onClick={handleClearFilters}>Clear All Filters</Button>
+              <div className="no-properties-button">
+                <CustomButton type="primary" onClick={handleClearFilters} className="cancelButton">Clear All Filters</CustomButton>
               </div>
             </div>
           )}
