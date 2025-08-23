@@ -10,7 +10,7 @@ html, body {
 }
 /* Hero.css */
 .custom-select .ant-select-selector {
-  height: 40px !important;        /* match input height */
+  /* height: 40px !important;         */
   display: flex;
   align-items: center;            /* vertical alignment */
   padding: 0 11px !important;     /* match Input padding */
@@ -21,6 +21,27 @@ html, body {
 }
 
 .custom-select .ant-select-selection-item {
+  display: flex;
+  align-items: center;
+}
+/* Hero.css */
+.ant-select-selector {
+  border-radius: 0.75rem !important;
+  /* height: 3rem !important; */
+  display: flex !important;
+  align-items: center !important;
+  /* padding: 0 1rem !important; */
+  box-shadow: none !important;
+  border: 1px solid #d1d5db !important; /* Tailwind gray-300 */
+  transition: all 0.2s ease;
+}
+
+.ant-select-selector:hover,
+.ant-select-focused .ant-select-selector {
+  border-color: #2563eb !important; /* Tailwind blue-600 */
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2) !important;
+}
+.common-select .ant-select-selection-placeholder {
   display: flex;
   align-items: center;
 }

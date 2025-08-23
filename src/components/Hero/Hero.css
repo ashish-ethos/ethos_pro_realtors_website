@@ -5,25 +5,6 @@
   transform: translateZ(0);
 }
 
-/* Custom border with gradient */
-.custom-border {
-  position: relative;
-  border: none;
-  padding: 10px;
-}
-
-.custom-border::before {
-  content: "";
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  background: linear-gradient(to right, #ff7e5f, #feb47b);
-  z-index: -1;
-  border-radius: 12px;
-}
-
 /* Text gradient */
 .text-gradient {
   background: linear-gradient(to right, #000000, #9b8862, #ccae73);
@@ -43,7 +24,7 @@
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: linear-gradient(to right, #000000, #9b8862, #ccae73);
+  background: linear-gradient(to right, #4a4a4a, #a68a64, #d9b67e);
   overflow: hidden;
 }
 
@@ -54,11 +35,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(
-    to right,
-    #00c4cc,
-    #ffd700
-  ); /* Teal to yellow gradient */
+  background: linear-gradient(to right, #00c4cc, #ffd700);
   z-index: -1;
   border-radius: 10px;
   opacity: 0.3;
@@ -115,61 +92,6 @@
   }
 }
 
-@keyframes scaleInDelayed {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  60% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes scaleInDelayed2 {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  65% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes scaleInDelayed3 {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  70% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes pulseButton {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
-
 .animate-fade-in-slide-up {
   animation: fadeInSlideUp 1.2s ease-out forwards;
 }
@@ -182,29 +104,12 @@
   animation: scaleIn 1.5s ease-out forwards;
 }
 
-.animate-scale-in-delayed {
-  animation: scaleInDelayed 1.5s ease-out forwards;
-}
-
-.animate-scale-in-delayed-2 {
-  animation: scaleInDelayed2 1.5s ease-out forwards;
-}
-
-.animate-scale-in-delayed-3 {
-  animation: scaleInDelayed3 1.5s ease-out forwards;
-}
-
-.animate-pulse-button {
-  animation: pulseButton 2s infinite;
-}
-
 /* General styles */
 section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* min-height: 100vh; */
 }
 
 .ant-card {
@@ -228,6 +133,42 @@ section {
   border-radius: 8px;
 }
 
+/* Ensure the select container expands with tags */
+.ant-select-selector {
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 0 8px !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  white-space: nowrap !important;
+  flex-wrap: nowrap !important;
+  transition: min-width 0.3s ease !important;
+}
+
+/* Style for tags to fit inline */
+.ant-select-selection-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  background-color: #e6f7ff !important;
+  border: 1px solid #91d5ff !important;
+  color: #1890ff !important;
+  border-radius: 6px !important;
+  padding: 1px 6px !important;
+  margin: 0 4px 0 0 !important;
+  font-size: 12px !important;
+  line-height: 18px !important;
+  max-width: 120px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* Hide scrollbar for smooth look */
+.ant-select-selector::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .ant-input,
   .ant-btn,
@@ -240,6 +181,14 @@ section {
     font-size: 14px;
     padding: 10px 20px;
   }
+
+  .ant-select-selector {
+    height: 36px !important;
+  }
+
+  .ant-select-selection-item {
+    max-width: 100px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -250,24 +199,23 @@ section {
     font-size: 1rem !important;
     max-width: 90% !important;
   }
-}
-/* Align Select height & text with Input */
-.custom-select .ant-select-selector {
-  height: 40px !important;
-  display: flex !important;
-  align-items: center !important;
-  padding: 0 11px !important;
-}
 
-.custom-select .ant-select-selection-placeholder {
-  line-height: normal !important;
-  display: flex;
-  align-items: center;
-}
+  .hero-content {
+    padding: 12px;
+  }
 
-.custom-select .ant-select-selection-item {
-  display: flex;
-  align-items: center;
+  .ant-card {
+    padding: 10px !important;
+  }
+
+  .ant-select-selection-item {
+    max-width: 80px;
+  }
+
+  .custom-button {
+    font-size: 14px;
+    height: 36px;
+  }
 }
 
 /* Center content in reduced height hero */

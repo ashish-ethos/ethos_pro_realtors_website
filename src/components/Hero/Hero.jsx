@@ -1,43 +1,37 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Input,
-  Row,
-  Col,
-  Card,
-  Select,
-} from "antd";
-import { FiMapPin } from "react-icons/fi";
-import { MdOutlineHomeWork } from "react-icons/md";
+import { Row, Col, Card, Tag } from "antd";
+import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { DownOutlined } from "@ant-design/icons";
 import BackgroundImage from "../../assets/images/home/main_background.jpg";
 import "./Hero.css";
 import AdvancedPropertySearch from "../DifferentCities/AdvancedPropertySearch";
-// import AdvancedPropertySearch from "./AdvancedPropertySearch"; 
-
-const { Option, OptGroup } = Select;
+import CustomInput from "../ui/Input";
+import CustomSelect from "../ui/Select";
+import CustomButton from "../ui/Button";
 
 const Hero = ({ onSearchChange }) => {
   const [searchText, setSearchText] = useState("");
-  const [propertyType, setPropertyType] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
+  const [propertyType, setPropertyType] = useState([]);
+  const [selectedCity, setSelectedCity] = useState([]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const screens = useBreakpoint();
 
   const handleSearch = (e) => {
     const value = e.target.value;
     setSearchText(value);
-    onSearchChange({ search: value }); // Update search text
+    onSearchChange({ search: value });
   };
 
   const handleTypeSelect = (value) => {
     setPropertyType(value);
-    onSearchChange({ type: value }); // Update property type
+    onSearchChange({ type: value });
   };
 
   const handleCitySelect = (value) => {
     setSelectedCity(value);
-    setIsDrawerOpen(true); // Open the drawer when a city is selected
-    onSearchChange({ city: value }); // Update city
+    setIsDrawerOpen(value.length > 0);
+    onSearchChange({ city: value });
   };
 
   const handleDrawerClose = () => {
@@ -53,6 +47,57 @@ const Hero = ({ onSearchChange }) => {
     chennai: "600001",
     pune: "411001",
   };
+
+  const propertyTypeOptions = [
+    { value: "food-court", label: "Food Court", group: "Commercial" },
+    { value: "office", label: "Office", group: "Commercial" },
+    { value: "plot-commercial", label: "Plot", group: "Commercial" },
+    { value: "shop", label: "Shop", group: "Commercial" },
+    { value: "villa-commercial", label: "Villa", group: "Commercial" },
+    { value: "apartment", label: "Apartment", group: "Residential" },
+    { value: "penthouse", label: "Penthouse", group: "Residential" },
+    { value: "plot-residential", label: "Plot", group: "Residential" },
+    { value: "studio", label: "Studio", group: "Residential" },
+    { value: "villa-residential", label: "Villa", group: "Residential" },
+  ];
+
+  const cityOptions = [
+    "gurgaon",
+    "delhi",
+    "noida",
+    "mumbai",
+    "bangalore",
+    "chennai",
+    "pune",
+  ];
+
+  // Custom tag rendering for multiple select
+  const tagRender = (props) => {
+    const { label, closable, onClose } = props;
+    return (
+      <Tag
+        closable={closable}
+        onClose={onClose}
+        style={{
+          margin: "2px",
+          borderRadius: "8px",
+          backgroundColor: "#e6f7ff",
+          border: "1px solid #91d5ff",
+          color: "#1890ff",
+          padding: "1px 6px",
+          fontSize: "12px",
+          lineHeight: "18px",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {label}
+      </Tag>
+    );
+  };
+
+  // Calculate dynamic minWidth for selects
+  const propertyMinWidth = propertyType.length > 0 ? Math.min(propertyType.length * 70 + 60, 400) : 150;
+  const cityMinWidth = selectedCity.length > 0 ? Math.min(selectedCity.length * 70 + 60, 400) : 150;
 
   return (
     <section
@@ -80,89 +125,100 @@ const Hero = ({ onSearchChange }) => {
 
         {/* Advanced Search Card */}
         <Card
-          className="w-full max-w-6xl mx-auto bg-white/95 shadow-2xl backdrop-blur-lg rounded-2xl p-4 sm:p-6 custom-border animate-scale-in"
+          className="w-full max-w-6xl mx-auto bg-gradient-to-r from-orange-400 to-orange-200 shadow-2xl rounded-2xl p-6 sm:p-8 animate-scale-in"
           bodyStyle={{ padding: 0 }}
         >
-          <Row gutter={[12, 12]} align="middle" justify="center" wrap>
+          <Row gutter={[8, 8]} align="middle" justify="center" wrap className="p-4">
             {/* Location */}
-            <Col xs={24} sm={12} md={6}>
-              <Input
+            <Col xs={24} sm={12} md={undefined} style={screens.md ? { flex: '0 0 200px' } : {}}>
+              <CustomInput
                 size="large"
                 placeholder="Search"
                 value={searchText}
                 onChange={handleSearch}
-                style={{ height: 48 }}
+                style={{ height: 40, width: "100%" }}
                 className="rounded-lg border-gray-200 hover:border-blue-400 transition-colors"
               />
             </Col>
 
             {/* Property Type */}
-            <Col xs={24} sm={12} md={6}>
-              <Select
+            <Col xs={24} sm={12} md={undefined} style={screens.md ? { flex: '0 0 auto' } : {}}>
+              <CustomSelect
                 size="large"
                 style={{
-                  width: "100%",
-                  height: 48,
+                  width: "auto",
+                  height: 40,
+                  minWidth: propertyMinWidth,
+                  maxWidth: 400,
+                  transition: 'min-width 0.3s ease',
                 }}
-                placeholder={
-                  <span style={{ display: "flex", alignItems: "center" }}>
-                    <MdOutlineHomeWork className="text-gray-400 mr-2" />
-                    Property Type
-                  </span>
-                }
+                placeholder="Property Type"
                 suffixIcon={<DownOutlined />}
                 onChange={handleTypeSelect}
                 dropdownStyle={{ minWidth: 200 }}
+                optionFilterProp="label"
+                showSearch
+                mode="multiple"
+                value={propertyType}
+                tagRender={tagRender}
+                allowClear
               >
-                <OptGroup label="Commercial">
-                  <Option value="food-court">Food Court</Option>
-                  <Option value="office">Office</Option>
-                  <Option value="plot-commercial">Plot</Option>
-                  <Option value="shop">Shop</Option>
-                  <Option value="villa-commercial">Villa</Option>
-                </OptGroup>
-                <OptGroup label="Residential">
-                  <Option value="apartment">Apartment</Option>
-                  <Option value="penthouse">Penthouse</Option>
-                  <Option value="plot-residential">Plot</Option>
-                  <Option value="studio">Studio</Option>
-                  <Option value="villa-residential">Villa</Option>
-                </OptGroup>
-              </Select>
+                <CustomSelect.OptGroup label="Commercial">
+                  {propertyTypeOptions
+                    .filter((opt) => opt.group === "Commercial")
+                    .map((opt) => (
+                      <CustomSelect.Option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </CustomSelect.Option>
+                    ))}
+                </CustomSelect.OptGroup>
+                <CustomSelect.OptGroup label="Residential">
+                  {propertyTypeOptions
+                    .filter((opt) => opt.group === "Residential")
+                    .map((opt) => (
+                      <CustomSelect.Option key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </CustomSelect.Option>
+                    ))}
+                </CustomSelect.OptGroup>
+              </CustomSelect>
             </Col>
 
             {/* City */}
-            <Col xs={24} sm={12} md={6}>
-              <Select
+            <Col xs={24} sm={12} md={undefined} style={screens.md ? { flex: '0 0 auto' } : {}}>
+              <CustomSelect
                 size="large"
                 style={{
-                  width: "100%",
-                  height: 48,
+                  width: "auto",
+                  height: 40,
+                  minWidth: cityMinWidth,
+                  maxWidth: 400,
+                  transition: 'min-width 0.3s ease',
                 }}
                 placeholder="Select City"
                 onChange={handleCitySelect}
                 dropdownStyle={{ minWidth: 200 }}
-              >
-                <Option value="gurgaon">Gurgaon</Option>
-                <Option value="delhi">Delhi</Option>
-                <Option value="noida">Noida</Option>
-                <Option value="mumbai">Mumbai</Option>
-                <Option value="bangalore">Bangalore</Option>
-                <Option value="chennai">Chennai</Option>
-                <Option value="pune">Pune</Option>
-              </Select>
+                options={cityOptions.map((city) => ({
+                  value: city,
+                  label: city.charAt(0).toUpperCase() + city.slice(1),
+                }))}
+                mode="multiple"
+                value={selectedCity}
+                tagRender={tagRender}
+                allowClear
+              />
             </Col>
 
             {/* Search Button */}
-            <Col xs={24} sm={12} md={6}>
-              <Button
+            <Col xs={24} sm={12} md={undefined} style={screens.md ? { flex: '0 0 150px' } : {}}>
+              <CustomButton
                 type="primary"
                 size="large"
-                className="w-full rounded-lg custom-button"
-                style={{ height: 48 }}
+                className="w-full rounded-lg custom-button transition-all duration-300"
+                style={{ height: 40 }}
               >
                 Search
-              </Button>
+              </CustomButton>
             </Col>
           </Row>
         </Card>
@@ -171,17 +227,17 @@ const Hero = ({ onSearchChange }) => {
         <AdvancedPropertySearch
           open={isDrawerOpen}
           onClose={handleDrawerClose}
-          countryId={selectedCity ? [cityIdMap[selectedCity] || ""] : []}
+          countryId={selectedCity.map((city) => cityIdMap[city] || "")}
           setCountryId={() => {}}
           stateId={[]}
           setStateId={() => {}}
-          cityId={selectedCity ? [cityIdMap[selectedCity] || ""] : []}
+          cityId={selectedCity.map((city) => cityIdMap[city] || "")}
           setCityId={() => {}}
           area={[]}
           setArea={() => {}}
           status={[]}
           setStatus={() => {}}
-          type={propertyType ? [propertyType] : []}
+          type={propertyType}
           setType={() => {}}
           bedrooms={[]}
           setBedrooms={() => {}}
