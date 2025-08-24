@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BarChart3, Users, GitBranch, Clock, Calculator, FileText } from 'lucide-react';
-
+import "./WhyChooseus.css";
 const WhyChooseUs = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
 
@@ -162,40 +162,7 @@ const WhyChooseUs = () => {
         
       </div>
 
-      <style jsx>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes slide-up {
-          from { opacity: 0; transform: translateY(60px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fade-in-up {
-          from { opacity: 0; transform: translateY(40px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fade-in {
-          animation: fade-in 1s ease-out forwards;
-        }
-        
-        .animate-slide-up {
-          animation: slide-up 0.8s ease-out forwards;
-          opacity: 0;
-        }
-        
-        .animate-fade-in-up {
-          animation: fade-in-up 1s ease-out forwards;
-          opacity: 0;
-        }
-        .gradient-border {  
-          border-image: linear-gradient(45deg, #c99913, #474236, #000000) 1;
-          border-image-slice: 1;
-        }
-      `}</style>
+      
     </div>
   );
 };

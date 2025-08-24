@@ -12,6 +12,7 @@ import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { useParams, useNavigate } from "react-router-dom";
 import './OurTeam.css';
+import CustomButton from '../ui/Button';
 
 const teamMembers = [
   {
@@ -23,7 +24,7 @@ const teamMembers = [
     skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
     projects: "500+ Properties",
     phone: "+91 98765 43213",
-    email: "mohit.sharma@company.com",
+    email: "mohit.sharma@ethosprorealtors.com",
     rating: 5.0,
     achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
     specializations: ["Strategic Planning", "Business Development", "Team Leadership"],
@@ -45,7 +46,7 @@ const teamMembers = [
     experience: "10+ Years",
     projects: "500+ Properties",
     phone: "+91 8744964496",
-    email: "arun.godara@company.com",
+    email: "arun.godara@ethosprorealtors.com",
     rating: 5.0,
     achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
     specializations: ["Strategic Planning", "Business Development", "Team Leadership"],
@@ -67,7 +68,7 @@ const teamMembers = [
     experience: "8+ Years",
     projects: "500+ Properties",
     phone: "+91 87449 64496",
-    email: "satya.mandal@company.com",
+    email: "satya.mandal@ethosprorealtors.com",
     rating: 5.0,
     achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
     specializations: ["Strategic Planning", "Business Development", "Team Leadership"],
@@ -89,7 +90,7 @@ const teamMembers = [
     experience: "7+ Years",
     projects: "250+ Properties",
     phone: "+91 87449 64496",
-    email: "deepak.bhati@company.com",
+    email: "deepak.bhati@ethosprorealtors.com",
     rating: 4.9,
     achievements: ["Top Performer 2023", "Client Choice Award", "Luxury Sales Expert"],
     specializations: ["Residential", "Commercial", "Luxury Properties"],
@@ -111,7 +112,7 @@ const teamMembers = [
     experience: "6+ Years",
     projects: "180+ Properties",
     phone: "+91 87449 64496",
-    email: "prerna.kapuria@company.com",
+    email: "prerna.kapuria@ethosprorealtors.com",
     rating: 4.8,
     achievements: ["Rising Star 2023", "Customer Satisfaction Award", "Investment Specialist"],
     specializations: ["Residential", "Investment Properties", "First-time Buyers"],
@@ -133,7 +134,7 @@ const teamMembers = [
     experience: "6+ Years",
     projects: "120+ Properties",
     phone: "+91 87449 64496",
-    email: "avantika.kapuria@company.com",
+    email: "avantika.kapuria@ethosprorealtors.com",
     rating: 4.9,
     achievements: ["Commercial Expert 2023", "Deal Maker Award", "Market Analyst"],
     specializations: ["Commercial", "Office Spaces", "Retail Properties"],
@@ -197,7 +198,7 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
                   {member.position}
                 </p>
               </div>
-              <button
+              <CustomButton
                 onClick={() => onViewProfile(member)}
                 className="w-full py-2.5 cursor-pointer gradient-border font-bold rounded-xl"
               >
@@ -208,7 +209,7 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </span>
-              </button>
+              </CustomButton>
             </div>
           </div>
         </div>
@@ -238,7 +239,7 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
               </div>
             </div>
             <div className="p-4">
-              <button
+              <CustomButton
                 onClick={() => setIsFlipped(false)}
                 className="w-full py-3 cursor-pointer gradient-border font-bold rounded-xl"
               >
@@ -248,7 +249,7 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
                   </svg>
                   Back to Profile
                 </span>
-              </button>
+              </CustomButton>
             </div>
           </div>
         </div>
@@ -349,7 +350,7 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
           <Divider />
           <div className="space-y-3">
             <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Achievements</h3>
-            <div className="space-y-2">
+            <div className="flex flex-wrap gap-2">
               {member.achievements.map((achievement, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-[#c99913] rounded-full"></div>
@@ -359,22 +360,28 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
             </div>
           </div>
           <Divider />
-          <div className="space-y-3">
+          <div className="space-y-2">
             <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Specializations</h3>
-            <div className="grid grid-cols-1 gap-2">
+            <div className="flex flex-wrap gap-2">
               {member.specializations.map((spec, index) => (
-                <div key={index} className="bg-gradient-to-r from-[#c99913]/10 to-[#474236]/10 p-3 rounded-lg border border-[#c99913]/20">
+                <div
+                  key={index}
+                  className="bg-gradient-to-r from-[#c99913]/10 to-[#474236]/10 px-3 py-1 rounded-lg border border-[#c99913]/20"
+                >
                   <span className="text-sm font-medium text-[#474236]">{spec}</span>
                 </div>
               ))}
             </div>
           </div>
-          <button className="w-full py-3 gradient-border font-bold rounded-xl">
-            <span className="flex items-center justify-center gap-2">
-              <PhoneOutlined />
-              Contact {member.name.split(' ')[0]}
-            </span>
-          </button>
+
+          <div className='flex justify-center items-center'>
+            <CustomButton className="w-auto py-3 gradient-border font-bold rounded-xl">
+              <span className="flex items-center justify-center gap-2">
+                <PhoneOutlined />
+                Contact {member.name.split(' ')[0]}
+              </span>
+            </CustomButton>
+          </div>
           <div className='w-full items-center justify-center flex flex-col'>
             <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm mb-2">Follow on Social Media</h3>
             <div className="flex items-center gap-3">
@@ -493,7 +500,7 @@ const OurTeam = () => {
           </div>
         </div>
         <div className={`mt-4 flex justify-center gap-4 transform transition-all duration-1000 delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-          <button
+          <CustomButton
             onClick={handlePrev}
             disabled={currentIndex === 0}
             className={`px-4 py-1.5 gradient-border cursor-pointer font-bold rounded-xl ${currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -504,8 +511,8 @@ const OurTeam = () => {
               </svg>
               Prev
             </span>
-          </button>
-          <button
+          </CustomButton>
+          <CustomButton
             onClick={handleNext}
             disabled={currentIndex === maxIndex}
             className={`px-4 py-1.5 gradient-border cursor-pointer font-bold rounded-xl ${currentIndex === maxIndex ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -516,7 +523,7 @@ const OurTeam = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </span>
-          </button>
+          </CustomButton>
         </div>
       </div>
       <ProfileDrawer

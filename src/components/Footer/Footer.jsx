@@ -444,25 +444,6 @@ function Footer() {
                 </div>
               ))}
             </div>
-
-            {/* Office Hours */}
-            {/* <div className="mt-8 p-4 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-2xl border border-emerald-500/30">
-              <h5 className="font-semibold text-emerald-400 mb-2">Office Hours</h5>
-              <div className="text-sm text-gray-300 space-y-1">
-                <div className="flex justify-between">
-                  <span>Mon - Fri:</span>
-                  <span>9:00 AM - 7:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Saturday:</span>
-                  <span>10:00 AM - 6:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Sunday:</span>
-                  <span>11:00 AM - 5:00 PM</span>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
@@ -481,14 +462,6 @@ function Footer() {
                 <Link to="/f&qs" className="hover:text-emerald-400 transition-colors">F&Q</Link>
               </div>
             </div>
-
-            {/* <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-400">Made with ❤️ in India</span>
-              <div className="flex items-center gap-2 text-sm text-gray-400">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span>All systems operational</span>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

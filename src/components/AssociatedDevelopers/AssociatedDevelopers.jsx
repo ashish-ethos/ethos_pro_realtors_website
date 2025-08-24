@@ -17,6 +17,7 @@ import Bptp from "../../assets/images/premiumproperties/bptp.jpeg";
 import Emaar from "../../assets/images/premiumproperties/emaar.png";
 import Sobha from "../../assets/images/premiumproperties/sobha.png";
 import AtsEstate from "../../assets/images/premiumproperties/ats_estate.jpeg";
+import "../OurTeam/OurTeam.css";
 
 const AssociatedDevelopers = () => {
   const developerLogos = [
@@ -172,39 +173,7 @@ const AssociatedDevelopers = () => {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes float-right {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(0%); }
-        }
-        
-        @keyframes float-left {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-100%); }
-        }
-        
-        @keyframes shimmer {
-          0% { transform: translateX(-100%) skewX(-12deg); }
-          100% { transform: translateX(200%) skewX(-12deg); }
-        }
-        
-        .animate-float-right {
-          animation: float-right 100s linear infinite;
-        }
-        
-        .animate-float-left {
-          animation: float-left 120s linear infinite;
-        }
-        
-        .animate-shimmer {
-          animation: shimmer 2s ease-in-out infinite;
-        }
-        
-        .animate-float-right:hover,
-        .animate-float-left:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
+      
     </div>
   );
 };

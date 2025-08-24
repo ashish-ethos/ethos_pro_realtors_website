@@ -94,3 +94,59 @@
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+.explore-all-article {
+  background: transparent;
+  border-image: linear-gradient(to right, #000000, #474236, #c99913) 1;
+}
+.carousel-track {
+  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+}
+.category-label {
+  border: 1px solid transparent;
+  border-image: linear-gradient(to right, #000000, #474236, #c99913) 1;
+}
+
+@keyframes float-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes float-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+.animate-float-right {
+  animation: float-right 100s linear infinite;
+}
+
+.animate-float-left {
+  animation: float-left 120s linear infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.animate-float-right:hover,
+.animate-float-left:hover {
+  animation-play-state: paused;
+}
