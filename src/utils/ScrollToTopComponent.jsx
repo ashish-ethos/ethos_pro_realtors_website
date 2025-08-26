@@ -7,7 +7,7 @@ const pathnamesToScroll = [
   "/projects",
   "/projects/residential",
   "/projects/commercial",
-  "/premiumproperties/:propertyName",
+  "/premiumproperties/",
   "/about",
   "/blog",
   "/contact",
@@ -21,7 +21,8 @@ export default function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (pathnamesToScroll.includes(pathname)) {
+    const isPresent = pathnamesToScroll.some((path) => pathname.startsWith(path));
+    if (isPresent) {
       window.scrollTo({
         top: 0,
         behavior: "smooth",

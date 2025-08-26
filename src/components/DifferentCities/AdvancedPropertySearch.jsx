@@ -104,6 +104,45 @@ const cityOptions = [
   { value: "411001", label: "Pune" },
 ];
 
+const mockProperties = [
+  {
+    id: 1,
+    name: "Luxury Penthouse with City View",
+    location: "Sector 54, Gurgaon",
+    area: "Sector 54, Gurgaon",
+    price: 85000000,
+    priceValue: 85000000,
+    image:
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=500&fit=crop",
+    type: "Penthouse",
+    status: "For Sale",
+    bedrooms: 4,
+    bathrooms: 3,
+    areaValue: 2500,
+    yearBuilt: 2022,
+    label: "featured",
+    featured: true,
+    countryId: 101,
+    stateId: 4030,
+    cityId: "56798",
+  },
+];
+
+// Gurgaon sectors
+const gurgaonSectors = [
+  "Sector 54, Gurgaon",
+  "Sector 66, Gurgaon",
+  "Sector 48, Gurgaon",
+  "Sector 62, Gurgaon",
+  "Sector 79, Gurgaon",
+  "Sector 63, Gurgaon",
+  "Sector 68, Gurgaon",
+  "Sector 106, Gurgaon",
+  "Sector 70, Gurgaon",
+  "Sector 65, Gurgaon",
+  "Sector 109, Gurgaon",
+];
+
 const AdvancedPropertySearch = ({
   open,
   onClose,
@@ -142,52 +181,12 @@ const AdvancedPropertySearch = ({
   const [searchQuery, setSearchQuery] = useState("");
   const [favoriteProperties, setFavoriteProperties] = useState(new Set());
   const [debouncedQuery, setDebouncedQuery] = useState("");
+  const displayProperties = properties.length > 0 ? properties : mockProperties;
+  const [filteredProperties, setFilteredProperties] =
+    useState(displayProperties);
   const pageSize = 9;
 
   const currentYear = new Date().getFullYear();
-
-  // Mock properties
-  const mockProperties = [
-    {
-      id: 1,
-      name: "Luxury Penthouse with City View",
-      location: "Sector 54, Gurgaon",
-      area: "Sector 54, Gurgaon",
-      price: 85000000,
-      priceValue: 85000000,
-      image:
-        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=500&fit=crop",
-      type: "Penthouse",
-      status: "For Sale",
-      bedrooms: 4,
-      bathrooms: 3,
-      areaValue: 2500,
-      yearBuilt: 2022,
-      label: "featured",
-      featured: true,
-      countryId: 101,
-      stateId: 4030,
-      cityId: "56798",
-    },
-    
-  ];
-
-  const displayProperties = properties.length > 0 ? properties : mockProperties;
-
-  // Gurgaon sectors
-  const gurgaonSectors = [
-    "Sector 54, Gurgaon",
-    "Sector 66, Gurgaon",
-    "Sector 48, Gurgaon",
-    "Sector 62, Gurgaon",
-    "Sector 79, Gurgaon",
-    "Sector 63, Gurgaon",
-    "Sector 68, Gurgaon",
-    "Sector 106, Gurgaon",
-    "Sector 70, Gurgaon",
-    "Sector 65, Gurgaon",
-    "Sector 109, Gurgaon",
-  ];
 
   // Debounce search query for better UX
   useEffect(() => {
@@ -223,24 +222,32 @@ const AdvancedPropertySearch = ({
     return `${crores.toFixed(1)} Cr`;
   };
 
-  // Filtering + sorting
-  const filteredProperties = useMemo(() => {
-    return displayProperties
+  const onApply = () => {
+    const updatedProperties = displayProperties
       .filter((property) => {
         const matchesSearch =
           !debouncedQuery ||
           property.name?.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-          property.location?.toLowerCase().includes(debouncedQuery.toLowerCase());
+          property.location
+            ?.toLowerCase()
+            .includes(debouncedQuery.toLowerCase());
 
-        const matchesCountry = countryId.length === 0 || countryId.includes(property.countryId?.toString());
-        const matchesState = stateId.length === 0 || stateId.includes(property.stateId?.toString());
-        const matchesCity = cityId.length === 0 || cityId.includes(property.cityId?.toString());
+        const matchesCountry =
+          countryId.length === 0 ||
+          countryId.includes(property.countryId?.toString());
+        const matchesState =
+          stateId.length === 0 ||
+          stateId.includes(property.stateId?.toString());
+        const matchesCity =
+          cityId.length === 0 || cityId.includes(property.cityId?.toString());
         const matchesArea =
           area.length === 0 ||
           area.includes("All Areas") ||
-          (area.includes("Gurgaon") && gurgaonSectors.includes(property.area)) ||
+          (area.includes("Gurgaon") &&
+            gurgaonSectors.includes(property.area)) ||
           area.includes(property.area);
-        const matchesStatus = status.length === 0 || status.includes(property.status);
+        const matchesStatus =
+          status.length === 0 || status.includes(property.status);
         const matchesType = type.length === 0 || type.includes(property.type);
         const matchesBedrooms =
           bedrooms.length === 0 ||
@@ -272,12 +279,21 @@ const AdvancedPropertySearch = ({
             }
             return property.bathrooms.toString() === bath;
           });
-        const matchesLabel = label.length === 0 || label.includes("Any") || label.includes(property.label);
-        const matchesYearBuilt = yearBuilt.length === 0 || yearBuilt.includes(property.yearBuilt?.toString());
+        const matchesLabel =
+          label.length === 0 ||
+          label.includes("Any") ||
+          label.includes(property.label);
+        const matchesYearBuilt =
+          yearBuilt.length === 0 ||
+          yearBuilt.includes(property.yearBuilt?.toString());
         const effectiveMinArea = minArea <= maxArea ? minArea : maxArea;
         const effectiveMaxArea = minArea <= maxArea ? maxArea : minArea;
-        const matchesAreaRange = property.areaValue >= effectiveMinArea && property.areaValue <= effectiveMaxArea;
-        const matchesPriceRange = property.priceValue >= priceRange[0] && property.priceValue <= priceRange[1];
+        const matchesAreaRange =
+          property.areaValue >= effectiveMinArea &&
+          property.areaValue <= effectiveMaxArea;
+        const matchesPriceRange =
+          property.priceValue >= priceRange[0] &&
+          property.priceValue <= priceRange[1];
 
         return (
           matchesSearch &&
@@ -311,26 +327,13 @@ const AdvancedPropertySearch = ({
             return 0;
         }
       });
-  }, [
-    displayProperties,
-    debouncedQuery,
-    countryId,
-    stateId,
-    cityId,
-    area,
-    status,
-    type,
-    bedrooms,
-    bathrooms,
-    label,
-    yearBuilt,
-    minArea,
-    maxArea,
-    priceRange,
-    sortBy,
-  ]);
+    setFilteredProperties(updatedProperties);
+  };
 
-  const paginatedProperties = filteredProperties.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const paginatedProperties = filteredProperties.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -444,19 +447,71 @@ const AdvancedPropertySearch = ({
   };
 
   const activeChips = [];
-  area.forEach((a) => a && activeChips.push({ key: `area:${a}`, label: a, filterKey: "area" }));
-  type.forEach((t) => t && activeChips.push({ key: `type:${t}`, label: t, filterKey: "type" }));
-  status.forEach((s) => s && activeChips.push({ key: `status:${s}`, label: s, filterKey: "status" }));
-  bedrooms.forEach((b) => b && activeChips.push({ key: `bed:${b}`, label: b, filterKey: "bedrooms" }));
-  bathrooms.forEach((b) => b && activeChips.push({ key: `bath:${b}`, label: b, filterKey: "bathrooms" }));
-  label.forEach((l) => l && activeChips.push({ key: `label:${l}`, label: l, filterKey: "label" }));
-  yearBuilt.forEach((y) => y && activeChips.push({ key: `year:${y}`, label: y, filterKey: "yearBuilt" }));
-  countryId.forEach((c) => c && activeChips.push({ key: `country:${c}`, label: `Country:${c}`, filterKey: "countryId" }));
-  stateId.forEach((s) => s && activeChips.push({ key: `state:${s}`, label: `State:${s}`, filterKey: "stateId" }));
-  cityId.forEach((c) => c && activeChips.push({ key: `city:${c}`, label: `City:${c}`, filterKey: "cityId" }));
+  area.forEach(
+    (a) =>
+      a && activeChips.push({ key: `area:${a}`, label: a, filterKey: "area" })
+  );
+  type.forEach(
+    (t) =>
+      t && activeChips.push({ key: `type:${t}`, label: t, filterKey: "type" })
+  );
+  status.forEach(
+    (s) =>
+      s &&
+      activeChips.push({ key: `status:${s}`, label: s, filterKey: "status" })
+  );
+  bedrooms.forEach(
+    (b) =>
+      b &&
+      activeChips.push({ key: `bed:${b}`, label: b, filterKey: "bedrooms" })
+  );
+  bathrooms.forEach(
+    (b) =>
+      b &&
+      activeChips.push({ key: `bath:${b}`, label: b, filterKey: "bathrooms" })
+  );
+  label.forEach(
+    (l) =>
+      l && activeChips.push({ key: `label:${l}`, label: l, filterKey: "label" })
+  );
+  yearBuilt.forEach(
+    (y) =>
+      y &&
+      activeChips.push({ key: `year:${y}`, label: y, filterKey: "yearBuilt" })
+  );
+  countryId.forEach(
+    (c) =>
+      c &&
+      activeChips.push({
+        key: `country:${c}`,
+        label: `Country:${c}`,
+        filterKey: "countryId",
+      })
+  );
+  stateId.forEach(
+    (s) =>
+      s &&
+      activeChips.push({
+        key: `state:${s}`,
+        label: `State:${s}`,
+        filterKey: "stateId",
+      })
+  );
+  cityId.forEach(
+    (c) =>
+      c &&
+      activeChips.push({
+        key: `city:${c}`,
+        label: `City:${c}`,
+        filterKey: "cityId",
+      })
+  );
 
   // Year options for CustomSelect
-  const yearOptions = Array.from({ length: 126 }, (_, i) => currentYear - i).map((year) => ({
+  const yearOptions = Array.from(
+    { length: 126 },
+    (_, i) => currentYear - i
+  ).map((year) => ({
     value: year.toString(),
     label: year.toString(),
   }));
@@ -469,13 +524,23 @@ const AdvancedPropertySearch = ({
             <Title level={4} className="m-0 advanced-text">
               Advanced Property Search
             </Title>
-            <Text type="secondary" className="property-find">{filteredProperties.length} properties found</Text>
+            <Text type="secondary">
+              {filteredProperties.length} properties found
+            </Text>
           </Space>
           <Space>
-            <CustomButton className="property-card-action-button" icon={<FaFilter />} onClick={() => setShowFilters(!showFilters)}>
+            <CustomButton
+              className="property-card-action-button"
+              icon={<FaFilter />}
+              onClick={() => setShowFilters(!showFilters)}
+            >
               {showFilters ? "Hide Filters" : "Show Filters"}
             </CustomButton>
-            <CustomButton type="danger" onClick={handleClearFilters} className="cancelButton">
+            <CustomButton
+              type="danger"
+              onClick={handleClearFilters}
+              className="cancelButton"
+            >
               Clear All
             </CustomButton>
           </Space>
@@ -491,7 +556,11 @@ const AdvancedPropertySearch = ({
         {showFilters && (
           <div className="filters-panel">
             <div className="filters-panel-contain">
-              <Space direction="vertical" size="small" className="filters-space">
+              <Space
+                direction="vertical"
+                size="small"
+                className="filters-space"
+              >
                 <CustomInput
                   prefix={<FaSearch />}
                   placeholder="Search by name or location..."
@@ -508,7 +577,9 @@ const AdvancedPropertySearch = ({
                       <Tag
                         key={chip.key}
                         closable
-                        onClose={() => removeFilterValue(chip.filterKey, chip.label)}
+                        onClose={() =>
+                          removeFilterValue(chip.filterKey, chip.label)
+                        }
                         className="chip-tag"
                       >
                         {chip.label}
@@ -523,7 +594,11 @@ const AdvancedPropertySearch = ({
 
             <Collapse defaultActiveKey={["basic", "advanced"]} ghost>
               <Panel header={<b>Basic Filters</b>} key="basic">
-                <Space direction="vertical" size="middle" className="filters-space">
+                <Space
+                  direction="vertical"
+                  size="middle"
+                  className="filters-space"
+                >
                   <div>
                     <span className="filter-label flex items-center">
                       <FaMapMarkerAlt className="filter-icon" />
@@ -612,7 +687,11 @@ const AdvancedPropertySearch = ({
               </Panel>
 
               <Panel header={<b>Advanced Filters</b>} key="advanced">
-                <Space direction="vertical" size="middle" className="filters-space">
+                <Space
+                  direction="vertical"
+                  size="middle"
+                  className="filters-space"
+                >
                   <div>
                     <Slider
                       range
@@ -622,11 +701,17 @@ const AdvancedPropertySearch = ({
                       value={priceRange}
                       onChange={(value) => {
                         const [min, max] = value;
-                        handlePriceChange([Math.min(min, max), Math.max(min, max)]);
+                        handlePriceChange([
+                          Math.min(min, max),
+                          Math.max(min, max),
+                        ]);
                       }}
                       onAfterChange={(value) => {
                         const [min, max] = value;
-                        handlePriceChange([Math.min(min, max), Math.max(min, max)]);
+                        handlePriceChange([
+                          Math.min(min, max),
+                          Math.max(min, max),
+                        ]);
                       }}
                       tooltip={{
                         formatter: (value) => {
@@ -641,22 +726,37 @@ const AdvancedPropertySearch = ({
                     <Space className="price-inputs">
                       <InputNumber
                         value={priceRange[0]}
-                        onChange={(value) => handlePriceChange([value || 1000000, priceRange[1]])}
+                        onChange={(value) =>
+                          handlePriceChange([value || 1000000, priceRange[1]])
+                        }
                         formatter={(value) => {
                           const crores = value / 10000000;
-                          return Number.isInteger(crores) ? `₹${crores} Cr` : `₹${crores.toFixed(1)} Cr`;
+                          return Number.isInteger(crores)
+                            ? `₹${crores} Cr`
+                            : `₹${crores.toFixed(1)} Cr`;
                         }}
-                        parser={(value) => parseFloat(value.replace(/[^0-9.]/g, "")) * 10000000}
+                        parser={(value) =>
+                          parseFloat(value.replace(/[^0-9.]/g, "")) * 10000000
+                        }
                         className="price-input"
                       />
                       <InputNumber
                         value={priceRange[1]}
-                        onChange={(value) => handlePriceChange([priceRange[0], value || 1000000000])}
+                        onChange={(value) =>
+                          handlePriceChange([
+                            priceRange[0],
+                            value || 1000000000,
+                          ])
+                        }
                         formatter={(value) => {
                           const crores = value / 10000000;
-                          return Number.isInteger(crores) ? `₹${crores} Cr` : `₹${crores.toFixed(1)} Cr`;
+                          return Number.isInteger(crores)
+                            ? `₹${crores} Cr`
+                            : `₹${crores.toFixed(1)} Cr`;
                         }}
-                        parser={(value) => parseFloat(value.replace(/[^0-9.]/g, "")) * 10000000}
+                        parser={(value) =>
+                          parseFloat(value.replace(/[^0-9.]/g, "")) * 10000000
+                        }
                         className="price-input"
                       />
                     </Space>
@@ -773,8 +873,17 @@ const AdvancedPropertySearch = ({
 
             <div className="filters-footer">
               <Space className="filters-footer-buttons bg-white">
-                <CustomButton onClick={handleClearFilters} className="property-card-action-button">Reset</CustomButton>
-                <CustomButton type="primary" onClick={() => setShowFilters(false)} className="property-card-action-button">
+                <CustomButton
+                  onClick={handleClearFilters}
+                  className="property-card-action-button"
+                >
+                  Reset
+                </CustomButton>
+                <CustomButton
+                  type="primary"
+                  onClick={onApply}
+                  className="property-card-action-button"
+                >
                   Apply
                 </CustomButton>
               </Space>
@@ -825,14 +934,22 @@ const AdvancedPropertySearch = ({
                 placeholder="Search properties..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                 className="search-input"
+                className="search-input"
               />
 
-              <CustomButton className="property-card-action-button" onClick={() => setShowFilters(!showFilters)} icon={<FaFilter />}>
+              <CustomButton
+                className="property-card-action-button"
+                onClick={() => setShowFilters(!showFilters)}
+                icon={<FaFilter />}
+              >
                 {showFilters ? "Hide Filters" : "Show Filters"}
               </CustomButton>
 
-              <CustomButton type="danger" onClick={handleClearFilters} className="cancelButton">
+              <CustomButton
+                type="danger"
+                onClick={handleClearFilters}
+                className="cancelButton"
+              >
                 Clear
               </CustomButton>
             </div>
@@ -841,7 +958,11 @@ const AdvancedPropertySearch = ({
           {activeChips.length > 0 && (
             <div className="chips-container">
               {activeChips.map((chip) => (
-                <Tag key={chip.key} closable onClose={() => removeFilterValue(chip.filterKey, chip.label)}>
+                <Tag
+                  key={chip.key}
+                  closable
+                  onClose={() => removeFilterValue(chip.filterKey, chip.label)}
+                >
                   {chip.label}
                 </Tag>
               ))}
@@ -858,25 +979,36 @@ const AdvancedPropertySearch = ({
                         hoverable
                         bodyStyle={{ padding: 18 }}
                         className="property-card"
-                        onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-8px)")}
-                        onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
+                        onMouseEnter={(e) =>
+                          (e.currentTarget.style.transform = "translateY(-8px)")
+                        }
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.transform = "translateY(0)")
+                        }
                         cover={
                           <div className="card-image-container">
                             <img
                               alt={property.name}
                               src={property.image}
                               className="card-image"
-                              onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.08)")}
-                              onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                              onMouseEnter={(e) =>
+                                (e.currentTarget.style.transform =
+                                  "scale(1.08)")
+                              }
+                              onMouseLeave={(e) =>
+                                (e.currentTarget.style.transform = "scale(1)")
+                              }
                             />
 
                             <div className="card-tags">
                               {property.featured && (
-                                <Tag className="featured-tag">
-                                  Featured
-                                </Tag>
+                                <Tag className="featured-tag">Featured</Tag>
                               )}
-                              <Tag className={`status-tag ${property.status.toLowerCase().replace(" ", "-")}`}>
+                              <Tag
+                                className={`status-tag ${property.status
+                                  .toLowerCase()
+                                  .replace(" ", "-")}`}
+                              >
                                 {property.status}
                               </Tag>
                             </div>
@@ -887,7 +1019,13 @@ const AdvancedPropertySearch = ({
                                   onClick={() => toggleFavorite(property.id)}
                                   className="action-button"
                                 >
-                                  <FaHeart className={favoriteProperties.has(property.id) ? "favorite-icon active" : "favorite-icon"} />
+                                  <FaHeart
+                                    className={
+                                      favoriteProperties.has(property.id)
+                                        ? "favorite-icon active"
+                                        : "favorite-icon"
+                                    }
+                                  />
                                 </div>
                               </Tooltip>
                               <Tooltip title="View">
@@ -899,19 +1037,26 @@ const AdvancedPropertySearch = ({
 
                             <div className="card-footer">
                               <div className="card-footer-content">
-                                <div className="card-price">{getFormattedPrice(property)}</div>
-                                <div className="card-area">{property.areaValue} sq ft</div>
+                                <div className="card-price">
+                                  {getFormattedPrice(property)}
+                                </div>
+                                <div className="card-area">
+                                  {property.areaValue} sq ft
+                                </div>
                               </div>
                             </div>
                           </div>
                         }
                       >
                         <Card.Meta
-                          title={<div className="card-title">{property.name}</div>}
+                          title={
+                            <div className="card-title">{property.name}</div>
+                          }
                           description={
                             <div className="card-description p-2">
                               <div className="card-location">
-                                <FaMapMarkerAlt className="location-icon" /> {property.location}
+                                <FaMapMarkerAlt className="location-icon" />{" "}
+                                {property.location}
                               </div>
                               <div className="card-details">
                                 <div className="card-details-content">
@@ -944,26 +1089,51 @@ const AdvancedPropertySearch = ({
                   renderItem={(property) => (
                     <List.Item
                       actions={[
-                        <CustomButton type="primary" key="view" className="property-card-action-button">
+                        <CustomButton
+                          type="primary"
+                          key="view"
+                          className="property-card-action-button"
+                        >
                           View Details
                         </CustomButton>,
                       ]}
-                      extra={<img width={340} alt={property.name} src={property.image} className="cehcek" />}
+                      extra={
+                        <img
+                          width={340}
+                          alt={property.name}
+                          src={property.image}
+                          className="cehcek"
+                        />
+                      }
                     >
                       <List.Item.Meta
-                        title={<div className="list-title">{property.name}</div>}
+                        title={
+                          <div className="list-title">{property.name}</div>
+                        }
                         description={
                           <div className="checked ">
-                            <Text><FaMapMarkerAlt /> {property.location}</Text>
+                            <Text>
+                              <FaMapMarkerAlt /> {property.location}
+                            </Text>
                             <div className="list-details">
-                              <Text><FaBed /> {property.bedrooms} Beds</Text>
-                              <Text><FaBath /> {property.bathrooms} Baths</Text>
-                              <Text><FaHome /> {property.areaValue} sq ft</Text>
-                              <Text><FaCalendarAlt /> {property.yearBuilt}</Text>
+                              <Text>
+                                <FaBed /> {property.bedrooms} Beds
+                              </Text>
+                              <Text>
+                                <FaBath /> {property.bathrooms} Baths
+                              </Text>
+                              <Text>
+                                <FaHome /> {property.areaValue} sq ft
+                              </Text>
+                              <Text>
+                                <FaCalendarAlt /> {property.yearBuilt}
+                              </Text>
                             </div>
                             <div className="list-tags">
                               <Tag color="gray">{property.type}</Tag>
-                              <Tag color={getStatusColor(property.status)}>{property.status}</Tag>
+                              <Tag color={getStatusColor(property.status)}>
+                                {property.status}
+                              </Tag>
                             </div>
                           </div>
                         }
@@ -974,16 +1144,30 @@ const AdvancedPropertySearch = ({
               )}
 
               <div className="pagination-container">
-                <Pagination current={currentPage} total={filteredProperties.length} pageSize={pageSize} onChange={handlePageChange} />
+                <Pagination
+                  current={currentPage}
+                  total={filteredProperties.length}
+                  pageSize={pageSize}
+                  onChange={handlePageChange}
+                />
               </div>
             </>
           ) : (
             <div className="no-properties">
               <FaHome className="no-properties-icon" />
               <Title level={3}>No Properties Found</Title>
-              <Text>We couldn't find any properties matching your search criteria. Try adjusting your filters or search terms.</Text>
+              <Text>
+                We couldn't find any properties matching your search criteria.
+                Try adjusting your filters or search terms.
+              </Text>
               <div className="no-properties-button">
-                <CustomButton type="primary" onClick={handleClearFilters} className="cancelButton">Clear All Filters</CustomButton>
+                <CustomButton
+                  type="primary"
+                  onClick={handleClearFilters}
+                  className="cancelButton"
+                >
+                  Clear All Filters
+                </CustomButton>
               </div>
             </div>
           )}

@@ -233,7 +233,7 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
 
       </div>
 
-      <style jsx>{`
+      <style>{`
         .ultra-advanced-light-drawer .ant-drawer-header {
           background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.8) 100%);
           backdrop-filter: blur(20px);

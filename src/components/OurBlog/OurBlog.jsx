@@ -681,8 +681,10 @@ const OurBlog = () => {
                     onClose={closeDrawer}
                     open={isDrawerOpen}
                     width="50%"
-                    bodyStyle={{ padding: '24px', overflowY: 'auto' }}
-                    headerStyle={{ borderBottom: '1px solid #e8e8e8' }}
+                    styles={{
+                        body: { padding: '24px', overflowY: 'auto' },
+                        header: { borderBottom: '1px solid #e8e8e8' }
+                    }}
                     closeIcon={<X className="w-6 h-6 text-gray-600" />}
                 >
                     {selectedPost && (
@@ -707,8 +709,10 @@ const OurBlog = () => {
                     onClose={closeExploreDrawer}
                     open={isExploreDrawerOpen}
                     width="80%"
-                    bodyStyle={{ padding: 0 }}
-                    headerStyle={{ borderBottom: '1px solid #e8e8e8' }}
+                     styles={{
+                        body: { padding: 0 },
+                        header: { borderBottom: '1px solid #e8e8e8' }
+                    }}
                     closeIcon={<X className="w-6 h-6 text-gray-600" />}
                 >
                     <BlogExploreArticles blogPosts={blogPosts} contentMap={contentMap} />

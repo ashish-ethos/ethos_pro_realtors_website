@@ -118,7 +118,7 @@ const SetsApart = () => {
           />
         ))}
       </div>
-      <style jsx>{`
+      <style>{`
         .stat-card {
           border-image: linear-gradient(45deg, #c99913, #474236, #000000) 10;
           border-image-slice: 10;

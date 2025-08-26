@@ -4,7 +4,6 @@ import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { DownOutlined } from "@ant-design/icons";
 import BackgroundImage from "../../assets/images/home/main_background.jpg";
 import "./Hero.css";
-import AdvancedPropertySearch from "../DifferentCities/AdvancedPropertySearch";
 import CustomInput from "../ui/Input";
 import CustomSelect from "../ui/Select";
 import CustomButton from "../ui/Button";
@@ -13,7 +12,6 @@ const Hero = ({ onSearchChange }) => {
   const [searchText, setSearchText] = useState("");
   const [propertyType, setPropertyType] = useState([]);
   const [selectedCity, setSelectedCity] = useState([]);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const screens = useBreakpoint();
 
@@ -30,22 +28,7 @@ const Hero = ({ onSearchChange }) => {
 
   const handleCitySelect = (value) => {
     setSelectedCity(value);
-    setIsDrawerOpen(value.length > 0);
     onSearchChange({ city: value });
-  };
-
-  const handleDrawerClose = () => {
-    setIsDrawerOpen(false);
-  };
-
-  const cityIdMap = {
-    gurgaon: "56798",
-    delhi: "110001",
-    noida: "201301",
-    mumbai: "400001",
-    bangalore: "560001",
-    chennai: "600001",
-    pune: "411001",
   };
 
   const propertyTypeOptions = [
@@ -216,39 +199,6 @@ const Hero = ({ onSearchChange }) => {
             </Col>
           </Row>
         </Card>
-
-        {/* Advanced Property Search Drawer */}
-        <AdvancedPropertySearch
-          open={isDrawerOpen}
-          onClose={handleDrawerClose}
-          countryId={selectedCity.map((city) => cityIdMap[city] || "")}
-          setCountryId={() => {}}
-          stateId={[]}
-          setStateId={() => {}}
-          cityId={selectedCity.map((city) => cityIdMap[city] || "")}
-          setCityId={() => {}}
-          area={[]}
-          setArea={() => {}}
-          status={[]}
-          setStatus={() => {}}
-          type={propertyType}
-          setType={() => {}}
-          bedrooms={[]}
-          setBedrooms={() => {}}
-          bathrooms={[]}
-          setBathrooms={() => {}}
-          minArea={0}
-          setMinArea={() => {}}
-          maxArea={10000}
-          setMaxArea={() => {}}
-          label={[]}
-          setLabel={() => {}}
-          yearBuilt={[]}
-          setYearBuilt={() => {}}
-          priceRange={[1000000, 1000000000]}
-          handlePriceChange={() => {}}
-          properties={[]}
-        />
       </div>
     </section>
   );
