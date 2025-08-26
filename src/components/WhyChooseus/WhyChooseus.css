@@ -48,3 +48,15 @@
   border-image: linear-gradient(45deg, #c99913, #474236, #000000) 1;
   border-image-slice: 1;
 }
+@media(max-width : 768px){
+  .why-choose-header{
+    margin-bottom: 10px;
+  }
+  .bottom-cta{
+    margin-top: 15px;
+  }
+  .bottom-whychoose-content{
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+}

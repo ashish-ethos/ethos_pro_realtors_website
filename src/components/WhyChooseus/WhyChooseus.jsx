@@ -62,10 +62,10 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 py-20 px-4" id="why-choose-us">
+    <div className="premium-properties-main min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 py-20 px-4" id="why-choose-us">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-16 animate-fade-in why-choose-header">
           <h2 className="text-3xl sm:text-xl md:text-5xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
             Why Choose Us?
           </h2>
@@ -150,8 +150,8 @@ const WhyChooseUs = () => {
         </div>
 
         {/* Bottom CTA Section */}
-        <div className="text-center mt-20 animate-fade-in-up" style={{ animationDelay: '600ms' }}>
-          <div className="inline-flex items-center space-x-4 bg-white  px-8 py-3 shadow-lg hover:shadow-xl transition-shadow duration-300 border-2 gradient-border">
+        <div className="text-center mt-20 animate-fade-in-up bottom-cta" style={{ animationDelay: '600ms' }}>
+          <div className="bottom-whychoose-content inline-flex items-center space-x-4 bg-white  px-8 py-3 shadow-lg hover:shadow-xl transition-shadow duration-300 border-2 gradient-border">
             <div className="w-3 h-3 bg-green-500  animate-pulse"></div>
             <span className="font-medium text-black font-[Calibri]">
               Ready to get started? Let's make it happen.

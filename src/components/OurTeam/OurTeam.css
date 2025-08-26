@@ -150,3 +150,11 @@
 .animate-float-left:hover {
   animation-play-state: paused;
 }
+@media(max-width : 768px){
+  .our-team-text{
+    margin-bottom: 10px;
+  }
+  .main-card-profile{
+    height: auto !important;
+  }
+}

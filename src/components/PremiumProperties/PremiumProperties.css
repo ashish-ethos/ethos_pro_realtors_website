@@ -41,3 +41,15 @@
 .card-properties-details .bg-white {
   border: 1px solid #e5e7eb;
 }
+@media(max-width:768px){
+  .premium-properties-main{
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .permium-properties-right{
+    padding: 10px;
+  }
+  .details-mobile{
+    justify-content: start;
+  }
+}

@@ -118,3 +118,6 @@
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
+.non-active-tab{
+  border: 1px solid #000 !important;
+}

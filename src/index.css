@@ -49,6 +49,7 @@ body {
 .ant-btn-variant-solid {
   color: #000 !important;
 }
+
 /* ExploreProperties.css */
 .property-card-action-button {
   display: flex !important;
@@ -149,5 +150,12 @@ body {
 @media (max-width: 768px) {
   .main-app {
     padding-top: 60px;
+  }
+  .setaspart-content{
+    padding:10px;
+  }
+   .premium-properties-main{
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 }

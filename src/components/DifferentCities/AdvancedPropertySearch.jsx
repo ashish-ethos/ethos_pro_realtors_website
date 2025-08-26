@@ -465,11 +465,11 @@ const AdvancedPropertySearch = ({
     <Drawer
       title={
         <div className="advanced-title">
-          <Space>
-            <Title level={4} className="m-0">
+          <Space className="advanced-property-title">
+            <Title level={4} className="m-0 advanced-text">
               Advanced Property Search
             </Title>
-            <Text type="secondary">{filteredProperties.length} properties found</Text>
+            <Text type="secondary" className="property-find">{filteredProperties.length} properties found</Text>
           </Space>
           <Space>
             <CustomButton className="property-card-action-button" icon={<FaFilter />} onClick={() => setShowFilters(!showFilters)}>

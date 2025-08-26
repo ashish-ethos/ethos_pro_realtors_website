@@ -160,10 +160,10 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={`relative w-full h-full transform-style-preserve-3d transition-transform duration-700 ${isFlipped ? 'rotate-y-180' : ''}`}
+        className={` relative w-full h-full transform-style-preserve-3d transition-transform duration-700 ${isFlipped ? 'rotate-y-180' : ''}`}
       >
         {/* FRONT SIDE */}
-        <div className="absolute inset-0 w-full h-full backface-hidden">
+        <div className="main-card-profile absolute inset-0 w-full h-full backface-hidden">
           <div className="relative w-full h-full bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 transition-all duration-500">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913]"></div>
             <div className="relative h-56 overflow-hidden">
@@ -214,7 +214,7 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
           </div>
         </div>
         {/* BACK SIDE */}
-        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180">
+        <div className="main-card-profile absolute inset-0 w-full h-full backface-hidden rotate-y-180">
           <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl shadow-xl border border-gray-200 flex flex-col">
             <div className="flex-1 overflow-y-auto p-4">
               <h3 className="text-lg font-black mb-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent">
@@ -471,7 +471,7 @@ const OurTeam = () => {
   return (
     <div className="main-bg py-10 px-4 relative overflow-hidden" id='our-team'>
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 our-team-text">
           <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <h3 className="text-4xl md:text-5xl font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
               Meet Our Team

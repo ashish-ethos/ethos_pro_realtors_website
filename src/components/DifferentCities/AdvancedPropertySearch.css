@@ -1,5 +1,5 @@
 /* From Uiverse.io by chase2k25, adapted for property card */
-.advancedproperty-parent{
+.advancedproperty-parent {
   width: 300px;
   height: 400px; /* Increased height to accommodate image and details */
   perspective: 1200px;
@@ -506,7 +506,11 @@
   right: 0;
   bottom: 0;
   padding: 14px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
   color: #fff;
 }
 
@@ -598,4 +602,80 @@
 
 .no-properties-button {
   margin-top: 16px;
+}
+@media(max-width:425px){
+  .advanced-title {
+    flex-direction: column;
+    font-size: 10px;
+    width:100%;
+    align-items:start;
+  }
+  .ant-collapse>.ant-collapse-item >.ant-collapse-header{
+    padding: 5px !important;
+  }
+}
+@media (max-width: 768px) {
+  .advanced-title {
+    /* flex-direction: column; */
+    font-size: 10px;
+    width:100%;
+    align-items:start;
+  }
+  .ant-space-gap-row-small {
+    /* flex-direction: column; */
+    /* align-items: start; */
+    /* gap: 0px; */
+  }
+  .advanced-property-title {
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 5px;
+  }
+  .advanced-text {
+    font-size: 15px !important;
+    margin: 0px !important;
+    padding: 0px;
+    text-align: start;
+  }
+  .property-find {
+    /* font-size: 6px; */
+  }
+  .ant-drawer .ant-drawer-header {
+    padding: 5px 10px !important;
+  }
+  .ant-drawer-body {
+    padding: 10px !important;
+  }
+  .noactive-main {
+    flex-direction: column;
+  }
+  .filters-panel {
+    width: auto !important;
+    padding: 5px;
+    border: 1px solid #f0f0f0;
+  }
+  .filters-footer {
+    padding-top: 0px;
+  }
+  .ant-space-gap-row-small {
+    row-gap: 0px !important;
+  }
+  .properties-container {
+    padding: 5px;
+  }
+  .properties-header {
+    flex-direction: column;
+    justify-content: left;
+    width: 100%;
+    align-items: flex-start;
+  }
+  .card-details{
+    flex-direction: column;
+    gap: 5px;
+    width:100%;
+    align-items:start;
+  }
+  .filters-panel-contain{
+    padding-bottom: 0px;
+  }
 }

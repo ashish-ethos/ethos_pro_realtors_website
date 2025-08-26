@@ -232,7 +232,7 @@ function PremiumProperties() {
 
   return (
     <div
-      className="h-full bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 py-16 px-4 relative overflow-hidden"
+      className="premium-properties-main h-full bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 py-16 px-4 relative overflow-hidden"
       id="premium-properties"
     >
       {/* Background Decorative Elements */}
@@ -256,13 +256,13 @@ function PremiumProperties() {
         {/* Navigation Buttons */}
         <button
           onClick={prevProperty}
-          className="absolute cursor-pointer left-4 top-1/2 transform -translate-y-1/2 z-30 p-4 rounded-full bg-white/90 text-gray-800 shadow-xl hover:scale-110 transition-all"
+          className="absolute cursor-pointer left-4 top-1/2 transform -translate-y-1/2 z-30 p-4 rounded-full bg-white/90 text-gray-800 shadow-xl hover:scale-110 transition-all permium-properties-right"
         >
           <ChevronLeft size={24} />
         </button>
         <button
           onClick={nextProperty}
-          className="absolute cursor-pointer right-4 top-1/2 transform -translate-y-1/2 z-30 p-4 rounded-full bg-white/90 text-gray-800 shadow-xl hover:scale-110 transition-all"
+          className="absolute cursor-pointer right-4 top-1/2 transform -translate-y-1/2 z-30 p-4 rounded-full bg-white/90 text-gray-800 shadow-xl hover:scale-110 transition-all permium-properties-right"
         >
           <ChevronRight size={24} />
         </button>
@@ -322,7 +322,7 @@ function PremiumProperties() {
                         </span>
                       ))}
                     </div>
-                    <div className="flex justify-end">
+                    <div className="flex justify-end details-mobile">
                       <CustomButton
                         onClick={() => openDetails(property)}
                         className="px-4 py-1 font-semibold rounded-xl cursor-pointer"
