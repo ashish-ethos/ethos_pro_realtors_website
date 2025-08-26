@@ -108,7 +108,7 @@ const Testimonial = () => {
               <Star key={i} className="w-6 h-6 text-yellow-400 fill-current mx-0.5" />
             ))}
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent mb-6">
+          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent mb-6 testimonial-text-content">
             What Our Clients Have To Say About Us?
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">

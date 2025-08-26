@@ -506,7 +506,7 @@ const OurBlog = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-24 px-4 relative overflow-hidden" id='our-blog'>
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-24 px-4 relative overflow-hidden premium-properties-main" id='our-blog'>
             {/* Animated Background */}
             <div className="absolute inset-0">
                 <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-blue-200/40 to-purple-200/30 rounded-full blur-3xl animate-pulse"></div>
@@ -530,7 +530,7 @@ const OurBlog = () => {
                             <CustomButton
                                 onClick={openExploreDrawer}
                                 className="group explore-all-article relative overflow-hidden px-6 py-2 text-black font-bold rounded-2xl shadow-2xl transition-all duration-500 hover:scale-110 hover:shadow-2xl transform border-2"
-                               >
+                            >
                                 <div className="relative flex items-center gap-3">
                                     <span className="text-lg">Explore All Articles</span>
                                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
@@ -538,16 +538,18 @@ const OurBlog = () => {
                             </CustomButton>
                         </div>
 
-                        <h1 className="text-6xl lg:text-8xl font-black mb-8 leading-none">
-                            <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent">
-                                Our Blog
-                            </span>
-                        </h1>
+                        <div className='ourblog-header-text'>
+                            <h1 className="text-6xl lg:text-8xl font-black mb-8 leading-none">
+                                <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent">
+                                    Our Blog
+                                </span>
+                            </h1>
 
-                        <p className="text-xl text-gray-600 max-w-2xl leading-relaxed mb-8">
-                            Dive deep into the world of real estate with our expert insights,
-                            market analysis, and investment strategies that drive success.
-                        </p>
+                            <p className="text-xl text-gray-600 max-w-2xl leading-relaxed mb-8">
+                                Dive deep into the world of real estate with our expert insights,
+                                market analysis, and investment strategies that drive success.
+                            </p>
+                        </div>
                     </div>
 
                     {/* Right Section (Stats) */}
@@ -603,7 +605,7 @@ const OurBlog = () => {
                                         ? 'shadow-2xl shadow-blue-500/20'
                                         : 'hover:shadow-purple-500/20'
                                         }`}
-                                        >
+                                    >
                                         <div className="relative h-64 overflow-hidden">
                                             <img
                                                 src={post.image}
@@ -614,7 +616,7 @@ const OurBlog = () => {
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
                                             <div className="absolute top-6 left-6">
                                                 <div className="px-4 category-label py-2 text-black font-[Inter] font-bold text-sm shadow-lg transform hover:scale-105 transition-transform border-1 bg-white/40 backdrop-blur-sm"
-                                                    >
+                                                >
                                                     {post.category}
                                                 </div>
                                             </div>

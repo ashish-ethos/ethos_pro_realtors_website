@@ -158,4 +158,8 @@ body {
     padding-top: 15px;
     padding-bottom: 15px;
   }
+  .testimonial-text-content{
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
 }
