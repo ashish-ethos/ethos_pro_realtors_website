@@ -24,7 +24,7 @@ function App() {
     <Router>
       <Header />
       <ScrollToTop />
-      <main className="pt-20">
+      <main className="pt-20 main-app">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />

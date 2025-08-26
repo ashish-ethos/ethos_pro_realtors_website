@@ -61,28 +61,7 @@
   box-shadow: rgba(30, 30, 60, 0.3) 30px 50px 25px -40px,
     rgba(30, 30, 60, 0.15) 0px 25px 30px 0px;
 }
-/* ExploreProperties.css */
-.property-card-action-button {
-  /* flex: 1 1 0% !important; */
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 4px !important; /* space-x-1 */
-  padding: 8px !important; /* py-2 px-2 */
-  border-radius: 8px !important; /* rounded-lg */
-  background-color: #f3f4f6 !important; /* bg-gray-100 */
-  color: #4b5563 !important; /* text-gray-700 */
-  transition: all 300ms ease !important; /* transition-all duration-300 */
-  border: 1px solid transparent !important; /* border border-transparent */
-  cursor: pointer !important;
-}
 
-@media (min-width: 640px) { /* sm: */
-  .property-card-action-button {
-    gap: 8px !important; /* sm:space-x-2 */
-    padding: 12px 12px !important; /* sm:px-3 */
-  }
-}
 
 .property-card-action-button:hover {
   transform: scale(1.05) !important; /* hover:scale-105 */
@@ -102,7 +81,7 @@
 }
 
 .property-card-action-button span {
-  font-size: 10px !important; /* text-[10px] */
+  
   font-weight: 500 !important; /* font-medium */
 }
 
@@ -115,7 +94,7 @@
 /* Ensure existing styles (e.g., .gradient-border-active) are preserved */
 .gradient-border-active {
   position: relative;
-  border: none !important;
+  /* border: none !important; */
 }
 
 .gradient-border-active::before {

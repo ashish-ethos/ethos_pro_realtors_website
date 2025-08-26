@@ -78,17 +78,8 @@ const Hero = ({ onSearchChange }) => {
       <Tag
         closable={closable}
         onClose={onClose}
-        style={{
-          margin: "2px",
-          borderRadius: "8px",
-          backgroundColor: "#e6f7ff",
-          border: "1px solid #91d5ff",
-          color: "#1890ff",
-          padding: "1px 6px",
-          fontSize: "12px",
-          lineHeight: "18px",
-          whiteSpace: "nowrap",
-        }}
+        className="hero-tag"
+        
       >
         {label}
       </Tag>
@@ -101,7 +92,7 @@ const Hero = ({ onSearchChange }) => {
 
   return (
     <section
-      className="relative w-full h-[60vh] overflow-hidden parallax"
+      className="relative w-full h-[60vh] overflow-hidden parallax hero-section"
       id="home"
     >
       {/* Background */}
@@ -115,7 +106,7 @@ const Hero = ({ onSearchChange }) => {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-white text-center hero-content">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight text-gradient animate-fade-in-slide-up">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight text-gradient animate-fade-in-slide-up hero-section-title">
           Ethos Pro Realtors
         </h1>
         <p className="text-base sm:text-lg lg:text-xl mb-10 max-w-3xl text-white/90 leading-relaxed animate-fade-in-delayed">
@@ -125,10 +116,10 @@ const Hero = ({ onSearchChange }) => {
 
         {/* Advanced Search Card */}
         <Card
-          className="w-full max-w-6xl mx-auto bg-gradient-to-r from-orange-400 to-orange-200 shadow-2xl rounded-2xl p-6 sm:p-8 animate-scale-in"
-          bodyStyle={{ padding: 0 }}
+          className="hero-section-card w-full max-w-6xl mx-auto bg-gradient-to-r from-orange-400 to-orange-200 shadow-2xl rounded-2xl p-6 sm:p-8 animate-scale-in"
+          
         >
-          <Row gutter={[8, 8]} align="middle" justify="center" wrap className="p-4">
+          <Row gutter={[8, 8]} align="middle" justify="center" wrap className="p-4 hero-card-all">
             {/* Location */}
             <Col xs={24} sm={12} md={undefined} style={screens.md ? { flex: '0 0 200px' } : {}}>
               <CustomInput
@@ -136,8 +127,8 @@ const Hero = ({ onSearchChange }) => {
                 placeholder="Search"
                 value={searchText}
                 onChange={handleSearch}
-                style={{ height: 40, width: "100%" }}
-                className="rounded-lg border-gray-200 hover:border-blue-400 transition-colors"
+                
+                className="w-full rounded-lg border-gray-200 hover:border-blue-400 transition-colors"
               />
             </Col>
 
@@ -145,6 +136,8 @@ const Hero = ({ onSearchChange }) => {
             <Col xs={24} sm={12} md={undefined} style={screens.md ? { flex: '0 0 auto' } : {}}>
               <CustomSelect
                 size="large"
+                className="hero-select"
+
                 style={{
                   width: "auto",
                   height: 40,
@@ -188,6 +181,7 @@ const Hero = ({ onSearchChange }) => {
             <Col xs={24} sm={12} md={undefined} style={screens.md ? { flex: '0 0 auto' } : {}}>
               <CustomSelect
                 size="large"
+                className="hero-select"
                 style={{
                   width: "auto",
                   height: 40,

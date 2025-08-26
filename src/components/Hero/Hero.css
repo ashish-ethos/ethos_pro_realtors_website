@@ -207,6 +207,9 @@ section {
   .ant-card {
     padding: 10px !important;
   }
+  .ant-card .ant-card-body{
+    padding: 0px !important;
+  }
 
   .ant-select-selection-item {
     max-width: 80px;
@@ -221,4 +224,36 @@ section {
 /* Center content in reduced height hero */
 .hero-content {
   padding-top: 5vh;
+}
+@media (max-width : 768px){
+  /* .hero-section{
+    height: 80vh;
+  } */
+  .hero-section-title{
+    margin-bottom: 0px;
+  }
+  .hero-section-card{
+    
+  }
+  .hero-card-all{
+    padding: 0px;
+  }
+ 
+}
+.hero-tag{
+  margin: 2px;
+  border-radius: 8px;
+  background-color: #e6f7ff;
+  border: 1px solid #91d5ff;
+  color: #1890ff;
+  padding: 1px 6px;
+  font-size: 12px;
+  line-height: 18px;
+  white-space: nowrap;
+}
+
+@media(max-width:576px){
+   .hero-select{
+    min-width: 100% !important;
+  }
 }

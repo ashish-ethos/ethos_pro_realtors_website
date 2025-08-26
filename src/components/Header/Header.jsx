@@ -37,7 +37,7 @@ function Header() {
       className={`fixed w-full top-0 z-50 transition-all duration-500 ${scrolled ? "bg-white shadow-md" : "bg-transparent"
         }`}
     >
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center header-mobile">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-3">
           <img src={CompanyHeaderLogo} alt="Logo" className="h-14 w-auto cursor-pointer" />
