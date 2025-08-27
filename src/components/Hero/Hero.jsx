@@ -131,7 +131,8 @@ const Hero = ({ onSearchChange }) => {
                 placeholder="Property Type"
                 suffixIcon={<DownOutlined />}
                 onChange={handleTypeSelect}
-                dropdownStyle={{ minWidth: 200 }}
+                styles={{ popup: { root: { width: 200 } } }}
+                // dropdownStyle={{ minWidth: 200 }}
                 optionFilterProp="label"
                 showSearch
                 mode="multiple"
@@ -174,7 +175,8 @@ const Hero = ({ onSearchChange }) => {
                 }}
                 placeholder="Select City"
                 onChange={handleCitySelect}
-                dropdownStyle={{ minWidth: 200 }}
+                styles={{ popup: { root: { width: 200 } } }}
+                // dropdownStyle={{ minWidth: 200 }}
                 options={cityOptions.map((city) => ({
                   value: city,
                   label: city.charAt(0).toUpperCase() + city.slice(1),

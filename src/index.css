@@ -49,6 +49,9 @@ body {
 .ant-btn-variant-solid {
   color: #000 !important;
 }
+.ant-card .ant-card-body{
+  padding: 0px;
+}
 
 /* ExploreProperties.css */
 .property-card-action-button {
@@ -163,3 +166,4 @@ body {
     margin-bottom: 20px;
   }
 }
+

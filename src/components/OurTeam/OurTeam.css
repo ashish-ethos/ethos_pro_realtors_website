@@ -157,4 +157,22 @@
   .main-card-profile{
     height: auto !important;
   }
+  .ourblog-card-section{
+    margin-top: 80px;
+  }
+  .stats-section{
+    padding: 10px !important;
+  }
+  .main-ourblogcard{
+    /* flex-direction: column; */
+    /* gap: 10px; */
+  }
+  .all-ourblog-card{
+    width: 100%;
+  }
+}
+@media(max-width:425px){
+  .blog-article-list{
+    padding: 5px;
+  }
 }

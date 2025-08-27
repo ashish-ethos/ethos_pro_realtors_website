@@ -613,6 +613,9 @@
   .ant-collapse>.ant-collapse-item >.ant-collapse-header{
     padding: 5px !important;
   }
+  .property-button-section{
+    display: none;
+  }
 }
 @media (max-width: 768px) {
   .advanced-title {

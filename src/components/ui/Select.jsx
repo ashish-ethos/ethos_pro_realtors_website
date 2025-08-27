@@ -11,10 +11,25 @@ const CustomSelect = ({
   disabled = false,
   name,
   className = '',
-  mode, // Add mode prop to support multiple selection
+  mode, 
   children,
+  styles = {}, 
+  dropdownStyle, 
   ...rest
 }) => {
+
+  const filteredRest = { ...rest };
+  if (dropdownStyle) {
+    console.warn('dropdownStyle is deprecated; use styles.popup.root instead.');
+    filteredRest.styles = {
+      ...styles,
+      popup: {
+        ...styles.popup,
+        root: { ...styles.popup?.root, ...dropdownStyle },
+      },
+    };
+  }
+
   return (
     <Select
       value={value}
@@ -23,8 +38,9 @@ const CustomSelect = ({
       name={name}
       placeholder={placeholder}
       className={`common-select ${className}`}
-      mode={mode} // Pass mode prop to Ant Design Select
-      {...rest}
+      mode={mode}
+      styles={styles} 
+      {...filteredRest}
     >
       {children ||
         options.map((option) =>

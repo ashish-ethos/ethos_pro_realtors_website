@@ -15,6 +15,7 @@ import ReachAriaMall from "../../assets/images/exploreproperties/aria-mall.jpg";
 import TrumpTower from "../../assets/images/exploreproperties/trump-tower.jpg";
 import PioneerUrban from "../../assets/images/exploreproperties/pioneer-urban.jpg";
 import PioneerAraya from "../../assets/images/exploreproperties/pioner-araya.jpg";
+import './Project.css';
 
 const { Search } = Input;
 const { Option } = Select;
@@ -371,7 +372,7 @@ const Commercial = () => {
           alt={property.name}
           className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
         />
-        <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+        <div className="absolute top-4 left-4 flex flex-wrap gap-2 project-status-mobile">
           {property.status.map((status) => (
             <span
               key={status}
@@ -486,7 +487,7 @@ const Commercial = () => {
             <button
               onClick={() => handleViewDetails(property)}
               className="bg-white text-black px-5 py-2 rounded-[10px] cursor-pointer font-semibold flex items-center justify-center gap-2 hover:shadow-md transition-all duration-200"
-              style={{ minWidth: '140px' }}
+              
             >
               <Eye size={18} />
               View Details

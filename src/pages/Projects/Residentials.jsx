@@ -12,7 +12,7 @@ import CentralPark from "../../assets/images/exploreproperties/central-park.jpg"
 import TrumpTower from "../../assets/images/exploreproperties/trump-tower.jpg";
 import PioneerUrban from "../../assets/images/exploreproperties/pioneer-urban.jpg";
 import PioneerAraya from "../../assets/images/exploreproperties/pioner-araya.jpg";
-
+import './Project.css';
 const { Search } = Input;
 const { Option } = Select;
 const { Text } = Typography;
@@ -292,7 +292,7 @@ const Residentials = () => {
                             <Text type="secondary">No Image Available</Text>
                         </div>
                     )}
-                    <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                    <div className="project-status-mobile absolute top-4 left-4 flex flex-wrap gap-2">
                         {property.status.map((status) => (
                             <span
                                 key={status}
@@ -405,7 +405,7 @@ const Residentials = () => {
                             <button
                                 onClick={() => handleViewDetails(property)}
                                 className="bg-white text-black px-5 cursor-pointer py-2 rounded-[10px] font-semibold flex items-center justify-center gap-2 hover:shadow-md transition-all duration-200"
-                                style={{ minWidth: '140px' }}
+                                
                             >
                                 <Eye size={18} />
                                 View Details

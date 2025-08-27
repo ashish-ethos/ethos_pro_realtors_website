@@ -112,8 +112,8 @@ const mockProperties = [
     area: "Sector 54, Gurgaon",
     price: 85000000,
     priceValue: 85000000,
-    image:
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=500&fit=crop",
+    // image:
+    //   "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=500&fit=crop",
     type: "Penthouse",
     status: "For Sale",
     bedrooms: 4,
@@ -528,7 +528,7 @@ const AdvancedPropertySearch = ({
               {filteredProperties.length} properties found
             </Text>
           </Space>
-          <Space>
+          <Space className="property-button-section">
             <CustomButton
               className="property-card-action-button"
               icon={<FaFilter />}

@@ -36,21 +36,20 @@ const AssociatedDevelopers = () => {
     { id: 13, name: 'Shapoorji', src: Shapoorji, color: 'from-yellow-500 to-orange-400', shadow: 'shadow-yellow-200' },
     { id: 14, name: 'IndiaBull', src: IndiaBull, color: 'from-pink-500 to-rose-400', shadow: 'shadow-pink-200' },
     { id: 15, name: 'Bptp', src: Bptp, color: 'from-slate-600 to-gray-500', shadow: 'shadow-slate-200' },
-    { id: 13, name: 'Emaar', src: Emaar, color: 'from-yellow-500 to-orange-400', shadow: 'shadow-yellow-200' },
-    { id: 14, name: 'Sobha', src: Sobha, color: 'from-pink-500 to-rose-400', shadow: 'shadow-pink-200' },
-    { id: 15, name: 'AtsEstate', src: AtsEstate, color: 'from-slate-600 to-gray-500', shadow: 'shadow-slate-200' },
-    
+    { id: 16, name: 'Emaar', src: Emaar, color: 'from-yellow-500 to-orange-400', shadow: 'shadow-yellow-200' },
+    { id: 17, name: 'Sobha', src: Sobha, color: 'from-pink-500 to-rose-400', shadow: 'shadow-pink-200' },
+    { id: 18, name: 'AtsEstate', src: AtsEstate, color: 'from-slate-600 to-gray-500', shadow: 'shadow-slate-200' },
   ];
 
   const duplicatedLogos = [...developerLogos, ...developerLogos, ...developerLogos];
 
   return (
-    <div className="relative py-10 bg-gradient-to-br from-gray-50 via-white to-blue-50 overflow-hidden" id='associated-developers'>
+    <div className="relative py-6 sm:py-10 bg-gradient-to-br from-gray-50 via-white to-blue-50 overflow-hidden" id='associated-developers'>
       {/* Animated Background Elements */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDelay: '4s'}}></div>
+        <div className="absolute top-1/4 left-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+        <div className="absolute top-3/4 right-1/4 w-48 sm:w-96 h-48 sm:h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-1/4 left-1/2 w-48 sm:w-96 h-48 sm:h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{animationDelay: '4s'}}></div>
       </div>
 
       {/* Geometric Background Pattern */}
@@ -62,9 +61,9 @@ const AssociatedDevelopers = () => {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center ">
-          <div className="inline-block relative mb-6">
-            <h2 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-800 via-slate-600 to-slate-800 tracking-tight">
+        <div className="text-center">
+          <div className="inline-block relative mb-4 sm:mb-6">
+            <h2 className="text-2xl sm:text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-800 via-slate-600 to-slate-800 tracking-tight">
               Associated Developers
             </h2>
             <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full"></div>
@@ -77,10 +76,10 @@ const AssociatedDevelopers = () => {
         </div>
 
         {/* Floating Logos Container */}
-        <div className="relative h-70 overflow-hidden">
+        <div className="relative h-48 sm:h-70 overflow-hidden">
           {/* Main Layer */}
           <div className="absolute inset-0 flex items-center">
-            <div className="flex animate-float-right space-x-16 min-w-max">
+            <div className="flex animate-float-right space-x-8 sm:space-x-16 min-w-max">
               {duplicatedLogos.map((logo, index) => (
                 <div
                   key={`top-${logo.id}-${index}`}
@@ -91,7 +90,7 @@ const AssociatedDevelopers = () => {
                   <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${logo.color} opacity-0 group-hover:opacity-20 blur-2xl transition-all duration-700 scale-150`}></div>
                   
                   {/* Logo Container */}
-                  <div className={`relative w-44 h-28 bg-white/80 backdrop-blur-sm rounded-3xl border-2 border-gray-200/50 hover:border-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-1 flex items-center justify-center overflow-hidden ${logo.shadow} group-hover:shadow-2xl`}>
+                  <div className={`relative w-32 sm:w-44 h-20 sm:h-28 bg-white/80 backdrop-blur-sm rounded-3xl border-2 border-gray-200/50 hover:border-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-1 flex items-center justify-center overflow-hidden ${logo.shadow} group-hover:shadow-2xl`}>
                     
                     {/* Animated Gradient Border */}
                     <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${logo.color} opacity-0 group-hover:opacity-10 transition-all duration-500`}></div>
@@ -100,7 +99,7 @@ const AssociatedDevelopers = () => {
                     <div className="absolute inset-1 rounded-3xl bg-gradient-to-br from-white/50 to-gray-50/30 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                     
                     {/* Logo Container */}
-                    <div className="relative z-10 p-6 w-full h-full flex items-center justify-center">
+                    <div className="relative z-10 p-4 sm:p-6 w-full h-full flex items-center justify-center">
                       <img
                         src={logo.src}
                         alt={logo.name}
@@ -123,15 +122,15 @@ const AssociatedDevelopers = () => {
           </div>
 
           {/* Secondary Layer */}
-          <div className="absolute inset-0 flex items-center translate-y-20">
-            <div className="flex animate-float-left space-x-20 min-w-max">
+          <div className="absolute inset-0 flex items-center translate-y-12 sm:translate-y-20">
+            <div className="flex animate-float-left space-x-10 sm:space-x-20 min-w-max">
               {duplicatedLogos.slice().reverse().map((logo, index) => (
                 <div
                   key={`bottom-${logo.id}-${index}`}
                   className="flex-shrink-0 group relative opacity-40 hover:opacity-100 transition-all duration-500"
                   style={{animationDelay: `${index * 0.10}s`}}
                 >
-                  <div className="w-36 h-24 bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200/40 hover:border-gray-300/60 transition-all duration-500 group-hover:scale-105 group-hover:-rotate-1 flex items-center justify-center shadow-lg hover:shadow-xl">
+                  <div className="w-24 sm:w-36 h-16 sm:h-24 bg-white/60 backdrop-blur-sm rounded-2xl border border-gray-200/40 hover:border-gray-300/60 transition-all duration-500 group-hover:scale-105 group-hover:-rotate-1 flex items-center justify-center shadow-lg hover:shadow-xl">
                     <img
                       src={logo.src}
                       alt={logo.name}
@@ -144,36 +143,34 @@ const AssociatedDevelopers = () => {
           </div>
 
           {/* Edge Gradients */}
-          <div className="absolute left-0 top-0 w-40 h-full bg-gradient-to-r from-gray-50 via-white/80 to-transparent z-20"></div>
-          <div className="absolute right-0 top-0 w-40 h-full bg-gradient-to-l from-gray-50 via-white/80 to-transparent z-20"></div>
+          <div className="absolute left-0 top-0 w-20 sm:w-40 h-full bg-gradient-to-r from-gray-50 via-white/80 to-transparent z-20"></div>
+          <div className="absolute right-0 top-0 w-20 sm:w-40 h-full bg-gradient-to-l from-gray-50 via-white/80 to-transparent z-20"></div>
         </div>
 
         {/* Bottom Stats with Enhanced Styling */}
-        <div className="mt-20">
+        <div className="mt-12 sm:mt-20">
           <div className="text-center mb-8">
-            <div className="inline-flex items-center space-x-4 bg-white/60 backdrop-blur-sm rounded-full px-8 py-2 border border-blue-200 shadow-lg">
-              <div className="flex space-x-8 text-slate-700">
+            <div className="inline-flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 bg-white/60 backdrop-blur-sm rounded-lg sm:rounded-full px-6 sm:px-8 py-4 border border-blue-200 shadow-lg">
+              <div className="flex flex-col sm:flex-row sm:space-x-8 text-slate-700">
                 <div className="text-center group cursor-pointer">
-                  <div className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors duration-300">15+</div>
-                  <div className="text-sm uppercase tracking-wider font-medium font-[Inter]">Partners</div>
+                  <div className="text-lg sm:text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors duration-300">15+</div>
+                  <div className="text-xs sm:text-sm uppercase tracking-wider font-medium font-[Inter]">Partners</div>
                 </div>
-                <div className="w-px h-12 bg-gray-300"></div>
+                <div className="w-full sm:w-px h-px sm:h-12 bg-gray-300 my-4 sm:my-0"></div>
                 <div className="text-center group cursor-pointer">
-                  <div className="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors duration-300">500+</div>
-                  <div className="text-sm uppercase tracking-wider font-medium font-[Inter]">Projects</div>
+                  <div className="text-lg sm:text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors duration-300">500+</div>
+                  <div className="text-xs sm:text-sm uppercase tracking-wider font-medium font-[Inter]">Projects</div>
                 </div>
-                <div className="w-px h-12 bg-gray-300"></div>
+                <div className="w-full sm:w-px h-px sm:h-12 bg-gray-300 my-4 sm:my-0"></div>
                 <div className="text-center group cursor-pointer">
-                  <div className="text-xl font-bold text-slate-800 group-hover:text-pink-600 transition-colors duration-300">25+</div>
-                  <div className="text-sm uppercase tracking-wider font-medium font-[Inter]">Years</div>
+                  <div className="text-lg sm:text-xl font-bold text-slate-800 group-hover:text-pink-600 transition-colors duration-300">25+</div>
+                  <div className="text-xs sm:text-sm uppercase tracking-wider font-medium font-[Inter]">Years</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      
     </div>
   );
 };

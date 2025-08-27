@@ -174,7 +174,7 @@ section {
   .ant-btn,
   .ant-input-number {
     font-size: 14px;
-    height: 36px;
+    /* height: 36px; */
   }
 
   .custom-button {
@@ -183,7 +183,7 @@ section {
   }
 
   .ant-select-selector {
-    height: 36px !important;
+    /* height: 36px !important; */
   }
 
   .ant-select-selection-item {
@@ -192,13 +192,8 @@ section {
 }
 
 @media (max-width: 576px) {
-  h1 {
-    font-size: 2.5rem !important;
-  }
-  p {
-    font-size: 1rem !important;
-    max-width: 90% !important;
-  }
+ 
+ 
 
   .hero-content {
     padding: 12px;

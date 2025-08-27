@@ -136,7 +136,7 @@ function Footer() {
       <div className="relative border-b border-gray-800/50">
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 via-blue-600/20 to-purple-600/20 animate-gradient-x" />
 
-        <div className="relative container mx-auto px-6 py-20">
+        <div className="relative container mx-auto px-4 sm:px-6 py-10 sm:py-20 ">
           <div className="max-w-5xl mx-auto text-center">
             {/* Live Clock */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8">
@@ -188,7 +188,7 @@ function Footer() {
               </div>
 
               {/* Trust Indicators */}
-              <div className="flex items-center justify-center gap-8 mt-8 text-sm text-gray-400">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mt-8 text-sm text-gray-400">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-green-400 rounded-full" />
                   <span>Spam-free guaranteed</span>
@@ -202,6 +202,7 @@ function Footer() {
                   <span>5K+ subscribers</span>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
@@ -294,7 +295,7 @@ function Footer() {
                     label: "Instagram",
                     link: "https://www.instagram.com/ethosprorealtors/"
                   },
-                  
+
                   {
                     icon: Linkedin,
                     baseColor: "from-blue-600/20 to-blue-800/20",
@@ -370,8 +371,8 @@ function Footer() {
                   { to: "/about", label: "About" },
                   { to: "/blog", label: "Blog" },
                   { to: "/contact", label: "Contact" },
-                  {to:"/disclaimer", label: "Disclaimer"},
-                  
+                  { to: "/disclaimer", label: "Disclaimer" },
+
                 ].map((item, idx) => (
                   <li key={idx}>
                     <Link
@@ -392,7 +393,7 @@ function Footer() {
               </ul>
             </div>
 
-            
+
           </div>
 
           {/* Contact Section - Ultra Enhanced */}

@@ -15,7 +15,7 @@ import {
     Share2,
     X
 } from 'lucide-react';
-import { Drawer, Button } from 'antd';
+import { Drawer, Button, Grid } from 'antd';
 import BlogExploreArticles from './BlogExploreArticles';
 import BuyProperties from "../../assets/images/premiumproperties/buying-properties.jpg";
 import CalculateROI from "../../assets/images/premiumproperties/Calculate-ROI.jpg";
@@ -328,7 +328,7 @@ const contentMap = {
     4: { content: keyThingsContent, image: KeyThings },
     5: {
         content: 'Explore the latest market trends and expert predictions that will shape the real estate landscape in 2025...',
-        image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=400&fit=crop"
+        image: KeyThings
     }
 };
 
@@ -387,7 +387,7 @@ const blogPosts = [
     },
     {
         id: 5,
-        image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=400&fit=crop",
+        image: KeyThings,
         date: 'May 15, 2025',
         category: 'Market Trends',
         tags: ['Market', 'Analysis'],
@@ -410,6 +410,8 @@ const OurBlog = () => {
     const visibleCards = 4;
     const navigate = useNavigate();
     const location = useLocation();
+    const { useBreakpoint } = Grid;
+    const screens = useBreakpoint();
 
     // Auto-play functionality
     useEffect(() => {
@@ -516,58 +518,63 @@ const OurBlog = () => {
 
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Header Section */}
-                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center">
-                    {/* Left Section */}
-                    <div className="text-center lg:text-left pr-0 lg:pr-20">
-                        <div className="inline-flex items-center gap-3 mb-8 p-3 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-200">
+                <div className="w-full flex flex-col gap-12">
+                    {/* Row 1 */}
+                    <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+                        <div className="inline-flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-200">
                             <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                            <span className="text-gray-700 font-semibold text-lg">Latest Real Estate Insights</span>
+                            <span className="text-gray-700 font-semibold text-lg">
+                                Latest Real Estate Insights
+                            </span>
                             <div className="w-12 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-xs font-bold text-white">
                                 NEW
                             </div>
                         </div>
-                        <div className="absolute top-0 right-0 z-30">
-                            <CustomButton
-                                onClick={openExploreDrawer}
-                                className="group explore-all-article relative overflow-hidden px-6 py-2 text-black font-bold rounded-2xl shadow-2xl transition-all duration-500 hover:scale-110 hover:shadow-2xl transform border-2"
-                            >
-                                <div className="relative flex items-center gap-3">
-                                    <span className="text-lg">Explore All Articles</span>
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-                                </div>
-                            </CustomButton>
-                        </div>
 
-                        <div className='ourblog-header-text'>
-                            <h1 className="text-6xl lg:text-8xl font-black mb-8 leading-none">
+                        <CustomButton
+                            onClick={openExploreDrawer}
+                            className="group explore-all-article relative overflow-hidden px-6 py-2 text-black font-bold rounded-2xl shadow-2xl transition-all duration-500 hover:scale-110 hover:shadow-2xl transform border-2"
+                        >
+                            <div className="relative flex items-center gap-3">
+                                <span className="text-lg">Explore All Articles</span>
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                            </div>
+                        </CustomButton>
+                    </div>
+
+                    {/* Row 2 */}
+                    <div className="flex flex-col lg:flex-row justify-between items-start gap-10">
+                        {/* Left Section - Blog Heading + Content */}
+                        <div className="flex-1 text-center lg:text-left">
+                            <h1 className="text-5xl lg:text-7xl font-black mb-4 leading-none">
                                 <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent">
                                     Our Blog
                                 </span>
                             </h1>
-
-                            <p className="text-xl text-gray-600 max-w-2xl leading-relaxed mb-8">
+                            <p className="text-lg lg:text-xl text-gray-600 max-w-2xl leading-relaxed mx-auto lg:mx-0">
                                 Dive deep into the world of real estate with our expert insights,
                                 market analysis, and investment strategies that drive success.
                             </p>
                         </div>
-                    </div>
 
-                    {/* Right Section (Stats) */}
-                    <div className="flex gap-8 mt-10 lg:mt-0 text-center">
-                        <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 px-4 shadow-lg border border-blue-200">
-                            <div className="text-3xl font-bold text-blue-600">50+</div>
-                            <div className="text-gray-600 text-sm">Articles</div>
-                        </div>
-                        <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 px-4 shadow-lg border border-purple-200">
-                            <div className="text-3xl font-bold text-purple-600">10k+</div>
-                            <div className="text-gray-600 text-sm">Readers</div>
-                        </div>
-                        <div className="bg-white/90 backdrop-blur-sm rounded-xl p-2 px-4 shadow-lg border border-indigo-200">
-                            <div className="text-3xl font-bold text-indigo-600">5★</div>
-                            <div className="text-gray-600 text-sm">Rating</div>
+                        {/* Right Section - Stats */}
+                        <div className="flex justify-center lg:justify-end gap-6 w-full lg:w-auto">
+                            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 px-4 shadow-lg border border-blue-200 text-center stats-section">
+                                <div className="text-3xl font-bold text-blue-600">50+</div>
+                                <div className="text-gray-600 text-sm">Articles</div>
+                            </div>
+                            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 px-4 shadow-lg border border-purple-200 text-center stats-section">
+                                <div className="text-3xl font-bold text-purple-600">10k+</div>
+                                <div className="text-gray-600 text-sm">Readers</div>
+                            </div>
+                            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 px-4 shadow-lg border border-indigo-200 text-center stats-section">
+                                <div className="text-3xl font-bold text-indigo-600">5★</div>
+                                <div className="text-gray-600 text-sm">Rating</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
 
                 {/* Blog Carousel */}
                 <div className="relative">
@@ -588,15 +595,15 @@ const OurBlog = () => {
                         </Button>
                     </div>
 
-                    <div className="overflow-hidden py-4">
+                    <div className="overflow-hidden py-4 ourblog-card-section">
                         <div
-                            className="flex transition-transform duration-1000 ease-out"
+                            className="flex transition-transform duration-1000 ease-out main-ourblogcard"
                             style={{ transform: `translateX(-${currentSlide * (100 / visibleCards)}%)` }}
                         >
                             {blogPosts.map((post) => (
                                 <div
                                     key={post.id}
-                                    className="w-1/4 flex-shrink-0 px-4 cursor-pointer"
+                                    className="w-1/4 flex-shrink-0 px-4 cursor-pointer all-ourblog-card"
                                     onMouseEnter={() => setHoveredCard(post.id)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                     onClick={() => openDrawer(post)}
@@ -672,15 +679,16 @@ const OurBlog = () => {
                 {/* Article Content Drawer */}
                 <Drawer
                     title={
-                        <p className="text-md md:text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent truncate">
+                        <p className="text-xs md:text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent break-words whitespace-normal leading-snug">
                             {selectedPost?.title}
                         </p>
                     }
+
                     placement="right"
                     closable={true}
                     onClose={closeDrawer}
                     open={isDrawerOpen}
-                    width="50%"
+                    width={screens.xs ? "80%" : "50%"}
                     styles={{
                         body: { padding: '24px', overflowY: 'auto' },
                         header: { borderBottom: '1px solid #e8e8e8' }
@@ -703,13 +711,13 @@ const OurBlog = () => {
 
                 {/* Explore Articles Drawer */}
                 <Drawer
-                    title={<h2 className="text-2xl font-bold">Explore All Articles</h2>}
+                    title={<h2 className="text-lg font-bold">Explore All Articles</h2>}
                     placement="right"
                     closable={true}
                     onClose={closeExploreDrawer}
                     open={isExploreDrawerOpen}
                     width="80%"
-                     styles={{
+                    styles={{
                         body: { padding: 0 },
                         header: { borderBottom: '1px solid #e8e8e8' }
                     }}

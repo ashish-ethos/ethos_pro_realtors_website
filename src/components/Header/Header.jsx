@@ -5,6 +5,7 @@ import { FaBars, FaTimes, FaCaretDown } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import "./Header.css";
 import CompanyHeaderLogo from "../../assets/images/logo/ethos_pro_realtors_logo.jpg";
+import MobileHeaderLogo from "../../assets/images/logo/EPR_logo.png";
 
 function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,9 +40,22 @@ function Header() {
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center header-mobile">
         {/* Logo */}
+        {/* Logo */}
         <Link to="/" className="flex items-center space-x-3">
-          <img src={CompanyHeaderLogo} alt="Logo" className="h-14 w-auto cursor-pointer" />
+          {/* Desktop Logo */}
+          <img
+            src={CompanyHeaderLogo}
+            alt="Logo"
+            className="h-14 w-auto cursor-pointer hidden md:block"
+          />
+          {/* Mobile Logo */}
+          <img
+            src={MobileHeaderLogo}
+            alt="Mobile Logo"
+            className="h-12 p-1 w-auto cursor-pointer block md:hidden"
+          />
         </Link>
+
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8">
@@ -96,7 +110,7 @@ function Header() {
           className="md:hidden text-3xl"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <FaTimes /> : <FaBars />}
+          {mobileOpen ? <FaTimes /> : <FaBars className="w-6 h-6" />}
         </button>
       </div>
 
