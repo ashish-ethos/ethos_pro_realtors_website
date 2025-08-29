@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
+import '../PremiumProperties/PremiumProperties.css';
 
 const stats = [
   { value: "2+", label: "Years of Experience", numericValue: 2 },
@@ -15,7 +16,6 @@ const StatCard = ({ value, label, delay, numericValue }) => {
   const contentControls = useAnimation();
 
   useEffect(() => {
-    // Counter animation
     let start = 0;
     const end = numericValue;
     const duration = 2;
@@ -82,7 +82,6 @@ const SetsApart = () => {
   const backgroundControls = useAnimation();
 
   useEffect(() => {
-    // Animate background overlay on mount
     backgroundControls.start({
       opacity: [0.3, 0.5, 0.4],
       scale: [1, 1.02, 1],
@@ -118,29 +117,6 @@ const SetsApart = () => {
           />
         ))}
       </div>
-      <style>{`
-        .stat-card {
-          border-image: linear-gradient(45deg, #c99913, #474236, #000000) 10;
-          border-image-slice: 10;
-          position: relative;
-          overflow: visible;
-        }
-        .stat-card::before {
-          content: '';
-          position: absolute;
-          inset: -8px;
-          border-radius: 24px;
-          border: 4px solid transparent;
-          background: linear-gradient(45deg, #c99913, #474236, #000000) border-box;
-          opacity: 0;
-          transition: opacity 0.3s ease-out;
-          z-index: -1;
-        }
-        .stat-card:hover::before {
-          
-          background:none;
-        }
-      `}</style>
     </div>
   );
 };

@@ -40,7 +40,6 @@ function Header() {
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center header-mobile">
         {/* Logo */}
-        {/* Logo */}
         <Link to="/" className="flex items-center space-x-3">
           {/* Desktop Logo */}
           <img

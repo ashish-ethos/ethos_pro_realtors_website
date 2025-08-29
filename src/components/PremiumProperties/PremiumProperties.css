@@ -11,7 +11,7 @@
   background: rgb(189 189 189 / 19%) !important;
 }
 .card-properties-details {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .card-properties-details img {
@@ -41,15 +41,36 @@
 .card-properties-details .bg-white {
   border: 1px solid #e5e7eb;
 }
-@media(max-width:768px){
-  .premium-properties-main{
+@media (max-width: 768px) {
+  .premium-properties-main {
     padding-top: 15px;
     padding-bottom: 15px;
   }
-  .permium-properties-right{
+  .permium-properties-right {
     padding: 10px;
   }
-  .details-mobile{
+  .details-mobile {
     justify-content: start;
   }
+}
+
+.stat-card {
+  border-image: linear-gradient(45deg, #c99913, #474236, #000000) 10;
+  border-image-slice: 10;
+  position: relative;
+  overflow: visible;
+}
+.stat-card::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 24px;
+  border: 4px solid transparent;
+  background: linear-gradient(45deg, #c99913, #474236, #000000) border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  z-index: -1;
+}
+.stat-card:hover::before {
+  background: none;
 }

@@ -14,7 +14,7 @@ const CardPropertiesDetails = ({ property }) => {
   }
 
   const handleViewMap = () => {
-    // Extract the src from the iframe HTML or use a direct Google Maps URL
+
     const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(property.location.full)}&output=embed`;
     window.open(mapUrl, '_blank');
   };
