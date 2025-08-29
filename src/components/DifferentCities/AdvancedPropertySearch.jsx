@@ -18,21 +18,16 @@ import {
   List,
 } from "antd";
 import {
-  FaSearch,
   FaFilter,
   FaTimes,
   FaMapMarkerAlt,
-  FaHome,
-  FaBath,
-  FaBed,
-  FaCalendarAlt,
   FaDollarSign,
-  FaStar,
   FaEye,
   FaHeart,
   FaTh,
   FaList as FaListIcon,
 } from "react-icons/fa";
+import { Bed, Bath, Star, House, MapPinHouse, CalendarDays, Search   } from 'lucide-react';
 import { FaList } from "react-icons/fa";
 import { IndianRupee } from "lucide-react";
 import CustomInput from "../ui/Input";
@@ -564,7 +559,7 @@ const AdvancedPropertySearch = ({
                 className="filters-space"
               >
                 <CustomInput
-                  prefix={<FaSearch />}
+                  prefix={<Search  />}
                   placeholder="Search by name or location..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -603,7 +598,7 @@ const AdvancedPropertySearch = ({
                 >
                   <div>
                     <span className="filter-label flex items-center">
-                      <FaMapMarkerAlt className="filter-icon" />
+                      <MapPinHouse className="filter-icon" />
                       Location
                     </span>
                     <CustomSelect
@@ -620,7 +615,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <FaHome className="filter-icon" />
+                      <House className="filter-icon" />
                       Property Type
                     </span>
                     <CustomSelect
@@ -637,7 +632,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <FaStar className="filter-icon" />
+                      <Star  className="filter-icon" />
                       Status
                     </span>
                     <CustomSelect
@@ -654,7 +649,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <FaBed className="filter-icon" />
+                      <Bed className="filter-icon" />
                       Bedrooms
                     </span>
                     <CustomSelect
@@ -671,7 +666,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <FaBath className="filter-icon" />
+                      <Bath className="filter-icon" />
                       Bathrooms
                     </span>
                     <CustomSelect
@@ -766,7 +761,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <FaHome className="filter-icon" />
+                      <House className="filter-icon" />
                       Area Range (Sq Ft)
                     </span>
                     <Space className="area-inputs">
@@ -787,7 +782,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <FaCalendarAlt className="filter-icon" />
+                      <CalendarDays className="filter-icon" />
                       Year Built
                     </span>
                     <CustomSelect
@@ -804,7 +799,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <FaStar className="filter-icon" />
+                      <Star  className="filter-icon" />
                       Labels
                     </span>
                     <CustomSelect
@@ -821,7 +816,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <FaMapMarkerAlt className="filter-icon" />
+                      <MapPinHouse className="filter-icon" />
                       Country
                     </span>
                     <CustomSelect
@@ -838,7 +833,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <FaMapMarkerAlt className="filter-icon" />
+                      <MapPinHouse className="filter-icon" />
                       State
                     </span>
                     <CustomSelect
@@ -855,7 +850,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <FaMapMarkerAlt className="filter-icon" />
+                      <MapPinHouse className="filter-icon" />
                       City
                     </span>
                     <CustomSelect
@@ -932,7 +927,7 @@ const AdvancedPropertySearch = ({
 
             <div className="search-and-filters">
               <CustomInput
-                prefix={<FaSearch className="search-icon" />}
+                prefix={<Search  className="search-icon" />}
                 placeholder="Search properties..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -994,8 +989,8 @@ const AdvancedPropertySearch = ({
                               src={property.image}
                               className="card-image"
                               onMouseEnter={(e) =>
-                                (e.currentTarget.style.transform =
-                                  "scale(1.08)")
+                              (e.currentTarget.style.transform =
+                                "scale(1.08)")
                               }
                               onMouseLeave={(e) =>
                                 (e.currentTarget.style.transform = "scale(1)")
@@ -1057,16 +1052,16 @@ const AdvancedPropertySearch = ({
                           description={
                             <div className="card-description p-2">
                               <div className="card-location">
-                                <FaMapMarkerAlt className="location-icon" />{" "}
+                                <MapPinHouse className="location-icon" />{" "}
                                 {property.location}
                               </div>
                               <div className="card-details">
                                 <div className="card-details-content">
                                   <Text className="card-detail-item">
-                                    <FaBed /> {property.bedrooms} Beds
+                                    <Bed /> {property.bedrooms} Beds
                                   </Text>
                                   <Text className="card-detail-item">
-                                    <FaBath /> {property.bathrooms} Baths
+                                    <Bath /> {property.bathrooms} Baths
                                   </Text>
                                   <Tag color="default">{property.type}</Tag>
                                 </div>
@@ -1074,7 +1069,8 @@ const AdvancedPropertySearch = ({
                                   type="primary"
                                   className="property-card-action-button"
                                   onClick={() => {
-                                    // TODO: Navigate to property details page
+                                    const propertyName = property.name.toLowerCase().replace(/\s+/g, '-');
+                                    navigate(`/projects/${property.type.toLowerCase()}/${propertyName}`, { state: { from: location.pathname } });
                                   }}
                                 >
                                   View Details
@@ -1118,20 +1114,20 @@ const AdvancedPropertySearch = ({
                         description={
                           <div className="checked ">
                             <Text>
-                              <FaMapMarkerAlt /> {property.location}
+                              <MapPinHouse /> {property.location}
                             </Text>
                             <div className="list-details">
                               <Text>
-                                <FaBed /> {property.bedrooms} Beds
+                                <Bed /> {property.bedrooms} Beds
                               </Text>
                               <Text>
-                                <FaBath /> {property.bathrooms} Baths
+                                <Bath /> {property.bathrooms} Baths
                               </Text>
                               <Text>
-                                <FaHome /> {property.areaValue} sq ft
+                                <House /> {property.areaValue} sq ft
                               </Text>
                               <Text>
-                                <FaCalendarAlt /> {property.yearBuilt}
+                                <CalendarDays /> {property.yearBuilt}
                               </Text>
                             </div>
                             <div className="list-tags">
@@ -1159,7 +1155,7 @@ const AdvancedPropertySearch = ({
             </>
           ) : (
             <div className="no-properties">
-              <FaHome className="no-properties-icon" />
+              <House className="no-properties-icon" />
               <Title level={3}>No Properties Found</Title>
               <Text>
                 We couldn't find any properties matching your search criteria.

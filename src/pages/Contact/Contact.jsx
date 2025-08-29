@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import {
     Phone,
     Mail,
-    MapPin,
+
+    MapPinned,
     Facebook,
     Instagram,
     Linkedin,
     Twitter,
     Youtube,
 } from 'lucide-react';
+
+
 import ContactImg from '../../assets/images/about/4.png';
 
 const Contact = () => {
@@ -188,8 +191,9 @@ const Contact = () => {
                         {/* Map Card below form */}
                         <div className="bg-white rounded-xl shadow-xl overflow-hidden max-w-4xl mx-auto mt-12">
                             {/* Gradient Header */}
-                            <div className="bg-transparent from-black p-2">
-                                <h2 className="text-xl font-bold text-black">Our Location</h2>
+                            <div className="bg-transparent flex items-center gap-1 from-black p-2">
+                                <MapPinned className='text-gray-800' />
+                                <h2 className="text-xl font-bold text-black font-[Inter]">Our Location</h2>
                             </div>
 
 

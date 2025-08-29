@@ -1,5 +1,5 @@
 import React from "react";
-import { MapPin, Home, Star, Eye, Calendar, ExternalLink } from "lucide-react";
+import { MapPin, Home, Star, Eye, Calendar, ExternalLink, MapPinned } from "lucide-react";
 
 const CardPropertiesDetails = ({ property }) => {
   if (!property) {
@@ -214,7 +214,7 @@ const CardPropertiesDetails = ({ property }) => {
                     onClick={handleViewMap}
                     className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-700 font-medium rounded-full border border-gray-300 shadow-sm hover:shadow-md hover:bg-gray-50 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
-                    <MapPin className="w-5 h-5 text-red-500" />
+                    <MapPinned className="w-5 h-5 text-red-500" />
                     View on Map
                     <ExternalLink className="w-4 h-4 text-gray-400" />
                   </button>
