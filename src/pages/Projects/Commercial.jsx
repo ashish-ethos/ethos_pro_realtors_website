@@ -16,6 +16,7 @@ import TrumpTower from "../../assets/images/exploreproperties/trump-tower.jpg";
 import PioneerUrban from "../../assets/images/exploreproperties/pioneer-urban.jpg";
 import PioneerAraya from "../../assets/images/exploreproperties/pioner-araya.jpg";
 import './Project.css';
+import { useNavigate } from 'react-router-dom';
 
 const { Search } = Input;
 const { Option } = Select;
@@ -299,6 +300,7 @@ const Commercial = () => {
   const [showAll, setShowAll] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
+  const navigate = useNavigate();
 
   const filteredProperties = useMemo(() => {
     let filtered = properties.filter((property) => {
@@ -362,6 +364,7 @@ const Commercial = () => {
   const handleCloseDrawer = () => {
     setDrawerOpen(false);
     setSelectedProperty(null);
+    navigate(-1);
   };
 
   const PropertyCard = ({ property }) => (

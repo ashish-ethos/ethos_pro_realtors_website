@@ -39,6 +39,7 @@ import CustomInput from "../ui/Input";
 import CustomSelect from "../ui/Select";
 import CustomButton from "../ui/Button";
 import "./AdvancedPropertySearch.css";
+import { useNavigate } from "react-router-dom";
 
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
@@ -185,6 +186,7 @@ const AdvancedPropertySearch = ({
   const [filteredProperties, setFilteredProperties] =
     useState(displayProperties);
   const pageSize = 9;
+  const navigate = useNavigate();
 
   const currentYear = new Date().getFullYear();
 
@@ -1071,6 +1073,9 @@ const AdvancedPropertySearch = ({
                                 <CustomButton
                                   type="primary"
                                   className="property-card-action-button"
+                                  onClick={() => {
+                                    // TODO: Navigate to property details page
+                                  }}
                                 >
                                   View Details
                                 </CustomButton>
