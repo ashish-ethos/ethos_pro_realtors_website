@@ -3,288 +3,12 @@ import { Input, Select, Button } from 'antd';
 import { FilterOutlined, DownOutlined, SearchOutlined as SearchIcon } from '@ant-design/icons';
 import { Grid, List, MapPin, Bed, Bath, Square, Heart, Share, Eye, Star } from 'lucide-react';
 import ViewDetailsDrawer from './ViewDetailsDrawer';
-import DLFCamellias from "../../assets/images/premiumproperties/dlfthecamilias.jpg";
-import ElanTheEmperor from "../../assets/images/premiumproperties/Elan-The-Emperor.jpg";
-import KrisumiWaterfall from "../../assets/images/premiumproperties/krisumiwaterfall.jpg";
-import TrinitySkyPlazao from "../../assets/images/premiumproperties/skyplazzo.jpg";
-import M3Mmansion from "../../assets/images/premiumproperties/m3mmansion.jpg";
-import AIPLAutograph from "../../assets/images/exploreproperties/aipl-autograph.jpg";
-import CentralPark from "../../assets/images/exploreproperties/central-park.jpg";
-import AIPLBusiness from "../../assets/images/exploreproperties/aipl-bussiness.jpg";
-import ReachAriaMall from "../../assets/images/exploreproperties/aria-mall.jpg";
-import TrumpTower from "../../assets/images/exploreproperties/trump-tower.jpg";
-import PioneerUrban from "../../assets/images/exploreproperties/pioneer-urban.jpg";
-import PioneerAraya from "../../assets/images/exploreproperties/pioner-araya.jpg";
 import './Project.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { allProjectPropertyDetails } from '../../data/propertyDetailsData';
 
 const { Search } = Input;
 const { Option } = Select;
-
-const properties = [
-  {
-    id: 1,
-    name: 'Central Park Flower Valley The Room',
-    location: 'Central Park II, Sector 48, Gurugram, Haryana, India',
-    price: '₹On Request',
-    pricePerSqft: '₹On Request',
-    sqft: '2280 Sq Ft',
-    bedrooms: 3,
-    bathrooms: 3,
-    type: 'APARTMENT, RESIDENTIAL',
-    category: 'LUXURY',
-    status: ['FOR SALE', 'HOT OFFER'],
-    rating: 4.8,
-    image: CentralPark,
-    featured: true,
-    amenities: ['Pool', 'Gym', 'Garden', 'Security'],
-    addressMap: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.863360441167!2d77.03493257549314!3d28.42337957577965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d191ab1c1c09b%3A0xe8981596d5b56301!2sThe%20Room!5e0!3m2!1sen!2sin!4v1754210749929!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
-
-  },
-  {
-    id: 2,
-    name: 'M3M Antalya Hills',
-    location: 'M3M Antalya Hills, Sector 79, Gurgram, Haryana, India',
-    price: '₹1.95 crore',
-    pricePerSqft: '₹11,200',
-    sqft: '1742 Sq Ft',
-    bedrooms: 2,
-    bathrooms: 2,
-    type: 'APARTMENT, RESIDENTIAL',
-    category: 'PREMIUM',
-    status: ['FOR RENT', 'FOR SALE'],
-    rating: 4.6,
-    image: M3Mmansion,
-    featured: false,
-    amenities: ['Garden', 'Parking', 'Security', 'Clubhouse'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3511.0514500484305!2d76.97008157549077!3d28.357294075816153!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d3d08fd4687b7%3A0x74bc7b179b80852!2sM3M%20Antalya%20Hills!5e0!3m2!1sen!2sin!4v1754210958417!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-
-  },
-  {
-    id: 3,
-    name: 'DLF The Arbour',
-    location: 'DLF, Sector 63, Gurgram, Haryana, India',
-    price: '₹On Request',
-    pricePerSqft: '₹On Request',
-    sqft: '3800 - 3956 Sq Ft',
-    bedrooms: 4,
-    bathrooms: 4,
-    type: 'APARTMENT, RESIDENTIAL',
-    category: 'ULTRA_LUXURY',
-    status: ['FOR SALE', 'NEW LAUNCH', 'FOR RENT'],
-    rating: 4.9,
-    image: DLFCamellias,
-    featured: true,
-    amenities: ['Private Pool', 'Garden', 'Gym', 'Security', 'Concierge'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.731731114595!2d77.07934317601016!3d28.39716959472888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d2376bf488c31%3A0xb4a7d53c84ccdc16!2sDLF%20Arbour!5e0!3m2!1sen!2sin!4v1754211014525!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-
-  },
-  {
-    id: 4,
-    name: 'Reach Aria Mall',
-    location: 'Aria Mall, Sector 68, Gurgram, Haryana, India',
-    price: '₹1.35 crore',
-    pricePerSqft: '₹9,800',
-    sqft: '8000 Sq Ft',
-    bedrooms: 2,
-    bathrooms: 2,
-    type: 'SHOP, COMMERCIAL',
-    category: 'AFFORDABLE',
-    status: ['FOR SALE'],
-    rating: 4.3,
-    image: ReachAriaMall,
-    featured: false,
-    amenities: ['Metro Nearby', 'Parking', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.1948247691957!2d77.05033447600975!3d28.383182995359352!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d22fecb57f373%3A0xcc4398c9599fcdd7!2sAiria%20Mall!5e0!3m2!1sen!2sin!4v1754211512723!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-  },
-  {
-    id: 5,
-    name: 'AIPL Autograph',
-    location: 'AIPL Autograph Corporate Office Space, Sector 66, Gurgram, Haryana',
-    price: '₹On Request',
-    pricePerSqft: '₹On Request',
-    sqft: 'On Request Sq Ft',
-    bedrooms: 1,
-    bathrooms: 1,
-    type: 'STUDIO',
-    category: 'COMPACT',
-    status: ['FOR RENT', 'READY TO MOVE'],
-    rating: 4.4,
-    image: AIPLAutograph,
-    featured: false,
-    amenities: ['Gym', 'Security', 'High-speed Internet'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.72070962259!2d77.06025357601011!3d28.397502394713946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d23b8092a653b%3A0x8de37e83207cd640!2sAIPL%20Autograph%20Sec%2066%7C%20Corporate%20office%20Space%20Gurugram%20%7C%20Professional%20Business%20Center%20Gurgaon!5e0!3m2!1sen!2sin!4v1754211120972!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-
-  },
-  {
-    id: 6,
-    name: 'AIPL Business Club',
-    location: 'AIPL Business Club, Sector 62, Gurgram, Haryana, India',
-    price: '₹On Request',
-    pricePerSqft: '₹On Request',
-    sqft: 'On Request Sq Ft',
-    bedrooms: 5,
-    bathrooms: 5,
-    type: 'OFFICE, COMMERCIAL',
-    category: 'ULTRA_LUXURY',
-    status: ['FOR SALE', 'EXCLUSIVE'],
-    rating: 4.9,
-    image: AIPLBusiness,
-    featured: true,
-    amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.5792444865574!2d77.08228407601032!3d28.40177369452129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d223e7bd826cf%3A0xbdbbf829f05e9a5d!2sAipl%20Business%20Club%2C%20Sector%2062%2C%20Gurugram%2C%20Haryana%20122098!5e0!3m2!1sen!2sin!4v1754211562552!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-  },
-  {
-    id: 7,
-    name: 'Elan The Mark',
-    location: 'Block R, New Palam Vihar Phase 1, Sector 106, Gurgram',
-    price: '₹On Request',
-    pricePerSqft: '₹On Request',
-    sqft: 'On Request Sq Ft',
-    bedrooms: 5,
-    bathrooms: 5,
-    type: 'SHOP, COMMERCIAL',
-    category: 'ULTRA_LUXURY',
-    status: ['FOR SALE', 'FOR RENT', 'HOT OFFER'],
-    rating: 4.9,
-    image: ElanTheEmperor,
-    featured: true,
-    amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.289764770307!2d77.00450517601296!3d28.500928490043837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1700b8332841%3A0x1a820bf6925742bd!2sElan%20The%20Mark!5e0!3m2!1sen!2sin!4v1754211657266!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-  },
-  {
-    id: 8,
-    name: 'Pioneer Araya',
-    location: 'Pioneer Araya, Tower D, Pioneer, Haryana, India',
-    price: '₹On Request',
-    pricePerSqft: '₹On Request',
-    sqft: 'On Request Sq Ft',
-    bedrooms: 5,
-    bathrooms: 5,
-    type: 'APARTMENT, RESIDENTIAL',
-    category: 'ULTRA_LUXURY',
-    status: ['READY TO MOVE', 'EXCLUSIVE'],
-    rating: 4.9,
-    image: PioneerAraya,
-    featured: true,
-    amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.213483651477!2d77.0861129760106!3d28.412814494023355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d237a6358d52d%3A0x85137a3710a6197!2sPioneer%20Araya%2C%20Tower%20D!5e0!3m2!1sen!2sin!4v1754211151159!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-
-  },
-  {
-    id: 9,
-    name: 'Trump Towers',
-    location: 'Trump Tower, Golf Course Extension Road, Sector 65, Gurgram, Haryana',
-    price: '₹On Request',
-    pricePerSqft: '₹On Request',
-    sqft: 'On Request Sq Ft',
-    bedrooms: 5,
-    bathrooms: 5,
-    type: 'APARTMENT, RESIDENTIAL',
-    category: 'ULTRA_LUXURY',
-    status: ['FOR SALE', 'EXCLUSIVE'],
-    rating: 4.9,
-    image: TrumpTower,
-    featured: true,
-    amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.6347789904416!2d77.06961287601024!3d28.400096994596865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d226f68d5844d%3A0xd0bf0c398f09d05e!2sTrump%20Tower!5e0!3m2!1sen!2sin!4v1754211194888!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-
-  },
-  {
-    id: 10,
-    name: 'Pioneer Urban Presidia',
-    location: 'Pioneer Presidia, Sector 62, Gurgram, Ghata, Haryana, India',
-    price: '₹On Request',
-    pricePerSqft: '₹On Request',
-    sqft: 'On Request Sq Ft',
-    bedrooms: 5,
-    bathrooms: 5,
-    type: 'APARTMENT, RESIDENTIAL',
-    category: 'ULTRA_LUXURY',
-    status: ['FOR SALE', 'EXCLUSIVE'],
-    rating: 4.9,
-    image: PioneerUrban,
-    featured: true,
-    amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1754.6121159845757!2d77.08775338883909!3d28.412490103071157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d2210efcc50d7%3A0x711f24390ec4fd5d!2sPioneer%20Presidia%2C%20Sector%2062%2C%20Ghata%2C%20Gurugram%2C%20Haryana%20122098!5e0!3m2!1sen!2sin!4v1754211246279!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-
-  },
-  {
-    id: 11,
-    name: 'Elan Epic Mall',
-    location: 'Elan Epic Mall, Sector 70, Gurgram, Haryana, India',
-    price: '₹On Request',
-    pricePerSqft: '₹On Request',
-    sqft: 'On Request Sq Ft',
-    bedrooms: 5,
-    bathrooms: 5,
-    type: 'SHOP, COMMERCIAL',
-    category: 'ULTRA_LUXURY',
-    status: ['FOR SALE', 'EXCLUSIVE'],
-    rating: 4.9,
-    image: ElanTheEmperor,
-    featured: true,
-    amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.8954763998113!2d77.02786267601!3d28.39222479495188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d23007483c609%3A0x4bf398ae7e61c375!2sElan%20Epic!5e0!3m2!1sen!2sin!4v1754211750584!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-  },
-  {
-    id: 12,
-    name: 'Sobha International City',
-    location: 'Dwarka Expressway, Sector 109, Gurgram, Haryana, India',
-    price: '₹On Request',
-    pricePerSqft: '₹On Request',
-    sqft: 'On Request Sq Ft',
-    bedrooms: 5,
-    bathrooms: 5,
-    type: 'APARTMENT, RESIDENTIAL',
-    category: 'ULTRA_LUXURY',
-    status: ['FOR SALE', 'EXCLUSIVE'],
-    rating: 4.9,
-    image: KrisumiWaterfall,
-    featured: true,
-    amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.8648188526845!2d76.99439727601327!3d28.51371458946548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d10ad1732bb97%3A0xb3229fb8929e6a8d!2sSobha%20International%20City!5e0!3m2!1sen!2sin!4v1754211291277!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-
-  },
-  {
-    id: 13,
-    name: 'M3M Golf Estate',
-    location: 'Golf Course Extension Road, Sector 65, Gurgram, Haryana',
-    price: '₹On Request',
-    pricePerSqft: '₹On Request',
-    sqft: 'On Request Sq Ft',
-    bedrooms: 5,
-    bathrooms: 5,
-    type: 'APARTMENT, RESIDENTIAL',
-    category: 'ULTRA_LUXURY',
-    status: ['FOR SALE', 'FOR RENT', 'EXCLUSIVE'],
-    rating: 4.9,
-    image: M3Mmansion,
-    featured: true,
-    amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.5916321176837!2d77.0613437260102!3d28.401399694538387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d22613759d2ef%3A0x33c234317fc5ea64!2sM3M%20Golfestate!5e0!3m2!1sen!2sin!4v1754211334893!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-
-  },
-  {
-    id: 14,
-    name: 'Cygnett Retreat',
-    location: 'Pahadi Kothi, Bagar Road, Pangoot, Uttarakhand, India',
-    price: '₹On Request',
-    pricePerSqft: '₹On Request',
-    sqft: 'On Request Sq Ft',
-    bedrooms: 5,
-    bathrooms: 5,
-    type: 'APARTMENT, RESIDENTIAL',
-    category: 'ULTRA_LUXURY',
-    status: ['FOR SALE', 'FOR RENT', 'EXCLUSIVE'],
-    rating: 4.9,
-    image: TrinitySkyPlazao,
-    featured: true,
-    amenities: ['Private Pool', 'Garden', 'Home Theater', 'Wine Cellar', 'Security'],
-    addressMap:'<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3475.493112242733!2d79.39137807603782!3d29.414380948146913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39a0a1003e30499f%3A0xbb9f40126bddcab0!2sCygnett%20Retreat%20Pangot%20bagar%20road%20smanro%20range%20nanital!5e0!3m2!1sen!2sin!4v1754211389578!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
-
-  },
-];
 
 const Commercial = () => {
   const [viewMode, setViewMode] = useState('grid');
@@ -301,15 +25,16 @@ const Commercial = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const filteredProperties = useMemo(() => {
-    let filtered = properties.filter((property) => {
-      const isCommercial = property.type.toLowerCase().includes('shop') || property.type.toLowerCase().includes('office');
+    let filtered = allProjectPropertyDetails.filter((property) => {
+      const isCommercial = property.type.toLowerCase().includes('shop') || property.type.toLowerCase().includes('office') || property.type.toLowerCase().includes('commercial');
       const matchesSearch =
         property.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         property.location.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesType = !filters.propertyType || 
-        property.type.split(',').map(t => t.trim()).includes(filters.propertyType);
+        property.type.split(',').map(t => t.trim()).includes(filters.propertyType) || property.type === filters.propertyType;
       const matchesBedrooms = !filters.bedrooms || 
         (!isCommercial && property.bedrooms.toString() === filters.bedrooms);
       const matchesCategory = !filters.category || property.category === filters.category;
@@ -359,12 +84,16 @@ const Commercial = () => {
   const handleViewDetails = (property) => {
     setSelectedProperty(property);
     setDrawerOpen(true);
+    // Navigate to /projects/commercial/:propertyName, replacing spaces with hyphens for URL safety
+    const propertyName = property.name.toLowerCase().replace(/\s+/g, '-');
+    navigate(`/projects/commercial/${propertyName}`, { state: { from: location.pathname } });
   };
 
   const handleCloseDrawer = () => {
     setDrawerOpen(false);
     setSelectedProperty(null);
-    navigate(-1);
+    // Navigate back to /projects/commercial
+    navigate('/projects/commercial');
   };
 
   const PropertyCard = ({ property }) => (
@@ -389,7 +118,7 @@ const Commercial = () => {
                   : status === 'NEW LAUNCH'
                   ? 'border-purple-600 text-white border-1'
                   : status === 'EXCLUSIVE'
-                  ? 'border-yellow-500 text-white border-1 '
+                  ? 'border-yellow-500 text-white border-1'
                   : 'bg-gray-600 text-white'
               }`}
             >
@@ -460,6 +189,8 @@ const Commercial = () => {
                 ? 'bg-green-100 text-green-800'
                 : property.category === 'COMPACT'
                 ? 'bg-orange-100 text-orange-800'
+                : property.category === 'INVESTMENT'
+                ? 'bg-yellow-100 text-yellow-800'
                 : 'bg-gray-100 text-gray-800'
             }`}
           >
@@ -490,7 +221,6 @@ const Commercial = () => {
             <button
               onClick={() => handleViewDetails(property)}
               className="bg-white text-black px-5 py-2 rounded-[10px] cursor-pointer font-semibold flex items-center justify-center gap-2 hover:shadow-md transition-all duration-200"
-              
             >
               <Eye size={18} />
               View Details
@@ -513,7 +243,7 @@ const Commercial = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b border-t border-gray-200  top-0 z-50">
+      <div className="bg-white border-b border-t border-gray-200 top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between mb-4">
             <div>
@@ -562,7 +292,7 @@ const Commercial = () => {
                   display: 'flex',
                   alignItems: 'center',
                 }}
-        >
+              >
                 <FilterOutlined />
                 Filters
                 <DownOutlined
@@ -605,6 +335,7 @@ const Commercial = () => {
                     { value: '', label: 'All Property Types' },
                     { value: 'SHOP', label: 'Shop' },
                     { value: 'OFFICE', label: 'Office' },
+                    { value: 'COMMERCIAL', label: 'Commercial' },
                   ]}
                 />
                 <Select
@@ -641,6 +372,7 @@ const Commercial = () => {
                     { value: 'PREMIUM', label: 'Premium' },
                     { value: 'LUXURY', label: 'Luxury' },
                     { value: 'ULTRA_LUXURY', label: 'Ultra Luxury' },
+                    { value: 'INVESTMENT', label: 'Investment' },
                   ]}
                 />
                 <Button

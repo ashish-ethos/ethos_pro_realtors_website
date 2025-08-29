@@ -43,10 +43,7 @@ function PremiumProperties() {
       featured: true,
       amenities: ["Swimming Pool", "Gym", "Garden", "Security"],
       updatedOn: "June 19, 2025",
-      emi: "₹303,598.47",
-      downPayment: "₹7,680,000.00",
-      loanAmount: "₹43,520,000.00",
-      tax: "₹51,200.00",
+      
     },
     {
       id: 2,
@@ -70,10 +67,7 @@ function PremiumProperties() {
       featured: true,
       amenities: ["Rooftop Pool", "Spa", "Concierge", "Parking"],
       updatedOn: "June 20, 2025",
-      emi: "₹592,965.76",
-      downPayment: "₹15,000,000.00",
-      loanAmount: "₹85,000,000.00",
-      tax: "₹100,000.00",
+      
     },
     {
       id: 3,
@@ -97,10 +91,7 @@ function PremiumProperties() {
       featured: false,
       amenities: ["Waterfall View", "Balcony", "Garden", "Clubhouse"],
       updatedOn: "June 21, 2025",
-      emi: "₹236,000.37",
-      downPayment: "₹5,970,000.00",
-      loanAmount: "₹33,830,000.00",
-      tax: "₹39,800.00",
+     
     },
     {
       id: 4,
@@ -131,10 +122,7 @@ function PremiumProperties() {
       openArea: "70%",
       structure: "G + 21/38",
       configurations: "4, 5, 6 BHK Apartments",
-      emi: "₹3,886,890.56",
-      downPayment: "₹98,325,000.00",
-      loanAmount: "₹557,175,000.00",
-      tax: "₹655,500.00",
+      
     },
     {
       id: 5,
@@ -164,10 +152,7 @@ function PremiumProperties() {
       towers: "8",
       structure: "G+32 Floors",
       configurations: "2, 3, 4, 5 BHK Apartments & Penthouse",
-      emi: "₹212,709.86",
-      downPayment: "₹5,380,830.00",
-      loanAmount: "₹30,491,370.00",
-      tax: "₹35,872.20",
+      
     },
     {
       id: 6,
@@ -191,10 +176,7 @@ function PremiumProperties() {
       featured: true,
       amenities: ["Park View", "Yoga Studio", "Library", "Cafe"],
       updatedOn: "June 20, 2025",
-      emi: "₹612,709.86",
-      downPayment: "₹15,495,000.00",
-      loanAmount: "₹87,805,000.00",
-      tax: "₹103,300.00",
+     
     },
   ];
 
@@ -356,7 +338,7 @@ function PremiumProperties() {
           body: { padding: 0 },
         }}
       >
-        <CardPropertiesDetails property={selectedProperty} />
+        <CardPropertiesDetails property={selectedProperty} className="custom-scrollbar" />
       </Drawer>
     </div>
   );

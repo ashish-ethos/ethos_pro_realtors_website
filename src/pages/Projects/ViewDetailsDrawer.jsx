@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Drawer, Button, Typography, Tag, InputNumber, Slider, Input, Form, Divider } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
+import CustomButton from '../../components/ui/Button';
 
 const { Title, Text } = Typography;
 const { TextArea } = Input;
@@ -173,9 +174,9 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
               <Slider min={12} max={360} step={12} value={tenure} onChange={setTenure} />
             </div>
           </div>
-          <Button type="primary" onClick={calculateEMI} className="w-full mt-3">
+          <CustomButton type="primary" onClick={calculateEMI} className="w-full mt-3">
             Calculate EMI
-          </Button>
+          </CustomButton>
           {emi && (
             <div className="mt-4 text-center">
               <Text strong>Monthly EMI:</Text> ₹{emi}

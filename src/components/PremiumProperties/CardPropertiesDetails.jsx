@@ -20,7 +20,8 @@ const CardPropertiesDetails = ({ property }) => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto bg-white shadow-sm border border-gray-200 overflow-hidden  scrollbar-thin">
+    <div className="max-w-7xl mx-auto bg-white shadow-sm border border-gray-200 overflow-y-auto custom-scrollbar scrollbar-thin">
+      {/* <div className=""></div> */}
       {/* Header Section */}
       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 border-b border-gray-200">
         <div className="flex items-center justify-between">

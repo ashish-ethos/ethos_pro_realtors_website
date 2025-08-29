@@ -556,7 +556,7 @@ const AdvancedPropertySearch = ({
     >
       <div className="noactive-main">
         {showFilters && (
-          <div className="filters-panel">
+          <div className="filters-panel custom-scrollbar">
             <div className="filters-panel-contain">
               <Space
                 direction="vertical"
@@ -893,7 +893,7 @@ const AdvancedPropertySearch = ({
           </div>
         )}
 
-        <div className="properties-container">
+        <div className="properties-container custom-scrollbar">
           <div className="properties-header">
             <div className="view-mode-container">
               <div className="radio-group-container">

@@ -364,13 +364,7 @@ function DifferentCities() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // const showDrawer = () => {
-  //   setOpen(true);
-  // };
 
-  // const onClose = () => {
-  //   setOpen(false);
-  // };
   const showDrawer = () => {
     navigate("/location");
     setOpen(true);

@@ -35,7 +35,11 @@ function App() {
           {/* Projects */}
           <Route path="/projects" element={<Project />} />
           <Route path="/projects/residential" element={<Residentials />} />
+          <Route path="/projects/residential/:propertyName" element={<Residentials />} />
+          
           <Route path="/projects/commercial" element={<Commercial />} />
+          <Route path="/projects/commercial/:propertyName" element={<Commercial />} />
+
           <Route
             path="/premiumproperties/:propertyName"
             element={<PremiumProperties />}
