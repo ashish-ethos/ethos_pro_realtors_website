@@ -15,6 +15,7 @@ import {
 import { Input, Select, Button } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import "../OurTeam/OurTeam.css";
+import CustomSelect from "../ui/Select";
 
 const BlogExploreArticles = ({ blogPosts, contentMap }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -140,17 +141,17 @@ const BlogExploreArticles = ({ blogPosts, contentMap }) => {
             {/* Controls */}
             <div className="flex items-center justify-between gap-3">
               {/* Category Select */}
-              <Select
+              <CustomSelect
                 value={filterCategory}
                 onChange={(value) => setFilterCategory(value)}
                 size="middle"
-                className="!rounded-xl !h-10 shadow-sm w-32 sm:w-40 md:w-48"
+                className="!rounded-xl !h-10 shadow-sm p-1"
                 dropdownStyle={{ borderRadius: "10px" }}
               >
                 <Option value="all">All Categories</Option>
                 <Option value="investment">Investment</Option>
                 <Option value="market trends">Market Trends</Option>
-              </Select>
+              </CustomSelect>
 
               {/* View Toggle */}
               <div className="flex bg-white border border-gray-300 rounded-xl shadow-sm p-1">
@@ -185,8 +186,8 @@ const BlogExploreArticles = ({ blogPosts, contentMap }) => {
           {/* Article List */}
           {viewMode === "list" && (
             <div className="w-full md:w-1/3">
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-xl border border-white/50 p-4 sm:p-6 sticky top-20 md:top-24">
-                <div className="flex items-center gap-3 mb-4 sm:mb-6">
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-xl border border-white/50 p-2 sm:p-4 sticky top-20 md:top-24">
+                <div className="flex items-center gap-3 mb-2 sm:mb-3">
                   <div className="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center">
                     <Filter className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
                   </div>
@@ -195,44 +196,51 @@ const BlogExploreArticles = ({ blogPosts, contentMap }) => {
                   </h3>
                 </div>
 
-                <div className="space-y-3 sm:space-y-4 px-2 max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-250px)] overflow-y-auto scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-gray-100">
+                <div className="custom-scrollbar space-y-3 sm:space-y-4 px-2 max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-250px)] overflow-y-auto scrollbar-thin scrollbar-thumb-blue-300 scrollbar-track-gray-100">
                   {(searchTerm.trim() || filterCategory !== "all"
                     ? filteredPosts
                     : blogPosts
                   ).map((post) => (
                     <div
                       key={post.id}
-                      className={`group relative p-3 sm:p-4 rounded-xl sm:rounded-2xl cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.01] ${
-                        selectedPost.id === post.id
-                          ? "bg-transparent text-black border shadow-lg"
-                          : "bg-white/80 hover:bg-white text-gray-900 border border-gray-200/50"
-                      }`}
+                      className={`group relative p-3 sm:p-4 rounded-xl sm:rounded-2xl cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.01] ${selectedPost.id === post.id
+                        ? "bg-transparent text-black border shadow-lg"
+                        : "bg-white/80 hover:bg-white text-gray-900 border border-gray-200/50"
+                        }`}
                       onClick={() => setSelectedPost(post)}
                     >
-                      <div className="flex gap-2 sm:gap-3">
-                        <img
-                          src={post.image}
-                          alt={post.title}
-                          className="w-12 sm:w-16 h-12 sm:h-16 object-cover rounded-lg sm:rounded-xl flex-shrink-0"
-                        />
+                      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                        {/* Image */}
+                        <div className="w-full sm:w-24 flex-shrink-0">
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="w-full h-32 sm:h-24 object-cover rounded-lg sm:rounded-xl"
+                          />
+                        </div>
+
+                        {/* Content */}
                         <div className="flex-1 min-w-0">
                           <h4
-                            className={`font-semibold text-xs sm:text-sm leading-tight mb-1 sm:mb-2 line-clamp-2 ${
-                              selectedPost.id === post.id
-                                ? "text-gray-600"
-                                : "text-gray-900"
-                            }`}
+                            className={`font-semibold text-sm sm:text-base leading-snug mb-2 line-clamp-2 ${selectedPost.id === post.id ? "text-gray-600" : "text-gray-900"
+                              }`}
                           >
                             {post.title}
                           </h4>
-                          <div className="flex items-center gap-1 sm:gap-2 text-xs">
-                            <Calendar className="w-3 h-3" />
-                            <span>{post.date}</span>
-                            <Clock className="w-3 h-3 ml-1" />
-                            <span className="text-xs">{post.readTime}</span>
+
+                          <div className="flex flex-col items-center gap-3 text-xs text-gray-500">
+                            <div className="flex items-start text-start gap-1">
+                              <Calendar className="w-4 h-4 m-0 p-0" />
+                              <span>{post.date}</span>
+                            </div>
+                            <div className="flex items-start text-start gap-1">
+                              <Clock className="w-4 h-4 m-0 p-0" />
+                              <span>{post.readTime}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
+
 
                       {selectedPost.id === post.id && (
                         <ChevronRight className="absolute right-2 sm:right-3 top-1/2 transform -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-blue-600" />
@@ -251,11 +259,10 @@ const BlogExploreArticles = ({ blogPosts, contentMap }) => {
               ).map((post) => (
                 <div
                   key={post.id}
-                  className={`group relative p-3 sm:p-4 rounded-xl sm:rounded-2xl cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.01] ${
-                    hoveredPost === post.id
-                      ? "bg-transparent text-black shadow-lg"
-                      : "bg-white/80 hover:bg-white text-gray-900 border border-gray-200/50"
-                  }`}
+                  className={`group relative p-3 sm:p-4 rounded-xl sm:rounded-2xl cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-[1.01] ${hoveredPost === post.id
+                    ? "bg-transparent text-black shadow-lg"
+                    : "bg-white/80 hover:bg-white text-gray-900 border border-gray-200/50"
+                    }`}
                   onClick={() => setSelectedPost(post)}
                   onMouseEnter={() => setHoveredPost(post.id)}
                   onMouseLeave={() => setHoveredPost(null)}
@@ -266,9 +273,8 @@ const BlogExploreArticles = ({ blogPosts, contentMap }) => {
                     className="w-full h-32 sm:h-40 object-cover rounded-lg sm:rounded-xl mb-3 sm:mb-4"
                   />
                   <h4
-                    className={`font-semibold text-xs sm:text-sm leading-tight mb-1 sm:mb-2 line-clamp-2 ${
-                      hoveredPost === post.id ? "text-black" : "text-gray-900"
-                    }`}
+                    className={`font-semibold text-xs sm:text-sm leading-tight mb-1 sm:mb-2 line-clamp-2 ${hoveredPost === post.id ? "text-black" : "text-gray-900"
+                      }`}
                   >
                     {post.title}
                   </h4>

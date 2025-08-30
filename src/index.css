@@ -52,6 +52,11 @@ body {
 .ant-card .ant-card-body{
   padding: 0px;
 }
+.ant-list-items{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 
 /* ExploreProperties.css */
 .property-card-action-button {

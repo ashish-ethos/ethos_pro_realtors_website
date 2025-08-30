@@ -128,7 +128,7 @@ const CardPropertiesDetails = ({ property }) => {
                 </div>
                 <div className="flex justify-between items-center py-2 border-b border-gray-200">
                   <span className="text-sm font-medium text-gray-600">Type</span>
-                  <span className="text-sm text-gray-900">{property.type}</span>
+                  <span className="text-sm text-gray-900  text-end">{property.type}</span>
                 </div>
                 {property.units && (
                   <div className="flex justify-between items-center py-2 border-b border-gray-200">

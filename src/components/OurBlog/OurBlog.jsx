@@ -349,7 +349,7 @@ const blogPosts = [
     {
         id: 2,
         image: BuyProperties,
-        date: 'February 28, 2025',
+        date: 'Feb 28, 2025',
         category: 'Investment',
         tags: ['Investment', 'Real Estate'],
         title: 'Why Buying Property Through An Authorized Channel Partner Is A Smart Choice?',

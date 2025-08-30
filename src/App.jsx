@@ -18,6 +18,7 @@ import FAQPage from "./pages/F&Q/F&Qs";
 import Disclaimer from "./pages/Disclaimer/Disclaimer";
 import OurTeam from "./components/OurTeam/OurTeam";
 import ScrollToTop from "./utils/ScrollToTopComponent";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/team/:name" element={<Home />} />
           {/* <Route path="/team" element={<OurTeam />} /> */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

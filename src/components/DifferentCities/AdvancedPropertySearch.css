@@ -462,20 +462,55 @@
 }
 
 .status-tag.for-sale {
-  background: green;
+  background: rgb(224 224 224 / 26%);
+  color: #fff;
+  border: 1px solid #fff;
+  align-items: center;
+  font-weight: 500;
+  display: flex;
+  justify-items: center;
+  margin: 0px;
+  padding: 2px;
 }
 
 .status-tag.for-rent {
-  background: blue;
+   background: rgb(224 224 224 / 26%);
+  color: blue;
+  border: 1px solid #fff;
+  align-items: center;
+  display: flex;
+  font-weight: 500;
+  justify-items: center;
+  margin: 0px;
+  padding: 2px;
+  /* background: blue; */
 }
 
 .status-tag.hot-offer {
-  background: red;
+   background: rgb(224 224 224 / 26%);
+  color: red;
+  border: 1px solid #fff;
+  align-items: center;
+  display: flex;
+  font-weight: 500;
+  justify-items: center;
+  margin: 0px;
+  padding: 2px;
+  /* background: red; */
 }
 
 .status-tag.new-launch,
 .status-tag.ready-to-move {
-  background: purple;
+   background: rgb(224 224 224 / 26%);
+  color: purple;
+  border: 1px solid #fff;
+  align-items: center;
+  font-weight: 500;
+  display: flex;
+  justify-items: center;
+  margin: 0px;
+  padding: 2px;
+  /* background: purple; */
 }
 
 .card-actions {

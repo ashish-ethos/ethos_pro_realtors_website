@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
-import { Drawer, Button, Typography, Tag, InputNumber, Slider, Input, Form, Divider } from 'antd';
-import { CloseOutlined } from '@ant-design/icons';
+import React, { useState, useEffect } from 'react';
+import { Drawer, Button, Typography, Tag, InputNumber, Input, Form, Tabs, Card, Space, Avatar, Progress } from 'antd';
+import {
+  CloseOutlined,
+  HeartOutlined,
+  ShareAltOutlined,
+  EnvironmentOutlined,
+  HomeOutlined,
+  CarOutlined,
+  WifiOutlined,
+  SecurityScanOutlined,
+  ThunderboltOutlined,
+  CalculatorOutlined,
+  PhoneOutlined,
+  MailOutlined,
+  UserOutlined,
+  AreaChartOutlined,
+  StarOutlined,
+  BankOutlined
+} from '@ant-design/icons';
 import CustomButton from '../../components/ui/Button';
+import CustomInput from '../../components/ui/Input';
 
-const { Title, Text } = Typography;
+const { Title, Text, Paragraph } = Typography;
 const { TextArea } = Input;
+const { TabPane } = Tabs;
 
 const ViewDetailsDrawer = ({ open, onClose, project }) => {
   const isCommercial = project?.type?.toLowerCase().includes('shop') || project?.type?.toLowerCase().includes('office');
@@ -13,14 +32,40 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
   const [interestRate, setInterestRate] = useState(8);
   const [tenure, setTenure] = useState(120);
   const [emi, setEmi] = useState(null);
+  const [totalAmount, setTotalAmount] = useState(null);
+  const [totalInterest, setTotalInterest] = useState(null);
   const [form] = Form.useForm();
+  const [activeTab, setActiveTab] = useState('overview');
+  const [liked, setLiked] = useState(false);
 
   const calculateEMI = () => {
     const p = loanAmount;
     const r = interestRate / 100 / 12;
     const n = tenure;
-    const emiValue = p * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
-    setEmi(emiValue.toFixed(2));
+
+    if (r === 0) {
+      const emiValue = p / n;
+      setEmi(emiValue.toFixed(2));
+      setTotalAmount(p.toFixed(2));
+      setTotalInterest(0);
+    } else {
+      const emiValue = p * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+      const total = emiValue * n;
+      const interest = total - p;
+
+      setEmi(emiValue.toFixed(2));
+      setTotalAmount(total.toFixed(2));
+      setTotalInterest(interest.toFixed(2));
+    }
+  };
+
+  // Calculate EMI by default and on input changes
+  useEffect(() => {
+    calculateEMI();
+  }, [loanAmount, interestRate, tenure]);
+
+  const handleEMISubmit = () => {
+    calculateEMI();
   };
 
   const handleContactSubmit = (values) => {
@@ -37,194 +82,486 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
     return '#';
   };
 
-  const CardBox = ({ children, className = '' }) => (
-    <div className={`bg-white rounded-md shadow-sm p-4 border border-gray-200 ${className}`}>
+  const formatPrice = (price) => {
+    if (!price) return 'N/A';
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
+  const getAmenityIcon = (amenity) => {
+    const icons = {
+      'parking': <CarOutlined />,
+      'wifi': <WifiOutlined />,
+      'pool': <CarOutlined />,
+      'security': <SecurityScanOutlined />,
+      'gym': <ThunderboltOutlined />,
+      'default': <HomeOutlined />
+    };
+
+    const key = Object.keys(icons).find(k => amenity.toLowerCase().includes(k));
+    return icons[key] || icons.default;
+  };
+
+  const PremiumCard = ({ children, className = '', gradient = false, hover = true }) => (
+    <div className={`
+      ${gradient
+        ? 'bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-100'
+        : 'bg-white border border-gray-200'
+      } 
+      rounded-2xl shadow-lg 
+      ${hover ? 'hover:shadow-xl hover:scale-[1.02] transition-all duration-300' : ''} 
+      p-4 ${className}
+    `}>
       {children}
     </div>
   );
 
+  const StatCard = ({ icon, label, value, color = 'blue' }) => (
+    <div className="text-center p-2">
+      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-${color}-100 text-${color}-600 mb-1`}>
+        {icon}
+      </div>
+      <div className="text-xs text-gray-500 mb-1">{label}</div>
+      <div className="text-md font-bold text-gray-900">{value}</div>
+    </div>
+  );
+
+  const overviewContent = (
+    <div className="space-y-6">
+      {/* Hero Section */}
+      <PremiumCard gradient={true}>
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <Title level={3} className="m-0 text-gray-800">{project?.name}</Title>
+            <div className="flex items-center mt-2 text-gray-600">
+              <EnvironmentOutlined className="mr-2" />
+              <Text>{project?.location}</Text>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <Button
+              type="text"
+              shape="circle"
+              icon={<HeartOutlined style={{ color: liked ? '#ff4d4f' : undefined }} />}
+              onClick={() => setLiked(!liked)}
+              className="hover:bg-white/50"
+            />
+            <Button
+              type="text"
+              shape="circle"
+              icon={<ShareAltOutlined />}
+              className="hover:bg-white/50"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project?.status?.map((status, idx) => (
+            <Tag key={idx} className={`
+              px-4 py-2 rounded-full font-semibold text-white border-0 ${status === 'FOR SALE' ? 'bg-gradient-to-r from-blue-500 to-blue-600' :
+                status === 'FOR RENT' ? 'bg-gradient-to-r from-green-500 to-green-600' :
+                  status === 'HOT OFFER' ? 'bg-gradient-to-r from-red-500 to-red-600 animate-pulse' :
+                    'bg-gradient-to-r from-gray-500 to-gray-600'
+              }
+            `}>
+              {status}
+            </Tag>
+          ))}
+        </div>
+
+        <div className="flex items-baseline gap-2">
+          <Title level={4} className="m-0 text-gray-900">{formatPrice(project?.price)}</Title>
+          {project?.pricePerSqft && (
+            <Text className="text-gray-500 text-lg">{project.pricePerSqft}/sqft</Text>
+          )}
+        </div>
+      </PremiumCard>
+
+      {/* Key Statistics */}
+      <PremiumCard>
+        <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-100">
+          <StatCard
+            icon={<AreaChartOutlined />}
+            label="Area"
+            value={project?.sqft || 'N/A'}
+            color="blue"
+            className="text-sm font-medium font-[Inter] text-gray-800"
+          />
+          <StatCard
+            icon={<HomeOutlined />}
+            label="Type"
+            value={project?.type || 'N/A'}
+            color="green"
+            className="font-medium text-gray-800 font-[Inter]"
+          />
+          {!isCommercial && (
+            <>
+              <StatCard
+                icon={<UserOutlined />}
+                label="Bedrooms"
+                value={project?.bedrooms || 'N/A'}
+                color="purple"
+              />
+              <StatCard
+                icon={<ThunderboltOutlined />}
+                label="Bathrooms"
+                value={project?.bathrooms || 'N/A'}
+                color="orange"
+              />
+            </>
+          )}
+          {isCommercial && (
+            <>
+              <StatCard
+                icon={<BankOutlined />}
+                label="Category"
+                value={project?.category?.replace('_', ' ') || 'N/A'}
+                color="purple"
+              />
+              <StatCard
+                icon={<StarOutlined />}
+                label="Rating"
+                value={project?.rating || 'N/A'}
+                color="orange"
+              />
+            </>
+          )}
+        </div>
+      </PremiumCard>
+
+      {/* Property Image */}
+      {project?.image && (
+        <PremiumCard className="p-0 overflow-hidden">
+          <div className="relative">
+            <img
+              src={project.image}
+              alt={project.name}
+              className="w-full h-80 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+          </div>
+        </PremiumCard>
+      )}
+
+      {/* Amenities */}
+      {project?.amenities?.length > 0 && (
+        <PremiumCard>
+          <Title level={4} className="mb-4 flex items-center">
+            <ThunderboltOutlined className="mr-2 text-blue-600" />
+            Amenities & Features
+          </Title>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            {project.amenities.map((amenity, i) => (
+              <div key={i} className="flex items-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+                <div className="mr-3 text-blue-600">
+                  {getAmenityIcon(amenity)}
+                </div>
+                <Text className="font-medium">{amenity}</Text>
+              </div>
+            ))}
+          </div>
+        </PremiumCard>
+      )}
+
+      {/* Map */}
+      {project?.addressMap && (
+        <PremiumCard>
+          <Title level={4} className="mb-4 flex items-center">
+            <EnvironmentOutlined className="mr-2 text-green-600" />
+            Location
+          </Title>
+          <a href={getMapUrl()} target="_blank" rel="noopener noreferrer">
+            <div
+              className="w-full h-64 rounded-xl overflow-hidden hover:opacity-90 transition-opacity shadow-inner"
+              dangerouslySetInnerHTML={{ __html: project.addressMap }}
+            />
+          </a>
+        </PremiumCard>
+      )}
+    </div>
+  );
+
+  const calculatorContent = (
+    <div className="space-y-6">
+      <PremiumCard gradient={true}>
+        <Title level={4} className="mb-6 flex items-center text-gray-800">
+          <CalculatorOutlined className="mr-3 text-blue-600" />
+          EMI Calculator
+        </Title>
+
+        <Form form={form} layout="vertical" onFinish={handleEMISubmit} className="space-y-4">
+          <div className="grid sm:grid-cols-3 gap-6">
+            <div className="space-y-4">
+              <Form.Item
+                name="loanAmount"
+                label={<Text strong>Loan Amount</Text>}
+                initialValue={loanAmount}
+                rules={[{ required: true, message: 'Please enter loan amount' }]}
+              >
+                <InputNumber
+                  min={100000}
+                  max={100000000}
+                  value={loanAmount}
+                  onChange={setLoanAmount}
+                  formatter={val => `₹ ${val}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  parser={val => val.replace(/₹\s?|(,*)/g, '')}
+                  className="w-full"
+                  size="large"
+                />
+              </Form.Item>
+            </div>
+
+            <div className="space-y-4">
+              <Form.Item
+                name="interestRate"
+                label={<Text strong>Interest Rate (%)</Text>}
+                initialValue={interestRate}
+                rules={[{ required: true, message: 'Please enter interest rate' }]}
+              >
+                <InputNumber
+                  min={1}
+                  max={20}
+                  step={0.1}
+                  value={interestRate}
+                  onChange={setInterestRate}
+                  className="w-full"
+                  size="large"
+                />
+              </Form.Item>
+            </div>
+
+            <div className="space-y-4">
+              <Form.Item
+                name="tenure"
+                label={<Text strong>Tenure (Months)</Text>}
+                initialValue={tenure}
+                rules={[{ required: true, message: 'Please enter tenure' }]}
+              >
+                <InputNumber
+                  min={12}
+                  max={360}
+                  value={tenure}
+                  onChange={setTenure}
+                  className="w-full"
+                  size="large"
+                />
+              </Form.Item>
+            </div>
+          </div>
+
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              size="large"
+              className="w-full h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 border-0 font-semibold shadow-lg hover:shadow-xl"
+            >
+              Calculate EMI
+            </Button>
+          </Form.Item>
+        </Form>
+      </PremiumCard>
+
+      {/* EMI Results */}
+      {emi && (
+        <PremiumCard>
+          <div className="grid sm:grid-cols-3 gap-6">
+            <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl">
+              <div className="text-xl font-bold text-blue-600 mb-2">₹{formatPrice(emi)}</div>
+              <div className="text-blue-800 font-medium">Monthly EMI</div>
+            </div>
+
+            <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl">
+              <div className="text-xl font-bold text-green-600 mb-2">₹{formatPrice(totalAmount)}</div>
+              <div className="text-green-800 font-medium">Total Amount</div>
+            </div>
+
+            <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl">
+              <div className="text-xl font-bold text-orange-600 mb-2">₹{formatPrice(totalInterest)}</div>
+              <div className="text-orange-800 font-medium">Total Interest</div>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <div className="flex justify-between items-center mb-3">
+              <Text strong>Principal vs Interest</Text>
+              <Text className="text-gray-500">
+                {((loanAmount / totalAmount) * 100).toFixed(1)}% Principal
+              </Text>
+            </div>
+            <Progress
+              percent={(loanAmount / totalAmount) * 100}
+              strokeColor="#3b82f6"
+              trailColor="#fbbf24"
+              className="mb-2"
+            />
+            <div className="flex justify-between text-sm text-gray-600">
+              <span>Principal: ₹{formatPrice(loanAmount)}</span>
+              <span>Interest: ₹{formatPrice(totalInterest)}</span>
+            </div>
+          </div>
+        </PremiumCard>
+      )}
+    </div>
+  );
+
+  const contactContent = (
+    <PremiumCard>
+      <Title level={4} className="mb-6 flex items-center">
+        <PhoneOutlined className="mr-3 text-green-600" />
+        Get In Touch
+      </Title>
+
+      <Form form={form} layout="vertical" onFinish={handleContactSubmit} className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Form.Item
+            name="name"
+            label={<Text strong>Full Name</Text>}
+            rules={[{ required: true, message: 'Please enter your name' }]}
+          >
+            <CustomInput
+              placeholder="Enter your full name"
+              size="large"
+              prefix={<UserOutlined className="text-gray-400" />}
+              className="rounded-xl"
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="phone"
+            label={<Text strong>Phone Number</Text>}
+            rules={[{ required: true, message: 'Please enter your phone' }]}
+          >
+            <CustomInput
+              placeholder="Enter your phone number"
+              size="large"
+              prefix={<PhoneOutlined className="text-gray-400" />}
+              className="rounded-xl"
+            />
+          </Form.Item>
+        </div>
+
+        <Form.Item
+          name="email"
+          label={<Text strong>Email Address</Text>}
+          rules={[
+            { required: true, message: 'Please enter your email' },
+            { type: 'email', message: 'Enter valid email' }
+          ]}
+        >
+          <CustomInput
+            placeholder="Enter your email address"
+            size="large"
+            prefix={<MailOutlined className="text-gray-400" />}
+            className="rounded-xl"
+          />
+        </Form.Item>
+
+        <Form.Item
+          name="message"
+          label={<Text strong>Message</Text>}
+          rules={[{ required: true, message: 'Please enter a message' }]}
+        >
+          <TextArea
+            rows={4}
+            placeholder="Tell us about your requirements or ask any questions..."
+            className="rounded-xl"
+          />
+        </Form.Item>
+
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            size="large"
+            className="w-full h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 border-0 font-semibold shadow-lg hover:shadow-xl"
+          >
+            Send Message
+          </Button>
+        </Form.Item>
+      </Form>
+    </PremiumCard>
+  );
+
   return (
     <Drawer
-      title={
-        <div className="flex justify-between items-center">
-          <Title level={4} className="m-0">{project?.name || 'Project Details'}</Title>
-        </div>
-      }
+      title={null}
       placement="right"
       onClose={onClose}
       open={open}
-      width={760}
-      bodyStyle={{ padding: '20px', backgroundColor: '#f9fafb' }}
+      width={800}
+      bodyStyle={{ padding: 0 }}
+      headerStyle={{ display: 'none' }}
+      className="advanced-drawer"
     >
-      {project?.image && (
-        <CardBox>
-          <img src={project.image} alt={project.name} className="w-full h-64 object-cover rounded" />
-        </CardBox>
-      )}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-        <CardBox>
-          <div className="mb-2">
-            <Text strong>Status:</Text><br />
-            {project?.status?.length ? (
-              project.status.map((status, idx) => (
-                <Tag key={idx} className={`text-xs px-3 py-1 rounded-full font-semibold ${
-                  status === 'FOR SALE' ? 'bg-blue-600 text-white' :
-                  status === 'FOR RENT' ? 'bg-green-600 text-white' :
-                  status === 'HOT OFFER' ? 'bg-red-500 text-white' :
-                  'bg-gray-600 text-white'
-                }`}>
-                  {status}
-                </Tag>
-              ))
-            ) : <Text type="secondary">N/A</Text>}
+      <div className="h-full bg-gradient-to-br from-gray-50 to-gray-100">
+        {/* Custom Header */}
+        <div className="bg-white border-b border-gray-200 p-2 sticky top-0 z-10 shadow-sm">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-1 mr-3">
+              <Avatar size={40} className="bg-blue-600 ">
+                {project?.name?.charAt(0) || 'P'}
+              </Avatar>
+              <div>
+                <p level={4} className="m-0 p-0 text-lg font-medium font-[Inter]">{project?.name || 'Property Details'}</p>
+                <Text className="text-gray-500 m-0 p-0 font-[calibri]">Premium Listing</Text>
+              </div>
+            </div>
+            <Button
+              type="text"
+              shape="circle"
+              icon={<CloseOutlined />}
+              onClick={onClose}
+              className="hover:bg-gray-100"
+              size="large"
+            />
           </div>
-          <div>
-            <Text strong>Price:</Text> <Text>{project?.price || 'N/A'}</Text>
-            {project?.pricePerSqft && (
-              <Text type="secondary"> ({project.pricePerSqft} per sqft)</Text>
-            )}
-          </div>
-        </CardBox>
+        </div>
 
-        <CardBox>
-          <Text strong>Location:</Text><br />
-          <Text>{project?.location || 'N/A'}</Text>
-        </CardBox>
-
-        {project?.addressMap && (
-          <CardBox className="col-span-2">
-            <Text strong>Map:</Text>
-            <a href={getMapUrl()} target="_blank" rel="noopener noreferrer" className="block mt-2">
-              <div
-                className="w-full h-52 overflow-hidden rounded hover:opacity-90 transition-opacity"
-                dangerouslySetInnerHTML={{ __html: project.addressMap }}
-              />
-            </a>
-          </CardBox>
-        )}
-
-        <CardBox>
-          <div className="grid grid-cols-2 gap-y-2 text-sm">
-            <div><Text strong>Size:</Text> {project?.sqft || 'N/A'}</div>
-            <div><Text strong>Type:</Text> {project?.type || 'N/A'}</div>
-            <div><Text strong>Category:</Text> {project?.category?.replace('_', ' ') || 'N/A'}</div>
-            <div><Text strong>Rating:</Text> {project?.rating || 'N/A'}</div>
-          </div>
-        </CardBox>
-
-        {!isCommercial && (
-          <CardBox>
-            <div className="grid grid-cols-2 gap-y-2 text-sm">
-              <div><Text strong>Bedrooms:</Text> {project?.bedrooms || 'N/A'}</div>
-              <div><Text strong>Bathrooms:</Text> {project?.bathrooms || 'N/A'}</div>
-            </div>
-          </CardBox>
-        )}
-
-        {project?.amenities?.length > 0 && (
-          <CardBox>
-            <Text strong>Amenities:</Text>
-            <div className="mt-2 flex flex-wrap gap-2">
-              {project.amenities.map((item, i) => (
-                <Tag key={i} className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">{item}</Tag>
-              ))}
-            </div>
-          </CardBox>
-        )}
-
-        {/* EMI Calculator */}
-        <CardBox className="col-span-2">
-          <Text strong>EMI Calculator</Text>
-          <div className="grid sm:grid-cols-3 gap-4 mt-4 text-sm">
-            <div>
-              <Text>Loan Amount (₹):</Text>
-              <InputNumber
-                min={100000}
-                max={100000000}
-                value={loanAmount}
-                onChange={setLoanAmount}
-                formatter={val => `₹ ${val}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                parser={val => val.replace(/₹\s?|(,*)/g, '')}
-                className="w-full"
-              />
-              <Slider min={100000} max={100000000} step={100000} value={loanAmount} onChange={setLoanAmount} />
-            </div>
-            <div>
-              <Text>Interest Rate (%):</Text>
-              <InputNumber
-                min={1}
-                max={20}
-                step={0.1}
-                value={interestRate}
-                onChange={setInterestRate}
-                className="w-full"
-              />
-              <Slider min={1} max={20} step={0.1} value={interestRate} onChange={setInterestRate} />
-            </div>
-            <div>
-              <Text>Tenure (Months):</Text>
-              <InputNumber
-                min={12}
-                max={360}
-                value={tenure}
-                onChange={setTenure}
-                className="w-full"
-              />
-              <Slider min={12} max={360} step={12} value={tenure} onChange={setTenure} />
-            </div>
-          </div>
-          <CustomButton type="primary" onClick={calculateEMI} className="w-full mt-3">
-            Calculate EMI
-          </CustomButton>
-          {emi && (
-            <div className="mt-4 text-center">
-              <Text strong>Monthly EMI:</Text> ₹{emi}
-            </div>
-          )}
-        </CardBox>
-
-        {/* Contact Form */}
-        <CardBox className="col-span-2">
-          <Text strong>Contact Us</Text>
-          <Form form={form} layout="vertical" onFinish={handleContactSubmit} className="mt-4">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <Form.Item
-                name="name"
-                label="Name"
-                rules={[{ required: true, message: 'Please enter your name' }]}
-              >
-                <Input placeholder="Your Name" />
-              </Form.Item>
-              <Form.Item
-                name="email"
-                label="Email"
-                rules={[{ required: true, message: 'Please enter your email' }, { type: 'email', message: 'Enter valid email' }]}
-              >
-                <Input placeholder="Your Email" />
-              </Form.Item>
-              <Form.Item
-                name="phone"
-                label="Phone"
-                rules={[{ required: true, message: 'Please enter your phone' }]}
-              >
-                <Input placeholder="Your Phone" />
-              </Form.Item>
-            </div>
-            <Form.Item
-              name="message"
-              label="Message"
-              rules={[{ required: true, message: 'Please enter a message' }]}
+        {/* Tabs Navigation */}
+        <div className="px-6 pt-4">
+          <Tabs
+            activeKey={activeTab}
+            onChange={setActiveTab}
+            className="advanced-tabs"
+            size="large"
+          >
+            <TabPane
+              tab={
+                <span className="flex items-center">
+                  <HomeOutlined className="mr-2" />
+                  Overview
+                </span>
+              }
+              key="overview"
             >
-              <TextArea rows={3} placeholder="Your Message" />
-            </Form.Item>
-            <Form.Item>
-              <Button type="primary" htmlType="submit" className="w-full">
-                Submit
-              </Button>
-            </Form.Item>
-          </Form>
-        </CardBox>
+              <div className="pb-6">{overviewContent}</div>
+            </TabPane>
+
+            <TabPane
+              tab={
+                <span className="flex items-center">
+                  <CalculatorOutlined className="mr-2" />
+                  EMI Calculator
+                </span>
+              }
+              key="calculator"
+            >
+              <div className="pb-6">{calculatorContent}</div>
+            </TabPane>
+
+            <TabPane
+              tab={
+                <span className="flex items-center">
+                  <PhoneOutlined className="mr-2" />
+                  Contact
+                </span>
+              }
+              key="contact"
+            >
+              <div className="pb-6">{contactContent}</div>
+            </TabPane>
+          </Tabs>
+        </div>
       </div>
     </Drawer>
   );

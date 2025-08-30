@@ -997,12 +997,12 @@ const AdvancedPropertySearch = ({
                               }
                             />
 
-                            <div className="card-tags">
+                            <div className="card-tags m-0 p-0">
                               {property.featured && (
                                 <Tag className="featured-tag">Featured</Tag>
                               )}
                               <Tag
-                                className={`status-tag ${property.status
+                                className={`status-tag m-0 p-0 ${property.status
                                   .toLowerCase()
                                   .replace(" ", "-")}`}
                               >
@@ -1085,6 +1085,7 @@ const AdvancedPropertySearch = ({
                 </Row>
               ) : (
                 <List
+                  className="flex flex-col gap-1"
                   itemLayout="vertical"
                   dataSource={paginatedProperties}
                   renderItem={(property) => (
@@ -1113,8 +1114,9 @@ const AdvancedPropertySearch = ({
                         }
                         description={
                           <div className="checked ">
-                            <Text>
-                              <MapPinHouse /> {property.location}
+                            <Text className="location-list flex gap-1">
+                              <MapPinHouse /> 
+                              <p>{property.location}</p>
                             </Text>
                             <div className="list-details">
                               <Text>

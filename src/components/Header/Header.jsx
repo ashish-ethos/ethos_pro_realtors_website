@@ -1,8 +1,8 @@
-// Header.jsx
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaBars, FaTimes, FaCaretDown } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
+import { Dropdown, Space } from "antd"; // Import Ant Design components
 import "./Header.css";
 import CompanyHeaderLogo from "../../assets/images/logo/ethos_pro_realtors_logo.jpg";
 import MobileHeaderLogo from "../../assets/images/logo/EPR_logo.png";
@@ -24,8 +24,8 @@ function Header() {
     {
       name: "Projects",
       dropdown: [
-        { name: "Residential", path: "/projects/residential" },
-        { name: "Commercial", path: "/projects/commercial" },
+        { name: "Residential", path: "/projects/residential", key: "1" },
+        { name: "Commercial", path: "/projects/commercial", key: "2" },
       ],
     },
     { name: "About", path: "/about" },
@@ -33,10 +33,35 @@ function Header() {
     { name: "Contact", path: "/contact" },
   ];
 
+  // Handle dropdown item click
+  const onClick = ({ key }) => {
+    // Optionally handle clicks (e.g., show a message or navigate)
+    // Since we're using NavLink for navigation, this can be empty or customized
+  };
+
+  // Map dropdown items for Ant Design
+  const getDropdownItems = (dropdown) =>
+    dropdown.map((sub) => ({
+      label: (
+        <NavLink
+          to={sub.path}
+          className={({ isActive }) =>
+            `block px-4 py-2 text-sm hover:bg-yellow-50 ${
+              isActive ? "text-yellow-600 font-semibold" : "text-gray-800"
+            }`
+          }
+        >
+          {sub.name}
+        </NavLink>
+      ),
+      key: sub.key,
+    }));
+
   return (
     <header
-      className={`fixed w-full top-0 z-50 transition-all duration-500 ${scrolled ? "bg-white shadow-md" : "bg-transparent"
-        }`}
+      className={`fixed w-full top-0 z-50 transition-all duration-500 ${
+        scrolled ? "bg-white shadow-md" : "bg-transparent"
+      }`}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center header-mobile">
         {/* Logo */}
@@ -55,36 +80,34 @@ function Header() {
           />
         </Link>
 
-
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) =>
             item.dropdown ? (
-              <div className="relative" key={item.name} onMouseEnter={() => setHoveredItem(item.name)} onMouseLeave={() => setHoveredItem(null)}>
-                <span className="flex items-center font-medium cursor-pointer">
-                  {item.name} <IoIosArrowDown className="ml-1 mt-1" />
-                </span>
-                <div className={`absolute left-0 mt-2 ${item.name === hoveredItem ? 'block' : 'hidden'} bg-white shadow-md rounded-md`} onMouseEnter={() => setHoveredItem(item.name)} onMouseLeave={() => setHoveredItem(null)}>
-                  {item.dropdown.map((sub) => (
-                    <NavLink
-                      key={sub.name}
-                      to={sub.path}
-                      className={({ isActive }) =>
-                        `block px-4 py-2 text-sm hover:bg-yellow-50 ${isActive ? "text-yellow-600 font-semibold" : "text-gray-800"
-                        }`
-                      }
-                    >
-                      {sub.name}
-                    </NavLink>
-                  ))}
-                </div>
+              <div
+                className="relative"
+                key={item.name}
+                onMouseEnter={() => setHoveredItem(item.name)}
+                onMouseLeave={() => setHoveredItem(null)}
+              >
+                <Dropdown
+                  menu={{ items: getDropdownItems(item.dropdown), onClick }}
+                  trigger={["hover"]}
+                  open={item.name === hoveredItem}
+                  overlayClassName="custom-dropdown" // Custom class for styling
+                >
+                  <span className="flex items-center font-medium cursor-pointer">
+                    {item.name} <IoIosArrowDown className="ml-1 mt-1" />
+                  </span>
+                </Dropdown>
               </div>
             ) : (
               <NavLink
                 key={item.name}
                 to={item.path}
                 className={({ isActive }) =>
-                  `relative font-medium hover:text-yellow-600 transition ${isActive ? "text-yellow-600" : "text-gray-800"
+                  `relative font-medium hover:text-yellow-600 transition ${
+                    isActive ? "text-yellow-600" : "text-gray-800"
                   }`
                 }
               >
@@ -115,8 +138,9 @@ function Header() {
 
       {/* Mobile Nav */}
       <div
-        className={`md:hidden bg-white shadow-lg fixed top-16 right-0 w-64 h-screen transition-transform duration-500 ${mobileOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`md:hidden bg-white shadow-lg fixed top-16 right-0 w-64 h-screen transition-transform duration-500 ${
+          mobileOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <ul className="flex flex-col p-6 space-y-4">
           {navItems.map((item) =>
