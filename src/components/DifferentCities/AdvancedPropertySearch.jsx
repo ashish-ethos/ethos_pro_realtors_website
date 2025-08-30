@@ -666,7 +666,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <Bath className="filter-icon" />
+                      <Bath className="filter-icon"  />
                       Bathrooms
                     </span>
                     <CustomSelect
@@ -1058,10 +1058,10 @@ const AdvancedPropertySearch = ({
                               <div className="card-details">
                                 <div className="card-details-content">
                                   <Text className="card-detail-item">
-                                    <Bed /> {property.bedrooms} Beds
+                                    <Bed className='text-gray-500' /> {property.bedrooms} Beds
                                   </Text>
                                   <Text className="card-detail-item">
-                                    <Bath /> {property.bathrooms} Baths
+                                    <Bath className='text-gray-500'/> {property.bathrooms} Baths
                                   </Text>
                                   <Tag color="default">{property.type}</Tag>
                                 </div>
@@ -1120,7 +1120,7 @@ const AdvancedPropertySearch = ({
                             </Text>
                             <div className="list-details">
                               <Text>
-                                <Bed /> {property.bedrooms} Beds
+                                <Bed  /> {property.bedrooms} Beds
                               </Text>
                               <Text>
                                 <Bath /> {property.bathrooms} Baths

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Input, Select, Button } from 'antd';
 import { FilterOutlined, DownOutlined, SearchOutlined as SearchIcon } from '@ant-design/icons';
-import { Grid, List, MapPin, Bed, Bath, Square, Heart, Share, Eye, Star } from 'lucide-react';
+import { Grid, List, MapPinHouse, Bed, Bath, LandPlot , Heart, Share, Eye, Star } from 'lucide-react';
 import ViewDetailsDrawer from './ViewDetailsDrawer';
 import './Project.css';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -149,7 +149,7 @@ const Commercial = () => {
           <div>
             <h3 className="text-xl font-bold text-gray-900 mb-1">{property.name}</h3>
             <p className="text-gray-600 flex items-center gap-1">
-              <MapPin size={14} />
+              <MapPinHouse className='text-gray-500' />
               {property.location}
             </p>
           </div>
@@ -161,15 +161,15 @@ const Commercial = () => {
 
         <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
           <span className="flex items-center gap-1">
-            <Bed size={14} />
+            <Bed className='text-gray-500' />
             {property.bedrooms} Bed
           </span>
           <span className="flex items-center gap-1">
-            <Bath size={14} />
+            <Bath className='text-gray-500' />
             {property.bathrooms} Bath
           </span>
           <span className="flex items-center gap-1">
-            <Square size={14} />
+            <LandPlot  className='text-gray-500' />
             {property.sqft}
           </span>
         </div>
