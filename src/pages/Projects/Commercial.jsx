@@ -1,14 +1,16 @@
 import React, { useState, useMemo } from 'react';
-import { Input, Select, Button } from 'antd';
+import { Input,  Button } from 'antd';
 import { FilterOutlined, DownOutlined, SearchOutlined as SearchIcon } from '@ant-design/icons';
 import { Grid, List, MapPinHouse, Bed, Bath, LandPlot , Heart, Share, Eye, Star } from 'lucide-react';
 import ViewDetailsDrawer from './ViewDetailsDrawer';
 import './Project.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { allProjectPropertyDetails } from '../../data/propertyDetailsData';
+import CustomButton from '../../components/ui/Button';
+import CustomSelect from '../../components/ui/Select';
 
 const { Search } = Input;
-const { Option } = Select;
+const { Option } = CustomSelect;
 
 const Commercial = () => {
   const [viewMode, setViewMode] = useState('grid');
@@ -226,7 +228,7 @@ const Commercial = () => {
               View Details
             </button>
           </div>
-          <button className="px-4 py-2 border-2 border-blue-600 text-blue-600 rounded-xl font-semibold hover:bg-blue-50 transition-colors">
+          <button className="px-4 py-2 border-2 border-[#1677ff87] text-black rounded-xl font-semibold hover:bg-blue-50 transition-colors">
             Contact
           </button>
         </div>
@@ -280,18 +282,13 @@ const Commercial = () => {
               size="large"
               onSearch={(value) => setSearchTerm(value)}
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ borderRadius: '12px', overflow: 'hidden' }}
+              style={{ overflow: 'hidden' }}
             />
             <div className="flex gap-3">
-              <Button
+              <CustomButton
                 onClick={() => setShowFilters(!showFilters)}
                 size="large"
-                style={{
-                  borderRadius: '12px',
-                  padding: '0 20px',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
+               
               >
                 <FilterOutlined />
                 Filters
@@ -302,27 +299,27 @@ const Commercial = () => {
                     transform: showFilters ? 'rotate(180deg)' : 'rotate(0deg)',
                   }}
                 />
-              </Button>
-              <Select
+              </CustomButton>
+              <CustomSelect
                 value={sortBy}
                 onChange={(value) => setSortBy(value)}
                 size="large"
-                style={{ width: 220, borderRadius: '12px' }}
+                style={{ width: 150, borderRadius: '12px' }}
               >
                 <Option value="featured">Featured First</Option>
                 <Option value="price_low">Price: Low to High</Option>
                 <Option value="price_high">Price: High to Low</Option>
                 <Option value="rating">Highest Rated</Option>
                 <Option value="sqft">Largest First</Option>
-              </Select>
+              </CustomSelect>
             </div>
           </div>
 
           {/* Filter Panel */}
           {showFilters && (
             <div className="mt-4 p-6 bg-gray-50 rounded-xl">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <Select
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <CustomSelect
                   showSearch
                   value={filters.propertyType}
                   onChange={(value) => setFilters({ ...filters, propertyType: value })}
@@ -338,7 +335,7 @@ const Commercial = () => {
                     { value: 'COMMERCIAL', label: 'Commercial' },
                   ]}
                 />
-                <Select
+                <CustomSelect
                   showSearch
                   value={filters.bedrooms}
                   onChange={(value) => setFilters({ ...filters, bedrooms: value })}
@@ -356,7 +353,7 @@ const Commercial = () => {
                     { value: '5', label: '5+ Bedrooms' },
                   ]}
                 />
-                <Select
+                <CustomSelect
                   showSearch
                   value={filters.category}
                   onChange={(value) => setFilters({ ...filters, category: value })}
@@ -375,18 +372,14 @@ const Commercial = () => {
                     { value: 'INVESTMENT', label: 'Investment' },
                   ]}
                 />
-                <Button
+                <CustomButton
                   onClick={() => setFilters({ priceRange: '', propertyType: '', bedrooms: '', category: '' })}
                   size="large"
                   type="primary"
-                  style={{
-                    borderRadius: '12px',
-                    background: '#2563eb',
-                    borderColor: '#2563eb',
-                  }}
+                  className="max-w-[200px]"
                 >
                   Clear Filters
-                </Button>
+                </CustomButton>
               </div>
             </div>
           )}
@@ -420,32 +413,24 @@ const Commercial = () => {
             {filteredProperties.length > 6 && (
               <div className="mt-8 flex justify-center gap-4">
                 {!showAll && (
-                  <Button
+                  <CustomButton
                     type="primary"
                     size="large"
                     onClick={() => setShowAll(true)}
-                    style={{
-                      borderRadius: '12px',
-                      background: '#2563eb',
-                      borderColor: '#2563eb',
-                      minWidth: '120px',
-                    }}
+                    
                   >
                     View More
-                  </Button>
+                  </CustomButton>
                 )}
                 {showAll && (
-                  <Button
+                  <CustomButton
                     type="default"
                     size="large"
                     onClick={() => setShowAll(false)}
-                    style={{
-                      borderRadius: '12px',
-                      minWidth: '120px',
-                    }}
+                    
                   >
                     View Less
-                  </Button>
+                  </CustomButton>
                 )}
               </div>
             )}

@@ -27,7 +27,7 @@ import {
   FaTh,
   FaList as FaListIcon,
 } from "react-icons/fa";
-import { Bed, Bath, Star, House, MapPinHouse, CalendarDays, Search   } from 'lucide-react';
+import { Bed, Bath, Star, House, MapPinHouse, CalendarDays, Search } from 'lucide-react';
 import { FaList } from "react-icons/fa";
 import { IndianRupee } from "lucide-react";
 import CustomInput from "../ui/Input";
@@ -518,7 +518,7 @@ const AdvancedPropertySearch = ({
       title={
         <div className="advanced-title">
           <Space className="advanced-property-title">
-            <Title level={4} className="m-0 advanced-text">
+            <Title level={4} className="m-0 advanced-text font-[Inter]">
               Advanced Property Search
             </Title>
             <Text type="secondary">
@@ -559,7 +559,7 @@ const AdvancedPropertySearch = ({
                 className="filters-space"
               >
                 <CustomInput
-                  prefix={<Search  />}
+                  prefix={<Search />}
                   placeholder="Search by name or location..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -632,7 +632,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <Star  className="filter-icon" />
+                      <Star className="filter-icon" />
                       Status
                     </span>
                     <CustomSelect
@@ -666,7 +666,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <Bath className="filter-icon"  />
+                      <Bath className="filter-icon" />
                       Bathrooms
                     </span>
                     <CustomSelect
@@ -799,7 +799,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <Star  className="filter-icon" />
+                      <Star className="filter-icon" />
                       Labels
                     </span>
                     <CustomSelect
@@ -927,7 +927,7 @@ const AdvancedPropertySearch = ({
 
             <div className="search-and-filters">
               <CustomInput
-                prefix={<Search  className="search-icon" />}
+                prefix={<Search className="search-icon" />}
                 placeholder="Search properties..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -1061,16 +1061,17 @@ const AdvancedPropertySearch = ({
                                     <Bed className='text-gray-500' /> {property.bedrooms} Beds
                                   </Text>
                                   <Text className="card-detail-item">
-                                    <Bath className='text-gray-500'/> {property.bathrooms} Baths
+                                    <Bath className='text-gray-500' /> {property.bathrooms} Baths
                                   </Text>
-                                  <Tag color="default">{property.type}</Tag>
+                                  <Tag color="default" className="capitalize">{property.type}</Tag>
                                 </div>
                                 <CustomButton
                                   type="primary"
                                   className="property-card-action-button"
                                   onClick={() => {
                                     const propertyName = property.name.toLowerCase().replace(/\s+/g, '-');
-                                    navigate(`/projects/${property.type.toLowerCase()}/${propertyName}`, { state: { from: location.pathname } });
+                                    const routeType = property.type.toLowerCase() === "commercial" ? "commercial" : "residential";
+                                    navigate(`/projects/${routeType}/${propertyName}`, { state: { from: location.pathname } });
                                   }}
                                 >
                                   View Details
@@ -1115,12 +1116,12 @@ const AdvancedPropertySearch = ({
                         description={
                           <div className="checked ">
                             <Text className="location-list flex gap-1">
-                              <MapPinHouse /> 
+                              <MapPinHouse />
                               <p>{property.location}</p>
                             </Text>
                             <div className="list-details">
                               <Text>
-                                <Bed  /> {property.bedrooms} Beds
+                                <Bed /> {property.bedrooms} Beds
                               </Text>
                               <Text>
                                 <Bath /> {property.bathrooms} Baths

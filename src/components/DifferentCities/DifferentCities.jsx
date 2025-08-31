@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "antd";
+import { Building2, Landmark, Building } from "lucide-react";
 import { RiBuilding2Line, RiMapPin2Line, RiLineChartLine, RiArrowRightLine } from "react-icons/ri";
 import AdvancedPropertySearch from './AdvancedPropertySearch';
-import DLFCamellias from "../../assets/images/premiumproperties/dlfthecamilias.jpg";
-import ElanTheEmperor from "../../assets/images/premiumproperties/Elan-The-Emperor.jpg";
-import KrisumiWaterfall from "../../assets/images/premiumproperties/krisumiwaterfall.jpg";
-import TrinitySkyPlazao from "../../assets/images/premiumproperties/skyplazzo.jpg";
-import M3Mmansion from "../../assets/images/premiumproperties/m3mmansion.jpg";
-import AIPLAutograph from "../../assets/images/exploreproperties/aipl-autograph.jpg";
-import CentralPark from "../../assets/images/exploreproperties/central-park.jpg";
-import AIPLBusiness from "../../assets/images/exploreproperties/aipl-bussiness.jpg";
-import ReachAriaMall from "../../assets/images/exploreproperties/aria-mall.jpg";
-import TrumpTower from "../../assets/images/exploreproperties/trump-tower.jpg";
-import PioneerUrban from "../../assets/images/exploreproperties/pioneer-urban.jpg";
-import PioneerAraya from "../../assets/images/exploreproperties/pioner-araya.jpg";
+import { allProjectPropertyDetails } from "../../data/propertyDetailsData";
 
 function DifferentCities() {
   const [isVisible, setIsVisible] = useState(false);
@@ -41,317 +31,56 @@ function DifferentCities() {
   const [yearBuilt, setYearBuilt] = useState([]);
   const [priceRange, setPriceRange] = useState([1000000, 1000000000]);
 
-  // Property data with images and complete fields
-  const [properties] = useState([
-    {
-      id: 1,
-      name: "AIPL Autograph",
-      location: "AIPL Autograph Corporate Office Space, Sector 66, Gurgram, Haryana, India",
-      area: "Sector 66, Gurgaon",
-      areaValue: 5000,
-      type: "Commercial",
-      price: "₹5,00,00,000",
-      priceValue: 50000000,
-      status: "For Sale",
-      featured: true,
-      label: "featured",
-      bedrooms: null,
-      bathrooms: null,
-      yearBuilt: 2021,
-      image: AIPLAutograph,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 2,
-      name: "Central Park Flower Valley The Room",
-      location: "The Room, Central Park II, Sector 48, Gurgram, Haryana, India",
-      area: "Sector 48, Gurgaon",
-      areaValue: 1500,
-      type: "Apartment",
-      price: "₹1,50,00,000",
-      priceValue: 15000000,
-      status: "For Rent",
-      featured: false,
-      label: null,
-      bedrooms: 2,
-      bathrooms: 2,
-      yearBuilt: 2020,
-      image: CentralPark,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 3,
-      name: "AIPL Business Club",
-      location: "AIPL Business Club, Sector 62, Gurgram, Haryana, India",
-      area: "Sector 62, Gurgaon",
-      areaValue: 4000,
-      type: "Commercial",
-      price: "₹4,00,00,000",
-      priceValue: 40000000,
-      status: "For Sale",
-      featured: true,
-      label: "featured",
-      bedrooms: null,
-      bathrooms: null,
-      yearBuilt: 2022,
-      image: AIPLBusiness,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 4,
-      name: "M3M Antalya Hills",
-      location: "M3M Antalya Hills, Sector 79, Gurgram, Haryana, India",
-      area: "Sector 79, Gurgaon",
-      areaValue: 1642,
-      type: "Apartment",
-      price: "₹1,80,00,000",
-      priceValue: 18000000,
-      status: "Hot Offer",
-      featured: true,
-      label: "featured",
-      bedrooms: 3,
-      bathrooms: 3,
-      yearBuilt: 2021,
-      image: M3Mmansion,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 5,
-      name: "DLF The Arbour",
-      location: "DLF, Sector 63, Gurgram, Haryana, India",
-      area: "Sector 63, Gurgaon",
-      areaValue: 3956,
-      type: "Apartment",
-      price: "₹3,50,00,000",
-      priceValue: 35000000,
-      status: "For Sale",
-      featured: false,
-      label: null,
-      bedrooms: 4,
-      bathrooms: 4,
-      yearBuilt: 2022,
-      image: DLFCamellias,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 6,
-      name: "Reach Aria Mall",
-      location: "Aria Mall, Sector 68, Gurgram, Haryana, India",
-      area: "Sector 68, Gurgaon",
-      areaValue: 8000,
-      type: "Commercial",
-      price: "₹6,00,00,000",
-      priceValue: 60000000,
-      status: "Hot Offer",
-      featured: true,
-      label: "featured",
-      bedrooms: null,
-      bathrooms: null,
-      yearBuilt: 2020,
-      image: ReachAriaMall,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 7,
-      name: "Elan The Mark",
-      location: "Elan The Mark, Block R, New Palam Vihar Phase 1, Sector 106, Gurgram, Pawala Khusrupur, Haryana, India",
-      area: "Sector 106, Gurgaon",
-      areaValue: 2200,
-      type: "Commercial",
-      price: "₹2,50,00,000",
-      priceValue: 25000000,
-      status: "For Sale",
-      featured: false,
-      label: null,
-      bedrooms: null,
-      bathrooms: null,
-      yearBuilt: 2021,
-      image: ElanTheEmperor,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 8,
-      name: "Elan Epic Mall",
-      location: "Elan Epic Mall, Sector 70, Gurgram, Haryana, India",
-      area: "Sector 70, Gurgaon",
-      areaValue: 1609,
-      type: "Commercial",
-      price: "₹2,00,00,000",
-      priceValue: 20000000,
-      status: "Hot Offer",
-      featured: true,
-      label: "featured",
-      bedrooms: null,
-      bathrooms: null,
-      yearBuilt: 2022,
-      image: ElanTheEmperor,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 9,
-      name: "Trump Towers",
-      location: "Trump Tower, Golf Course Extension Road, Sector 65, Gurgram, Haryana, India",
-      area: "Sector 65, Gurgaon",
-      areaValue: 6050,
-      type: "Apartment",
-      price: "₹5,50,00,000",
-      priceValue: 55000000,
-      status: "For Sale",
-      featured: false,
-      label: null,
-      bedrooms: 4,
-      bathrooms: 4,
-      yearBuilt: 2021,
-      image: TrumpTower,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 10,
-      name: "Pioneer Urban Presidia",
-      location: "Pioneer Presidia, Sector 62, Gurgram, Ghata, Haryana",
-      area: "Sector 62, Gurgaon",
-      areaValue: 6159,
-      type: "Apartment",
-      price: "₹4,50,00,000",
-      priceValue: 45000000,
-      status: "For Sale",
-      featured: true,
-      label: "featured",
-      bedrooms: 4,
-      bathrooms: 4,
-      yearBuilt: 2020,
-      image: PioneerUrban,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 11,
-      name: "Pioneer Araya",
-      location: "Pioneer Araya, Tower D, Pioneer, Haryana, India",
-      area: "Sector 62, Gurgaon",
-      areaValue: 10019,
-      type: "Apartment",
-      price: "₹7,00,00,000",
-      priceValue: 70000000,
-      status: "Ready to Move",
-      featured: false,
-      label: null,
-      bedrooms: 5,
-      bathrooms: 5,
-      yearBuilt: 2019,
-      image: PioneerAraya,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 12,
-      name: "Sobha International City",
-      location: "Sobha International City, Dwarka Expressway, Sector 109, Gurgram, Haryana, India",
-      area: "Sector 109, Gurgaon",
-      areaValue: 7330,
-      type: "Villa",
-      price: "₹6,50,00,000",
-      priceValue: 65000000,
-      status: "Hot Offer",
-      featured: true,
-      label: "featured",
-      bedrooms: 5,
-      bathrooms: 5,
-      yearBuilt: 2021,
-      image: KrisumiWaterfall,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 13,
-      name: "M3M Golf Estate",
-      location: "M3M Golfestate, Golf Course Extension Road, Sector 65, Gurgram, Haryana, India",
-      area: "Sector 65, Gurgaon",
-      areaValue: 13343,
-      type: "Apartment",
-      price: "₹8,00,00,000",
-      priceValue: 80000000,
-      status: "Hot Offer",
-      featured: false,
-      label: null,
-      bedrooms: 5,
-      bathrooms: 5,
-      yearBuilt: 2022,
-      image: M3Mmansion,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-    {
-      id: 14,
-      name: "Cygnett Retreat",
-      location: "Pahadi Kothi, Bagar Road, Pangoot, Uttarakhand, India",
-      area: "Pangoot, Uttarakhand",
-      areaValue: 800,
-      type: "Villa",
-      price: "₹1,20,00,000",
-      priceValue: 12000000,
-      status: "Hot Offer",
-      featured: true,
-      label: "featured",
-      bedrooms: 3,
-      bathrooms: 2,
-      yearBuilt: 2020,
-      image: TrinitySkyPlazao,
-      countryId: 101,
-      stateId: 4047,
-      cityId: 57650,
-    },
-    {
-      id: 15,
-      name: "Elan The Presidential",
-      location: "Elan The Presidential, Northern Peripheral Road, Panwala Khusropur, Sector 106, Gurgram, Haryana, India",
-      area: "Sector 106, Gurgaon",
-      areaValue: 4100,
-      type: "Apartment",
-      price: "₹3,80,00,000",
-      priceValue: 38000000,
-      status: "Hot Offer",
-      featured: false,
-      label: null,
-      bedrooms: 4,
-      bathrooms: 4,
-      yearBuilt: 2022,
-      image: ElanTheEmperor,
-      countryId: 101,
-      stateId: 4030,
-      cityId: 57510,
-    },
-  ]);
+  const properties = allProjectPropertyDetails.map((property) => {
+    // Determine the type for routing (residential or commercial)
+    const propertyType = property.type.toLowerCase();
+    const propertyCategory = property.category.toLowerCase();
+    let routeType = "residential";
+    if (
+      propertyType.includes("commercial") ||
+      propertyCategory.includes("investment")
+    ) {
+      routeType = "commercial";
+    } else if (
+      propertyType.includes("apartment") ||
+      propertyType.includes("residential") ||
+      propertyType.includes("villa") ||
+      propertyType.includes("studio")
+    ) {
+      routeType = "residential";
+    }
+
+    return {
+      id: property.id,
+      name: property.name,
+      location: property.location,
+      area: property.location.split(",")[0].trim(), 
+      areaValue: parseInt(property.sqft) || 0, 
+      type: routeType, 
+      price: property.price,
+      priceValue: property.price.includes("On Request")
+        ? 0
+        : parseFloat(property.price.replace(/[^0-9.]/g, "")) * (property.price.includes("Cr") ? 10000000 : 100000),
+      status: property.status[0],
+      featured: property.featured,
+      label: property.featured ? "featured" : null,
+      bedrooms: property.bedrooms,
+      bathrooms: property.bathrooms,
+      yearBuilt: 2020, 
+      image: property.image,
+      countryId: 101, 
+      stateId: property.location.includes("Haryana") ? 4030 : property.location.includes("Uttar Pradesh") ? 4031 : 4047,
+      cityId: property.location.includes("Gurgram") ? 57510 : property.location.includes("Noida") ? 57511 : 57650,
+    };
+  });
 
   // Featured cities data
   const featuredCities = [
-    { name: "Mumbai", growth: "+18%", icon: "🏙️" },
-    { name: "Gurgaon", growth: "+22%", icon: "🏢" },
-    { name: "Bangalore", growth: "+15%", icon: "🌆" },
-    { name: "Delhi", growth: "+20%", icon: "🏛️" },
-  ];
+  { name: "Mumbai", growth: "+18%", icon: <Building2 className="w-5 h-5 text-gray-400" /> },
+  { name: "Gurgaon", growth: "+22%", icon: <Building2 className="w-5 h-5 text-gray-400" /> },
+  { name: "Bangalore", growth: "+15%", icon: <Building className="w-5 h-5 text-gray-400" /> },
+  { name: "Delhi", growth: "+20%", icon: <Landmark className="w-5 h-5 text-gray-400" /> },
+];
 
   useEffect(() => {
     setIsVisible(true);
@@ -364,7 +93,6 @@ function DifferentCities() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-
   const showDrawer = () => {
     navigate("/location");
     setOpen(true);
@@ -375,7 +103,6 @@ function DifferentCities() {
     navigate(-1);
   };
 
-  // Sync drawer state with route
   useEffect(() => {
     if (location.pathname === "/location") {
       setOpen(true);
@@ -408,41 +135,10 @@ function DifferentCities() {
     <div className="relative h-auto overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black py-4 sm:py-8" id="different-cities">
       <style>
         {`
-          .custom-select .ant-select-selector {
-            background-color: #e5e7eb !important;
-            border-color: #d1d5db !important;
-            color: #374151 !important;
-            height: 40px !important;
-            display: flex;
-            align-items: center;
-          }
-          .custom-select .ant-select-selection-placeholder {
-            color: #9ca3af !important;
-          }
-          .custom-select .ant-select-arrow {
-            color: #374151 !important;
-          }
-          .light-drawer .ant-drawer-content {
-            background-color: #ffffff !important;
-          }
-          .light-drawer .ant-drawer-header {
-            background-color: #f9fafb !important;
-            border-bottom: 1px solid #e5e7eb !important;
-          }
-          .ant-slider-track {
-            background-color: #eab308 !important;
-          }
-          .ant-slider-handle {
-            border-color: #eab308 !important;
-          }
-          @keyframes shine {
-            0% { left: -75%; }
-            100% { left: 150%; }
-          }
+          
         `}
       </style>
 
-      {/* Dynamic background elements */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-yellow-600/10 to-amber-600/10 animate-pulse"></div>
         <div
@@ -455,12 +151,10 @@ function DifferentCities() {
         <div className="absolute bottom-0 right-0 w-80 sm:w-[600px] h-80 sm:h-[600px] bg-gradient-to-l from-amber-500/10 to-yellow-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
-      {/* Cityscape silhouette */}
       <div className="absolute bottom-0 left-0 w-full h-24 sm:h-32 bg-gradient-to-t from-black/30 to-transparent">
         <div className="absolute bottom-0 left-0 w-full h-16 sm:h-20 bg-gradient-to-r from-transparent via-yellow-400/5 to-transparent"></div>
       </div>
 
-      {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(15)].map((_, i) => (
           <div
@@ -476,17 +170,14 @@ function DifferentCities() {
         ))}
       </div>
 
-      {/* Main content container */}
       <div className="relative z-10 h-auto py-4 sm:py-8 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-full sm:max-w-5xl mx-auto text-center">
-          {/* Decorative top element */}
           <div className={`inline-flex items-center gap-2 mb-6 sm:mb-8 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
             <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
             <RiBuilding2Line className="text-yellow-400 animate-pulse" size={16} sm={20} />
             <div className="w-8 sm:w-12 h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
           </div>
 
-          {/* Main heading */}
           <h1 className={`text-3xl sm:text-5xl lg:text-7xl font-black mb-6 sm:mb-8 transition-all duration-1200 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <span className="bg-gradient-to-r from-white via-yellow-200 to-yellow-400 bg-clip-text text-transparent animate-pulse">
               Popular Places
@@ -497,7 +188,6 @@ function DifferentCities() {
             </span>
           </h1>
 
-          {/* Subtitle */}
           <div className={`max-w-full sm:max-w-4xl mx-auto mb-8 sm:mb-12 transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
             <div className="bg-black/20 backdrop-blur-md rounded-2xl p-4 sm:p-8 shadow-2xl border border-yellow-400/20">
               <p className="text-sm sm:text-lg text-gray-200 leading-relaxed font-light">
@@ -512,7 +202,6 @@ function DifferentCities() {
             </div>
           </div>
 
-          {/* Featured cities carousel */}
           <div className={`mb-8 sm:mb-12 transition-all duration-1000 delay-600 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
               {featuredCities.map((city, index) => (
@@ -536,7 +225,6 @@ function DifferentCities() {
             </div>
           </div>
 
-          {/* Call-to-action button with Drawer trigger */}
           <div className={`transition-all duration-1000 delay-800 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
             <button
               onClick={showDrawer}
@@ -552,8 +240,6 @@ function DifferentCities() {
               </div>
               <div className="absolute inset-0 rounded-2xl pointer-events-none ring-0 group-hover:ring-2 ring-yellow-400/50 transition duration-500"></div>
             </button>
-
-            
           </div>
         </div>
       </div>

@@ -36,11 +36,15 @@ body {
   border: 1px solid #d1d5db !important;
   transition: all 0.2s ease;
 }
+.ant-select-selector:hover{
+  box-shadow: none !important;
+}
 
 .ant-select-selector:hover,
+
 .ant-select-focused .ant-select-selector {
-  border-color: #2563eb !important;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2) !important;
+  border-color: #4096ff !important;
+  /* box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2) !important; */
 }
 .common-select .ant-select-selection-placeholder {
   display: flex;
@@ -48,6 +52,8 @@ body {
 }
 .ant-btn-variant-solid {
   color: #000 !important;
+  background: #fff !important;
+  border: 1px solid rgb(185, 183, 183);
 }
 .ant-card .ant-card-body{
   padding: 0px;
@@ -56,6 +62,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
+.ant-typography{
+  margin-bottom: 0px !important;
 }
 
 /* ExploreProperties.css */
@@ -153,9 +162,13 @@ body {
   border-radius: 5px;
 }
 .ant-btn-variant-solid:not(:disabled):not(.ant-btn-disabled):hover {
-  background: none !important;
-  border: 1px solid darkgray !important;
+  /* background: none !important; */
+  border: 1px solid #4096ff !important;
 }
+.ant-drawer .ant-drawer-body {
+  padding: 0px !important;
+}
+
 @media (max-width: 768px) {
   .main-app {
     padding-top: 60px;

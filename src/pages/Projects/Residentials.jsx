@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Input, Select, Button, Typography } from 'antd';
+import { Input, Typography } from 'antd';
 import { FilterOutlined, DownOutlined, SearchOutlined as SearchIcon } from '@ant-design/icons';
 import { Grid, List, MapPinHouse, Bed, Bath, LandPlot , Heart, Share, Eye, Star } from 'lucide-react';
 import ViewDetailsDrawer from './ViewDetailsDrawer';
@@ -10,7 +10,7 @@ import CustomSelect from '../../components/ui/Select';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const { Search } = Input;
-const { Option } = Select;
+const { Option } = CustomSelect;
 const { Text } = Typography;
 
 const Residentials = () => {
@@ -240,7 +240,7 @@ const Residentials = () => {
               </button>
             </div>
             <a href="tel:8744964496">
-              <button className="px-4 py-2 cursor-pointer border-2 border-blue-600 text-blue-600 rounded-xl font-semibold hover:bg-blue-50 transition-colors">
+              <button className="px-4 py-2 cursor-pointer border-2 border-[#1677ff87] text-black rounded-xl font-semibold hover:bg-blue-50 transition-colors">
                 Contact
               </button>
             </a>
@@ -292,18 +292,13 @@ const Residentials = () => {
               size="large"
               onSearch={(value) => setSearchTerm(value)}
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ borderRadius: '12px', overflow: 'hidden' }}
+              style={{  overflow: 'hidden' }}
             />
             <div className="flex gap-3">
               <CustomButton
                 onClick={() => setShowFilters(!showFilters)}
                 size="large"
-                style={{
-                  borderRadius: '12px',
-                  padding: '0 20px',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
+                
               >
                 <FilterOutlined />
                 Filters
@@ -319,6 +314,7 @@ const Residentials = () => {
                 value={sortBy}
                 onChange={(value) => setSortBy(value)}
                 size="large"
+                style={{width:150}}
               >
                 <Option value="featured">Featured First</Option>
                 <Option value="price_low">Price: Low to High</Option>
@@ -332,7 +328,7 @@ const Residentials = () => {
           {/* Filter Panel */}
           {showFilters && (
             <div className="mt-4 p-6 bg-gray-50 rounded-xl">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                 <CustomSelect
                   showSearch
                   value={filters.propertyType}
@@ -382,18 +378,14 @@ const Residentials = () => {
                     { value: 'ULTRA_LUXURY', label: 'Ultra Luxury' },
                   ]}
                 />
-                <Button
+                <CustomButton
                   onClick={() => setFilters({ priceRange: '', propertyType: '', bedrooms: '', category: '' })}
                   size="large"
                   type="primary"
-                  style={{
-                    borderRadius: '12px',
-                    background: '#2563eb',
-                    borderColor: '#2563eb',
-                  }}
+                 className="max-w-[200px]"
                 >
                   Clear Filters
-                </Button>
+                </CustomButton>
               </div>
             </div>
           )}
@@ -429,12 +421,7 @@ const Residentials = () => {
                     type="primary"
                     size="large"
                     onClick={() => setShowAll(true)}
-                    style={{
-                      borderRadius: '12px',
-                      background: '#2563eb',
-                      borderColor: '#2563eb',
-                      minWidth: '120px',
-                    }}
+                    
                   >
                     View More
                   </CustomButton>

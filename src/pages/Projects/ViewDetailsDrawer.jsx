@@ -489,10 +489,13 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
       onClose={onClose}
       open={open}
       width={800}
-      bodyStyle={{ padding: 0 }}
-      headerStyle={{ display: 'none' }}
+      styles={{
+        body: { padding: 0 },
+        header: { display: 'none' }
+      }}
       className="advanced-drawer"
     >
+
       <div className="h-full bg-gradient-to-br from-gray-50 to-gray-100">
         {/* Custom Header */}
         <div className="bg-white border-b border-gray-200 p-2 sticky top-0 z-10 shadow-sm">
