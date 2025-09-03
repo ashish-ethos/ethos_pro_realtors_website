@@ -364,13 +364,15 @@
 
 .properties-container {
   flex: 1;
-  padding: 24px;
+  padding: 15px;
   overflow-y: auto;
 }
 
 .properties-header {
   display: flex;
-  justify-content: space-between;
+  width:100%;
+
+  justify-content: end;
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;

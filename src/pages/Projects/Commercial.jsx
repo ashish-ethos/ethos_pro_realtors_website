@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from 'react';
-import { Input,  Button } from 'antd';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Input, Button } from 'antd';
 import { FilterOutlined, DownOutlined, SearchOutlined as SearchIcon } from '@ant-design/icons';
-import { Grid, List, MapPinHouse, Bed, Bath, LandPlot , Heart, Share, Eye, Star } from 'lucide-react';
+import { Grid, List, MapPinHouse, Bed, Bath, LandPlot, Heart, Share, Eye, Star } from 'lucide-react';
 import ViewDetailsDrawer from './ViewDetailsDrawer';
 import './Project.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { allProjectPropertyDetails } from '../../data/propertyDetailsData';
 import CustomButton from '../../components/ui/Button';
 import CustomSelect from '../../components/ui/Select';
@@ -28,15 +28,34 @@ const Commercial = () => {
   const [selectedProperty, setSelectedProperty] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const { propertyName } = useParams();
+
+  useEffect(() => {
+    if (propertyName) {
+      const property = allProjectPropertyDetails.find(
+        (p) => p.name.toLowerCase().replace(/\s+/g, '-') === propertyName
+      );
+      if (property) {
+        setSelectedProperty(property);
+        setDrawerOpen(true);
+      }
+    } else {
+      setDrawerOpen(false);
+      setSelectedProperty(null);
+    }
+  }, [propertyName]);
 
   const filteredProperties = useMemo(() => {
     let filtered = allProjectPropertyDetails.filter((property) => {
-      const isCommercial = property.type.toLowerCase().includes('shop') || property.type.toLowerCase().includes('office') || property.type.toLowerCase().includes('commercial');
+      const isCommercial = property.type.toLowerCase().includes('shop') || 
+                          property.type.toLowerCase().includes('office') || 
+                          property.type.toLowerCase().includes('commercial');
       const matchesSearch =
         property.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         property.location.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesType = !filters.propertyType || 
-        property.type.split(',').map(t => t.trim()).includes(filters.propertyType) || property.type === filters.propertyType;
+        property.type.split(',').map(t => t.trim()).includes(filters.propertyType) || 
+        property.type === filters.propertyType;
       const matchesBedrooms = !filters.bedrooms || 
         (!isCommercial && property.bedrooms.toString() === filters.bedrooms);
       const matchesCategory = !filters.category || property.category === filters.category;
@@ -48,20 +67,20 @@ const Commercial = () => {
         return filtered.sort((a, b) => {
           const priceA = a.price.includes('On Request')
             ? Infinity
-            : parseFloat(a.price.replace(/[₹,crore lakh]/g, ''));
+            : parseFloat(a.price.replace(/[₹,crore lakh]/g, '')) || Infinity;
           const priceB = b.price.includes('On Request')
             ? Infinity
-            : parseFloat(b.price.replace(/[₹,crore lakh]/g, ''));
+            : parseFloat(b.price.replace(/[₹,crore lakh]/g, '')) || Infinity;
           return priceA - priceB;
         });
       case 'price_high':
         return filtered.sort((a, b) => {
           const priceA = a.price.includes('On Request')
             ? -Infinity
-            : parseFloat(a.price.replace(/[₹,crore lakh]/g, ''));
+            : parseFloat(a.price.replace(/[₹,crore lakh]/g, '')) || -Infinity;
           const priceB = b.price.includes('On Request')
             ? -Infinity
-            : parseFloat(b.price.replace(/[₹,crore lakh]/g, ''));
+            : parseFloat(b.price.replace(/[₹,crore lakh]/g, '')) || -Infinity;
           return priceB - priceA;
         });
       case 'rating':
@@ -70,10 +89,10 @@ const Commercial = () => {
         return filtered.sort((a, b) => {
           const sqftA = a.sqft.includes('On Request')
             ? -Infinity
-            : parseInt(a.sqft.split('-')[0]) || parseInt(a.sqft);
+            : parseInt(a.sqft.split('-')[0]) || parseInt(a.sqft) || -Infinity;
           const sqftB = b.sqft.includes('On Request')
             ? -Infinity
-            : parseInt(b.sqft.split('-')[0]) || parseInt(b.sqft);
+            : parseInt(b.sqft.split('-')[0]) || parseInt(b.sqft) || -Infinity;
           return sqftB - sqftA;
         });
       default:
@@ -86,7 +105,6 @@ const Commercial = () => {
   const handleViewDetails = (property) => {
     setSelectedProperty(property);
     setDrawerOpen(true);
-    // Navigate to /projects/commercial/:propertyName, replacing spaces with hyphens for URL safety
     const propertyName = property.name.toLowerCase().replace(/\s+/g, '-');
     navigate(`/projects/commercial/${propertyName}`, { state: { from: location.pathname } });
   };
@@ -94,7 +112,6 @@ const Commercial = () => {
   const handleCloseDrawer = () => {
     setDrawerOpen(false);
     setSelectedProperty(null);
-    // Navigate back to /projects/commercial
     navigate('/projects/commercial');
   };
 
@@ -171,7 +188,7 @@ const Commercial = () => {
             {property.bathrooms} Bath
           </span>
           <span className="flex items-center gap-1">
-            <LandPlot  className='text-gray-500' />
+            <LandPlot className='text-gray-500' />
             {property.sqft}
           </span>
         </div>
@@ -244,7 +261,6 @@ const Commercial = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <div className="bg-white border-b border-t border-gray-200 top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between mb-4">
@@ -274,7 +290,6 @@ const Commercial = () => {
             </div>
           </div>
 
-          {/* Search and Filters */}
           <div className="flex flex-col lg:flex-row gap-4">
             <Search
               placeholder="Search by property name or location..."
@@ -288,7 +303,6 @@ const Commercial = () => {
               <CustomButton
                 onClick={() => setShowFilters(!showFilters)}
                 size="large"
-               
               >
                 <FilterOutlined />
                 Filters
@@ -315,7 +329,6 @@ const Commercial = () => {
             </div>
           </div>
 
-          {/* Filter Panel */}
           {showFilters && (
             <div className="mt-4 p-6 bg-gray-50 rounded-xl">
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -386,7 +399,6 @@ const Commercial = () => {
         </div>
       </div>
 
-      {/* Properties Grid */}
       <div className="max-w-7xl mx-auto px-6 py-8">
         {filteredProperties.length === 0 ? (
           <div className="text-center py-16">
@@ -417,7 +429,6 @@ const Commercial = () => {
                     type="primary"
                     size="large"
                     onClick={() => setShowAll(true)}
-                    
                   >
                     View More
                   </CustomButton>
@@ -427,7 +438,6 @@ const Commercial = () => {
                     type="default"
                     size="large"
                     onClick={() => setShowAll(false)}
-                    
                   >
                     View Less
                   </CustomButton>
@@ -438,7 +448,6 @@ const Commercial = () => {
         )}
       </div>
 
-      {/* View Details Drawer */}
       <ViewDetailsDrawer
         open={drawerOpen}
         onClose={handleCloseDrawer}

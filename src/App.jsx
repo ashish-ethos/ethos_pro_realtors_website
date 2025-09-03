@@ -54,6 +54,7 @@ function App() {
           <Route path="/f&qs" element={<FAQPage />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/team/:name" element={<Home />} />
+          <Route path="/about/:name" element={<About />} />
           {/* <Route path="/team" element={<OurTeam />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>

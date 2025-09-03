@@ -585,6 +585,7 @@ const AdvancedPropertySearch = ({
                     ))
                   )}
                 </div>
+                
 
                 <Divider className="filters-divider" />
               </Space>
@@ -908,7 +909,7 @@ const AdvancedPropertySearch = ({
                 </Radio.Group>
               </div>
 
-              <div className="sort-select-wrapper">
+              {/* <div className="sort-select-wrapper">
                 <Text type="secondary">Sort</Text>
                 <CustomSelect
                   value={sortBy}
@@ -923,10 +924,10 @@ const AdvancedPropertySearch = ({
                     { value: "newest", label: "Newest First" },
                   ]}
                 />
-              </div>
+              </div> */}
             </div>
 
-            <div className="search-and-filters">
+            {/* <div className="search-and-filters">
               <CustomInput
                 prefix={<Search className="search-icon" />}
                 placeholder="Search properties..."
@@ -950,7 +951,7 @@ const AdvancedPropertySearch = ({
               >
                 Clear
               </CustomButton>
-            </div>
+            </div> */}
           </div>
 
           {activeChips.length > 0 && (

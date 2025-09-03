@@ -10,7 +10,7 @@ import Prerna from "../../assets/images/home/Prerna-150x150.jpg";
 import Avantika from "../../assets/images/home/Avantika-150x150.jpg";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
 import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import './OurTeam.css';
 import CustomButton from '../ui/Button';
 
@@ -423,6 +423,7 @@ const OurTeam = () => {
   const maxIndex = Math.ceil(totalCards / cardsPerPage) - 1;
   const { name } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -445,14 +446,16 @@ const OurTeam = () => {
 
   const handleViewProfile = (member) => {
     const nameSlug = member.name.toLowerCase().replace(/\s+/g, "-");
-    navigate(`/team/${nameSlug}`);
+    const basePath = location.pathname.includes('/about') ? '/about' : '/team'; 
+    navigate(`${basePath}/${nameSlug}`);
   };
 
   const handleCloseDrawer = () => {
     setDrawerVisible(false);
     setTimeout(() => {
       setSelectedMember(null);
-      navigate('/'); // Navigate back to a base team page
+      const basePath = location.pathname.includes('/about') ? '/about' : '/'; 
+      navigate(basePath);
     }, 300);
   };
 

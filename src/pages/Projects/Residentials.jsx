@@ -1,13 +1,13 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Input, Typography } from 'antd';
 import { FilterOutlined, DownOutlined, SearchOutlined as SearchIcon } from '@ant-design/icons';
-import { Grid, List, MapPinHouse, Bed, Bath, LandPlot , Heart, Share, Eye, Star } from 'lucide-react';
+import { Grid, List, MapPinHouse, Bed, Bath, LandPlot, Heart, Share, Eye, Star } from 'lucide-react';
 import ViewDetailsDrawer from './ViewDetailsDrawer';
 import { allProjectPropertyDetails } from '../../data/propertyDetailsData';
 import './Project.css';
 import CustomButton from '../../components/ui/Button';
 import CustomSelect from '../../components/ui/Select';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router-dom';
 
 const { Search } = Input;
 const { Option } = CustomSelect;
@@ -29,6 +29,22 @@ const Residentials = () => {
   const [selectedProperty, setSelectedProperty] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const { propertyName } = useParams();
+
+  useEffect(() => {
+    if (propertyName) {
+      const property = allProjectPropertyDetails.find(
+        (p) => p.name.toLowerCase().replace(/\s+/g, '-') === propertyName
+      );
+      if (property) {
+        setSelectedProperty(property);
+        setDrawerOpen(true);
+      }
+    } else {
+      setDrawerOpen(false);
+      setSelectedProperty(null);
+    }
+  }, [propertyName]);
 
   const filteredProperties = useMemo(() => {
     let filtered = allProjectPropertyDetails.filter((property) => {
@@ -92,7 +108,6 @@ const Residentials = () => {
   const handleViewDetails = (property) => {
     setSelectedProperty(property);
     setDrawerOpen(true);
-    // Navigate to /projects/residential/:propertyName, replacing spaces with hyphens for URL safety
     const propertyName = property.name.toLowerCase().replace(/\s+/g, '-');
     navigate(`/projects/residential/${propertyName}`, { state: { from: location.pathname } });
   };
@@ -100,7 +115,6 @@ const Residentials = () => {
   const handleCloseDrawer = () => {
     setDrawerOpen(false);
     setSelectedProperty(null);
-    // Navigate back to /projects/residential
     navigate('/projects/residential');
   };
 
@@ -258,7 +272,6 @@ const Residentials = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <div className="bg-white border-b border-t border-gray-200 top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between mb-4">
@@ -284,7 +297,6 @@ const Residentials = () => {
             </div>
           </div>
 
-          {/* Search and Filters */}
           <div className="flex flex-col lg:flex-row gap-4">
             <Search
               placeholder="Search by property name or location..."
@@ -298,7 +310,6 @@ const Residentials = () => {
               <CustomButton
                 onClick={() => setShowFilters(!showFilters)}
                 size="large"
-                
               >
                 <FilterOutlined />
                 Filters
@@ -325,7 +336,6 @@ const Residentials = () => {
             </div>
           </div>
 
-          {/* Filter Panel */}
           {showFilters && (
             <div className="mt-4 p-6 bg-gray-50 rounded-xl">
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -392,7 +402,6 @@ const Residentials = () => {
         </div>
       </div>
 
-      {/* Properties Grid */}
       <div className="max-w-7xl mx-auto px-6 py-8">
         {filteredProperties.length === 0 ? (
           <div className="text-center py-16">
@@ -421,7 +430,6 @@ const Residentials = () => {
                     type="primary"
                     size="large"
                     onClick={() => setShowAll(true)}
-                    
                   >
                     View More
                   </CustomButton>
@@ -445,7 +453,6 @@ const Residentials = () => {
         )}
       </div>
 
-      {/* View Details Drawer */}
       <ViewDetailsDrawer
         open={drawerOpen}
         onClose={handleCloseDrawer}
