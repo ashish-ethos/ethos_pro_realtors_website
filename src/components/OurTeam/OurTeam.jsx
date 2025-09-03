@@ -9,7 +9,13 @@ import DeepakBhati from "../../assets/images/home/Deepak-Bhati-150x150.png";
 import Prerna from "../../assets/images/home/Prerna-150x150.jpg";
 import Avantika from "../../assets/images/home/Avantika-150x150.jpg";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import {
+  FaFacebookF,
+  FaXTwitter,
+  FaLinkedinIn,
+  FaInstagram,
+  FaWhatsapp
+} from 'react-icons/fa6';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import './OurTeam.css';
 import CustomButton from '../ui/Button';
@@ -29,9 +35,9 @@ const teamMembers = [
     achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
     specializations: ["Strategic Planning", "Business Development", "Team Leadership"],
     socialIcons: [
-      { icon: "FaFacebook", link: "https://www.facebook.com/mohitsharma" },
-      { icon: "FaTwitter", link: "https://www.twitter.com/mohitsharma" },
-      { icon: "FaLinkedin", link: "https://www.linkedin.com/in/mohitsharma" },
+      { icon: "FaFacebookF", link: "https://www.facebook.com/mohitsharma" },
+      { icon: "FaXTwitter", link: "https://www.twitter.com/mohitsharma" },
+      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/in/mohitsharma" },
       { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
       { icon: "FaInstagram", link: "https://www.instagram.com/mohitsharma" }
     ]
@@ -51,9 +57,9 @@ const teamMembers = [
     achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
     specializations: ["Strategic Planning", "Business Development", "Team Leadership"],
     socialIcons: [
-      { icon: "FaFacebook", link: "https://www.facebook.com/arungodara" },
-      { icon: "FaTwitter", link: "https://www.twitter.com/arungodara" },
-      { icon: "FaLinkedin", link: "https://www.linkedin.com/in/arungodara" },
+      { icon: "FaFacebookF", link: "https://www.facebook.com/arungodara" },
+      { icon: "FaXTwitter", link: "https://www.twitter.com/arungodara" },
+      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/in/arungodara" },
       { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
       { icon: "FaInstagram", link: "https://www.instagram.com/arungodara" }
     ]
@@ -73,9 +79,9 @@ const teamMembers = [
     achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
     specializations: ["Strategic Planning", "Business Development", "Team Leadership"],
     socialIcons: [
-      { icon: "FaFacebook", link: "https://www.facebook.com/satyamandal" },
-      { icon: "FaTwitter", link: "https://www.twitter.com/satyamandal" },
-      { icon: "FaLinkedin", link: "https://www.linkedin.com/in/satyamandal" },
+      { icon: "FaFacebookF", link: "https://www.facebook.com/satyamandal" },
+      { icon: "FaXTwitter", link: "https://www.twitter.com/satyamandal" },
+      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/in/satyamandal" },
       { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
       { icon: "FaInstagram", link: "https://www.instagram.com/satyamandal" }
     ]
@@ -95,9 +101,9 @@ const teamMembers = [
     achievements: ["Top Performer 2023", "Client Choice Award", "Luxury Sales Expert"],
     specializations: ["Residential", "Commercial", "Luxury Properties"],
     socialIcons: [
-      { icon: "FaFacebook", link: "https://www.facebook.com/deepakbhati" },
-      { icon: "FaTwitter", link: "https://www.twitter.com/deepakbhati" },
-      { icon: "FaLinkedin", link: "https://www.linkedin.com/in/deepakbhati" },
+      { icon: "FaFacebookF", link: "https://www.facebook.com/deepakbhati" },
+      { icon: "FaXTwitter", link: "https://www.twitter.com/deepakbhati" },
+      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/in/deepakbhati" },
       { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
       { icon: "FaInstagram", link: "https://www.instagram.com/deepakbhati" }
     ]
@@ -117,9 +123,9 @@ const teamMembers = [
     achievements: ["Rising Star 2023", "Customer Satisfaction Award", "Investment Specialist"],
     specializations: ["Residential", "Investment Properties", "First-time Buyers"],
     socialIcons: [
-      { icon: "FaFacebook", link: "https://www.facebook.com/prernakapuria" },
-      { icon: "FaTwitter", link: "https://www.twitter.com/prernakapuria" },
-      { icon: "FaLinkedin", link: "https://www.linkedin.com/in/prernakapuria" },
+      { icon: "FaFacebookF", link: "https://www.facebook.com/prernakapuria" },
+      { icon: "FaXTwitter", link: "https://www.twitter.com/prernakapuria" },
+      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/in/prernakapuria" },
       { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
       { icon: "FaInstagram", link: "https://www.instagram.com/prernakapuria" }
     ]
@@ -139,9 +145,9 @@ const teamMembers = [
     achievements: ["Commercial Expert 2023", "Deal Maker Award", "Market Analyst"],
     specializations: ["Commercial", "Office Spaces", "Retail Properties"],
     socialIcons: [
-      { icon: "FaFacebook", link: "https://www.facebook.com/avantikakapuria" },
-      { icon: "FaTwitter", link: "https://www.twitter.com/avantikakapuria" },
-      { icon: "FaLinkedin", link: "https://www.linkedin.com/in/avantikakapuria" },
+      { icon: "FaFacebookF", link: "https://www.facebook.com/avantikakapuria" },
+      { icon: "FaXTwitter", link: "https://www.twitter.com/avantikakapuria" },
+      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/in/avantikakapuria" },
       { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
       { icon: "FaInstagram", link: "https://www.instagram.com/avantikakapuria" }
     ]
@@ -382,31 +388,46 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
               </span>
             </CustomButton>
           </div>
-          <div className='w-full items-center justify-center flex flex-col'>
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm mb-2">Follow on Social Media</h3>
+          <div className="w-full items-center justify-center flex flex-col">
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm mb-2">
+              Follow on Social Media
+            </h3>
             <div className="flex items-center gap-3">
-              {member.socialIcons && member.socialIcons.map((icon, index) => {
-                const IconComponent = {
-                  FaFacebook,
-                  FaTwitter,
-                  FaLinkedin,
-                  FaInstagram,
-                  FaWhatsapp
-                }[icon.icon];
-                return IconComponent ? (
-                  <a
-                    key={index}
-                    href={icon.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#c99913] hover:text-[#474236] transition-colors duration-300"
-                  >
-                    <IconComponent className="text-xl" />
-                  </a>
-                ) : null;
-              })}
+              {member.socialIcons &&
+                member.socialIcons.map((icon, index) => {
+                  const IconComponent = {
+                    FaFacebookF,
+                    FaXTwitter,
+                    FaLinkedinIn,
+                    FaInstagram,
+                    FaWhatsapp,
+                  }[icon.icon];
+
+                  const iconColors = {
+                    FaFacebookF: "text-[#1877F2] hover:text-[#474236]",  
+                    FaXTwitter: "text-[#000] hover:text-[#474236]",   
+                    FaLinkedinIn: "text-[#0A66C2] hover:text-[#474236]", 
+                    FaInstagram: "text-[#E4405F] hover:text-[#474236]",  
+                    FaWhatsapp: "text-[#25D366] hover:text-[#474236]",   
+                  };
+
+                  return IconComponent ? (
+                    <a
+                      key={index}
+                      href={icon.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors duration-300"
+                    >
+                      <IconComponent
+                        className={`text-xl ${iconColors[icon.icon]}`}
+                      />
+                    </a>
+                  ) : null;
+                })}
             </div>
           </div>
+
         </div>
       </div>
     </Drawer>
@@ -446,7 +467,7 @@ const OurTeam = () => {
 
   const handleViewProfile = (member) => {
     const nameSlug = member.name.toLowerCase().replace(/\s+/g, "-");
-    const basePath = location.pathname.includes('/about') ? '/about' : '/team'; 
+    const basePath = location.pathname.includes('/about') ? '/about' : '/team';
     navigate(`${basePath}/${nameSlug}`);
   };
 
@@ -454,7 +475,7 @@ const OurTeam = () => {
     setDrawerVisible(false);
     setTimeout(() => {
       setSelectedMember(null);
-      const basePath = location.pathname.includes('/about') ? '/about' : '/'; 
+      const basePath = location.pathname.includes('/about') ? '/about' : '/';
       navigate(basePath);
     }, 300);
   };

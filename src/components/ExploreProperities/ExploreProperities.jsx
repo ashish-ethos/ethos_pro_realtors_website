@@ -1,7 +1,24 @@
+
 import React, { useState, useEffect, useMemo } from 'react';
-import { Heart, MapPin, Ruler, Eye, Star } from 'lucide-react';
+import { Heart, MapPin, Ruler, Eye, Star, X, Share2, Printer } from 'lucide-react';
 import { FiPhone } from "react-icons/fi";
+import { DatePicker, TimePicker } from 'antd';
 import { MdOutlineEmail, MdOutlineWhatsapp } from "react-icons/md";
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  WhatsappShareButton,
+  EmailShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  LinkedinIcon,
+  WhatsappIcon,
+  EmailIcon
+} from 'react-share';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import AIPLAutography from "../../assets/images/exploreproperties/aipl-autograph.jpg";
 import AriaMall from "../../assets/images/exploreproperties/aria-mall.jpg";
 import Omaxstate from "../../assets/images/exploreproperties/omaxstate.webp";
@@ -18,6 +35,7 @@ import Cygnett from "../../assets/images/exploreproperties/cygnett-retreat.jpg";
 import Sobha from "../../assets/images/exploreproperties/sobha-international.webp";
 import CustomButton from '../ui/Button';
 import './ExploreProperties.css';
+import CustomInput from '../ui/Input';
 
 const ExploreProperties = ({ filters = {} }) => {
   const [activeTab, setActiveTab] = useState('all');
@@ -25,8 +43,9 @@ const ExploreProperties = ({ filters = {} }) => {
   const [favorites, setFavorites] = useState(new Set());
   const [visibleProperties, setVisibleProperties] = useState(6);
   const [showAll, setShowAll] = useState(false);
+  const navigate = useNavigate();
+  const { propertyName } = useParams();
 
-  // === your properties array (kept intact) ===
   const properties = [
     {
       id: '1',
@@ -38,7 +57,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: AriaMall,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
-      views: 1200
+      views: 1200,
+      description: 'Airia Mall offers premium commercial spaces in the heart of Gurgaon, ideal for retail and business ventures.'
     },
     {
       id: '2',
@@ -50,7 +70,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: AIPLAutography,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.6,
-      views: 890
+      views: 890,
+      description: 'AIPL Business Club provides state-of-the-art office spaces with modern amenities in a prime location.'
     },
     {
       id: '3',
@@ -62,7 +83,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: Omaxstate,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.5,
-      views: 2100
+      views: 2100,
+      description: 'The Omaxe State is a vibrant commercial hub in Dwarka, offering diverse retail and office spaces.'
     },
     {
       id: '4',
@@ -74,7 +96,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: M3Mantalya,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.7,
-      views: 1200
+      views: 1200,
+      description: 'M3M Antalya Hills offers luxurious residential living with scenic views and modern amenities.'
     },
     {
       id: '5',
@@ -86,7 +109,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: EmeraldHills,
       options: ['FOR SALE', 'LUXURY'],
       rating: 4.9,
-      views: 950
+      views: 950,
+      description: 'Emerald Hills Villas provide exclusive, spacious living with premium facilities in Gurgaon.'
     },
     {
       id: '6',
@@ -98,7 +122,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: WorldTrade,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.4,
-      views: 1350
+      views: 1350,
+      description: 'World Trade Center in Noida offers premium office spaces with global business connectivity.'
     },
     {
       id: '7',
@@ -110,7 +135,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: M3Mantalya,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.7,
-      views: 1200
+      views: 1200,
+      description: 'M3M Antalya Hills offers luxurious residential living with scenic views and modern amenities.'
     },
     {
       id: '8',
@@ -122,7 +148,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: CentralPark,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.5,
-      views: 970
+      views: 970,
+      description: 'Central Park Flower Valley offers elegant residential spaces with lush surroundings.'
     },
     {
       id: '9',
@@ -134,7 +161,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: M3MMansion,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.9,
-      views: 2400
+      views: 2400,
+      description: 'M3M Mansion offers ultra-luxury residences with top-tier amenities in Sector 113.'
     },
     {
       id: '10',
@@ -146,7 +174,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: Krisumi,
       options: ['FEATURED', 'FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.6,
-      views: 1870
+      views: 1870,
+      description: 'Krisumi Waterfall Residences blend Japanese design with modern luxury in Gurugram.'
     },
     {
       id: '11',
@@ -158,7 +187,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: Tulip,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.8,
-      views: 1650
+      views: 1650,
+      description: 'Tulip Monsella offers premium residences with sophisticated design in Sector 53.'
     },
     {
       id: '12',
@@ -170,7 +200,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: SmartWorld,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.6,
-      views: 2100
+      views: 2100,
+      description: 'Smartworld One DXP provides modern residential living with smart home features.'
     },
     {
       id: '13',
@@ -182,7 +213,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: AriaMall,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.7,
-      views: 1700
+      views: 1700,
+      description: 'Reach Airia Mall is a prime commercial destination with versatile retail spaces.'
     },
     {
       id: '14',
@@ -194,7 +226,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: AIPLBusinessClub,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.6,
-      views: 1500
+      views: 1500,
+      description: 'AIPL Business Club offers premium office spaces with cutting-edge facilities.'
     },
     {
       id: '15',
@@ -206,7 +239,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: Omaxstate,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
-      views: 2100
+      views: 2100,
+      description: 'The Omaxe State is a bustling commercial complex in Dwarka with diverse offerings.'
     },
     {
       id: '16',
@@ -218,7 +252,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: AIPLAutography,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.5,
-      views: 1400
+      views: 1400,
+      description: 'AIPL Joy Street combines retail and leisure in a vibrant commercial setting.'
     },
     {
       id: '17',
@@ -230,7 +265,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: Cygnett,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.9,
-      views: 1300
+      views: 1300,
+      description: 'Cygnett Retreat offers unique commercial spaces in the serene hills of Uttarakhand.'
     },
     {
       id: '18',
@@ -242,7 +278,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: M3MMansion,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.7,
-      views: 1900
+      views: 1900,
+      description: 'M3M IFC is a prestigious commercial complex with world-class office spaces.'
     },
     {
       id: '19',
@@ -254,7 +291,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: Cygnett,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.9,
-      views: 1300
+      views: 1300,
+      description: 'Cygnett Retreat villas offer tranquil living in the scenic hills of Uttarakhand.'
     },
     {
       id: '20',
@@ -266,7 +304,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: Sobha,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
-      views: 1650
+      views: 1650,
+      description: 'Sobha International City offers luxurious villas with global design standards.'
     },
     {
       id: '21',
@@ -278,7 +317,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: AIPLBusinessClub,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.7,
-      views: 980
+      views: 980,
+      description: 'AIPL Business Club provides flexible office spaces in a prime Gurgaon location.'
     },
     {
       id: '22',
@@ -290,7 +330,8 @@ const ExploreProperties = ({ filters = {} }) => {
       image: M3MMansion,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.9,
-      views: 1200
+      views: 1200,
+      description: 'M3M IFC offers modern office spaces with premium amenities in Gurgaon.'
     },
     {
       id: '23',
@@ -302,11 +343,11 @@ const ExploreProperties = ({ filters = {} }) => {
       image: AIPLAutography,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
-      views: 1400
+      views: 1400,
+      description: 'AIPL Autograph provides sophisticated corporate office spaces in Sector 66.'
     }
   ];
 
-  // === tabs (keeps original counts) ===
   const tabs = [
     { key: 'all', label: 'All Properties', count: properties.length },
     { key: 'residential', label: 'Residential', count: properties.filter(p => p.type.toLowerCase().includes('residential')).length },
@@ -317,23 +358,17 @@ const ExploreProperties = ({ filters = {} }) => {
     { key: 'plot', label: 'Plot', count: properties.filter(p => p.type.toLowerCase().includes('plot')).length },
   ];
 
-  // === helper: normalize filters (safe) ===
   const normalizedFilters = useMemo(() => {
     const f = filters || {};
     return {
       search: f.search ? String(f.search).trim().toLowerCase() : '',
       type: f.type ? String(f.type).trim().toLowerCase() : '',
       city: f.city ? String(f.city).trim().toLowerCase() : '',
-      // add more keys if needed in future
     };
   }, [filters]);
 
-  // === combined filtered properties (applies activeTab + filters) ===
   const getCombinedFiltered = () => {
-    // start with full set
     let list = properties.slice();
-
-    // Normalize property fields for matching
     list = list.map(p => ({
       ...p,
       _type: p.type ? String(p.type).trim().toLowerCase() : '',
@@ -342,27 +377,20 @@ const ExploreProperties = ({ filters = {} }) => {
       _price: p.price ? String(p.price).toLowerCase() : '',
     }));
 
-    // 1) apply activeTab (tabs by type key)
     if (activeTab && activeTab !== 'all') {
       const tabKey = activeTab.toLowerCase();
       list = list.filter(p => p._type.includes(tabKey));
     }
 
-    // 2) apply explicit filters (from Hero)
     const { search, type, city } = normalizedFilters;
-
     if (type) {
-      // match against type substring
       const t = type.toLowerCase();
       list = list.filter(p => p._type.includes(t) || p._name.includes(t) || p._location.includes(t));
     }
-
     if (city) {
       const c = city.toLowerCase();
-      // match against location (contains city)
       list = list.filter(p => p._location.toLowerCase().includes(c));
     }
-
     if (search) {
       const s = search.toLowerCase();
       list = list.filter(p =>
@@ -372,14 +400,11 @@ const ExploreProperties = ({ filters = {} }) => {
         p._price.includes(s)
       );
     }
-
     return list;
   };
 
-  // memoize final filtered array so repeated renders are lighter
   const filteredProperties = useMemo(getCombinedFiltered, [activeTab, filters]);
 
-  // === rest of your original functions (unchanged) ===
   const toggleFavorite = (id) => {
     setFavorites(prev => {
       const newFavorites = new Set(prev);
@@ -404,9 +429,8 @@ const ExploreProperties = ({ filters = {} }) => {
   };
 
   useEffect(() => {
-    // simulate loading
     setTimeout(() => setIsLoading(false), 1500);
-    setVisibleProperties(6); // Reset visible properties when tab changes
+    setVisibleProperties(6);
   }, [activeTab]);
 
   const handleViewMore = () => {
@@ -419,8 +443,566 @@ const ExploreProperties = ({ filters = {} }) => {
     setShowAll(false);
   };
 
+  const PropertyModal = ({ property, onClose }) => {
+    const [contactForm, setContactForm] = useState({
+      fullName: '',
+      phone: '',
+      email: '',
+      message: '',
+    });
+
+    const [tourForm, setTourForm] = useState({
+      tourType: '',
+      tourDate: null,
+      tourTime: null,
+      tourName: '',
+      tourPhone: '',
+      tourEmail: '',
+      tourMessage: '',
+    });
+
+    const [isShareOpen, setIsShareOpen] = useState(false);
+    const [isPrinting, setIsPrinting] = useState(false); // Loading state for PDF generation
+
+    // Handle input changes for contact form
+    const handleContactChange = (e) => {
+      const { name, value } = e.target;
+      setContactForm((prev) => ({ ...prev, [name]: value }));
+    };
+
+    // Handle input changes for tour form
+    const handleTourChange = (e) => {
+      const { name, value } = e.target;
+      setTourForm((prev) => ({ ...prev, [name]: value }));
+    };
+
+    // Handle TimePicker change
+    const handleTimeChange = (time) => {
+      setTourForm((prev) => ({ ...prev, tourTime: time }));
+    };
+
+    // Handle DatePicker change
+    const handleDateChange = (date) => {
+      setTourForm((prev) => ({ ...prev, tourDate: date }));
+    };
+
+    // Handle contact form submission
+    const handleContactSubmit = (e) => {
+      e.preventDefault();
+      console.log('Contact Form Submitted:', contactForm);
+      // Add your submission logic here (e.g., API call)
+    };
+
+    // Handle tour form submission
+    const handleTourSubmit = (e) => {
+      e.preventDefault();
+      console.log('Tour Form Submitted:', tourForm);
+      // Add your submission logic here (e.g., API call)
+    };
+
+    // Toggle share popup
+    const toggleSharePopup = () => {
+      setIsShareOpen((prev) => !prev);
+    };
+
+    // Handle PDF generation and download
+    const handlePrint = async () => {
+      if (isPrinting) return; // Prevent multiple clicks
+      setIsPrinting(true);
+
+      try {
+        // Preload image to handle CORS
+        const img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.src = property.image;
+        await new Promise((resolve, reject) => {
+          img.onload = resolve;
+          img.onerror = () => reject(new Error('Failed to load image'));
+        });
+
+        // Create a temporary container for PDF content
+        const tempContainer = document.createElement('div');
+        tempContainer.style.position = 'absolute';
+        tempContainer.style.left = '-9999px';
+        tempContainer.style.width = '800px';
+        tempContainer.style.padding = '20px';
+        tempContainer.style.background = '#fff';
+        tempContainer.style.fontFamily = 'Arial, sans-serif';
+
+        tempContainer.innerHTML = `
+          <div style="margin-bottom: 20px;">
+            <img src="${property.image}" style="width: 100%; height: 300px; object-fit: cover; border-radius: 10px;" />
+          </div>
+          <h2 style="font-size: 24px; font-weight: bold; color: #1f2937; margin-bottom: 10px;">${property.name}</h2>
+          <p style="font-size: 18px; color: #b45309; font-weight: bold; margin-bottom: 10px;">${property.price}</p>
+          <p style="font-size: 14px; color: #4b5563; margin-bottom: 10px;">
+            <strong>Location:</strong> ${property.location}
+          </p>
+          <p style="font-size: 14px; color: #4b5563; margin-bottom: 10px;">
+            <strong>Size:</strong> ${property.size}
+          </p>
+          <p style="font-size: 14px; color: #4b5563; margin-bottom: 10px;">
+            <strong>Features:</strong> ${property.options.join(', ')}
+          </p>
+          <p style="font-size: 14px; color: #4b5563;">
+            <strong>Description:</strong> ${property.description}
+          </p>
+        `;
+
+        document.body.appendChild(tempContainer);
+
+        const canvas = await html2canvas(tempContainer, {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          windowWidth: 800,
+          windowHeight: tempContainer.scrollHeight,
+          scrollX: 0,
+          scrollY: 0,
+        });
+
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const imgProps = pdf.getImageProperties(imgData);
+        const imgHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+        let position = 0;
+        while (position < imgHeight) {
+          if (position > 0) pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, -position, pdfWidth, imgHeight);
+          position += pdfHeight;
+        }
+
+        pdf.save(`${property.name.replace(/\s+/g, '_')}.pdf`);
+        document.body.removeChild(tempContainer); // Clean up
+      } catch (error) {
+        console.error('Error generating PDF:', error.message);
+        alert('Failed to generate PDF. Please ensure images are loaded and try again.');
+      } finally {
+        setIsPrinting(false);
+      }
+    };
+
+    const shareUrl = window.location.href;
+    const shareTitle = `${property.name} - ${property.type}`;
+    const shareText = `${property.description} Check out this property at ${property.location}!`;
+
+    return (
+      <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4">
+        <div
+          className="modal-content bg-white rounded-2xl max-w-4xl w-full max-h-[95vh] overflow-y-auto shadow-2xl transform animate-in fade-in zoom-in duration-300 relative"
+          style={{
+            scrollbarWidth: 'thin',
+            scrollbarColor: '#c99913 #f3f4f6'
+          }}
+        >
+          {/* Close Button - Fixed Position */}
+          <button
+            onClick={onClose}
+            className="absolute cursor-pointer top-4 right-4 z-10 bg-white/90 backdrop-blur-sm hover:border-red-500 hover:border-1 text-gray-700 hover:text-red-500 p-2 rounded-full transition-all duration-200 hover:scale-110 shadow-lg"
+            style={{ zIndex: 1000 }}
+          >
+            <X size={24} />
+          </button>
+
+          {/* Header with Image */}
+          <div className="relative">
+            <div className="relative h-48 sm:h-64 md:h-72 overflow-hidden ">
+              <img
+                src={property.image}
+                alt={property.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
+
+              {/* Property Options Overlay */}
+              <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                {property.options.map((option, idx) => (
+                  <span
+                    key={option + idx}
+                    className={`px-3 py-1 rounded-full text-xs font-bold backdrop-blur-md ${getOptionColor(option)} shadow-lg`}
+                  >
+                    {option}
+                  </span>
+                ))}
+              </div>
+
+              {/* Stats Overlay */}
+              <div className="absolute bottom-4 flex items-center w-full justify-between px-4 space-x-3">
+                <div className='bottom-left-image-stats flex items-center space-x-3'>
+                  <div className="flex items-center space-x-1 bg-white/20 backdrop-blur-md rounded-full px-3 py-1">
+                    <Eye className="w-4 h-4 text-white" />
+                    <span className="text-sm font-medium text-white">{property.views.toLocaleString()}</span>
+                  </div>
+                  <div className="flex items-center space-x-1 bg-white/20 backdrop-blur-md rounded-full px-3 py-1">
+                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    <span className="text-sm font-medium text-white">{property.rating}</span>
+                  </div>
+                </div>
+
+                <div className="bottom-right-image-stats flex items-center space-x-3">
+                  <div onClick={toggleSharePopup} className="cursor-pointer flex items-center space-x-1 bg-white/20 backdrop-blur-md rounded-full px-3 py-1 hover:bg-white/30 transition-all">
+                    <Share2 className="text-white w-4 h-4" />
+                  </div>
+                  <div onClick={handlePrint} className="cursor-pointer flex items-center space-x-1 bg-white/20 backdrop-blur-md rounded-full px-3 py-1 hover:bg-white/30 transition-all">
+                    <Printer className={`text-white w-4 h-4 ${isPrinting ? 'animate-pulse' : ''}`} />
+                    {isPrinting && <span className="text-xs text-white">Generating...</span>}
+                  </div>
+                </div>
+              </div>
+
+              {/* Share Popup */}
+              {isShareOpen && (
+                <div className="absolute top-16 right-4 bg-white rounded-lg shadow-xl p-2 z-50 w-34">
+                  <button
+                    onClick={toggleSharePopup}
+                    className="absolute top-2 right-2 text-gray-600 cursor-pointer hover:text-red-500 transition-all"
+                  >
+                    <X size={16}  />
+                  </button>
+                  <div className="flex flex-col gap-2 mt-4">
+                    <FacebookShareButton url={shareUrl} quote={shareText} title={shareTitle}>
+                      <div className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 cursor-pointer">
+                        <FacebookIcon size={24} round />
+                        <span className="text-xs ml-2">Facebook</span>
+                      </div>
+                    </FacebookShareButton>
+                    <TwitterShareButton url={shareUrl} title={shareText}>
+                      <div className="flex items-center space-x-1 text-gray-700 hover:text-blue-400 cursor-pointer">
+                        <TwitterIcon size={24} round />
+                        <span className="text-xs ml-2">X</span>
+                      </div>
+                    </TwitterShareButton>
+                    <LinkedinShareButton url={shareUrl} title={shareTitle} summary={shareText}>
+                      <div className="flex items-center space-x-1 text-gray-700 hover:text-blue-700 cursor-pointer">
+                        <LinkedinIcon size={24} round />
+                        <span className="text-xs ml-2">LinkedIn</span>
+                      </div>
+                    </LinkedinShareButton>
+                    <WhatsappShareButton url={shareUrl} title={shareText}>
+                      <div className="flex items-center space-x-1 text-gray-700 hover:text-green-500 cursor-pointer">
+                        <WhatsappIcon size={24} round />
+                        <span className="text-xs ml-2">WhatsApp</span>
+                      </div>
+                    </WhatsappShareButton>
+                    <EmailShareButton url={shareUrl} subject={shareTitle} body={shareText}>
+                      <div className="flex items-center space-x-1 text-gray-700 hover:text-gray-500 cursor-pointer">
+                        <EmailIcon size={24} round />
+                        <span className="text-xs ml-2">Email</span>
+                      </div>
+                    </EmailShareButton>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Content Section */}
+          <div className="p-4 sm:p-6">
+            {/* Header Info */}
+            <div className="mb-4">
+              <div className="flex items-start justify-between mb-3">
+                <div className="flex-1">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
+                    {property.name}
+                  </h2>
+                  <div className="inline-block">
+                    <span className="bg-gradient-to-r from-amber-100 to-amber-50 text-amber-800 px-3 py-1 rounded-full text-sm font-semibold border border-amber-200">
+                      {property.type}
+                    </span>
+                  </div>
+                </div>
+                <div className="text-right ml-3">
+                  <p className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-amber-600 to-amber-700 bg-clip-text text-transparent">
+                    {property.price}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Property Details Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="space-y-4">
+                <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4">
+                  <h3 className="text-base font-semibold text-gray-900 mb-2 flex items-center">
+                    <MapPin className="w-4 h-4 text-amber-600 mr-2" />
+                    Location
+                  </h3>
+                  <p className="text-gray-700 text-sm leading-relaxed">{property.location}</p>
+                </div>
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4">
+                  <h3 className="text-base font-semibold text-gray-900 mb-2 flex items-center">
+                    <Ruler className="w-4 h-4 text-blue-600 mr-2" />
+                    Size
+                  </h3>
+                  <p className="text-gray-700 text-lg font-medium">{property.size}</p>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4">
+                  <h3 className="text-base font-semibold text-gray-900 mb-2">Description</h3>
+                  <p className="text-gray-700 text-sm leading-relaxed">{property.description}</p>
+                </div>
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4">
+                  <h3 className="text-base font-semibold text-gray-900 mb-2">Features</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {property.options.map((option, idx) => (
+                      <span
+                        key={option + idx}
+                        className="px-2 py-1 bg-white rounded-lg text-xs font-medium text-gray-700 shadow-sm border border-gray-200"
+                      >
+                        {option}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="border-t border-gray-200 pt-4">
+              <h3 className="text-base font-semibold text-gray-900 mb-3">Get in Touch</h3>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <CustomButton
+                  onClick={() => window.location.href = 'tel:+918744964496'}
+                  className="flex-1 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 group"
+                >
+                  <FiPhone className="w-4 h-4 group-hover:animate-pulse" />
+                  <span>Call Now</span>
+                </CustomButton>
+                <CustomButton
+                  onClick={() => window.open('https://wa.me/918744964496', '_blank', 'noopener,noreferrer')}
+                  className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 group"
+                >
+                  <MdOutlineWhatsapp className="w-4 h-4 group-hover:animate-pulse" />
+                  <span>WhatsApp</span>
+                </CustomButton>
+                <CustomButton
+                  onClick={() => window.location.href = 'mailto:info@ethosprorealtors.com'}
+                  className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 group"
+                >
+                  <MdOutlineEmail className="w-4 h-4 group-hover:animate-pulse" />
+                  <span>Email</span>
+                </CustomButton>
+              </div>
+            </div>
+
+            <div className="contact-section-property-modal mt-6 flex flex-col sm:flex-row">
+              <div className="left-side border-[#d3d3d382] border-1 p-4 sm:p-6 rounded-xl shadow-md mb-6 sm:mr-6 sm:mb-0 sm:w-1/2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Us</h3>
+                <form className="space-y-4" onSubmit={handleContactSubmit}>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="fullName">
+                      Full Name
+                    </label>
+                    <CustomInput
+                      type="text"
+                      id="fullName"
+                      name="fullName"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      placeholder="Enter your full name"
+                      value={contactForm.fullName}
+                      onChange={handleContactChange}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="phone">
+                      Phone
+                    </label>
+                    <CustomInput
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      placeholder="Enter your phone number"
+                      value={contactForm.phone}
+                      onChange={handleContactChange}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">
+                      Email
+                    </label>
+                    <CustomInput
+                      type="email"
+                      id="email"
+                      name="email"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      placeholder="Enter your email address"
+                      value={contactForm.email}
+                      onChange={handleContactChange}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="message">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={3}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-area-contact"
+                      placeholder="Type your message"
+                      value={contactForm.message}
+                      onChange={handleContactChange}
+                    />
+                  </div>
+                  <div className="w-full flex justify-center items-center">
+                    <CustomButton
+                      type="submit"
+                      className="w-auto text-black font-semibold py-3 px-4 rounded-xl"
+                      style={{ backgroundColor: '#f3f4f6' }}
+                    >
+                      Send Message
+                    </CustomButton>
+                  </div>
+                </form>
+              </div>
+              <div className="right-side border-[#d3d3d382] border-1 p-4 sm:p-6 rounded-xl shadow-md sm:w-1/2">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Schedule a Tour</h3>
+                <form className="space-y-4" onSubmit={handleTourSubmit}>
+                  <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+                    <div className="w-full sm:w-1/2">
+                      <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="tourDate">
+                        Date
+                      </label>
+                      <DatePicker
+                        id="tourDate"
+                        name="tourDate"
+                        className="w-full"
+                        style={{
+                          padding: '8px',
+                          borderRadius: '8px',
+                          border: '1px solid #d1d5db',
+                        }}
+                        placeholder="Select date"
+                        value={tourForm.tourDate}
+                        onChange={handleDateChange}
+                      />
+                    </div>
+                    <div className="w-full sm:w-1/2">
+                      <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="tourTime">
+                        Time
+                      </label>
+                      <TimePicker
+                        id="tourTime"
+                        name="tourTime"
+                        use12Hours
+                        format="h:mm:ss A"
+                        className="w-full"
+                        style={{
+                          padding: '8px',
+                          borderRadius: '8px',
+                          border: '1px solid #d1d5db',
+                        }}
+                        placeholder="Select time"
+                        value={tourForm.tourTime}
+                        onChange={handleTimeChange}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="tourName">
+                      Name
+                    </label>
+                    <CustomInput
+                      type="text"
+                      id="tourName"
+                      name="tourName"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      placeholder="Enter your name"
+                      value={tourForm.tourName}
+                      onChange={handleTourChange}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="tourPhone">
+                      Phone
+                    </label>
+                    <CustomInput
+                      type="tel"
+                      id="tourPhone"
+                      name="tourPhone"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      placeholder="Enter your phone number"
+                      value={tourForm.tourPhone}
+                      onChange={handleTourChange}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="tourEmail">
+                      Email
+                    </label>
+                    <CustomInput
+                      type="email"
+                      id="tourEmail"
+                      name="tourEmail"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      placeholder="Enter your email address"
+                      value={tourForm.tourEmail}
+                      onChange={handleTourChange}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="tourMessage">
+                      Message
+                    </label>
+                    <textarea
+                      id="tourMessage"
+                      name="tourMessage"
+                      rows={3}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-area-contact"
+                      placeholder="Type your message"
+                      value={tourForm.tourMessage}
+                      onChange={handleTourChange}
+                    />
+                  </div>
+                  <div className="w-full flex justify-center items-center">
+                    <CustomButton
+                      type="submit"
+                      className="w-auto text-black font-semibold py-3 px-4 rounded-xl"
+                      style={{ backgroundColor: '#f3f4f6' }}
+                    >
+                      Schedule Tour
+                    </CustomButton>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            {/* Additional Info Footer */}
+            <div className="mt-4 pt-3 border-t border-gray-200">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-2 sm:space-y-0">
+                <div className="flex items-center space-x-4 text-xs text-gray-600">
+                  <div className="flex items-center space-x-1">
+                    <Eye className="w-3 h-3" />
+                    <span>{property.views.toLocaleString()} views</span>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                    <span>{property.rating} rating</span>
+                  </div>
+                </div>
+                <div className="text-xs text-gray-500">
+                  Property ID: #{property.id}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const PropertyCard = ({ property, index }) => {
     const isFavorite = favorites.has(property.id);
+
+    const handleDetailsClick = () => {
+      const formattedName = property.name.toLowerCase().replace(/\s+/g, '-');
+      navigate(`/property/${formattedName}`, { state: { property } });
+    };
 
     return (
       <div
@@ -431,20 +1013,14 @@ const ExploreProperties = ({ filters = {} }) => {
         }}
         id="explore-properties"
       >
-        <div
-          className={`explore-card relative bg-white rounded-2xl shadow-lg overflow-hidden group`}
-        >
+        <div className="explore-card relative bg-white rounded-2xl shadow-lg overflow-hidden group">
           <div className="relative overflow-hidden h-64 sm:h-56">
             <img
               src={property.image}
               alt={property.name}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             />
-
-            {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-            {/* Favorite Button */}
             <CustomButton
               onClick={() => toggleFavorite(property.id)}
               className={`absolute top-3 right-3 p-2 rounded-full backdrop-blur-sm transition-all duration-300 ${isFavorite
@@ -454,23 +1030,17 @@ const ExploreProperties = ({ filters = {} }) => {
             >
               <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
             </CustomButton>
-
-            {/* Tags */}
             <div className="absolute top-3 left-3 flex flex-wrap gap-1 sm:gap-2">
               {property.options.map((option, idx) => (
                 <span
                   key={option + idx}
-                  className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${getOptionColor(
-                    option
-                  )} transform transition-all duration-300`}
+                  className={`px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-xs font-semibold ${getOptionColor(option)} transform transition-all duration-300`}
                   style={{ animationDelay: `${idx * 100}ms` }}
                 >
                   {option}
                 </span>
               ))}
             </div>
-
-            {/* Views + Rating (only on hover) */}
             <div className="absolute bottom-3 left-3 flex items-center space-x-3 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="flex items-center space-x-1 bg-slate-900/50 rounded-full px-2 py-1">
                 <Eye className="w-3 h-3" />
@@ -478,14 +1048,10 @@ const ExploreProperties = ({ filters = {} }) => {
               </div>
               <div className="flex items-center space-x-1 bg-slate-900/50 rounded-full px-2 py-1">
                 <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
-                <span className="text-[10px] sm:text-xs cursor-pointer">
-                  {property.rating}
-                </span>
+                <span className="text-[10px] sm:text-xs cursor-pointer">{property.rating}</span>
               </div>
             </div>
           </div>
-
-          {/* Card Content */}
           <div className="p-4 sm:p-6">
             <div className="mb-2 sm:mb-3">
               <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-1 group-hover:text-amber-700 transition-colors duration-300 line-clamp-1">
@@ -498,9 +1064,7 @@ const ExploreProperties = ({ filters = {} }) => {
             <div className="space-y-1 sm:space-y-2 mb-3 sm:mb-4">
               <div className="flex items-start space-x-2 text-gray-600">
                 <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 text-amber-700" />
-                <p className="text-xs sm:text-sm leading-relaxed line-clamp-2">
-                  {property.location}
-                </p>
+                <p className="text-xs sm:text-sm leading-relaxed line-clamp-2">{property.location}</p>
               </div>
               <div className="flex items-center space-x-2 text-gray-600">
                 <Ruler className="w-3 h-3 sm:w-4 sm:h-4 text-amber-700" />
@@ -508,44 +1072,45 @@ const ExploreProperties = ({ filters = {} }) => {
               </div>
             </div>
             <div className="mb-3 sm:mb-4">
-              <p className="text-base sm:text-xl font-bold text-amber-700 line-clamp-1">
-                {property.price}
-              </p>
+              <p className="text-base sm:text-xl font-bold text-amber-700 line-clamp-1">{property.price}</p>
             </div>
             <div className="flex space-x-1 sm:space-x-2">
               {[
                 {
                   icon: FiPhone,
                   label: 'Call',
-                  href: 'tel:+918744964496', 
-                  target: '_blank', 
+                  href: 'tel:+918744964496',
+                  target: '_blank',
                 },
-                
                 {
                   icon: MdOutlineWhatsapp,
                   label: 'WhatsApp',
-                  href: 'https://wa.me/+918744964496', 
+                  href: 'https://wa.me/+918744964496',
                   target: '_blank',
                 },
               ].map((action, idx) => (
                 <CustomButton
                   key={action.label + idx}
-                  className="property-card-action-button" 
+                  className="property-card-action-button"
                   style={{ transitionDelay: `${idx * 50}ms` }}
-                  href={action.href} 
-                  target={action.target} 
-                  rel={action.href ? 'noopener noreferrer' : undefined} 
+                  href={action.href}
+                  target={action.target}
+                  rel={action.href ? 'noopener noreferrer' : undefined}
                 >
                   <action.icon className="w-3 h-3 sm:w-4 sm:h-4" />
-                  <span className="text-[10px] sm:text-sm font-medium">
-                    {action.label}
-                  </span>
+                  <span className="text-[10px] sm:text-sm font-medium">{action.label}</span>
                 </CustomButton>
               ))}
+              <div>
+                <CustomButton
+                  className="property-card-action-button"
+                  onClick={handleDetailsClick}
+                >
+                  Details
+                </CustomButton>
+              </div>
             </div>
           </div>
-
-          {/* Hover Glow */}
           <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-black via-[#474236] to-[#c99913] blur-xl opacity-20" />
           </div>
@@ -553,7 +1118,6 @@ const ExploreProperties = ({ filters = {} }) => {
       </div>
     );
   };
-
 
   const LoadingSkeleton = () => (
     <div className="parent">
@@ -593,7 +1157,14 @@ const ExploreProperties = ({ filters = {} }) => {
     </div>
   );
 
-  // === Render ===
+  const selectedProperty = propertyName
+    ? properties.find(p => p.name.toLowerCase().replace(/\s+/g, '-') === propertyName)
+    : null;
+
+  const handleCloseModal = () => {
+    navigate('/explore-properties', { replace: true });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-amber-50 to-amber-100 py-8 sm:py-12 px-4">
       <div className="max-w-full sm:max-w-7xl mx-auto mb-8 sm:mb-12 text-center">
@@ -616,7 +1187,7 @@ const ExploreProperties = ({ filters = {} }) => {
               style={{ backgroundColor: 'transparent', position: 'relative' }}
               onClick={() => setActiveTab(tab.key)}
               className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all cursor-pointer duration-300 transform hover:scale-105 text-sm sm:text-base whitespace-nowrap border-1 border-transparent ${activeTab === tab.key
-                ? 'gradient-border-active  text-[#c99913] font-bold bg-[#c99913]/10 shadow-xl scale-105'
+                ? 'gradient-border-active text-[#c99913] font-bold bg-[#c99913]/10 shadow-xl scale-105'
                 : 'text-gray-600 hover:gradient-border-active hover:text-[#c99913] border-black border-1 non-active-tab'
                 }`}
             >
@@ -634,8 +1205,6 @@ const ExploreProperties = ({ filters = {} }) => {
         </div>
       </div>
 
-
-
       <div className="max-w-full sm:max-w-7xl mx-auto">
         {isLoading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
@@ -652,7 +1221,6 @@ const ExploreProperties = ({ filters = {} }) => {
                 <PropertyCard key={property.id} property={property} index={index} />
               ))}
             </div>
-
             {filteredProperties.length > 6 && (
               <div className="text-center flex items-center w-full justify-center mt-8">
                 {!showAll ? (
@@ -664,7 +1232,7 @@ const ExploreProperties = ({ filters = {} }) => {
                   </CustomButton>
                 ) : (
                   <CustomButton
-                    className="px-6 py-3 rounded-xl cursor-pointer border  property-card-action-button "
+                    className="px-6 py-3 rounded-xl cursor-pointer border property-card-action-button"
                     onClick={handleViewLess}
                   >
                     View Less
@@ -676,7 +1244,9 @@ const ExploreProperties = ({ filters = {} }) => {
         )}
       </div>
 
-
+      {selectedProperty && (
+        <PropertyModal property={selectedProperty} onClose={handleCloseModal} />
+      )}
     </div>
   );
 };

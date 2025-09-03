@@ -33,7 +33,7 @@ body {
   align-items: center !important;
 
   box-shadow: none !important;
-  border: 1px solid #d1d5db !important;
+  border: 1px solid rgb(185, 183, 183) !important;
   transition: all 0.2s ease;
 }
 .ant-select-selector:hover{
@@ -210,3 +210,4 @@ body {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
+

@@ -19,6 +19,7 @@ import Disclaimer from "./pages/Disclaimer/Disclaimer";
 import OurTeam from "./components/OurTeam/OurTeam";
 import ScrollToTop from "./utils/ScrollToTopComponent";
 import NotFound from "./pages/NotFound/NotFound";
+import ExploreProperties from "./components/ExploreProperities/ExploreProperities";
 
 function App() {
   return (
@@ -55,6 +56,8 @@ function App() {
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/team/:name" element={<Home />} />
           <Route path="/about/:name" element={<About />} />
+          <Route path="/explore-properties" element={<ExploreProperties />} />
+          <Route path="/property/:propertyName" element={<ExploreProperties/>}/>
           {/* <Route path="/team" element={<OurTeam />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>

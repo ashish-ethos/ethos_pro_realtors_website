@@ -137,7 +137,7 @@ const Residentials = () => {
             {property.status.map((status) => (
               <span
                 key={status}
-                className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                className={`px-3 py-1 text-xs font-semibold bg-[#06060670] rounded-full ${
                   status === 'FOR SALE'
                     ? 'border-1 border-blue-600 text-white'
                     : status === 'FOR RENT'
