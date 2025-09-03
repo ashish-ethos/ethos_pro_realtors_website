@@ -17,6 +17,7 @@ export const allProjectPropertyDetails = [
     name: "Central Park Flower Valley The Room",
     location: "Central Park II, Sector 48, Gurugram, Haryana, India",
     price: "₹On Request",
+    priceValue: null, // Added
     pricePerSqft: "₹On Request",
     sqft: "2280 Sq Ft",
     bedrooms: 3,
@@ -36,6 +37,7 @@ export const allProjectPropertyDetails = [
     name: "M3M Antalya Hills",
     location: "M3M Antalya Hills, Sector 79, Gurgram, Haryana, India",
     price: "₹1.95 crore",
+    priceValue: 19500000, // Added
     pricePerSqft: "₹11,200",
     sqft: "1742 Sq Ft",
     bedrooms: 2,
@@ -55,6 +57,7 @@ export const allProjectPropertyDetails = [
     name: "DLF The Arbour",
     location: "DLF, Sector 63, Gurgram, Haryana, India",
     price: "₹On Request",
+    priceValue: null, // Added
     pricePerSqft: "₹On Request",
     sqft: "3800 - 3956 Sq Ft",
     bedrooms: 4,
@@ -75,6 +78,7 @@ export const allProjectPropertyDetails = [
     location:
       "AIPL Autograph Corporate Office Space, Sector 66, Gurgram, Haryana",
     price: "₹On Request",
+    priceValue: null, // Added
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 1,
@@ -94,6 +98,7 @@ export const allProjectPropertyDetails = [
     name: "Pioneer Araya",
     location: "Pioneer Araya, Tower D, Pioneer, Haryana, India",
     price: "₹On Request",
+    priceValue: null, // Added
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 5,
@@ -120,6 +125,7 @@ export const allProjectPropertyDetails = [
     location:
       "Trump Tower, Golf Course Extension Road, Sector 65, Gurgram, Haryana",
     price: "₹On Request",
+    priceValue: null, // Added
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 5,
@@ -145,6 +151,7 @@ export const allProjectPropertyDetails = [
     name: "Pioneer Urban Presidia",
     location: "Pioneer Presidia, Sector 62, Gurgram, Ghata, Haryana, India",
     price: "₹On Request",
+    priceValue: null, // Added
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 5,
@@ -170,6 +177,7 @@ export const allProjectPropertyDetails = [
     name: "Sobha International City",
     location: "Dwarka Expressway, Sector 109, Gurgram, Haryana, India",
     price: "₹On Request",
+    priceValue: null, // Added
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 5,
@@ -195,6 +203,7 @@ export const allProjectPropertyDetails = [
     name: "M3M Golf Estate",
     location: "Golf Course Extension Road, Sector 65, Gurgram, Haryana",
     price: "₹On Request",
+    priceValue: null, // Added
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 5,
@@ -220,6 +229,7 @@ export const allProjectPropertyDetails = [
     name: "Cygnett Retreat",
     location: "Pahadi Kothi, Bagar Road, Pangoot, Uttarakhand, India",
     price: "₹On Request",
+    priceValue: null, // Added
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 5,
@@ -245,6 +255,7 @@ export const allProjectPropertyDetails = [
     name: "Elan The Emperor",
     location: "Sector 66, Gurugram, Haryana, India",
     price: "₹On Request",
+    priceValue: null, // Added
     pricePerSqft: "₹On Request",
     sqft: "3500 Sq Ft",
     bedrooms: 4,
@@ -264,6 +275,7 @@ export const allProjectPropertyDetails = [
     name: "Reach Aria Mall",
     location: "Sector 56, Gurugram, Haryana, India",
     price: "₹50 L onwards",
+    priceValue: 5000000, // Added
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 1,
@@ -283,6 +295,7 @@ export const allProjectPropertyDetails = [
     name: "Elan The Mark",
     location: "Sector 77, Gurugram, Haryana, India",
     price: "₹1.2 Cr onwards",
+    priceValue: 12000000, // Added
     pricePerSqft: "₹On Request",
     sqft: "1800 Sq Ft",
     bedrooms: 3,
@@ -302,6 +315,7 @@ export const allProjectPropertyDetails = [
     name: "AIPL Business Club",
     location: "Sector 124, Noida, Uttar Pradesh, India",
     price: "₹9 Cr onwards",
+    priceValue: 90000000, // Added
     pricePerSqft: "₹On Request",
     sqft: "6000 Sq Ft",
     bedrooms: 5,

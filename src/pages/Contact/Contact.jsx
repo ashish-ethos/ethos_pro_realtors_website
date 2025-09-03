@@ -9,6 +9,7 @@ import {
     Linkedin,
     Twitter,
     Youtube,
+    MapPin,
 } from 'lucide-react';
 
 

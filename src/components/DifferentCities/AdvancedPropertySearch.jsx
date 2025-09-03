@@ -198,7 +198,7 @@ const AdvancedPropertySearch = ({
   };
 
   const getFormattedPrice = (property) => {
-    let rawPrice = property.price ?? property.priceValue ?? 0;
+    let rawPrice = property.priceValue ?? 0;
 
     if (typeof rawPrice === "string") {
       rawPrice = rawPrice.replace(/[^0-9.]/g, "");
@@ -288,9 +288,9 @@ const AdvancedPropertySearch = ({
         const matchesAreaRange =
           property.areaValue >= effectiveMinArea &&
           property.areaValue <= effectiveMaxArea;
-        const matchesPriceRange =
-          property.priceValue >= priceRange[0] &&
-          property.priceValue <= priceRange[1];
+        const matchesPriceRange = property.priceValue === null ||  property.priceValue === 0  ||
+         ( property.priceValue >= priceRange[0] &&
+          property.priceValue <= priceRange[1]);
 
         return (
           matchesSearch &&
@@ -363,6 +363,7 @@ const AdvancedPropertySearch = ({
     handlePriceChange([1000000, 1000000000]);
     setCurrentPage(1);
     setSearchQuery("");
+    setFilteredProperties(displayProperties);
   };
 
   const handlePriceChangeWrapper = (value) => {
