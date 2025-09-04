@@ -547,11 +547,11 @@ const OurBlog = () => {
                         {/* Left Section - Blog Heading + Content */}
                         <div className="flex-1 text-center lg:text-left">
                             <h1 className="text-5xl lg:text-7xl font-black mb-4 leading-none">
-                                <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent">
+                                <span className="block font-[Montserrat] bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent">
                                     Our Blog
                                 </span>
                             </h1>
-                            <p className="text-lg lg:text-xl text-gray-600 max-w-2xl leading-relaxed mx-auto lg:mx-0">
+                            <p className="text-lg lg:text-xl font-bebas text-gray-600 max-w-2xl leading-relaxed mx-auto lg:mx-0">
                                 Dive deep into the world of real estate with our expert insights,
                                 market analysis, and investment strategies that drive success.
                             </p>

@@ -1099,7 +1099,7 @@ const ExploreProperties = ({ filters = {} }) => {
           </div>
           <div className="p-4 sm:p-6">
             <div className="mb-2 sm:mb-3">
-              <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-1 group-hover:text-amber-700 transition-colors duration-300 line-clamp-1">
+              <h3 className="text-base sm:text-lg font-[Montserrat] font-bold text-gray-800 mb-1 group-hover:text-amber-700 transition-colors duration-300 line-clamp-1">
                 {property.name}
               </h3>
               <p className="text-xs sm:text-sm text-gray-500 uppercase tracking-wide font-medium line-clamp-1">
@@ -1109,7 +1109,7 @@ const ExploreProperties = ({ filters = {} }) => {
             <div className="space-y-1 sm:space-y-2 mb-3 sm:mb-4">
               <div className="flex items-start space-x-2 text-gray-600">
                 <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 text-amber-700" />
-                <p className="text-xs sm:text-sm leading-relaxed line-clamp-2">{property.location}</p>
+                <p className="text-xs sm:text-sm leading-relaxed line-clamp-2 font-[sans-serif]">{property.location}</p>
               </div>
               <div className="flex items-center space-x-2 text-gray-600">
                 <Ruler className="w-3 h-3 sm:w-4 sm:h-4 text-amber-700" />
@@ -1213,11 +1213,11 @@ const ExploreProperties = ({ filters = {} }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-amber-50 to-amber-100 py-8 sm:py-12 px-4">
       <div className="max-w-full sm:max-w-7xl mx-auto mb-8 sm:mb-12 text-center">
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+        <h1 className="text-3xl font-[Montserrat] sm:text-5xl md:text-6xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
           Explore Premium Properties
         </h1>
         <div className="h-1 bg-gradient-to-r from-transparent via-[#c99913] to-transparent rounded-full animate-pulse"></div>
-        <p className="text-gray-600 text-sm sm:text-lg max-w-full sm:max-w-2xl mx-auto mt-2 font-[Inter]">
+        <p className="text-gray-600 text-sm font-[sans-serif] sm:text-lg max-w-full sm:max-w-2xl mx-auto mt-2 font-[Inter]">
           Discover a diverse collection of premium properties, from luxurious residences to high-end commercial spaces.
           Browse through the latest listings, featuring stunning architecture, prime locations,
           and exceptional investment opportunities. Discover the perfect investment or dream residence with ease.
@@ -1231,7 +1231,7 @@ const ExploreProperties = ({ filters = {} }) => {
               key={tab.key}
               style={{ backgroundColor: 'transparent', position: 'relative' }}
               onClick={() => setActiveTab(tab.key)}
-              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all cursor-pointer duration-300 transform hover:scale-105 text-sm sm:text-base whitespace-nowrap border-1 border-transparent ${activeTab === tab.key
+              className={`px-4 sm:px-6 py-2 sm:py-3  font-semibold transition-all cursor-pointer duration-300 transform hover:scale-105 text-sm sm:text-base whitespace-nowrap border-1 border-transparent ${activeTab === tab.key
                 ? 'gradient-border-active text-[#c99913] font-bold bg-[#c99913]/10 shadow-xl scale-105'
                 : 'text-gray-600 hover:gradient-border-active hover:text-[#c99913] border-black border-1 non-active-tab'
                 }`}

@@ -89,10 +89,10 @@ const Hero = ({ onSearchChange }) => {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-white text-center hero-content">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight text-gradient animate-fade-in-slide-up hero-section-title">
+        <h1 className="text-4xl font-[Montserrat] sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight text-gradient animate-fade-in-slide-up hero-section-title">
           Ethos Pro Realtors
         </h1>
-        <p className="text-base sm:text-lg lg:text-xl mb-10 max-w-3xl text-white/90 leading-relaxed animate-fade-in-delayed">
+        <p className="text-base font-[sans-serif] sm:text-lg lg:text-xl mb-10 max-w-3xl text-white/90 leading-relaxed animate-fade-in-delayed">
           Discover luxury properties for sale and rent with advanced search
           options.
         </p>

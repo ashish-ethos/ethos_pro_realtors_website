@@ -227,10 +227,10 @@ function PremiumProperties() {
       <div className="container mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+          <h1 className="text-5xl md:text-6xl font-[Montserrat] font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
             Top Handpicked Deals
           </h1>
-          <p className="text-xl text-gray-600 font-medium mt-6 font-light max-w-2xl mx-auto">
+          <p className="text-xl font-bebas text-gray-600 font-medium mt-6 font-light max-w-2xl mx-auto">
             Premium Properties at the Best Prices!
           </p>
         </div>

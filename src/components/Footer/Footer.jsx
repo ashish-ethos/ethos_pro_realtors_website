@@ -147,13 +147,13 @@ function Footer() {
             </div>
 
             <h2 className="text-5xl md:text-7xl font-black mb-6 relative">
-              <span className="bg-gradient-to-r from-emerald-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-gradient-x">
+              <span className="bg-gradient-to-r font-[Montserrat] from-emerald-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-gradient-x">
                 Ethos Pro Realtors
               </span>
               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-blue-400 to-purple-400 rounded-lg blur opacity-20 animate-pulse" />
             </h2>
 
-            <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-300 mb-12 max-w-2xl font-bebas mx-auto leading-relaxed">
               Get exclusive property deals, market insights, and investment opportunities delivered to your inbox
             </p>
 
@@ -247,13 +247,13 @@ function Footer() {
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-emerald-400 to-blue-400 flex items-center justify-center transition-transform group-hover:scale-105">
                   <img src={logotab} alt="Logo" className="w-11 h-11  rounded-xl" />
                 </div>
-                <h3 className="text-3xl font-black bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent transition-all duration-300 group-hover:brightness-110">
+                <h3 className="text-3xl font-[Montserrat] font-black bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent transition-all duration-300 group-hover:brightness-110">
                   Ethos Pro Realtors
                 </h3>
               </div>
 
 
-              <p className="text-gray-300 leading-relaxed text-lg mb-6">
+              <p className="text-gray-300 leading-relaxed font-bebas text-lg mb-6">
                 Your property, Our Priority. As trusted channel partners with top builders, we're dedicated to connecting you with the finest properties that meet your goals.
               </p>
 
@@ -274,7 +274,7 @@ function Footer() {
             {/* Social Media Icons */}
             <div>
               <h4 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-emerald-400" />
+                <Sparkles className="w-5 h-5 text-emerald-400 fontFamily-bebas" />
                 Follow Us
               </h4>
               <div className="flex flex-wrap gap-4">
@@ -358,11 +358,11 @@ function Footer() {
           <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-8">
             {/* Quick Links */}
             <div>
-              <h4 className="text-xl font-bold mb-6 relative">
+              <h4 className="text-xl font-bold fontFamily-bebas mb-6 relative">
                 Quick Links
                 <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500" />
               </h4>
-              <ul className="space-y-4">
+              <ul className="space-y-4 fontFamily-bebas">
                 {[
                   { to: "/", label: "Home" },
                   { to: "/projects", label: "Projects" },
@@ -397,7 +397,7 @@ function Footer() {
           </div>
 
           <div className="lg:col-span-3">
-            <h4 className="text-xl font-bold mb-6 relative">
+            <h4 className="text-xl font-bold mb-6 fontFamily-bebas relative">
               Get In Touch
               <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500" />
             </h4>
@@ -439,8 +439,8 @@ function Footer() {
                         <Icon className="w-5 h-5 text-white" />
                       </div>
                       <div className="flex-1">
-                        <h5 className="font-semibold text-white mb-1">{title}</h5>
-                        <p className="text-gray-400 text-sm mb-2">{content}</p>
+                        <h5 className="font-semibold text-white mb-1 fontFamily-bebas">{title}</h5>
+                        <p className="text-gray-400 text-sm mb-2 fontFamily-bebas">{content}</p>
                         <button
                           className="text-emerald-400 cursor-pointer text-sm font-medium hover:text-emerald-300 transition-colors"
                           onClick={onClick}
@@ -463,7 +463,7 @@ function Footer() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
             <div className="flex flex-col sm:flex-row items-center text-center gap-4 text-sm text-gray-400">
-              <p>© {new Date().getFullYear()} Ethos Pro Realtors. All Rights Reserved.</p>
+              <p className="fontFamily-bebas">© {new Date().getFullYear()} Ethos Pro Realtors. All Rights Reserved.</p>
               <div className="flex items-center gap-4">
                 <Link to="/privacy-policy" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
                 <span>•</span>

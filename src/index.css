@@ -230,3 +230,17 @@ body {
   background: #555; 
 }
 
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 400; 
+}
+.fontFamily-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.5px;
+   
+}
+.fontFamily-Content {
+  font-family: 'Bebas Neue', sans-serif;   
+}
+

@@ -49,7 +49,7 @@ const AssociatedDevelopers = () => {
         {/* Section Header */}
         <div className="text-center">
           <div className="inline-block relative mb-4 sm:mb-6">
-            <h2 className="text-2xl sm:text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-800 via-slate-600 to-slate-800 tracking-tight">
+            <h2 className="text-2xl sm:text-4xl md:text-6xl font-black font-[Montserrat] text-transparent bg-clip-text bg-gradient-to-r from-slate-800 via-slate-600 to-slate-800 tracking-tight">
               Associated Developers
             </h2>
             <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full"></div>

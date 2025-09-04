@@ -96,7 +96,7 @@ const Testimonial = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex flex-col items-center justify-center space-x-2 mb-6">
-            <p className="text-xl md:text-2xl font-black bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+            <p className="text-xl font-[Montserrat] md:text-2xl font-black bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
               TESTIMONIALS
             </p>
   
@@ -108,10 +108,10 @@ const Testimonial = () => {
               <Star key={i} className="w-6 h-6 text-yellow-400 fill-current mx-0.5" />
             ))}
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent mb-6 testimonial-text-content">
+          <h2 className="text-5xl md:text-6xl font-[Montserrat] font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent mb-6 testimonial-text-content">
             What Our Clients Have To Say About Us?
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl font-bebas mx-auto leading-relaxed">
             Discover why our clients trust us for their real estate needs. Their success is our greatest achievement.
             Read their stories to see how we've helped them find their perfect property.
           </p>
@@ -140,7 +140,7 @@ const Testimonial = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl" />
                   <div className="relative z-10 p-8 h-full flex flex-col">
                     <Quote className="w-8 h-8 text-emerald-500 opacity-60 mb-4" />
-                    <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                    <p className="text-gray-700 text-sm leading-relaxed mb-4 fontFamily-bebas">
                       {testimonial.content}
                     </p>
                     <div className="flex space-x-1 mb-4">
