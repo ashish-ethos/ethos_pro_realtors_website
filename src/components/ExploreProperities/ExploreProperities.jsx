@@ -33,6 +33,10 @@ import SmartWorld from "../../assets/images/exploreproperties/smartworld-dxp.jpg
 import AIPLBusinessClub from "../../assets/images/exploreproperties/aipl-business.jpg";
 import Cygnett from "../../assets/images/exploreproperties/cygnett-retreat.jpg";
 import Sobha from "../../assets/images/exploreproperties/sobha-international.webp";
+import Elan from "../../assets/images/exploreproperties/Elan-The-Mark_img.webp";
+import ElanThePersidential from "../../assets/images/exploreproperties/Elan-The-Presidential.jpg";
+import Trinity from "../../assets/images/exploreproperties/Trinity-Sky-Palazzos.jpg";
+
 import CustomButton from '../ui/Button';
 import './ExploreProperties.css';
 import CustomInput from '../ui/Input';
@@ -166,7 +170,7 @@ const ExploreProperties = ({ filters = {} }) => {
     },
     {
       id: '10',
-      type: 'Residential',
+      type: 'Residential/Studio/Apartment',
       name: 'Krisumi Waterfall Residences',
       location: 'Krisumi Waterfall Residences, Sector 36A, Gurugram, Haryana, India',
       size: '1448 – 6569 Sq Ft',
@@ -179,7 +183,7 @@ const ExploreProperties = ({ filters = {} }) => {
     },
     {
       id: '11',
-      type: 'Residential',
+      type: 'Residential/Apartment',
       name: 'Tulip Monsella',
       location: 'Tulip Monsella, Sector 53, Gurugram, Haryana, India',
       size: '1368 – 4503 Sq Ft',
@@ -192,7 +196,7 @@ const ExploreProperties = ({ filters = {} }) => {
     },
     {
       id: '12',
-      type: 'Residential',
+      type: 'Residential/Apartment',
       name: 'Smartworld One DXP',
       location: 'Smartworld ONE DXP, Sector 113, Bajghera, Gurugram, Haryana, India',
       size: '2450 – 3203 Sq Ft',
@@ -209,7 +213,7 @@ const ExploreProperties = ({ filters = {} }) => {
       name: 'Reach Airia Mall',
       location: 'Airia Mall, Sector 68, Gurugram, Haryana, India',
       size: '300 – 8000 Sq Ft',
-      price: 'Price on Request',
+      price: '₹ Price on Request',
       image: AriaMall,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.7,
@@ -222,7 +226,7 @@ const ExploreProperties = ({ filters = {} }) => {
       name: 'AIPL Business Club',
       location: 'AIPL Business Club, Sector 62, Gurugram, Haryana, India',
       size: '500 – 20000 Sq Ft',
-      price: 'Price on Request',
+      price: '₹ Price on Request',
       image: AIPLBusinessClub,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.6,
@@ -248,7 +252,7 @@ const ExploreProperties = ({ filters = {} }) => {
       name: 'AIPL Joy Street',
       location: 'AIPL Joy Street, Badshahpur, Sector 66, Gurugram, Haryana, India',
       size: '300 – 8000 Sq Ft',
-      price: 'Price on Request',
+      price: '₹ Price on Request',
       image: AIPLAutography,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.5,
@@ -257,11 +261,11 @@ const ExploreProperties = ({ filters = {} }) => {
     },
     {
       id: '17',
-      type: 'Commercial',
+      type: 'Commercial/Villa',
       name: 'Cygnett Retreat',
       location: 'Pahadi Kothi, Bagar Road, Pangot, Uttarakhand, India',
       size: '800 Sq Ft',
-      price: 'Price on Request',
+      price: '₹ Price on Request',
       image: Cygnett,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.9,
@@ -274,7 +278,7 @@ const ExploreProperties = ({ filters = {} }) => {
       name: 'M3M IFC',
       location: 'M3M IFC, Golf Course Extension Road, Badshahpur, Sector 66, Gurugram, Haryana, India',
       size: '500 – 18000 Sq Ft',
-      price: 'Price on Request',
+      price: '₹ Price on Request',
       image: M3MMansion,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.7,
@@ -287,7 +291,7 @@ const ExploreProperties = ({ filters = {} }) => {
       name: 'Cygnett Retreat',
       location: 'Pahadi Kothi, Bagar Road, Pangot, Uttarakhand, India',
       size: '800 Sq Ft',
-      price: 'Price on Request',
+      price: '₹ Price on Request',
       image: Cygnett,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.9,
@@ -300,7 +304,7 @@ const ExploreProperties = ({ filters = {} }) => {
       name: 'Sobha International City',
       location: 'Sobha International City, Dwarka Expressway, Sector 109, Gurugram, Haryana, India',
       size: '3153 – 7330 Sq Ft',
-      price: 'Price on Request',
+      price: '₹ Price on Request',
       image: Sobha,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
@@ -313,7 +317,7 @@ const ExploreProperties = ({ filters = {} }) => {
       name: 'AIPL Business Club',
       location: 'AIPL Business Club, Sector 62, Gurugram, Haryana, India',
       size: 'Size on Request',
-      price: 'Price on Request',
+      price: '₹ Price on Request',
       image: AIPLBusinessClub,
       options: ['FOR RENT', 'FOR SALE'],
       rating: 4.7,
@@ -326,7 +330,7 @@ const ExploreProperties = ({ filters = {} }) => {
       name: 'M3M IFC',
       location: 'M3M IFC, Golf Course Extension Road, Badshahpur, Sector 66, Gurugram, Haryana, India',
       size: '500 – 18000 Sq Ft',
-      price: 'Price on Request',
+      price: '₹ Price on Request',
       image: M3MMansion,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.9,
@@ -335,17 +339,57 @@ const ExploreProperties = ({ filters = {} }) => {
     },
     {
       id: '23',
-      type: 'Office',
+      type: 'Office/Food Court/Commercial/Shop',
       name: 'AIPL Autograph',
       location: 'AIPL Autograph Corporate Office Space, Sector 66, Gurugram, Haryana, India',
       size: 'Size on Request',
-      price: 'Price on Request',
+      price: '₹ Price on Request',
       image: AIPLAutography,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
       views: 1400,
       description: 'AIPL Autograph provides sophisticated corporate office spaces in Sector 66.'
+    },
+    {
+      id: '24',
+      type: 'Shop/Commercial',
+      name: 'Elan The Mark',
+      location: 'Elan The Mark, Block R, New Palam Vihar Phase 1, Sector 106, Gurugram, Pawala Khasrupur, Haryana, India',
+      size: 'Size on Request',
+      price: '₹ Price on Request',
+      image: Elan,
+      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
+      rating: 4.8,
+      views: 1400,
+      description: 'AIPL Autograph provides sophisticated corporate office spaces in Sector 66.'
+    },
+    {
+      id: '25',
+      type: 'Apartment/Residential',
+      name: 'Elan The Presidential',
+      location: 'Elan The Presidential, Northern Peripheral Road, Panwala Khusropur, Sector 106, Gurugram, Haryana, India',
+      size: 'Size on Request',
+      price: '₹ Price on Request',
+      image: ElanThePersidential,
+      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
+      rating: 4.8,
+      views: 1400,
+      description: 'AIPL Autograph provides sophisticated corporate office spaces in Sector 66.'
+    },
+    {
+      id: '25',
+      type: 'Apartment/Residential',
+      name: 'Trinity Sky Palazzos',
+      location: 'Trinity Sky Palazzos, On, Northern Peripheral Road, Sector 88B, Gurugram, Haryana, India',
+      size: 'Size on Request',
+      price: '₹ Price on Request',
+      image: Trinity,
+      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
+      rating: 4.8,
+      views: 1400,
+      description: 'AIPL Autograph provides sophisticated corporate office spaces in Sector 66.'
     }
+    
   ];
 
   const tabs = [

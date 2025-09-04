@@ -27,7 +27,7 @@ import {
   FaTh,
   FaList as FaListIcon,
 } from "react-icons/fa";
-import { Bed, Bath, Star, House, MapPinHouse, CalendarDays, Search } from 'lucide-react';
+import { Bed, Bath, Star, House,LandPlot, MapPinHouse, CalendarDays, Search } from 'lucide-react';
 import { FaList } from "react-icons/fa";
 import { IndianRupee } from "lucide-react";
 import CustomInput from "../ui/Input";
@@ -288,9 +288,9 @@ const AdvancedPropertySearch = ({
         const matchesAreaRange =
           property.areaValue >= effectiveMinArea &&
           property.areaValue <= effectiveMaxArea;
-        const matchesPriceRange = property.priceValue === null ||  property.priceValue === 0  ||
-         ( property.priceValue >= priceRange[0] &&
-          property.priceValue <= priceRange[1]);
+        const matchesPriceRange = property.priceValue === null || property.priceValue === 0 ||
+          (property.priceValue >= priceRange[0] &&
+            property.priceValue <= priceRange[1]);
 
         return (
           matchesSearch &&
@@ -585,7 +585,7 @@ const AdvancedPropertySearch = ({
                     ))
                   )}
                 </div>
-                
+
 
                 <Divider className="filters-divider" />
               </Space>
@@ -763,7 +763,7 @@ const AdvancedPropertySearch = ({
 
                   <div>
                     <span className="filter-label flex items-center">
-                      <House className="filter-icon" />
+                      <LandPlot className="filter-icon" />
                       Area Range (Sq Ft)
                     </span>
                     <Space className="area-inputs">
@@ -1098,6 +1098,11 @@ const AdvancedPropertySearch = ({
                           type="primary"
                           key="view"
                           className="property-card-action-button"
+                          onClick={() => {
+                            const propertyName = property.name.toLowerCase().replace(/\s+/g, '-');
+                            const routeType = property.type.toLowerCase() === "commercial" ? "commercial" : "residential";
+                            navigate(`/projects/${routeType}/${propertyName}`, { state: { from: location.pathname } });
+                          }}
                         >
                           View Details
                         </CustomButton>,
@@ -1119,24 +1124,28 @@ const AdvancedPropertySearch = ({
                           <div className="checked ">
                             <Text className="location-list flex gap-1">
                               <MapPinHouse />
-                              <p>{property.location}</p>
+                              <p className="m-0 p-0">{property.location}</p>
                             </Text>
                             <div className="list-details">
-                              <Text>
-                                <Bed /> {property.bedrooms} Beds
-                              </Text>
-                              <Text>
-                                <Bath /> {property.bathrooms} Baths
-                              </Text>
-                              <Text>
-                                <House /> {property.areaValue} sq ft
-                              </Text>
-                              <Text>
-                                <CalendarDays /> {property.yearBuilt}
-                              </Text>
+                              <div className="list-details-content flex items-center justify-center flex-col text-black">
+                                <Bed className="text-black" /> 
+                                <p>{property.bedrooms} Beds</p>
+                              </div>
+                              <div className="list-details-content flex items-center justify-center flex-col text-black">
+                                <Bath />
+                                <p> {property.bathrooms} Baths</p>
+                              </div>
+                              <div className="list-details-content flex items-center justify-center flex-col text-black">
+                                <LandPlot /> 
+                                <p>{property.areaValue} sq ft</p>
+                              </div>
+                              <div className="list-details-content flex items-center justify-center flex-col text-black">
+                                <CalendarDays /> 
+                                <p>{property.yearBuilt} Year</p>
+                              </div>
                             </div>
                             <div className="list-tags">
-                              <Tag color="gray">{property.type}</Tag>
+                              <Tag color="gray" className="capitalize">{property.type}</Tag>
                               <Tag color={getStatusColor(property.status)}>
                                 {property.status}
                               </Tag>

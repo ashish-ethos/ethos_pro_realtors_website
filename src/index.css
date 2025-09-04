@@ -82,7 +82,9 @@ body {
 .ant-form-item{
   margin-bottom: 10px !important;
 }
-
+.ant-typography p {
+  margin-bottom: 0px !important;
+}
 
 
 
