@@ -116,7 +116,7 @@ const Residentials = () => {
   const handleCloseDrawer = () => {
     setDrawerOpen(false);
     setSelectedProperty(null);
-    navigate('/projects/residential');
+    navigate(-1);
   };
 
   const PropertyCard = ({ property }) => {

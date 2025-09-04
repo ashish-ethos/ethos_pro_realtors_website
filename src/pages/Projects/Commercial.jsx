@@ -113,7 +113,7 @@ const Commercial = () => {
   const handleCloseDrawer = () => {
     setDrawerOpen(false);
     setSelectedProperty(null);
-    navigate('/projects/commercial');
+    navigate(-1);
   };
 
   const PropertyCard = ({ property }) => {
