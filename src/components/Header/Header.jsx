@@ -46,7 +46,7 @@ function Header() {
         <NavLink
           to={sub.path}
           className={({ isActive }) =>
-            `block px-4 py-2 text-sm hover:bg-yellow-50 ${
+            `block px-4 py-1 text-sm hover:bg-yellow-50 ${
               isActive ? "text-yellow-600 font-semibold" : "text-gray-800"
             }`
           }
@@ -121,7 +121,7 @@ function Header() {
         <div className="hidden lg:flex items-center space-x-4 header-started">
           <a className="fancy" href="#">
             <span className="top-key"></span>
-            <span className="text">Get Started</span>
+            <span className="text">+91 8744964496</span>
             <span className="bottom-key-1"></span>
             <span className="bottom-key-2"></span>
           </a>
@@ -185,7 +185,7 @@ function Header() {
               onClick={() => setMobileOpen(false)}
               className="block text-center bg-yellow-500 text-gray-900 font-semibold py-2 px-6 rounded-full hover:bg-yellow-400"
             >
-              Get Started
+              +91 8744964496
             </Link>
           </li>
         </ul>

@@ -1004,7 +1004,7 @@ const AdvancedPropertySearch = ({
                                 <Tag className="featured-tag">Featured</Tag>
                               )}
                               <Tag
-                                className={`status-tag m-0 p-0 ${property.status
+                                className={`status-tag m-0 p-0 flex justify-center items-center ${property.status
                                   .toLowerCase()
                                   .replace(" ", "-")}`}
                               >

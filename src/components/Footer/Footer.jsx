@@ -190,12 +190,12 @@ function Footer() {
               {/* Trust Indicators */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mt-8 text-sm text-gray-400">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-green-400 rounded-full" />
-                  <span>Spam-free guaranteed</span>
+                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
+                  <span>No spam, ever</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-blue-400 rounded-full" />
-                  <span>Unsubscribe anytime</span>
+                  <span>100% privacy guaranteed</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-purple-400 rounded-full" />
@@ -396,7 +396,6 @@ function Footer() {
 
           </div>
 
-          {/* Contact Section - Ultra Enhanced */}
           <div className="lg:col-span-3">
             <h4 className="text-xl font-bold mb-6 relative">
               Get In Touch
@@ -410,23 +409,29 @@ function Footer() {
                   title: "Visit Our Office",
                   content: "Suncity Success Tower, Unit No 507, 5th Floor, Tower-A, Sector 65, Gurugram, Haryana 122001",
                   action: "Get Directions",
-                  color: "from-blue-500 to-purple-500"
+                  color: "from-blue-500 to-purple-500",
+                  onClick: () => window.open(
+                    "https://maps.app.goo.gl/pby4c3XhmavmSy9ZA",
+                    "_blank"
+                  )
                 },
                 {
                   icon: Phone,
                   title: "Call Us Now",
                   content: "+91 8744964496",
                   action: "Call Now",
-                  color: "from-emerald-500 to-teal-500"
+                  color: "from-emerald-500 to-teal-500",
+                  onClick: () => window.open("tel:+918744964496", "_self")
                 },
                 {
                   icon: Mail,
                   title: "Email Us",
-                  content: "info@ethosrealtors.com",
+                  content: "info@ethosprorealtors.com",
                   action: "Send Email",
-                  color: "from-orange-500 to-red-500"
+                  color: "from-orange-500 to-red-500",
+                  onClick: () => window.open("mailto:info@ethosprorealtors.com", "_self")
                 }
-              ].map(({ icon: Icon, title, content, action, color }) => (
+              ].map(({ icon: Icon, title, content, action, color, onClick }) => (
                 <div key={title} className="group relative">
                   <div className="p-4 bg-gradient-to-r from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
                     <div className="flex items-start gap-4">
@@ -436,7 +441,11 @@ function Footer() {
                       <div className="flex-1">
                         <h5 className="font-semibold text-white mb-1">{title}</h5>
                         <p className="text-gray-400 text-sm mb-2">{content}</p>
-                        <button className="text-emerald-400 text-sm font-medium hover:text-emerald-300 transition-colors">
+                        <button
+                          className="text-emerald-400 cursor-pointer text-sm font-medium hover:text-emerald-300 transition-colors"
+                          onClick={onClick}
+                          type="button"
+                        >
                           {action} →
                         </button>
                       </div>

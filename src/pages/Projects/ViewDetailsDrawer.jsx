@@ -349,14 +349,16 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
           </div>
 
           <Form.Item>
-            <Button
+            <div className='w-full flex justify-center'>
+              <CustomButton
               type="primary"
               htmlType="submit"
               size="large"
-              className="w-full h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 border-0 font-semibold shadow-lg hover:shadow-xl"
+              className=" h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 border-0 font-semibold shadow-lg hover:shadow-xl"
             >
               Calculate EMI
-            </Button>
+            </CustomButton>
+            </div>
           </Form.Item>
         </Form>
       </PremiumCard>
@@ -411,7 +413,7 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
         Get In Touch
       </Title>
 
-      <Form form={form} layout="vertical" onFinish={handleContactSubmit} className="space-y-4">
+      <Form form={form} layout="vertical" onFinish={handleContactSubmit} className="space-y-4 mt-2">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Form.Item
             name="name"
@@ -421,7 +423,7 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
             <CustomInput
               placeholder="Enter your full name"
               size="large"
-              prefix={<UserOutlined className="text-gray-400" />}
+              prefix={<UserOutlined className="text-gray-400 mr-1" />}
               className="rounded-xl"
             />
           </Form.Item>
@@ -434,7 +436,7 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
             <CustomInput
               placeholder="Enter your phone number"
               size="large"
-              prefix={<PhoneOutlined className="text-gray-400" />}
+              prefix={<PhoneOutlined className="text-gray-400 mr-1" />}
               className="rounded-xl"
             />
           </Form.Item>
@@ -451,7 +453,7 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
           <CustomInput
             placeholder="Enter your email address"
             size="large"
-            prefix={<MailOutlined className="text-gray-400" />}
+            prefix={<MailOutlined className="text-gray-400 mr-1" />}
             className="rounded-xl"
           />
         </Form.Item>
@@ -469,14 +471,17 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
         </Form.Item>
 
         <Form.Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            size="large"
-            className="w-full h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 border-0 font-semibold shadow-lg hover:shadow-xl"
-          >
-            Send Message
-          </Button>
+          <div className='w-full flex justify-center'>
+            <CustomButton
+              type="primary"
+              htmlType="submit"
+              size="large"
+              className="w-auto h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 border-0 font-semibold shadow-lg hover:shadow-xl"
+            >
+              Send Message
+            </CustomButton>
+          </div>
+
         </Form.Item>
       </Form>
     </PremiumCard>

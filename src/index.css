@@ -66,6 +66,26 @@ body {
 .ant-typography{
   margin-bottom: 0px !important;
 }
+.ant-input-outlined{
+  border: 1px solid rgb(185, 183, 183) !important;
+}
+.ant-input-outlined:hover{
+  border-color: #4096ff !important;
+}
+
+.ant-picker-outlined:hover{
+  border-color: #4096ff !important;
+}
+.ant-input-number{
+  width: auto !important;
+}
+.ant-form-item{
+  margin-bottom: 10px !important;
+}
+
+
+
+
 
 /* ExploreProperties.css */
 .property-card-action-button {
@@ -89,10 +109,7 @@ body {
   }
 }
 
-.property-card-action-button:hover {
-  transform: scale(1.05) !important;
-  border-color: #c99913 !important;
-}
+
 
 .property-card-action-button svg {
   width: 12px !important;

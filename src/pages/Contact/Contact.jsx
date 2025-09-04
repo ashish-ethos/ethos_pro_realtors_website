@@ -231,7 +231,7 @@ const Contact = () => {
                                         </div>
                                         <div className="flex items-center">
                                             <Mail className="w-4 h-4 text-blue-600 mr-3" />
-                                            <span className="text-gray-700">satya@ethosrealtors.com</span>
+                                            <span className="text-gray-700">satya@ethosprorealtors.com</span>
                                         </div>
                                     </div>
                                 </div>
@@ -245,7 +245,7 @@ const Contact = () => {
                                         </div>
                                         <div className="flex items-center">
                                             <Mail className="w-4 h-4 text-emerald-600 mr-3" />
-                                            <span className="text-gray-700">avantika@ethosrealtors.com</span>
+                                            <span className="text-gray-700">avantika@ethosprorealtors.com</span>
                                         </div>
                                     </div>
                                 </div>

@@ -1,8 +1,9 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Input, Button } from 'antd';
 import { FilterOutlined, DownOutlined, SearchOutlined as SearchIcon } from '@ant-design/icons';
-import { Grid, List, MapPinHouse, Bed, Bath, LandPlot, Heart, Share, Eye, Star } from 'lucide-react';
+import { Grid, List, MapPinHouse, Bed, Bath, LandPlot, Heart, Share2, Eye, Star, X, Facebook, Instagram, Linkedin, Twitter,  } from 'lucide-react';
 import ViewDetailsDrawer from './ViewDetailsDrawer';
+import { BsWhatsapp } from "react-icons/bs";
 import './Project.css';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { allProjectPropertyDetails } from '../../data/propertyDetailsData';
@@ -115,143 +116,224 @@ const Commercial = () => {
     navigate('/projects/commercial');
   };
 
-  const PropertyCard = ({ property }) => (
-    <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group">
-      <div className="relative overflow-hidden">
-        <img
-          src={property.image}
-          alt={property.name}
-          className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-        <div className="absolute top-4 left-4 flex flex-wrap gap-2 project-status-mobile">
-          {property.status.map((status) => (
-            <span
-              key={status}
-              className={`px-3 py-1 text-xs font-semibold rounded-full bg-[#06060670] ${
-                status === 'FOR SALE'
-                  ? 'border-blue-600 text-white border-1'
-                  : status === 'FOR RENT'
-                  ? 'border-green-600 text-white border-1'
-                  : status === 'HOT OFFER'
-                  ? 'border-red-500 text-white border-1'
-                  : status === 'NEW LAUNCH'
-                  ? 'border-purple-600 text-white border-1'
-                  : status === 'EXCLUSIVE'
-                  ? 'border-yellow-500 text-white border-1'
-                  : 'bg-gray-600 text-white'
-              }`}
+  const PropertyCard = ({ property }) => {
+    const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
+
+    const shareUrl = encodeURIComponent(window.location.origin + `/projects/commercial/${property.name.toLowerCase().replace(/\s+/g, '-')}`);
+    const shareTitle = encodeURIComponent(property.name);
+
+    const socialMediaLinks = [
+      {
+        name: 'Facebook',
+        icon: Facebook,
+        color: 'text-[#1877F2]',
+        url: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&display=popup&ref=plugin&src=share_button`,
+      },
+      {
+        name: 'Instagram',
+        icon: Instagram,
+        color: 'text-[#E4405F]',
+        url: `https://www.instagram.com/ethosprorealtors/`,
+      },
+      {
+        name: 'LinkedIn',
+        icon: Linkedin,
+        color: 'text-[#0A66C2]',
+        url: `https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${shareTitle}&source=Ethos%20Pro%20Realtors`,
+      },
+      {
+        name: 'X',
+        icon: Twitter,
+        color: 'text-[#000000]',
+        url: `https://x.com/intent/post?url=${shareUrl}&text=${shareTitle}&via=ethosprorealtor`,
+      },
+      {
+        name: 'WhatsApp',
+        icon: BsWhatsapp,
+        color: 'text-[#25D366]',
+        url: `https://api.whatsapp.com/send?phone=918744964496&text=${shareTitle}%20${shareUrl}`,
+      },
+    ];
+
+    const handleShareClick = (e) => {
+      e.stopPropagation();
+      setIsSharePopupOpen(true);
+    };
+
+    const handleClosePopup = (e) => {
+      e.stopPropagation();
+      setIsSharePopupOpen(false);
+    };
+
+    const handleSocialShare = (e, url) => {
+      e.stopPropagation();
+      window.open(url, '_blank', 'noopener,noreferrer');
+      setIsSharePopupOpen(false);
+    };
+
+    return (
+      <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group">
+        <div className="relative overflow-hidden">
+          <img
+            src={property.image}
+            alt={property.name}
+            className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+          />
+          <div className="absolute top-4 left-4 flex flex-wrap gap-2 project-status-mobile">
+            {property.status.map((status) => (
+              <span
+                key={status}
+                className={`px-3 py-1 text-xs font-semibold rounded-full bg-[#06060670] ${
+                  status === 'FOR SALE'
+                    ? 'border-blue-600 text-white border-1'
+                    : status === 'FOR RENT'
+                    ? 'border-green-600 text-white border-1'
+                    : status === 'HOT OFFER'
+                    ? 'border-red-500 text-white border-1'
+                    : status === 'NEW LAUNCH'
+                    ? 'border-purple-600 text-white border-1'
+                    : status === 'EXCLUSIVE'
+                    ? 'border-yellow-500 text-white border-1'
+                    : 'bg-gray-600 text-white'
+                }`}
+              >
+                {status}
+              </span>
+            ))}
+          </div>
+          <div className="absolute top-4 right-4 flex gap-2">
+            <button className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors">
+              <Heart size={16} className="text-gray-600 hover:text-red-500" />
+            </button>
+            <button
+              onClick={handleShareClick}
+              className="p-2 bg-white/90 cursor-pointer rounded-full hover:bg-white transition-colors"
             >
-              {status}
-            </span>
-          ))}
-        </div>
-        <div className="absolute top-4 right-4 flex gap-2">
-          <button className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors">
-            <Heart size={16} className="text-gray-600 hover:text-red-500" />
-          </button>
-          <button className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors">
-            <Share size={16} className="text-gray-600" />
-          </button>
-        </div>
-        {property.featured && (
-          <div className="absolute bottom-4 left-4">
-            <span className="bg-gradient-to-r from-amber-400 to-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
-              <Star size={12} fill="currentColor" />
-              Featured
-            </span>
+              <Share2 size={16} className="text-gray-600" />
+            </button>
           </div>
-        )}
-      </div>
-
-      <div className="p-6">
-        <div className="flex items-start justify-between mb-3">
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-1">{property.name}</h3>
-            <p className="text-gray-600 flex items-center gap-1">
-              <MapPinHouse className='text-gray-500' />
-              {property.location}
-            </p>
-          </div>
-          <div className="flex items-center gap-1">
-            <Star size={14} className="text-amber-400 fill-current" />
-            <span className="text-sm font-semibold text-gray-700">{property.rating}</span>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
-          <span className="flex items-center gap-1">
-            <Bed className='text-gray-500' />
-            {property.bedrooms} Bed
-          </span>
-          <span className="flex items-center gap-1">
-            <Bath className='text-gray-500' />
-            {property.bathrooms} Bath
-          </span>
-          <span className="flex items-center gap-1">
-            <LandPlot className='text-gray-500' />
-            {property.sqft}
-          </span>
-        </div>
-
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <div className="text-2xl font-bold text-gray-900">{property.price}</div>
-            <div className="text-sm text-gray-500">{property.pricePerSqft}/sq ft</div>
-          </div>
-          <span
-            className={`px-3 py-1 rounded-full text-xs font-semibold ${
-              property.category === 'ULTRA_LUXURY'
-                ? 'bg-purple-100 text-purple-800'
-                : property.category === 'LUXURY'
-                ? 'bg-blue-100 text-blue-800'
-                : property.category === 'PREMIUM'
-                ? 'bg-green-100 text-green-800'
-                : property.category === 'COMPACT'
-                ? 'bg-orange-100 text-orange-800'
-                : property.category === 'INVESTMENT'
-                ? 'bg-yellow-100 text-yellow-800'
-                : 'bg-gray-100 text-gray-800'
-            }`}
-          >
-            {property.category.replace('_', ' ')}
-          </span>
-        </div>
-
-        <div className="flex flex-wrap gap-2 mb-4">
-          {property.amenities.slice(0, 3).map((amenity) => (
-            <span key={amenity} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs">
-              {amenity}
-            </span>
-          ))}
-          {property.amenities.length > 3 && (
-            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs">
-              +{property.amenities.length - 3} more
-            </span>
+          {isSharePopupOpen && (
+            <div className="absolute top-12 right-4 bg-white rounded-lg shadow-xl  w-40 z-50">
+              <div className="flex justify-between items-center px-2 py-1">
+                <h4 className="text-xs font-semibold text-gray-800">Share Property</h4>
+                <button onClick={handleClosePopup} className="p-1 hover:bg-gray-100 rounded-full">
+                  <X size={16} className="text-gray-600" />
+                </button>
+              </div>
+              <div className="flex flex-col mb-1 gap-1">
+                {socialMediaLinks.map((platform) => (
+                  <button
+                    key={platform.name}
+                    onClick={(e) => handleSocialShare(e, platform.url)}
+                    className="flex items-center gap-2 p-1 px-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
+                    <platform.icon size={16} className={platform.color} />
+                    <span className="text-xs text-gray-700 font-[Inter] ml-2">{platform.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          {property.featured && (
+            <div className="absolute bottom-4 left-4">
+              <span className="bg-gradient-to-r from-amber-400 to-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+                <Star size={12} fill="currentColor" />
+                Featured
+              </span>
+            </div>
           )}
         </div>
 
-        <div className="flex gap-3">
-          <div
-            className="inline-block rounded-[12px] p-[2px]"
-            style={{
-              background: 'linear-gradient(to right, #c99913, #474236, #000000)',
-            }}
-          >
-            <button
-              onClick={() => handleViewDetails(property)}
-              className="bg-white text-black px-5 py-2 rounded-[10px] cursor-pointer font-semibold flex items-center justify-center gap-2 hover:shadow-md transition-all duration-200"
+        <div className="p-6">
+          <div className="flex items-start justify-between mb-3">
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-1">{property.name}</h3>
+              <p className="text-gray-600 flex items-center gap-1">
+                <MapPinHouse className='text-gray-500' />
+                {property.location}
+              </p>
+            </div>
+            <div className="flex items-center gap-1">
+              <Star size={14} className="text-amber-400 fill-current" />
+              <span className="text-sm font-semibold text-gray-700">{property.rating}</span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-4 mb-4 text-sm text-gray-600">
+            <span className="flex items-center gap-1">
+              <Bed className='text-gray-500' />
+              {property.bedrooms} Bed
+            </span>
+            <span className="flex items-center gap-1">
+              <Bath className='text-gray-500' />
+              {property.bathrooms} Bath
+            </span>
+            <span className="flex items-center gap-1">
+              <LandPlot className='text-gray-500' />
+              {property.sqft}
+            </span>
+          </div>
+
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <div className="text-2xl font-bold text-gray-900">{property.price}</div>
+              <div className="text-sm text-gray-500">{property.pricePerSqft}/sq ft</div>
+            </div>
+            <span
+              className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                property.category === 'ULTRA_LUXURY'
+                  ? 'bg-purple-100 text-purple-800'
+                  : property.category === 'LUXURY'
+                  ? 'bg-blue-100 text-blue-800'
+                  : property.category === 'PREMIUM'
+                  ? 'bg-green-100 text-green-800'
+                  : property.category === 'COMPACT'
+                  ? 'bg-orange-100 text-orange-800'
+                  : property.category === 'INVESTMENT'
+                  ? 'bg-yellow-100 text-yellow-800'
+                  : 'bg-gray-100 text-gray-800'
+              }`}
             >
-              <Eye size={18} />
-              View Details
+              {property.category.replace('_', ' ')}
+            </span>
+          </div>
+
+          <div className="flex flex-wrap gap-2 mb-4">
+            {property.amenities.slice(0, 3).map((amenity) => (
+              <span key={amenity} className="px-2 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs">
+                {amenity}
+              </span>
+            ))}
+            {property.amenities.length > 3 && (
+              <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs">
+                +{property.amenities.length - 3} more
+              </span>
+            )}
+          </div>
+
+          <div className="flex gap-3">
+            <div
+              className="inline-block rounded-[12px] p-[2px]"
+              style={{
+                background: 'linear-gradient(to right, #c99913, #474236, #000000)',
+              }}
+            >
+              <button
+                onClick={() => handleViewDetails(property)}
+                className="bg-white text-black px-5 py-2 rounded-[10px] cursor-pointer font-semibold flex items-center justify-center gap-2 hover:shadow-md transition-all duration-200"
+              >
+                <Eye size={18} />
+                View Details
+              </button>
+            </div>
+            <button className="px-4 py-2 border-2 border-[#1677ff87] text-black rounded-xl font-semibold hover:bg-blue-50 transition-colors">
+              Contact
             </button>
           </div>
-          <button className="px-4 py-2 border-2 border-[#1677ff87] text-black rounded-xl font-semibold hover:bg-blue-50 transition-colors">
-            Contact
-          </button>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const filterSort = (optionA, optionB) => {
     const labelA = optionA?.label?.toLowerCase() || '';

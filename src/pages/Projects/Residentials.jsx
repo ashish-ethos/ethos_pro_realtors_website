@@ -1,9 +1,10 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Input, Typography } from 'antd';
 import { FilterOutlined, DownOutlined, SearchOutlined as SearchIcon } from '@ant-design/icons';
-import { Grid, List, MapPinHouse, Bed, Bath, LandPlot, Heart, Share, Eye, Star } from 'lucide-react';
+import { Grid, List, MapPinHouse, Bed, Bath, LandPlot, Heart, Share2, Eye, Star, X, Facebook, Instagram, Linkedin, Twitter, MessageCircle } from 'lucide-react';
 import ViewDetailsDrawer from './ViewDetailsDrawer';
 import { allProjectPropertyDetails } from '../../data/propertyDetailsData';
+import { BsWhatsapp } from "react-icons/bs";
 import './Project.css';
 import CustomButton from '../../components/ui/Button';
 import CustomSelect from '../../components/ui/Select';
@@ -50,8 +51,8 @@ const Residentials = () => {
     let filtered = allProjectPropertyDetails.filter((property) => {
       const isResidential =
         (property.type.toLowerCase().includes('apartment') ||
-         property.type.toLowerCase().includes('villa') ||
-         property.type.toLowerCase().includes('studio')) &&
+          property.type.toLowerCase().includes('villa') ||
+          property.type.toLowerCase().includes('studio')) &&
         !property.type.toLowerCase().includes('shop') &&
         !property.type.toLowerCase().includes('office') &&
         !property.type.toLowerCase().includes('commercial');
@@ -119,6 +120,60 @@ const Residentials = () => {
   };
 
   const PropertyCard = ({ property }) => {
+    const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
+
+    const shareUrl = encodeURIComponent(window.location.origin + `/projects/residential/${property.name.toLowerCase().replace(/\s+/g, '-')}`);
+    const shareTitle = encodeURIComponent(property.name);
+
+    const socialMediaLinks = [
+      {
+        name: 'Facebook',
+        icon: Facebook,
+        color: 'text-[#1877F2]',
+        url: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&display=popup&ref=plugin&src=share_button`,
+      },
+      {
+        name: 'Instagram',
+        icon: Instagram,
+        color: 'text-[#E4405F]',
+        url: `https://www.instagram.com/ethosprorealtors/`,
+      },
+      {
+        name: 'LinkedIn',
+        icon: Linkedin,
+        color: 'text-[#0A66C2]',
+        url: `https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${shareTitle}&source=Ethos%20Pro%20Realtors`,
+      },
+      {
+        name: 'X',
+        icon: Twitter,
+        color: 'text-[#000000]',
+        url: `https://x.com/intent/post?url=${shareUrl}&text=${shareTitle}&via=ethosprorealtor`,
+      },
+      {
+        name: 'WhatsApp',
+        icon: BsWhatsapp,
+        color: 'text-[#25D366]',
+        url: `https://api.whatsapp.com/send?phone=918744964496&text=${shareTitle}%20${shareUrl}`,
+      },
+    ];
+
+    const handleShareClick = (e) => {
+      e.stopPropagation();
+      setIsSharePopupOpen(true);
+    };
+
+    const handleClosePopup = (e) => {
+      e.stopPropagation();
+      setIsSharePopupOpen(false);
+    };
+
+    const handleSocialShare = (e, url) => {
+      e.stopPropagation();
+      window.open(url, '_blank', 'noopener,noreferrer');
+      setIsSharePopupOpen(false);
+    };
+
     return (
       <div className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 group">
         <div className="relative overflow-hidden">
@@ -137,19 +192,18 @@ const Residentials = () => {
             {property.status.map((status) => (
               <span
                 key={status}
-                className={`px-3 py-1 text-xs font-semibold bg-[#06060670] rounded-full ${
-                  status === 'FOR SALE'
+                className={`px-3 py-1 text-xs font-semibold bg-[#06060670] rounded-full ${status === 'FOR SALE'
                     ? 'border-1 border-blue-600 text-white'
                     : status === 'FOR RENT'
-                    ? 'border-1 border-green-600 text-white'
-                    : status === 'HOT OFFER'
-                    ? 'border-1 border-red-500 text-white'
-                    : status === 'NEW LAUNCH'
-                    ? 'border-purple-600 text-white border-1'
-                    : status === 'EXCLUSIVE'
-                    ? 'border-yellow-500 text-white border-1'
-                    : 'border-1 border-gray-600 text-white'
-                }`}
+                      ? 'border-1 border-green-600 text-white'
+                      : status === 'HOT OFFER'
+                        ? 'border-1 border-red-500 text-white'
+                        : status === 'NEW LAUNCH'
+                          ? 'border-purple-600 text-white border-1'
+                          : status === 'EXCLUSIVE'
+                            ? 'border-yellow-500 text-white border-1'
+                            : 'border-1 border-gray-600 text-white'
+                  }`}
               >
                 {status}
               </span>
@@ -159,10 +213,35 @@ const Residentials = () => {
             <button className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors">
               <Heart size={16} className="text-gray-600 hover:text-red-500" />
             </button>
-            <button className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors">
-              <Share size={16} className="text-gray-600" />
+            <button
+              onClick={handleShareClick}
+              className="p-2 bg-white/90 cursor-pointer rounded-full hover:bg-white transition-colors"
+            >
+              <Share2 size={16} className="text-gray-600" />
             </button>
           </div>
+          {isSharePopupOpen && (
+            <div className="absolute top-12 right-4 bg-white rounded-lg shadow-xl  w-40 z-50">
+              <div className="flex justify-between items-center px-2 py-1">
+                <h4 className="text-xs font-semibold text-gray-800">Share Property</h4>
+                <button onClick={handleClosePopup} className="p-1 hover:bg-gray-100 rounded-full">
+                  <X size={16} className="text-gray-600" />
+                </button>
+              </div>
+              <div className="flex flex-col mb-1 gap-1">
+                {socialMediaLinks.map((platform) => (
+                  <button
+                    key={platform.name}
+                    onClick={(e) => handleSocialShare(e, platform.url)}
+                    className="flex items-center  gap-2 p-1 px-2 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
+                    <platform.icon size={16} className={platform.color} />
+                    <span className="text-xs text-gray-700 font-[Inter] ml-2">{platform.name}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           {property.featured && (
             <div className="absolute bottom-4 left-4">
               <span className="bg-gradient-to-r from-amber-400 to-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
@@ -194,11 +273,11 @@ const Residentials = () => {
               {property.bedrooms} Bed
             </span>
             <span className="flex items-center gap-1">
-              <Bath className='text-gray-500'/>
+              <Bath className='text-gray-500' />
               {property.bathrooms} Baths
             </span>
             <span className="flex items-center gap-1">
-              <LandPlot className='text-gray-500'  />
+              <LandPlot className='text-gray-500' />
               {property.sqft}
             </span>
           </div>
@@ -209,17 +288,16 @@ const Residentials = () => {
               <div className="text-sm text-gray-500">{property.pricePerSqft}/sq ft</div>
             </div>
             <span
-              className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                property.category === 'ULTRA_LUXURY'
+              className={`px-3 py-1 rounded-full text-xs font-semibold ${property.category === 'ULTRA_LUXURY'
                   ? 'bg-purple-100 text-purple-800'
                   : property.category === 'LUXURY'
-                  ? 'bg-blue-100 text-blue-800'
-                  : property.category === 'PREMIUM'
-                  ? 'bg-green-100 text-green-800'
-                  : property.category === 'COMPACT'
-                  ? 'bg-orange-100 text-orange-800'
-                  : 'bg-gray-100 text-gray-800'
-              }`}
+                    ? 'bg-blue-100 text-blue-800'
+                    : property.category === 'PREMIUM'
+                      ? 'bg-green-100 text-green-800'
+                      : property.category === 'COMPACT'
+                        ? 'bg-orange-100 text-orange-800'
+                        : 'bg-gray-100 text-gray-800'
+                }`}
             >
               {property.category.replace('_', ' ')}
             </span>
@@ -304,7 +382,7 @@ const Residentials = () => {
               size="large"
               onSearch={(value) => setSearchTerm(value)}
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{  overflow: 'hidden' }}
+              style={{ overflow: 'hidden' }}
             />
             <div className="flex gap-3">
               <CustomButton
@@ -325,7 +403,7 @@ const Residentials = () => {
                 value={sortBy}
                 onChange={(value) => setSortBy(value)}
                 size="large"
-                style={{width:150}}
+                style={{ width: 150 }}
               >
                 <Option value="featured">Featured First</Option>
                 <Option value="price_low">Price: Low to High</Option>
@@ -392,7 +470,7 @@ const Residentials = () => {
                   onClick={() => setFilters({ priceRange: '', propertyType: '', bedrooms: '', category: '' })}
                   size="large"
                   type="primary"
-                 className="max-w-[200px]"
+                  className="max-w-[200px]"
                 >
                   Clear Filters
                 </CustomButton>
@@ -430,6 +508,7 @@ const Residentials = () => {
                     type="primary"
                     size="large"
                     onClick={() => setShowAll(true)}
+                    className="property-card-action-button"
                   >
                     View More
                   </CustomButton>
@@ -439,10 +518,7 @@ const Residentials = () => {
                     type="default"
                     size="large"
                     onClick={() => setShowAll(false)}
-                    style={{
-                      borderRadius: '12px',
-                      minWidth: '120px',
-                    }}
+                    className="property-card-action-button"
                   >
                     View Less
                   </CustomButton>

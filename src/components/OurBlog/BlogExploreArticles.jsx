@@ -126,32 +126,35 @@ const BlogExploreArticles = ({ blogPosts, contentMap }) => {
         <div className="max-w-8xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex flex-col gap-4">
             {/* Search Bar */}
-            <div className="flex-1">
-              <Input
-                placeholder="Search articles, topics, or categories..."
-                value={searchTerm}
-                onChange={handleInputChange}
-                allowClear
-                prefix={<SearchOutlined className="text-gray-400" />}
-                size="middle"
-                className="!rounded-xl h-10 sm:h-[40px] items-center shadow-sm w-full"
-              />
-            </div>
+
 
             {/* Controls */}
             <div className="flex items-center justify-between gap-3">
               {/* Category Select */}
-              <CustomSelect
-                value={filterCategory}
-                onChange={(value) => setFilterCategory(value)}
-                size="middle"
-                className="!rounded-xl !h-10 shadow-sm p-1"
-                dropdownStyle={{ borderRadius: "10px" }}
-              >
-                <Option value="all">All Categories</Option>
-                <Option value="investment">Investment</Option>
-                <Option value="market trends">Market Trends</Option>
-              </CustomSelect>
+
+
+              <div className="flex gap-2">
+                <CustomSelect
+                  value={filterCategory}
+                  onChange={(value) => setFilterCategory(value)}
+                  size="middle"
+                  className="!rounded-xl !h-10 shadow-sm p-1"
+                  dropdownStyle={{ borderRadius: "10px" }}
+                >
+                  <Option value="all">All Categories</Option>
+                  <Option value="investment">Investment</Option>
+                  <Option value="market trends">Market Trends</Option>
+                </CustomSelect>
+                <Input
+                  placeholder="Search articles, topics, or categories..."
+                  value={searchTerm}
+                  onChange={handleInputChange}
+                  allowClear
+                  prefix={<SearchOutlined className="text-gray-600" />}
+                  size="middle"
+                  className="!rounded-xl items-center shadow-sm w-full"
+                />
+              </div>
 
               {/* View Toggle */}
               <div className="flex bg-white border border-gray-300 rounded-xl shadow-sm p-1">

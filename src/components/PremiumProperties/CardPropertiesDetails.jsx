@@ -1,5 +1,7 @@
 import React from "react";
 import { MapPin, Home, Star, Eye, Calendar, ExternalLink, MapPinned } from "lucide-react";
+import CustomInput from "../ui/Input";
+import CustomButton from "../ui/Button";
 
 const CardPropertiesDetails = ({ property }) => {
   if (!property) {
@@ -231,7 +233,7 @@ const CardPropertiesDetails = ({ property }) => {
             {/* Name */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-              <input
+              <CustomInput
                 type="text"
                 placeholder="Your Name"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -241,7 +243,7 @@ const CardPropertiesDetails = ({ property }) => {
             {/* Phone */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-              <input
+              <CustomInput
                 type="tel"
                 placeholder="Your Phone"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -251,7 +253,7 @@ const CardPropertiesDetails = ({ property }) => {
             {/* Email */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-              <input
+              <CustomInput
                 type="email"
                 placeholder="Your Email"
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -260,12 +262,12 @@ const CardPropertiesDetails = ({ property }) => {
 
             {/* Submit */}
             <div className="md:col-span-3 flex justify-end">
-              <button
+              <CustomButton
                 type="submit"
-                className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition"
+                className="transition property-card-action-button"
               >
                 Submit
-              </button>
+              </CustomButton>
             </div>
           </form>
         </div>

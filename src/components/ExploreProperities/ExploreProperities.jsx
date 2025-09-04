@@ -660,7 +660,7 @@ const ExploreProperties = ({ filters = {} }) => {
                     onClick={toggleSharePopup}
                     className="absolute top-2 right-2 text-gray-600 cursor-pointer hover:text-red-500 transition-all"
                   >
-                    <X size={16}  />
+                    <X size={16} />
                   </button>
                   <div className="flex flex-col gap-2 mt-4">
                     <FacebookShareButton url={shareUrl} quote={shareText} title={shareTitle}>
@@ -759,35 +759,36 @@ const ExploreProperties = ({ filters = {} }) => {
                   </div>
                 </div>
               </div>
+              <div className="get-in-touch-section border-[#d3d3d382] border-1 p-2 sm:p-3 rounded-xl shadow-md ">
+                <h3 className="text-base font-semibold text-gray-900 mb-3">Get in Touch</h3>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <CustomButton
+                    onClick={() => window.location.href = 'tel:+918744964496'}
+                    className="flex-1 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center  group"
+                  >
+                    <FiPhone className="w-4 h-4 group-hover:animate-pulse" />
+                    <span>Call Now</span>
+                  </CustomButton>
+                  <CustomButton
+                    onClick={() => window.open('https://wa.me/918744964496', '_blank', 'noopener,noreferrer')}
+                    className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center group"
+                  >
+                    <MdOutlineWhatsapp className="w-4 h-4 group-hover:animate-pulse" />
+                    <span>WhatsApp</span>
+                  </CustomButton>
+                  <CustomButton
+                    onClick={() => window.location.href = 'mailto:info@ethosprorealtors.com'}
+                    className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center group"
+                  >
+                    <MdOutlineEmail className="w-4 h-4 group-hover:animate-pulse" />
+                    <span>Email</span>
+                  </CustomButton>
+                </div>
+              </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="border-t border-gray-200 pt-4">
-              <h3 className="text-base font-semibold text-gray-900 mb-3">Get in Touch</h3>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <CustomButton
-                  onClick={() => window.location.href = 'tel:+918744964496'}
-                  className="flex-1 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 group"
-                >
-                  <FiPhone className="w-4 h-4 group-hover:animate-pulse" />
-                  <span>Call Now</span>
-                </CustomButton>
-                <CustomButton
-                  onClick={() => window.open('https://wa.me/918744964496', '_blank', 'noopener,noreferrer')}
-                  className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 group"
-                >
-                  <MdOutlineWhatsapp className="w-4 h-4 group-hover:animate-pulse" />
-                  <span>WhatsApp</span>
-                </CustomButton>
-                <CustomButton
-                  onClick={() => window.location.href = 'mailto:info@ethosprorealtors.com'}
-                  className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-2 group"
-                >
-                  <MdOutlineEmail className="w-4 h-4 group-hover:animate-pulse" />
-                  <span>Email</span>
-                </CustomButton>
-              </div>
-            </div>
+
 
             <div className="contact-section-property-modal mt-6 flex flex-col sm:flex-row">
               <div className="left-side border-[#d3d3d382] border-1 p-4 sm:p-6 rounded-xl shadow-md mb-6 sm:mr-6 sm:mb-0 sm:w-1/2">
@@ -852,8 +853,8 @@ const ExploreProperties = ({ filters = {} }) => {
                   <div className="w-full flex justify-center items-center">
                     <CustomButton
                       type="submit"
-                      className="w-auto text-black font-semibold py-3 px-4 rounded-xl"
-                      style={{ backgroundColor: '#f3f4f6' }}
+                      className="w-auto text-black font-semibold py-3 px-4 rounded-xl property-card-action-button"
+                      
                     >
                       Send Message
                     </CustomButton>
@@ -962,8 +963,8 @@ const ExploreProperties = ({ filters = {} }) => {
                   <div className="w-full flex justify-center items-center">
                     <CustomButton
                       type="submit"
-                      className="w-auto text-black font-semibold py-3 px-4 rounded-xl"
-                      style={{ backgroundColor: '#f3f4f6' }}
+                      className="w-auto text-black font-semibold py-3 px-4 property-card-action-button rounded-xl"
+                      
                     >
                       Schedule Tour
                     </CustomButton>

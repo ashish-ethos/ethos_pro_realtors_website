@@ -700,9 +700,9 @@ const OurBlog = () => {
                             <img
                                 src={contentMap[selectedPost.id].image}
                                 alt={selectedPost.title}
-                                className="w-full h-48 md:h-64 object-cover rounded-xl mb-6"
+                                className="w-full p-4 h-48 md:h-64 object-cover rounded-xl mb-6"
                             />
-                            <div className="prose prose-lg text-gray-700 max-w-none">
+                            <div className="prose p-4 prose-lg text-gray-700 max-w-none">
                                 {renderContent(contentMap[selectedPost.id].content)}
                             </div>
                         </div>

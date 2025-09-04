@@ -126,7 +126,7 @@ section {
 .ant-btn,
 .ant-input-number {
   font-size: 16px;
-  height: 40px;
+  /* height: 40px; */
 }
 
 .ant-input-number-input {
