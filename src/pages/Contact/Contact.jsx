@@ -11,9 +11,11 @@ import {
     Youtube,
     MapPin,
 } from 'lucide-react';
-
+import { Input } from 'antd';
 
 import ContactImg from '../../assets/images/about/4.png';
+import CustomInput from '../../components/ui/Input';
+import CustomButton from '../../components/ui/Button';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -26,6 +28,7 @@ const Contact = () => {
 
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
+    const { TextArea } = Input;
 
     const handleChange = (e) => {
         setFormData({
@@ -72,9 +75,9 @@ const Contact = () => {
                             <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-indigo-100 to-transparent rounded-full -ml-12 -mb-12"></div>
 
                             <div className="relative z-10">
-                                <h2 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-1">
+                                <h4 className="text-2xl  font-bold text-gray-800 mb-1">
                                     Get In Touch
-                                </h2>
+                                </h4>
 
                                 {submitted ? (
                                     <div className="text-center py-12">
@@ -93,7 +96,7 @@ const Contact = () => {
                                                 <label className="block text-sm font-semibold text-gray-700 mb-1">
                                                     First Name <span className="text-red-500">*</span>
                                                 </label>
-                                                <input
+                                                <CustomInput
                                                     type="text"
                                                     name="firstName"
                                                     value={formData.firstName}
@@ -107,7 +110,7 @@ const Contact = () => {
                                                 <label className="block text-sm font-semibold text-gray-700 mb-1">
                                                     Last Name <span className="text-red-500">*</span>
                                                 </label>
-                                                <input
+                                                <CustomInput
                                                     type="text"
                                                     name="lastName"
                                                     value={formData.lastName}
@@ -123,7 +126,7 @@ const Contact = () => {
                                             <label className="block text-sm font-semibold text-gray-700 mb-1">
                                                 Mobile <span className="text-red-500">*</span>
                                             </label>
-                                            <input
+                                            <CustomInput
                                                 type="tel"
                                                 name="mobile"
                                                 value={formData.mobile}
@@ -138,7 +141,7 @@ const Contact = () => {
                                             <label className="block text-sm font-semibold text-gray-700 mb-1">
                                                 Email <span className="text-red-500">*</span>
                                             </label>
-                                            <input
+                                            <CustomInput
                                                 type="email"
                                                 name="email"
                                                 value={formData.email}
@@ -151,7 +154,7 @@ const Contact = () => {
 
                                         <div>
                                             <label className="block text-sm font-semibold text-gray-700 mb-1">Message</label>
-                                            <textarea
+                                            <TextArea
                                                 name="message"
                                                 value={formData.message}
                                                 onChange={handleChange}
@@ -162,16 +165,11 @@ const Contact = () => {
                                         </div>
 
                                         <div className='flex justify-center'>
-                                            <button
+                                            <CustomButton
                                                 type="submit"
                                                 disabled={loading}
-                                                className="w-auto items-center
-                                             text-black font-semibold py-2 cursor-pointer px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed border-2 bg-transparent"
-                                                style={{
-                                                    borderImage: 'linear-gradient(to right, #000000, #474236, #c99913) 1',
-                                                    borderStyle: 'solid',
-                                                    background: 'transparent',
-                                                }}
+                                                className="property-card-action-button w-auto"
+
                                             >
                                                 {loading ? (
                                                     <div className="flex items-center justify-center">
@@ -181,7 +179,7 @@ const Contact = () => {
                                                 ) : (
                                                     'Submit'
                                                 )}
-                                            </button>
+                                            </CustomButton>
 
                                         </div>
                                     </form>
@@ -273,23 +271,49 @@ const Contact = () => {
                         <div className="bg-white rounded-3xl shadow-xl p-8">
                             <h2 className="text-2xl font-bold text-gray-800 mb-6">Follow Us On</h2>
                             <div className="flex space-x-4">
-                                <a href="#" className="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition transform hover:scale-110">
+                                <a
+                                    href="https://www.facebook.com/ethosprorealtors/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition transform hover:scale-110"
+                                >
                                     <Facebook className="w-5 h-5" />
                                 </a>
-                                <a href="#" className="w-12 h-12 bg-pink-600 hover:bg-pink-700 text-white rounded-full flex items-center justify-center transition transform hover:scale-110">
+                                <a
+                                    href="https://www.instagram.com/ethosprorealtors/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-12 h-12 bg-pink-600 hover:bg-pink-700 text-white rounded-full flex items-center justify-center transition transform hover:scale-110"
+                                >
                                     <Instagram className="w-5 h-5" />
                                 </a>
-                                <a href="#" className="w-12 h-12 bg-blue-700 hover:bg-blue-800 text-white rounded-full flex items-center justify-center transition transform hover:scale-110">
+                                <a
+                                    href="https://in.linkedin.com/company/ethos-pro-realtors"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-12 h-12 bg-blue-700 hover:bg-blue-800 text-white rounded-full flex items-center justify-center transition transform hover:scale-110"
+                                >
                                     <Linkedin className="w-5 h-5" />
                                 </a>
-                                <a href="#" className="w-12 h-12 bg-gray-800 hover:bg-gray-900 text-white rounded-full flex items-center justify-center transition transform hover:scale-110">
+                                <a
+                                    href="https://twitter.com/ethosprorealtors"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-12 h-12 bg-gray-800 hover:bg-gray-900 text-white rounded-full flex items-center justify-center transition transform hover:scale-110"
+                                >
                                     <Twitter className="w-5 h-5" />
                                 </a>
-                                <a href="#" className="w-12 h-12 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center transition transform hover:scale-110">
+                                <a
+                                    href="https://www.youtube.com/@ethosprorealtors"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-12 h-12 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center transition transform hover:scale-110"
+                                >
                                     <Youtube className="w-5 h-5" />
                                 </a>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

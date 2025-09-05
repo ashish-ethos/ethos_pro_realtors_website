@@ -268,7 +268,7 @@ export const allProjectPropertyDetails = [
     featured: false,
     amenities: ["Clubhouse", "Pool", "Spa", "Security"],
     addressMap:
-      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!..."></iframe>',
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.289921418064!2d77.00450517549602!3d28.500923775736812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1700b8332841%3A0x1a820bf6925742bd!2sElan%20The%20Mark!5e0!3m2!1sen!2sin!4v1757056323726!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
   },
   {
     id: 12,
@@ -288,7 +288,7 @@ export const allProjectPropertyDetails = [
     featured: false,
     amenities: ["Parking", "Shops", "Security"],
     addressMap:
-      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!..."></iframe>',
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.1949801965334!2d77.05290939999999!3d28.3831783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d22fecb57f373%3A0xcc4398c9599fcdd7!2sAiria%20Mall!5e0!3m2!1sen!2sin!4v1757056790627!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
   },
   {
     id: 13,
@@ -308,7 +308,7 @@ export const allProjectPropertyDetails = [
     featured: false,
     amenities: ["Garden", "Parking", "Clubhouse", "Security"],
     addressMap:
-      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!..."></iframe>',
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.289921418064!2d77.00450517549602!3d28.500923775736812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1700b8332841%3A0x1a820bf6925742bd!2sElan%20The%20Mark!5e0!3m2!1sen!2sin!4v1757056842576!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
   },
   {
     id: 14,
@@ -328,6 +328,6 @@ export const allProjectPropertyDetails = [
     featured: true,
     amenities: ["Private Pool", "Spa", "Gym", "Concierge", "Security"],
     addressMap:
-      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!..."></iframe>',
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.609709841506!2d77.08291657601029!3d28.400853894562918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d23d5f6b9dbd3%3A0x92e14f418c1c63a3!2sAIPL%20Business%20Club%20%7C%20AIPL%20Corporate%20Office!5e0!3m2!1sen!2sin!4v1757056995761!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
   },
 ];

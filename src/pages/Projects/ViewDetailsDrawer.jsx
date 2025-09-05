@@ -1,9 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { Drawer, Button, Typography, Tag, InputNumber, Input, Form, Tabs, Card, Space, Avatar, Progress } from 'antd';
 import {
   CloseOutlined,
-  HeartOutlined,
-  ShareAltOutlined,
   EnvironmentOutlined,
   HomeOutlined,
   CarOutlined,
@@ -20,12 +19,13 @@ import {
 } from '@ant-design/icons';
 import CustomButton from '../../components/ui/Button';
 import CustomInput from '../../components/ui/Input';
+import { Facebook, Instagram, Linkedin, Twitter, X, Share2, Heart } from 'lucide-react';
+import { BsWhatsapp } from "react-icons/bs";
 
-const { Title, Text, Paragraph } = Typography;
+const { Title, Text } = Typography;
 const { TextArea } = Input;
-const { TabPane } = Tabs;
 
-const ViewDetailsDrawer = ({ open, onClose, project }) => {
+const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLike }) => {
   const isCommercial = project?.type?.toLowerCase().includes('shop') || project?.type?.toLowerCase().includes('office');
 
   const [loanAmount, setLoanAmount] = useState(1000000);
@@ -36,7 +36,48 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
   const [totalInterest, setTotalInterest] = useState(null);
   const [form] = Form.useForm();
   const [activeTab, setActiveTab] = useState('overview');
-  const [liked, setLiked] = useState(false);
+  const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
+
+  // Debug props
+  useEffect(() => {
+    console.log('ViewDetailsDrawer props:', { open, project, isLiked, onToggleLike });
+  }, [open, project, isLiked, onToggleLike]);
+
+  const shareUrl = project ? encodeURIComponent(window.location.origin + `/projects/${isCommercial ? 'commercial' : 'residential'}/${project.name?.toLowerCase().replace(/\s+/g, '-')}`) : '';
+  const shareTitle = project ? encodeURIComponent(project.name || 'Property') : 'Property';
+
+  const socialMediaLinks = [
+    {
+      name: 'Facebook',
+      icon: Facebook,
+      color: 'text-[#1877F2]',
+      url: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}&display=popup&ref=plugin&src=share_button`,
+    },
+    {
+      name: 'Instagram',
+      icon: Instagram,
+      color: 'text-[#E4405F]',
+      url: `https://www.instagram.com/ethosprorealtors/`,
+    },
+    {
+      name: 'LinkedIn',
+      icon: Linkedin,
+      color: 'text-[#0A66C2]',
+      url: `https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${shareTitle}&source=Ethos%20Pro%20Realtors`,
+    },
+    {
+      name: 'X',
+      icon: Twitter,
+      color: 'text-[#000000]',
+      url: `https://x.com/intent/post?url=${shareUrl}&text=${shareTitle}&via=ethosprorealtor`,
+    },
+    {
+      name: 'WhatsApp',
+      icon: BsWhatsapp,
+      color: 'text-[#25D366]',
+      url: `https://api.whatsapp.com/send?phone=918744964496&text=${shareTitle}%20${shareUrl}`,
+    },
+  ];
 
   const calculateEMI = () => {
     const p = loanAmount;
@@ -59,7 +100,6 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
     }
   };
 
-  // Calculate EMI by default and on input changes
   useEffect(() => {
     calculateEMI();
   }, [loanAmount, interestRate, tenure]);
@@ -70,7 +110,7 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
 
   const handleContactSubmit = (values) => {
     console.log('Contact Form Submitted:', values);
-    alert(`Contact request sent for ${project?.name}!`);
+    alert(`Contact request sent for ${project?.name || 'property'}!`);
     form.resetFields();
   };
 
@@ -131,33 +171,75 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
       <PremiumCard gradient={true}>
         <div className="flex justify-between items-start mb-4">
           <div>
-            <Title level={3} className="m-0 text-gray-800">{project?.name}</Title>
-            <div className="flex items-center mt-2 text-gray-600">
+            <Title level={3} className="m-0 text-gray-800 fontFamily-bebas">{project?.name || 'Property'}</Title>
+            <div className="flex items-center mt-2 text-gray-600 fontFamily-bebas">
               <EnvironmentOutlined className="mr-2" />
-              <Text>{project?.location}</Text>
+              <Text>{project?.location || 'N/A'}</Text>
             </div>
           </div>
           <div className="flex gap-2">
-            <Button
-              type="text"
-              shape="circle"
-              icon={<HeartOutlined style={{ color: liked ? '#ff4d4f' : undefined }} />}
-              onClick={() => setLiked(!liked)}
-              className="hover:bg-white/50"
-            />
-            <Button
-              type="text"
-              shape="circle"
-              icon={<ShareAltOutlined />}
-              className="hover:bg-white/50"
-            />
+            <button
+              className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (project?.id && onToggleLike) {
+                  console.log('Toggling like for property:', project.id, 'Current isLiked:', isLiked);
+                  onToggleLike(project.id);
+                } else {
+                  console.error('Cannot toggle like: project.id or onToggleLike is missing');
+                }
+              }}
+              disabled={!project?.id || !onToggleLike}
+            >
+              <Heart
+                size={16}
+                className={isLiked ? 'text-red-500 fill-red-500' : 'text-gray-600 hover:text-red-500'}
+              />
+            </button>
+            <div className="relative">
+              <button
+                onClick={() => setIsSharePopupOpen(!isSharePopupOpen)}
+                className="p-2 cursor-pointer bg-white/90 rounded-full hover:bg-white transition-colors"
+              >
+                <Share2 size={16} className="text-gray-600" />
+              </button>
+              {isSharePopupOpen && (
+                <div className="absolute top-12 right-0 bg-white rounded-lg shadow-xl w-40 z-50">
+                  <div className="flex justify-between items-center px-2 py-1">
+                    <h4 className="text-xs font-semibold text-gray-800">Share Property</h4>
+                    <button
+                      onClick={() => setIsSharePopupOpen(false)}
+                      className="p-1 hover:bg-gray-100 rounded-full"
+                    >
+                      <X size={16} className="text-gray-600" />
+                    </button>
+                  </div>
+                  <div className="flex flex-col mb-1 gap-1">
+                    {socialMediaLinks.map((platform) => (
+                      <button
+                        key={platform.name}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(platform.url, '_blank', 'noopener,noreferrer');
+                          setIsSharePopupOpen(false);
+                        }}
+                        className="flex items-center gap-2 p-1 px-2 hover:bg-gray-100 rounded-lg transition-colors"
+                      >
+                        <platform.icon size={16} className={platform.color} />
+                        <span className="text-xs text-gray-700 font-[Inter] ml-1">{platform.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-2 mb-4">
           {project?.status?.map((status, idx) => (
             <Tag key={idx} className={`
-              px-4 py-2 rounded-full font-semibold text-white border-0 ${status === 'FOR SALE' ? 'bg-gradient-to-r from-blue-500 to-blue-600' :
+              px-4 py-2 rounded-full fontFamily-content font-semibold text-white border-0 ${status === 'FOR SALE' ? 'bg-gradient-to-r from-blue-500 to-blue-600' :
                 status === 'FOR RENT' ? 'bg-gradient-to-r from-green-500 to-green-600' :
                   status === 'HOT OFFER' ? 'bg-gradient-to-r from-red-500 to-red-600 animate-pulse' :
                     'bg-gradient-to-r from-gray-500 to-gray-600'
@@ -234,7 +316,7 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
           <div className="relative">
             <img
               src={project.image}
-              alt={project.name}
+              alt={project.name || 'Property'}
               className="w-full h-80 object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
@@ -245,11 +327,11 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
       {/* Amenities */}
       {project?.amenities?.length > 0 && (
         <PremiumCard>
-          <Title level={4} className="mb-4 flex items-center">
+          <Title level={4} className="mb-4 flex fontFamily-bebas items-center">
             <ThunderboltOutlined className="mr-2 text-blue-600" />
             Amenities & Features
           </Title>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 mt-1 sm:grid-cols-3 gap-4">
             {project.amenities.map((amenity, i) => (
               <div key={i} className="flex items-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
                 <div className="mr-3 text-blue-600">
@@ -265,13 +347,13 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
       {/* Map */}
       {project?.addressMap && (
         <PremiumCard>
-          <Title level={4} className="mb-4 flex items-center">
+          <Title level={4} className="mb-4 flex fontFamily-bebas items-center">
             <EnvironmentOutlined className="mr-2 text-green-600" />
             Location
           </Title>
           <a href={getMapUrl()} target="_blank" rel="noopener noreferrer">
             <div
-              className="w-full h-64 rounded-xl overflow-hidden hover:opacity-90 transition-opacity shadow-inner"
+              className="w-full h-64 mt-1 rounded-xl overflow-hidden hover:opacity-90 transition-opacity shadow-inner"
               dangerouslySetInnerHTML={{ __html: project.addressMap }}
             />
           </a>
@@ -351,19 +433,18 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
           <Form.Item>
             <div className='w-full flex justify-center'>
               <CustomButton
-              type="primary"
-              htmlType="submit"
-              size="large"
-              className=" h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 border-0 font-semibold shadow-lg hover:shadow-xl"
-            >
-              Calculate EMI
-            </CustomButton>
+                type="primary"
+                htmlType="submit"
+                size="large"
+                className="h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 border-0 font-semibold shadow-lg hover:shadow-xl"
+              >
+                Calculate EMI
+              </CustomButton>
             </div>
           </Form.Item>
         </Form>
       </PremiumCard>
 
-      {/* EMI Results */}
       {emi && (
         <PremiumCard>
           <div className="grid sm:grid-cols-3 gap-6">
@@ -414,7 +495,7 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
       </Title>
 
       <Form form={form} layout="vertical" onFinish={handleContactSubmit} className="space-y-4 mt-2">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 mt-2 sm:grid-cols-2 gap-4">
           <Form.Item
             name="name"
             label={<Text strong>Full Name</Text>}
@@ -481,11 +562,43 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
               Send Message
             </CustomButton>
           </div>
-
         </Form.Item>
       </Form>
     </PremiumCard>
   );
+
+  const tabItems = [
+    {
+      key: 'overview',
+      label: (
+        <span className="flex items-center">
+          <HomeOutlined className="mr-2" />
+          Overview
+        </span>
+      ),
+      children: <div className="pb-6">{overviewContent}</div>,
+    },
+    {
+      key: 'calculator',
+      label: (
+        <span className="flex items-center">
+          <CalculatorOutlined className="mr-2" />
+          EMI Calculator
+        </span>
+      ),
+      children: <div className="pb-6">{calculatorContent}</div>,
+    },
+    {
+      key: 'contact',
+      label: (
+        <span className="flex items-center">
+          <PhoneOutlined className="mr-2" />
+          Contact
+        </span>
+      ),
+      children: <div className="pb-6">{contactContent}</div>,
+    },
+  ];
 
   return (
     <Drawer
@@ -500,18 +613,17 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
       }}
       className="advanced-drawer"
     >
-
       <div className="h-full bg-gradient-to-br from-gray-50 to-gray-100">
         {/* Custom Header */}
         <div className="bg-white border-b border-gray-200 p-2 sticky top-0 z-10 shadow-sm">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-1 mr-3">
-              <Avatar size={40} className="bg-blue-600 ">
+              <Avatar size={40} className="bg-blue-600">
                 {project?.name?.charAt(0) || 'P'}
               </Avatar>
-              <div>
-                <p level={4} className="m-0 p-0 text-lg font-medium font-[Inter]">{project?.name || 'Property Details'}</p>
-                <Text className="text-gray-500 m-0 p-0 font-[calibri]">Premium Listing</Text>
+              <div className='px-2'>
+                <p className="m-0 p-0 text-lg font-medium fontFamily-bebas">{project?.name || 'Property Details'}</p>
+                <Text className="text-gray-500 m-0 p-0 fontFamily-bebas">Premium Listing</Text>
               </div>
             </div>
             <Button
@@ -530,45 +642,10 @@ const ViewDetailsDrawer = ({ open, onClose, project }) => {
           <Tabs
             activeKey={activeTab}
             onChange={setActiveTab}
+            items={tabItems}
             className="advanced-tabs"
             size="large"
-          >
-            <TabPane
-              tab={
-                <span className="flex items-center">
-                  <HomeOutlined className="mr-2" />
-                  Overview
-                </span>
-              }
-              key="overview"
-            >
-              <div className="pb-6">{overviewContent}</div>
-            </TabPane>
-
-            <TabPane
-              tab={
-                <span className="flex items-center">
-                  <CalculatorOutlined className="mr-2" />
-                  EMI Calculator
-                </span>
-              }
-              key="calculator"
-            >
-              <div className="pb-6">{calculatorContent}</div>
-            </TabPane>
-
-            <TabPane
-              tab={
-                <span className="flex items-center">
-                  <PhoneOutlined className="mr-2" />
-                  Contact
-                </span>
-              }
-              key="contact"
-            >
-              <div className="pb-6">{contactContent}</div>
-            </TabPane>
-          </Tabs>
+          />
         </div>
       </div>
     </Drawer>

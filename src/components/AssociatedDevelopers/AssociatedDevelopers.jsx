@@ -41,10 +41,21 @@ const AssociatedDevelopers = () => {
     { id: 18, name: 'AtsEstate', src: AtsEstate, shadow: 'shadow-md' },
   ];
 
-  const duplicatedLogos = [...developerLogos, ...developerLogos, ...developerLogos];
-
   return (
     <div className="relative py-6 sm:py-10 bg-white overflow-hidden" id='associated-developers'>
+      {/* Inline marquee animation */}
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+          display: flex;
+          width: 200%;
+          animation: marquee 30s linear infinite;
+        }
+      `}</style>
+
       <div className="relative mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center">
@@ -61,29 +72,23 @@ const AssociatedDevelopers = () => {
           </div>
         </div>
 
-
-        {/* Floating Logos Container */}
+        {/* Continuous Marquee Logos */}
         <div className="relative h-48 sm:h-64 overflow-hidden">
-          {/* Main Layer */}
           <div className="absolute inset-0 flex items-center">
-            <div className="flex animate-float-right space-x-8 sm:space-x-12 min-w-max">
-              {duplicatedLogos.map((logo, index) => (
-                <div
-                  key={`top-${logo.id}-${index}`}
-                  className="flex-shrink-0 group relative"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  {/* Logo Container */}
-                  <div
-                    className={`relative w-32 sm:w-40 h-20 sm:h-24 bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-all duration-300 group-hover:scale-105 ${logo.shadow} hover:shadow-lg flex items-center justify-center overflow-hidden`}
-                  >
-                    <div className="relative z-10 p-4 sm:p-5 w-full h-full flex items-center justify-center">
-                      <img
-                        src={logo.src}
-                        alt={logo.name}
-                        className="max-w-full max-h-full object-contain transition-all duration-300 group-hover:scale-105"
-                      />
-                    </div>
+            <div className="marquee-track space-x-8 sm:space-x-12">
+              {/* First set */}
+              {developerLogos.map((logo) => (
+                <div key={`set1-${logo.id}`} className="flex-shrink-0 group relative">
+                  <div className={`relative w-32 sm:w-40 h-20 sm:h-24 bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-all duration-300 group-hover:scale-105 ${logo.shadow} hover:shadow-lg flex items-center justify-center overflow-hidden`}>
+                    <img src={logo.src} alt={logo.name} className="max-w-full max-h-full object-contain transition-all duration-300 group-hover:scale-105" />
+                  </div>
+                </div>
+              ))}
+              {/* Duplicate set */}
+              {developerLogos.map((logo) => (
+                <div key={`set2-${logo.id}`} className="flex-shrink-0 group relative">
+                  <div className={`relative w-32 sm:w-40 h-20 p-2 sm:h-24 bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-all duration-300 group-hover:scale-105 ${logo.shadow} hover:shadow-lg flex items-center justify-center overflow-hidden`}>
+                    <img src={logo.src} alt={logo.name} className="max-w-full max-h-full object-contain transition-all duration-300 group-hover:scale-105" />
                   </div>
                 </div>
               ))}
@@ -95,7 +100,7 @@ const AssociatedDevelopers = () => {
           <div className="absolute right-0 top-0 w-16 sm:w-32 h-full bg-gradient-to-l from-white to-transparent z-20"></div>
         </div>
 
-        {/* Bottom Stats with Enhanced Styling */}
+        {/* Bottom Stats */}
         <div className="bottom-stats mt-4">
           <div className="text-center mb-8">
             <div className="inline-flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 bg-white/60 backdrop-blur-sm rounded-lg sm:rounded-full px-6 sm:px-8 py-4 border border-blue-200 shadow-lg">
@@ -118,6 +123,7 @@ const AssociatedDevelopers = () => {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );

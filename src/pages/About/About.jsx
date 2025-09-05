@@ -157,14 +157,14 @@ const About = () => {
                     <div className="grid lg:grid-cols-2 gap-12 mb-20">
                         <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300">
                             <div
-                                className="w-14 h-14 flex items-center justify-center border-[3px] rounded-2xl bg-white"
+                                className="w-12 h-12 flex items-center justify-center rounded-xl"
                                 style={{
-                                    borderImage: "linear-gradient(to bottom right, #3b82f6, #9333ea) 1",
-                                    borderImageSlice: 1,
-                                    clipPath: "inset(0 round 1rem)" // matches rounded-2xl (1rem radius)
+                                    border: "3px solid transparent",
+                                    background:
+                                        "linear-gradient(white, white) padding-box, linear-gradient(to bottom right, #3b82f6, #9333ea) border-box",
                                 }}
                             >
-                                <Award className="w-8 h-8 text-black" />
+                                <Award className="w-6 h-6 text-black" />
                             </div>
 
 
@@ -179,15 +179,15 @@ const About = () => {
 
                         <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300">
                             <div
-                                className="w-14 h-14 flex items-center justify-center border-[3px] rounded-2xl bg-white"
+                                className="w-12 h-12 flex items-center justify-center rounded-xl"
                                 style={{
-                                    borderImage: "linear-gradient(to bottom right, #a855f7, #ec4899) 1", // purple-500 to pink-600
-                                    borderImageSlice: 1,
-                                    clipPath: "inset(0 round 1rem)" // matches rounded-2xl radius
+                                    border: "3px solid transparent",
+                                    background: "linear-gradient(white, white) padding-box, linear-gradient(to bottom right, #a855f7, #ec4899) border-box",
                                 }}
                             >
-                                <TrendingUp className="w-8 h-8 text-black" />
+                                <TrendingUp className="w-6 h-6 text-black" />
                             </div>
+
 
                             <h3 className="text-3xl font-bold text-slate-900 mb-4">Our Vision</h3>
                             <p className="text-slate-600 leading-relaxed">

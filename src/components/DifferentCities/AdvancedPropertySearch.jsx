@@ -27,7 +27,7 @@ import {
   FaTh,
   FaList as FaListIcon,
 } from "react-icons/fa";
-import { Bed, Bath, Star, House,LandPlot, MapPinHouse, CalendarDays, Search } from 'lucide-react';
+import { Bed, Bath, Star, House, LandPlot, MapPinHouse, CalendarDays, Search } from 'lucide-react';
 import { FaList } from "react-icons/fa";
 import { IndianRupee } from "lucide-react";
 import CustomInput from "../ui/Input";
@@ -1029,7 +1029,11 @@ const AdvancedPropertySearch = ({
                               </Tooltip>
                               <Tooltip title="View">
                                 <div className="action-button">
-                                  <FaEye />
+                                  <FaEye onClick={() => {
+                                    const propertyName = property.name.toLowerCase().replace(/\s+/g, '-');
+                                    const routeType = property.type.toLowerCase() === "commercial" ? "commercial" : "residential";
+                                    navigate(`/projects/${routeType}/${propertyName}`, { state: { from: location.pathname } });
+                                  }} />
                                 </div>
                               </Tooltip>
                             </div>
@@ -1128,7 +1132,7 @@ const AdvancedPropertySearch = ({
                             </Text>
                             <div className="list-details">
                               <div className="list-details-content flex items-center justify-center flex-col text-black">
-                                <Bed className="text-black" /> 
+                                <Bed className="text-black" />
                                 <p>{property.bedrooms} Beds</p>
                               </div>
                               <div className="list-details-content flex items-center justify-center flex-col text-black">
@@ -1136,11 +1140,11 @@ const AdvancedPropertySearch = ({
                                 <p> {property.bathrooms} Baths</p>
                               </div>
                               <div className="list-details-content flex items-center justify-center flex-col text-black">
-                                <LandPlot /> 
+                                <LandPlot />
                                 <p>{property.areaValue} sq ft</p>
                               </div>
                               <div className="list-details-content flex items-center justify-center flex-col text-black">
-                                <CalendarDays /> 
+                                <CalendarDays />
                                 <p>{property.yearBuilt} Year</p>
                               </div>
                             </div>
