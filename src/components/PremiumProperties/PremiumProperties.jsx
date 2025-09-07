@@ -24,8 +24,8 @@ function PremiumProperties() {
     {
       id: 1,
       name: "Trinity Sky Palazzo",
-      price: "₹5.12 crore",
-      basePrice: "₹10.4 crore",
+      price: "₹On Request",
+      basePrice: "₹On Request",
       image: TrinitySkyPlazao,
       location: {
         full: "Sector 88, Gurgaon, Haryana, India",
@@ -48,8 +48,8 @@ function PremiumProperties() {
     {
       id: 2,
       name: "Elan The Emperor",
-      price: "₹10 crore",
-      basePrice: "₹24.8 crore",
+      price: "₹On Request",
+      basePrice: "₹On Request",
       image: ElanTheEmperor,
       location: {
         full: "Sector 106, Gurgaon, Haryana, India",
@@ -72,8 +72,8 @@ function PremiumProperties() {
     {
       id: 3,
       name: "Krisumi Waterfall Residences",
-      price: "₹3.98 crore",
-      basePrice: "₹7.07 crore",
+      price: "₹On Request",
+      basePrice: "₹On Request",
       image: KrisumiWaterfall,
       location: {
         full: "Sector 36A, Gurgaon, Haryana, India",
@@ -96,8 +96,8 @@ function PremiumProperties() {
     {
       id: 4,
       name: "DLF The Camellias",
-      price: "₹65.55 crore",
-      basePrice: "₹150.29 crore",
+      price: "₹On Request",
+      basePrice: "₹On Request",
       image: DLFCamellias,
       location: {
         full: "DLF The Camellias, Sector 42, Gurugram, Haryana, India",
@@ -127,8 +127,8 @@ function PremiumProperties() {
     {
       id: 5,
       name: "M3M Mansion Sector 113",
-      price: "₹3.59 crore",
-      basePrice: "₹14.66 crore",
+      price: "₹On Request",
+      basePrice: "₹On Request",
       image: M3Mmansion,
       location: {
         full: "M3M Mansion, Sector 113, Gururgam, Haryana, India",
@@ -157,8 +157,8 @@ function PremiumProperties() {
     {
       id: 6,
       name: "DLF The Crest",
-      price: "₹10.33 crore",
-      basePrice: "₹28.62 crore",
+      price: "₹On Request",
+      basePrice: "₹On Request",
       image: DLFTheCrest,
       location: {
         full: "DLF Phase 5, Sector 54, Gurgram, Haryana, India",
@@ -289,10 +289,10 @@ function PremiumProperties() {
                   {/* Content */}
                   <div className="p-6">
                     <div className="flex items-center gap-3 mb-4">
-                      <span className="text-2xl font-bold">{property.price}</span>
-                      <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded">{property.basePrice}</span>
+                      <span className="text-2xl font-bold fontFamily-bebas">{property.price}</span>
+                      <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1  rounded">Base Price {property.basePrice} </span>
                     </div>
-                    <h3 className="text-xl font-bold mb-2">{property.name}</h3>
+                    <h3 className="text-xl font-medium fontFamily-bebas mb-2">{property.name}</h3>
                     <div className="flex items-start gap-2 mb-3">
                       <MapPin size={16} className="text-gray-400 mt-1" />
                       <p className="text-sm text-gray-600">{`${property.location.city}, ${property.location.area}`}</p>

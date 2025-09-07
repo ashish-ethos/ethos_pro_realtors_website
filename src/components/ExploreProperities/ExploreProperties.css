@@ -58,8 +58,9 @@
 }
 .parent:hover .explore-card {
   transform: rotate3d(1, -1, 0, 25deg);
-  box-shadow: rgba(30, 30, 60, 0.3) 30px 50px 25px -40px,
-    rgba(30, 30, 60, 0.15) 0px 25px 30px 0px;
+  background: #fff;
+  /* box-shadow: rgba(30, 30, 60, 0.3) 30px 50px 25px -40px,
+    rgba(30, 30, 60, 0.15) 0px 25px 30px 0px; */
 }
 .property-card-action-button:hover {
   border: 1px solid #4096ff !important;

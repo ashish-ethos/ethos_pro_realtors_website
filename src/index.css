@@ -84,7 +84,12 @@ body {
 .ant-typography p {
   margin-bottom: 0px !important;
 }
-
+.ant-collapse .ant-collapse-content>.ant-collapse-content-box{
+  padding: 5px 16px !important;
+}
+.ant-collapse>.ant-collapse-item >.ant-collapse-header{
+  padding: 5px 16px !important;
+}
 
 
 

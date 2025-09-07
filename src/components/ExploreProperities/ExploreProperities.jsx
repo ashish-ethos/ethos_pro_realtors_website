@@ -1225,7 +1225,7 @@ const ExploreProperties = ({ filters = {} }) => {
       </div>
 
       <div className="max-w-full sm:max-w-7xl mx-auto mb-8 sm:mb-12">
-        <div className="flex overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 sm:gap-4 p-2 bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg scrollbar-hidden">
+        <div className="flex bg-white overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 sm:gap-4 p-2 bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg scrollbar-hidden">
           {tabs.map((tab) => (
             <CustomButton
               key={tab.key}

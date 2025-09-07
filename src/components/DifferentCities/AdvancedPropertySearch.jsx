@@ -592,7 +592,7 @@ const AdvancedPropertySearch = ({
             </div>
 
             <Collapse defaultActiveKey={["basic", "advanced"]} ghost>
-              <Panel header={<b>Basic Filters</b>} key="basic">
+              <Panel header={<b>Basic Filters</b>} key="basic" className="fontFamily-bebas">
                 <Space
                   direction="vertical"
                   size="middle"
@@ -685,7 +685,7 @@ const AdvancedPropertySearch = ({
                 </Space>
               </Panel>
 
-              <Panel header={<b>Advanced Filters</b>} key="advanced">
+              <Panel header={<b>Advanced Filters</b>} key="advanced" className="fontFamily-bebas">
                 <Space
                   direction="vertical"
                   size="middle"

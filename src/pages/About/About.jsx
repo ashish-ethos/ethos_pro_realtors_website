@@ -166,9 +166,6 @@ const About = () => {
                             >
                                 <Award className="w-6 h-6 text-black" />
                             </div>
-
-
-
                             <h3 className="text-3xl font-bold text-slate-900 mb-4">Our Mission</h3>
                             <p className="text-slate-600 leading-relaxed">
                                 At Ethos Pro Realtors, our mission is to empower clients with exceptional real estate solutions. We strive to connect people with properties that fulfill their dreams,
