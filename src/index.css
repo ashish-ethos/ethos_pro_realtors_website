@@ -145,18 +145,7 @@ body {
   border: none !important;
 }
 
-.gradient-border-active::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 14px;
-  padding: 2px;
-  background: linear-gradient(to right, #000000, #474236, #c99913);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
+
 
 .cancelButton {
   border: 1px solid #ef4444;

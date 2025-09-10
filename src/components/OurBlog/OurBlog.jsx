@@ -23,6 +23,8 @@ import GoodBadInvest from "../../assets/images/premiumproperties/good-vs-bad-inv
 import KeyThings from "../../assets/images/premiumproperties/Key-Things.jpg";
 import "../OurTeam/OurTeam.css";
 import CustomButton from '../ui/Button';
+import { Tooltip } from 'antd';
+
 
 // Content for all four posts (asterisks and emojis removed)
 const roiContent = `
@@ -651,9 +653,14 @@ const OurBlog = () => {
                                                 <Calendar className="w-4 h-4 text-indigo-600" />
                                                 <span>{post.date}</span>
                                             </div>
-                                            <h3 className="text-2xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-indigo-700 transition-colors duration-300 line-clamp-2">
-                                                {post.title}
-                                            </h3>
+
+                                            <Tooltip placement="topLeft" title={post.title} arrow={{ pointAtCenter: true }}>
+                                                <p
+                                                    className="text-2xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-indigo-700 transition-colors duration-300 line-clamp-2"
+                                                >
+                                                    {post.title}
+                                                </p>
+                                            </Tooltip>
                                             <p className="text-gray-600 mb-6 leading-relaxed line-clamp-3">{post.excerpt}</p>
                                             <div className="flex items-center gap-4">
                                                 <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg">

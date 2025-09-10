@@ -1232,7 +1232,7 @@ const ExploreProperties = ({ filters = {} }) => {
               style={{ backgroundColor: 'transparent', position: 'relative' }}
               onClick={() => setActiveTab(tab.key)}
               className={`px-4 sm:px-6 py-2 sm:py-3  font-semibold transition-all cursor-pointer duration-300 transform hover:scale-105 text-sm sm:text-base whitespace-nowrap border-1 border-transparent ${activeTab === tab.key
-                ? 'gradient-border-active text-[#c99913] font-bold bg-[#c99913]/10 shadow-xl scale-105'
+                ? 'gradient-border-active text-[#c99913] border-1 font-bold bg-[#c99913]/10 shadow-xl scale-105'
                 : 'text-gray-600 hover:gradient-border-active hover:text-[#c99913] border-black border-1 non-active-tab'
                 }`}
             >
