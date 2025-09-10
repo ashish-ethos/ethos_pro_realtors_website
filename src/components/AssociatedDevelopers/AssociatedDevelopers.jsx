@@ -73,7 +73,7 @@ const AssociatedDevelopers = () => {
         </div>
 
         {/* Continuous Marquee Logos */}
-        <div className="relative h-48 sm:h-64 overflow-hidden">
+        <div className="relative h-48 sm:h-64 overflow-hidden continuous-marquee">
           <div className="absolute inset-0 flex items-center">
             <div className="marquee-track space-x-8 sm:space-x-12">
               {/* First set */}

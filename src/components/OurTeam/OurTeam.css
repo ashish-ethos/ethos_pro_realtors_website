@@ -187,3 +187,12 @@
 .animate-float-right {
   animation: float-right 90s linear infinite;
 }
+
+
+
+.continuous-marquee{
+  /* max-width: 75%; */
+  margin: 0 auto;
+
+  
+}

@@ -62,10 +62,10 @@ const WhyChooseUs = () => {
   ];
 
   return (
-    <div className="premium-properties-main min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 py-20 px-4" id="why-choose-us">
+    <div className="premium-properties-main min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 py-10 px-4" id="why-choose-us">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16 animate-fade-in why-choose-header">
+        <div className="text-center mb-10 animate-fade-in why-choose-header">
           <h2 className="text-3xl font-[Montserrat] sm:text-xl md:text-5xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
             Why Choose Us?
           </h2>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "antd";
-import { Building2, Landmark, Building } from "lucide-react";
+import { Building2 } from "lucide-react";
 import { RiBuilding2Line, RiMapPin2Line, RiLineChartLine, RiArrowRightLine } from "react-icons/ri";
 import AdvancedPropertySearch from './AdvancedPropertySearch';
 import { allProjectPropertyDetails } from "../../data/propertyDetailsData";
@@ -78,8 +78,8 @@ function DifferentCities() {
   const featuredCities = [
   { name: "Mumbai", growth: "+18%", icon: <Building2 className="w-5 h-5 text-gray-400" /> },
   { name: "Gurgaon", growth: "+22%", icon: <Building2 className="w-5 h-5 text-gray-400" /> },
-  { name: "Bangalore", growth: "+15%", icon: <Building className="w-5 h-5 text-gray-400" /> },
-  { name: "Delhi", growth: "+20%", icon: <Landmark className="w-5 h-5 text-gray-400" /> },
+  { name: "Bangalore", growth: "+15%", icon: <Building2 className="w-5 h-5 text-gray-400" /> },
+  { name: "Delhi", growth: "+20%", icon: <Building2 className="w-5 h-5 text-gray-400" /> },
 ];
 
   useEffect(() => {

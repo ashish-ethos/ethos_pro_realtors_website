@@ -466,7 +466,7 @@ const OurBlog = () => {
 
     const closeExploreDrawer = () => {
         setIsExploreDrawerOpen(false);
-        navigate("/");
+        navigate(-1);
     };
 
     useEffect(() => {

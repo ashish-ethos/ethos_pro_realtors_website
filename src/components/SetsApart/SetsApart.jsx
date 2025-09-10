@@ -68,11 +68,11 @@ const StatCard = ({ value, label, delay, numericValue }) => {
           transition: { duration: 0.2, ease: "easeOut" },
         })
       }
-      className="setaspart-content stat-card relative bg-white/10 backdrop-blur-md border-4 border-transparent text-white p-6 rounded-2xl shadow-lg flex flex-col items-center justify-center transition-all duration-300"
+      className="setaspart-content stat-card relative bg-white/10 backdrop-blur-md border-4 border-transparent text-white p-4 rounded-2xl shadow-lg flex flex-col items-center justify-center transition-all duration-300"
     >
       <motion.div animate={contentControls} className="text-center">
-        <h2 className="text-4xl font-bold mb-2">{displayValue}</h2>
-        <p className="text-sm font-medium tracking-wide">{label}</p>
+        <h2 className="text-4xl font-bold mb-2 fontFamily-bebas">{displayValue}</h2>
+        <p className="text-sm font-medium tracking-wide font-bebas">{label}</p>
       </motion.div>
     </motion.div>
   );
