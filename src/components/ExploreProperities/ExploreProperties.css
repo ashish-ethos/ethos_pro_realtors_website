@@ -7,13 +7,14 @@
   position: absolute;
   inset: -2px;
   border-radius: 6px;
-  padding: 2px;
+  padding: 1px;
   background: linear-gradient(to right, #000000, #474236, #c99913);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
 }
+
 .scrollbar-hidden {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -80,33 +81,14 @@
 }
 
 .property-card-action-button span {
-  font-weight: 500 !important; /* font-medium */
+  font-weight: 500 !important; 
 }
 
 @media (min-width: 640px) {
-  /* sm: */
+
   .property-card-action-button span {
-    font-size: 14px !important; /* sm:text-sm */
+    font-size: 14px !important; 
   }
-}
-
-/* Ensure existing styles (e.g., .gradient-border-active) are preserved */
-.gradient-border-active {
-  position: relative;
-  /* border: none !important; */
-}
-
-.gradient-border-active::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 6px;
-  padding: 2px;
-  background: linear-gradient(to right, #000000, #474236, #c99913);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
 }
 
 .scrollbar-hidden {
@@ -117,9 +99,7 @@
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
-.non-active-tab {
-  border: 1px solid #000 !important;
-}
+
 
 .text-area-contact {
   &:focus {
@@ -132,3 +112,4 @@
     border-color: #4096ff;
   }
 }
+

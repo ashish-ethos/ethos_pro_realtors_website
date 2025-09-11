@@ -332,7 +332,7 @@ const Residentials = () => {
               </span>
             )}
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-2">
             <div
               className="inline-block rounded-[12px] p-[2px]"
               style={{

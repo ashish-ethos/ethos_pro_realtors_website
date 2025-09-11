@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
 import { Heart, MapPin, Ruler, Eye, Star, X, Share2, Printer } from 'lucide-react';
 import { FiPhone } from "react-icons/fi";
@@ -47,6 +46,7 @@ const ExploreProperties = ({ filters = {} }) => {
   const [favorites, setFavorites] = useState(new Set());
   const [visibleProperties, setVisibleProperties] = useState(6);
   const [showAll, setShowAll] = useState(false);
+  const [shareCounts, setShareCounts] = useState({});
   const navigate = useNavigate();
   const { propertyName } = useParams();
 
@@ -361,7 +361,7 @@ const ExploreProperties = ({ filters = {} }) => {
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
       views: 1400,
-      description: 'AIPL Autograph provides sophisticated corporate office spaces in Sector 66.'
+      description: 'Elan The Mark provides vibrant commercial spaces in Sector 106.'
     },
     {
       id: '25',
@@ -374,10 +374,10 @@ const ExploreProperties = ({ filters = {} }) => {
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
       views: 1400,
-      description: 'AIPL Autograph provides sophisticated corporate office spaces in Sector 66.'
+      description: 'Elan The Presidential offers luxurious residential apartments in Sector 106.'
     },
     {
-      id: '25',
+      id: '26',
       type: 'Apartment/Residential',
       name: 'Trinity Sky Palazzos',
       location: 'Trinity Sky Palazzos, On, Northern Peripheral Road, Sector 88B, Gurugram, Haryana, India',
@@ -387,9 +387,8 @@ const ExploreProperties = ({ filters = {} }) => {
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
       views: 1400,
-      description: 'AIPL Autograph provides sophisticated corporate office spaces in Sector 66.'
+      description: 'Trinity Sky Palazzos provides premium residential living in Sector 88B.'
     }
-    
   ];
 
   const tabs = [
@@ -463,14 +462,21 @@ const ExploreProperties = ({ filters = {} }) => {
 
   const getOptionColor = (option) => {
     switch (option) {
-      case 'HOT OFFER': return 'border-gray-600 border-1 from-amber-700 to-amber-500 text-white';
-      case 'LUXURY': return 'border-gray-600 border-1 from-amber-600 to-amber-400 text-white';
-      case 'PREMIUM': return 'border-gray-600 border-1 from-amber-500 to-yellow-500 text-white';
-      case 'FOR SALE': return 'border-gray-600 border-1 from-slate-900 to-amber-700 text-white';
-      case 'FOR RENT': return 'border-gray-600 border-1 from-amber-700 to-slate-900 text-white';
-      default: return 'border-gray-600 border-1 text-gray-700';
+      case 'HOT OFFER':
+        return 'bg-gradient-to-r from-amber-200 to-amber-100 text-amber-800 border border-amber-300';
+      case 'LUXURY':
+        return 'bg-gradient-to-r from-yellow-200 to-yellow-100 text-yellow-800 border border-yellow-300';
+      case 'PREMIUM':
+        return 'bg-gradient-to-r from-yellow-100 to-amber-100 text-amber-800 border border-yellow-200';
+      case 'FOR SALE':
+        return 'bg-gradient-to-r from-slate-100 to-amber-100 text-slate-800 border border-amber-200';
+      case 'FOR RENT':
+        return 'bg-gradient-to-r from-amber-100 to-slate-100 text-slate-800 border border-amber-200';
+      default:
+        return 'bg-white text-gray-700 border border-gray-200';
     }
   };
+
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 1500);
@@ -506,7 +512,7 @@ const ExploreProperties = ({ filters = {} }) => {
     });
 
     const [isShareOpen, setIsShareOpen] = useState(false);
-    const [isPrinting, setIsPrinting] = useState(false); // Loading state for PDF generation
+    const [isPrinting, setIsPrinting] = useState(false);
 
     // Handle input changes for contact form
     const handleContactChange = (e) => {
@@ -549,9 +555,17 @@ const ExploreProperties = ({ filters = {} }) => {
       setIsShareOpen((prev) => !prev);
     };
 
+    // Increment share count
+    const incrementShareCount = () => {
+      setShareCounts(prev => ({
+        ...prev,
+        [property.id]: (prev[property.id] || 0) + 1
+      }));
+    };
+
     // Handle PDF generation and download
     const handlePrint = async () => {
-      if (isPrinting) return; // Prevent multiple clicks
+      if (isPrinting) return;
       setIsPrinting(true);
 
       try {
@@ -620,7 +634,7 @@ const ExploreProperties = ({ filters = {} }) => {
         }
 
         pdf.save(`${property.name.replace(/\s+/g, '_')}.pdf`);
-        document.body.removeChild(tempContainer); // Clean up
+        document.body.removeChild(tempContainer);
       } catch (error) {
         console.error('Error generating PDF:', error.message);
         alert('Failed to generate PDF. Please ensure images are loaded and try again.');
@@ -690,6 +704,14 @@ const ExploreProperties = ({ filters = {} }) => {
                   <div onClick={toggleSharePopup} className="cursor-pointer flex items-center space-x-1 bg-white/20 backdrop-blur-md rounded-full px-3 py-1 hover:bg-white/30 transition-all">
                     <Share2 className="text-white w-4 h-4" />
                   </div>
+                  <div className={`
+                    flex items-center gap-1 px-3 py-0.5 rounded-full
+                    ${(shareCounts[property.id] || 0) > 0 ? 'bg-gradient-to-r from-amber-100 to-amber-50 text-amber-700' : 'bg-gray-100 text-gray-600'}
+                    text-sm font-medium fontFamily-Content
+                    transition-all duration-300 hover:shadow-sm
+                  `}>
+                    <span>{shareCounts[property.id] || 0} {(shareCounts[property.id] || 0) === 1 ? 'Shares' : 'Share'}</span>
+                  </div>
                   <div onClick={handlePrint} className="cursor-pointer flex items-center space-x-1 bg-white/20 backdrop-blur-md rounded-full px-3 py-1 hover:bg-white/30 transition-all">
                     <Printer className={`text-white w-4 h-4 ${isPrinting ? 'animate-pulse' : ''}`} />
                     {isPrinting && <span className="text-xs text-white">Generating...</span>}
@@ -699,7 +721,7 @@ const ExploreProperties = ({ filters = {} }) => {
 
               {/* Share Popup */}
               {isShareOpen && (
-                <div className="absolute top-16 right-4 bg-white rounded-lg shadow-xl p-2 z-50 w-34">
+                <div className="absolute top-16 right-4 bg-white rounded-lg shadow-xl p-2 z-50 w-48">
                   <button
                     onClick={toggleSharePopup}
                     className="absolute top-2 right-2 text-gray-600 cursor-pointer hover:text-red-500 transition-all"
@@ -707,34 +729,34 @@ const ExploreProperties = ({ filters = {} }) => {
                     <X size={16} />
                   </button>
                   <div className="flex flex-col gap-2 mt-4">
-                    <FacebookShareButton url={shareUrl} quote={shareText} title={shareTitle}>
+                    <FacebookShareButton url={shareUrl} quote={shareText} title={shareTitle} onClick={incrementShareCount}>
                       <div className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 cursor-pointer">
                         <FacebookIcon size={24} round />
-                        <span className="text-xs ml-2">Facebook</span>
+                        <span className="text-xs font-[Montserrat] ml-2">Facebook</span>
                       </div>
                     </FacebookShareButton>
-                    <TwitterShareButton url={shareUrl} title={shareText}>
+                    <TwitterShareButton url={shareUrl} title={shareText} onClick={incrementShareCount}>
                       <div className="flex items-center space-x-1 text-gray-700 hover:text-blue-400 cursor-pointer">
                         <TwitterIcon size={24} round />
-                        <span className="text-xs ml-2">X</span>
+                        <span className="text-xs font-[Montserrat] ml-2">X</span>
                       </div>
                     </TwitterShareButton>
-                    <LinkedinShareButton url={shareUrl} title={shareTitle} summary={shareText}>
+                    <LinkedinShareButton url={shareUrl} title={shareTitle} summary={shareText} onClick={incrementShareCount}>
                       <div className="flex items-center space-x-1 text-gray-700 hover:text-blue-700 cursor-pointer">
                         <LinkedinIcon size={24} round />
-                        <span className="text-xs ml-2">LinkedIn</span>
+                        <span className="text-xs font-[Montserrat] ml-2">LinkedIn</span>
                       </div>
                     </LinkedinShareButton>
-                    <WhatsappShareButton url={shareUrl} title={shareText}>
+                    <WhatsappShareButton url={shareUrl} title={shareText} onClick={incrementShareCount}>
                       <div className="flex items-center space-x-1 text-gray-700 hover:text-green-500 cursor-pointer">
                         <WhatsappIcon size={24} round />
-                        <span className="text-xs ml-2">WhatsApp</span>
+                        <span className="text-xs font-[Montserrat] ml-2">WhatsApp</span>
                       </div>
                     </WhatsappShareButton>
-                    <EmailShareButton url={shareUrl} subject={shareTitle} body={shareText}>
+                    <EmailShareButton url={shareUrl} subject={shareTitle} body={shareText} onClick={incrementShareCount}>
                       <div className="flex items-center space-x-1 text-gray-700 hover:text-gray-500 cursor-pointer">
                         <EmailIcon size={24} round />
-                        <span className="text-xs ml-2">Email</span>
+                        <span className="text-xs font-[Montserrat] ml-2">Email</span>
                       </div>
                     </EmailShareButton>
                   </div>
@@ -749,17 +771,17 @@ const ExploreProperties = ({ filters = {} }) => {
             <div className="mb-4">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
+                  <h2 className="text-xl fontFamily-Content sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight">
                     {property.name}
                   </h2>
                   <div className="inline-block">
-                    <span className="bg-gradient-to-r from-amber-100 to-amber-50 text-amber-800 px-3 py-1 rounded-full text-sm font-semibold border border-amber-200">
+                    <span className="bg-gradient-to-r  from-amber-100 to-amber-50 text-amber-800 px-3 py-1 rounded-full text-sm font-semibold border border-amber-200">
                       {property.type}
                     </span>
                   </div>
                 </div>
                 <div className="text-right ml-3">
-                  <p className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-amber-600 to-amber-700 bg-clip-text text-transparent">
+                  <p className="text-xl fontFamily-Content sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-amber-600 to-amber-700 bg-clip-text text-transparent">
                     {property.price}
                   </p>
                 </div>
@@ -770,32 +792,33 @@ const ExploreProperties = ({ filters = {} }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="space-y-4">
                 <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl p-4">
-                  <h3 className="text-base font-semibold text-gray-900 mb-2 flex items-center">
-                    <MapPin className="w-4 h-4 text-amber-600 mr-2" />
+                  <h3 className="text-base font-semibold text-gray-900 mb-2  flex items-center">
+                    <MapPin className="w-4 h-4 text-amber-600 mr-2 fontFamily-Content" />
                     Location
                   </h3>
-                  <p className="text-gray-700 text-sm leading-relaxed">{property.location}</p>
+                  <p className="text-gray-700 text-sm leading-relaxed fontFamily-bebas">{property.location}</p>
                 </div>
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4">
                   <h3 className="text-base font-semibold text-gray-900 mb-2 flex items-center">
-                    <Ruler className="w-4 h-4 text-blue-600 mr-2" />
+                    <Ruler className="w-4 h-4 fontFamily-Content text-blue-600 mr-2" />
                     Size
                   </h3>
-                  <p className="text-gray-700 text-lg font-medium">{property.size}</p>
+                  <p className="text-gray-700 text-lg font-medium fontFamily-Content">{property.size}</p>
                 </div>
               </div>
               <div className="space-y-4">
                 <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4">
-                  <h3 className="text-base font-semibold text-gray-900 mb-2">Description</h3>
-                  <p className="text-gray-700 text-sm leading-relaxed">{property.description}</p>
+                  <h3 className="text-base font-semibold text-gray-900 fontFamily-Content mb-2">Description</h3>
+                  <p className="text-gray-700 text-sm leading-relaxed fontFamily-bebas">{property.description}</p>
                 </div>
                 <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4">
-                  <h3 className="text-base font-semibold text-gray-900 mb-2">Features</h3>
-                  <div className="flex flex-wrap gap-2">
+                  <h3 className="text-base font-semibold text-gray-900 mb-2 fontFamily-Content">Features</h3>
+                  <div className="absolute top-3 left-3 flex flex-wrap gap-1 sm:gap-2">
                     {property.options.map((option, idx) => (
                       <span
                         key={option + idx}
-                        className="px-2 py-1 bg-white rounded-lg text-xs font-medium text-gray-700 shadow-sm border border-gray-200"
+                        className={`option-tag ${option.toLowerCase().replace(/\s+/g, '-')}`}
+                        style={{ animationDelay: `${idx * 100}ms` }}
                       >
                         {option}
                       </span>
@@ -803,14 +826,14 @@ const ExploreProperties = ({ filters = {} }) => {
                   </div>
                 </div>
               </div>
-              <div className="get-in-touch-section border-[#d3d3d382] border-1 p-2 sm:p-3 rounded-xl shadow-md ">
-                <h3 className="text-base font-semibold text-gray-900 mb-3">Get in Touch</h3>
+              <div className="get-in-touch-section border-[#d3d3d382] border-1 p-2 sm:p-3 rounded-xl shadow-md">
+                <h3 className="text-base font-semibold text-gray-900 mb-3 fontFamily-bebas">Get in Touch</h3>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <CustomButton
                     onClick={() => window.location.href = 'tel:+918744964496'}
-                    className="flex-1 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center  group"
+                    className="flex-1 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center group"
                   >
-                    <FiPhone className="w-4 h-4 group-hover:animate-pulse" />
+                    <FiPhone className="w-4 h-4 group-hover:animate-pulse fontFamily-bebas" />
                     <span>Call Now</span>
                   </CustomButton>
                   <CustomButton
@@ -831,12 +854,10 @@ const ExploreProperties = ({ filters = {} }) => {
               </div>
             </div>
 
-            {/* Action Buttons */}
-
-
+            {/* Action Forms */}
             <div className="contact-section-property-modal mt-6 flex flex-col sm:flex-row">
               <div className="left-side border-[#d3d3d382] border-1 p-4 sm:p-6 rounded-xl shadow-md mb-6 sm:mr-6 sm:mb-0 sm:w-1/2">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Us</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 fontFamily-bebas">Contact Us</h3>
                 <form className="space-y-4" onSubmit={handleContactSubmit}>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="fullName">
@@ -898,7 +919,6 @@ const ExploreProperties = ({ filters = {} }) => {
                     <CustomButton
                       type="submit"
                       className="w-auto text-black font-semibold py-3 px-4 rounded-xl property-card-action-button"
-                      
                     >
                       Send Message
                     </CustomButton>
@@ -906,7 +926,7 @@ const ExploreProperties = ({ filters = {} }) => {
                 </form>
               </div>
               <div className="right-side border-[#d3d3d382] border-1 p-4 sm:p-6 rounded-xl shadow-md sm:w-1/2">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Schedule a Tour</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 fontFamily-bebas">Schedule a Tour</h3>
                 <form className="space-y-4" onSubmit={handleTourSubmit}>
                   <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
                     <div className="w-full sm:w-1/2">
@@ -1008,31 +1028,11 @@ const ExploreProperties = ({ filters = {} }) => {
                     <CustomButton
                       type="submit"
                       className="w-auto text-black font-semibold py-3 px-4 property-card-action-button rounded-xl"
-                      
                     >
                       Schedule Tour
                     </CustomButton>
                   </div>
                 </form>
-              </div>
-            </div>
-
-            {/* Additional Info Footer */}
-            <div className="mt-4 pt-3 border-t border-gray-200">
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-2 sm:space-y-0">
-                <div className="flex items-center space-x-4 text-xs text-gray-600">
-                  <div className="flex items-center space-x-1">
-                    <Eye className="w-3 h-3" />
-                    <span>{property.views.toLocaleString()} views</span>
-                  </div>
-                  <div className="flex items-center space-x-1">
-                    <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-                    <span>{property.rating} rating</span>
-                  </div>
-                </div>
-                <div className="text-xs text-gray-500">
-                  Property ID: #{property.id}
-                </div>
               </div>
             </div>
           </div>
@@ -1231,7 +1231,7 @@ const ExploreProperties = ({ filters = {} }) => {
               key={tab.key}
               style={{ backgroundColor: 'transparent', position: 'relative' }}
               onClick={() => setActiveTab(tab.key)}
-              className={`px-4 sm:px-6 py-2 sm:py-3  font-semibold transition-all cursor-pointer duration-300 transform hover:scale-105 text-sm sm:text-base whitespace-nowrap border-1 border-transparent ${activeTab === tab.key
+              className={`px-4 sm:px-6 py-2 sm:py-3 font-semibold transition-all cursor-pointer duration-300 transform hover:scale-105 text-sm sm:text-base whitespace-nowrap border-1 border-transparent ${activeTab === tab.key
                 ? 'gradient-border-active text-[#c99913] border-1 font-bold bg-[#c99913]/10 shadow-xl scale-105'
                 : 'text-gray-600 hover:gradient-border-active hover:text-[#c99913] border-black border-1 non-active-tab'
                 }`}

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Drawer, Button, Typography, Tag, InputNumber, Input, Form, Tabs, Card, Space, Avatar, Progress } from 'antd';
 import {
@@ -37,8 +36,9 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
   const [form] = Form.useForm();
   const [activeTab, setActiveTab] = useState('overview');
   const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
+  const [shareCount, setShareCount] = useState(0); 
 
-  // Debug props
+
   useEffect(() => {
     console.log('ViewDetailsDrawer props:', { open, project, isLiked, onToggleLike });
   }, [open, project, isLiked, onToggleLike]);
@@ -141,6 +141,10 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
     return icons[key] || icons.default;
   };
 
+  const incrementShareCount = () => {
+    setShareCount(prev => prev + 1);
+  };
+
   const PremiumCard = ({ children, className = '', gradient = false, hover = true }) => (
     <div className={`
       ${gradient
@@ -177,7 +181,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
               <Text>{project?.location || 'N/A'}</Text>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <button
               className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors"
               onClick={(e) => {
@@ -203,6 +207,9 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
               >
                 <Share2 size={16} className="text-gray-600" />
               </button>
+              <span className="ml-2 text-sm text-gray-600 border-l border-gray-300 pl-2 shadow-sm bg-white rounded px-2 py-1 fontFamily-bebas">
+                {shareCount} {shareCount === 1 ? 'Share' : 'Shares'}
+              </span>
               {isSharePopupOpen && (
                 <div className="absolute top-12 right-0 bg-white rounded-lg shadow-xl w-40 z-50">
                   <div className="flex justify-between items-center px-2 py-1">
@@ -220,6 +227,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
                         key={platform.name}
                         onClick={(e) => {
                           e.stopPropagation();
+                          incrementShareCount();
                           window.open(platform.url, '_blank', 'noopener,noreferrer');
                           setIsSharePopupOpen(false);
                         }}
