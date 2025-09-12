@@ -342,7 +342,7 @@ const Residentials = () => {
 
               <button
                 onClick={() => handleViewDetails(property)}
-                className="bg-white text-black px-5 py-2 rounded-[10px] font-semibold flex items-center justify-center gap-2 hover:shadow-md transition-all duration-200"
+                className="bg-white text-black px-5 py-2 rounded-[10px] cursor-pointer font-semibold flex items-center justify-center gap-2 hover:shadow-md transition-all duration-200"
               >
                 <Eye size={18} />
                 View Details

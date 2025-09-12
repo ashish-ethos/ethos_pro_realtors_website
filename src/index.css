@@ -27,7 +27,6 @@ body {
 }
 /* Hero.css */
 .ant-select-selector {
-
   display: flex !important;
   align-items: center !important;
 
@@ -35,12 +34,11 @@ body {
   border: 1px solid rgb(185, 183, 183) !important;
   transition: all 0.2s ease;
 }
-.ant-select-selector:hover{
+.ant-select-selector:hover {
   box-shadow: none !important;
 }
 
 .ant-select-selector:hover,
-
 .ant-select-focused .ant-select-selector {
   border-color: #4096ff !important;
   /* box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2) !important; */
@@ -54,44 +52,42 @@ body {
   background: #fff !important;
   border: 1px solid rgb(185, 183, 183);
 }
-.ant-card .ant-card-body{
+.ant-card .ant-card-body {
   padding: 0px;
 }
-.ant-list-items{
+.ant-list-items {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-.ant-typography{
+.ant-typography {
   margin-bottom: 0px !important;
 }
-.ant-input-outlined{
+.ant-input-outlined {
   border: 1px solid rgb(185, 183, 183) !important;
 }
-.ant-input-outlined:hover{
+.ant-input-outlined:hover {
   border-color: #4096ff !important;
 }
 
-.ant-picker-outlined:hover{
+.ant-picker-outlined:hover {
   border-color: #4096ff !important;
 }
-.ant-input-number{
+.ant-input-number {
   width: auto !important;
 }
-.ant-form-item{
+.ant-form-item {
   margin-bottom: 10px !important;
 }
 .ant-typography p {
   margin-bottom: 0px !important;
 }
-.ant-collapse .ant-collapse-content>.ant-collapse-content-box{
+.ant-collapse .ant-collapse-content > .ant-collapse-content-box {
   padding: 5px 16px !important;
 }
-.ant-collapse>.ant-collapse-item >.ant-collapse-header{
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
   padding: 5px 16px !important;
 }
-
-
 
 /* ExploreProperties.css */
 .property-card-action-button {
@@ -114,8 +110,6 @@ body {
     padding: 12px 12px !important;
   }
 }
-
-
 
 .property-card-action-button svg {
   width: 12px !important;
@@ -144,8 +138,6 @@ body {
   position: relative;
   border: none !important;
 }
-
-
 
 .cancelButton {
   border: 1px solid #ef4444;
@@ -185,55 +177,63 @@ body {
   .main-app {
     padding-top: 60px;
   }
-  .setaspart-content{
-    padding:10px;
+  .setaspart-content {
+    padding: 10px;
   }
-   .premium-properties-main{
+  .premium-properties-main {
     padding-top: 15px;
     padding-bottom: 15px;
   }
-  .testimonial-text-content{
+  .testimonial-text-content {
     font-size: 30px;
     margin-bottom: 20px;
   }
 }
 
 /*Scrollbar */
-.custom-scrollbar{
+.custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #888 #f0f0f0; 
+  scrollbar-color: #888 #f0f0f0;
 }
 
-
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px; 
+  width: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: #f0f0f0; 
-  border-radius: 3px; 
+  background: #f0f0f0;
+  border-radius: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #888; 
-  border-radius: 3px; 
+  background: #888;
+  border-radius: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 .font-bebas {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   letter-spacing: 1px;
-  font-weight: 400; 
+  font-weight: 400;
 }
 .fontFamily-bebas {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   letter-spacing: 0.5px;
-   
 }
 .fontFamily-Content {
-  font-family: 'Bebas Neue', sans-serif;   
+  font-family: "Bebas Neue", sans-serif;
 }
 
+.react-tel-input .form-control {
+  width: 100% !important;
+}
+.react-tel-input .form-control:focus {
+  box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+  border-color: #4096ff !important;
+}
+.react-tel-input .form-control:hover {
+  border-color: #4096ff !important;
+}

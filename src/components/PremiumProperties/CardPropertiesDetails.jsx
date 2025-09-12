@@ -1,7 +1,20 @@
 import React from "react";
-import { MapPin, Home, Star, Eye, Calendar, ExternalLink, MapPinned } from "lucide-react";
-import CustomInput from "../ui/Input";
-import CustomButton from "../ui/Button";
+import {
+  MapPin,
+  Home,
+  Star,
+  Eye,
+  Calendar,
+  ExternalLink,
+  MapPinned,
+  CheckCircle,
+  Dumbbell,
+  Car,
+  Trees,
+  Wifi,
+  ShieldCheck,
+} from "lucide-react";
+import ContactForm from "../../pages/Contact/ContactForm";
 
 const CardPropertiesDetails = ({ property }) => {
   if (!property) {
@@ -16,14 +29,24 @@ const CardPropertiesDetails = ({ property }) => {
   }
 
   const handleViewMap = () => {
+    const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(
+      property.location.full
+    )}&output=embed`;
+    window.open(mapUrl, "_blank");
+  };
 
-    const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(property.location.full)}&output=embed`;
-    window.open(mapUrl, '_blank');
+  const getAmenityIcon = (amenity) => {
+    const key = amenity.toLowerCase();
+    if (key.includes("gym") || key.includes("fitness")) return <Dumbbell className="w-4 h-4" />;
+    if (key.includes("parking")) return <Car className="w-4 h-4" />;
+    if (key.includes("garden") || key.includes("park")) return <Trees className="w-4 h-4" />;
+    if (key.includes("wifi") || key.includes("internet")) return <Wifi className="w-4 h-4" />;
+    if (key.includes("security")) return <ShieldCheck className="w-4 h-4" />;
+    return <CheckCircle className="w-4 h-4" />;
   };
 
   return (
-    <div className="max-w-7xl mx-auto bg-white shadow-sm border border-gray-200 overflow-y-auto custom-scrollbar scrollbar-thin">
-      {/* <div className=""></div> */}
+    <div className="max-w-7xl mx-auto bg-white shadow-sm border border-gray-200 overflow-y-auto custom-scrollbar scrollbar-thin rounded-xl">
       {/* Header Section */}
       <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 border-b border-gray-200">
         <div className="flex items-center justify-between">
@@ -41,237 +64,126 @@ const CardPropertiesDetails = ({ property }) => {
         </div>
       </div>
 
+      {/* Main Content */}
       <div className="p-6">
-        {/* Full Width Image */}
-        <div className="mb-8">
-          <div className="relative">
-            <img
-              src={property.image}
-              alt={property.name}
-              className="w-full h-96 object-cover rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-            />
-            <div className="absolute top-4 left-4">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-green-100 text-green-800 backdrop-blur-sm">
-                {property.type}
-              </span>
-            </div>
-            <div className="absolute top-4 right-4">
-              <div className="flex items-center bg-white/90 backdrop-blur-md rounded-full shadow-lg overflow-hidden border border-gray-200">
-
-                {/* Rating */}
-                <div className="flex items-center gap-1 px-3 py-1 hover:bg-yellow-50 transition-colors">
-                  <Star className="w-4 h-4 text-yellow-500" />
-                  <span className="text-sm font-semibold text-gray-900">{property.rating}</span>
-                  <span className="text-[11px] text-gray-600">Rating</span>
-                </div>
-
-                {/* Divider */}
-                <div className="h-6 w-px bg-gray-300"></div>
-
-                {/* Views */}
-                <div className="flex items-center gap-1 px-3 py-1 hover:bg-blue-50 transition-colors">
-                  <Eye className="w-4 h-4 text-blue-500" />
-                  <span className="text-sm font-semibold text-gray-900">{property.views}</span>
-                  <span className="text-[11px] text-gray-600">Views</span>
-                </div>
-
-              </div>
-            </div>
-
-
-
+        {/* Property Image */}
+        <div className="mb-8 relative">
+          <img
+            src={property.image}
+            alt={property.name}
+            className="w-full h-96 object-cover rounded-xl shadow-lg"
+          />
+          <div className="absolute top-4 left-4">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-green-100 text-green-800 backdrop-blur-sm">
+              {property.type}
+            </span>
           </div>
-        </div>
-
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column: Amenities */}
-          <div className="lg:col-span-1">
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                <Home className="w-5 h-5 mr-2 text-indigo-600" />
-                Amenities
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {(property.amenities || []).map((amenity, index) => (
-                  <span
-                    key={index}
-                    className="inline-flex items-center px-3 py-2 rounded-lg text-sm font-medium bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition-colors duration-200"
-                  >
-                    {amenity}
-                  </span>
-                ))}
+          <div className="absolute top-4 right-4">
+            <div className="flex items-center bg-white/90 backdrop-blur-md rounded-full shadow-lg overflow-hidden border border-gray-200">
+              <div className="flex items-center gap-1 px-3 py-1 hover:bg-yellow-50">
+                <Star className="w-4 h-4 text-yellow-500" />
+                <span className="text-sm font-semibold text-gray-900">{property.rating}</span>
+                <span className="text-[11px] text-gray-600">Rating</span>
               </div>
-            </div>
-          </div>
-
-          {/* Middle Column: Property Details */}
-          <div className="lg:col-span-1">
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <Home className="w-5 h-5 mr-2 text-indigo-600" />
-                Property Details
-              </h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span className="text-sm font-medium text-gray-600">Price</span>
-                  <div className="text-right">
-                    <div className="text-lg font-bold text-green-600">{property.price}</div>
-                    <div className="text-xs text-gray-500">Base: {property.basePrice}</div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span className="text-sm font-medium text-gray-600">Discount</span>
-                  <span className="text-sm font-semibold text-red-600">{property.discount}</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span className="text-sm font-medium text-gray-600">Area</span>
-                  <span className="text-sm text-gray-900">{property.area}</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span className="text-sm font-medium text-gray-600">Type</span>
-                  <span className="text-sm text-gray-900  text-end">{property.type}</span>
-                </div>
-                {property.units && (
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="text-sm font-medium text-gray-600">Units</span>
-                    <span className="text-sm text-gray-900">{property.units}</span>
-                  </div>
-                )}
-                {property.towers && (
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="text-sm font-medium text-gray-600">Towers</span>
-                    <span className="text-sm text-gray-900">{property.towers}</span>
-                  </div>
-                )}
-                {property.openArea && (
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="text-sm font-medium text-gray-600">Open Area</span>
-                    <span className="text-sm text-gray-900">{property.openArea}</span>
-                  </div>
-                )}
-                {property.structure && (
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="text-sm font-medium text-gray-600">Structure</span>
-                    <span className="text-sm text-gray-900">{property.structure}</span>
-                  </div>
-                )}
-                {property.configurations && (
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="text-sm font-medium text-gray-600">Configurations</span>
-                    <span className="text-sm text-gray-900 text-end">{property.configurations}</span>
-                  </div>
-                )}
-                <div className="flex justify-between items-center py-2">
-                  <span className="text-sm font-medium text-gray-600 flex items-center">
-                    <Calendar className="w-4 h-4 mr-1" />
-                    Updated
-                  </span>
-                  <span className="text-sm text-gray-900">{property.updatedOn}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Location Details */}
-          <div className="lg:col-span-1">
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <MapPin className="w-5 h-5 mr-2 text-red-600" />
-                Location Details
-              </h3>
-              <div className="space-y-3">
-                {property.location.address && (
-                  <div className="flex justify-between items-start py-2 border-b border-gray-200">
-                    <span className="text-sm font-medium text-gray-600">Address</span>
-                    <span className="text-sm text-gray-900 text-right max-w-xs">{property.location.address}</span>
-                  </div>
-                )}
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span className="text-sm font-medium text-gray-600">City</span>
-                  <span className="text-sm text-gray-900">{property.location.city}</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span className="text-sm font-medium text-gray-600">State</span>
-                  <span className="text-sm text-gray-900">{property.location.state}</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span className="text-sm font-medium text-gray-600">Area</span>
-                  <span className="text-sm text-gray-900">{property.location.area}</span>
-                </div>
-                <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                  <span className="text-sm font-medium text-gray-600">Country</span>
-                  <span className="text-sm text-gray-900">{property.location.country}</span>
-                </div>
-                {property.location.zip && (
-                  <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                    <span className="text-sm font-medium text-gray-600">Zip Code</span>
-                    <span className="text-sm text-gray-900">{property.location.zip}</span>
-                  </div>
-                )}
-
-                {/* View Map Button */}
-                <div className="pt-4">
-                  <button
-                    onClick={handleViewMap}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-700 font-medium rounded-full border border-gray-300 shadow-sm hover:shadow-md hover:bg-gray-50 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <MapPinned className="w-5 h-5 text-red-500" />
-                    View on Map
-                    <ExternalLink className="w-4 h-4 text-gray-400" />
-                  </button>
-
-                </div>
+              <div className="h-6 w-px bg-gray-300"></div>
+              <div className="flex items-center gap-1 px-3 py-1 hover:bg-blue-50">
+                <Eye className="w-4 h-4 text-blue-500" />
+                <span className="text-sm font-semibold text-gray-900">{property.views}</span>
+                <span className="text-[11px] text-gray-600">Views</span>
               </div>
             </div>
           </div>
         </div>
-        {/* Contact Form */}
-        <div className="mt-10 bg-gray-50 rounded-lg p-6 border border-gray-200">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">Enquiry Form</h3>
-          <form className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Name */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-              <CustomInput
-                type="text"
-                placeholder="Your Name"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
 
-            {/* Phone */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-              <CustomInput
-                type="tel"
-                placeholder="Your Phone"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+        {/* Row 1: Property Details + Location Details */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          {/* Property Details */}
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+            <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center border-b border-gray-300 pb-2">
+              <Home className="w-5 h-5 mr-2 text-indigo-600" />
+              Property Details
+            </h4>
+            <div className="space-y-3">
+              <div className="flex justify-between py-2 border-b border-gray-200">
+                <span className="text-sm font-medium text-gray-600">Price</span>
+                <span className="text-lg font-bold text-green-600">{property.price}</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-gray-200">
+                <span className="text-sm font-medium text-gray-600">Discount</span>
+                <span className="text-sm font-semibold text-red-600">{property.discount}</span>
+              </div>
+              <div className="flex justify-between py-2 border-b border-gray-200">
+                <span className="text-sm font-medium text-gray-600">Area</span>
+                <span className="text-sm text-gray-900">{property.area}</span>
+              </div>
+              {property.configurations && (
+                <div className="flex justify-between py-2 border-b border-gray-200">
+                  <span className="text-sm font-medium text-gray-600">Configurations</span>
+                  <span className="text-sm text-gray-900">{property.configurations}</span>
+                </div>
+              )}
+              <div className="flex justify-between py-2">
+                <span className="text-sm font-medium text-gray-600 flex items-center">
+                  <Calendar className="w-4 h-4 mr-1" />
+                  Updated
+                </span>
+                <span className="text-sm text-gray-900">{property.updatedOn}</span>
+              </div>
             </div>
+          </div>
 
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-              <CustomInput
-                type="email"
-                placeholder="Your Email"
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            {/* Submit */}
-            <div className="md:col-span-3 flex justify-end">
-              <CustomButton
-                type="submit"
-                className="transition property-card-action-button"
+          {/* Location Details */}
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+            <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center border-b border-gray-300 pb-2">
+              <MapPin className="w-5 h-5 mr-2 text-red-600" />
+              Location Details
+            </h4>
+            <div className="space-y-3">
+              <p className="text-sm text-gray-700">{property.location.address}</p>
+              <div className="grid grid-cols-2 gap-2 text-sm text-gray-700">
+                <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-white rounded-md border border-gray-200 hover:shadow-md hover:bg-gray-50 transition-all">City : {property.location.city}</span>
+                <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-white rounded-md border border-gray-200 hover:shadow-md hover:bg-gray-50 transition-all">State : {property.location.state}</span>
+                <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-white rounded-md border border-gray-200 hover:shadow-md hover:bg-gray-50 transition-all">Area : {property.location.area}</span>
+                <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-white rounded-md border border-gray-200 hover:shadow-md hover:bg-gray-50 transition-all">Country : {property.location.country}</span>
+              </div>
+              <button
+                onClick={handleViewMap}
+                className="inline-flex items-center gap-2 px-4 py-2 mt-3 bg-white text-gray-700 font-medium rounded-full border border-gray-300 shadow-sm hover:shadow-md hover:bg-gray-50 transition-all"
               >
-                Submit
-              </CustomButton>
+                <MapPinned className="w-5 h-5 text-red-500" />
+                View on Map
+                <ExternalLink className="w-4 h-4 text-gray-400" />
+              </button>
             </div>
-          </form>
+          </div>
+
+          {/* Amenities */}
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+            <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center border-b border-gray-300 pb-2">
+              <Home className="w-5 h-5 mr-2 text-indigo-600  " />
+              Amenities
+            </h4>
+            <div className="grid grid-cols-2 gap-3">
+              {property.amenities?.map((amenity, idx) => (
+                <div key={idx} className="flex items-center gap-2 text-sm text-gray-700 shadow-sm p-2 bg-white rounded-md border border-gray-200 hover:shadow-md hover:bg-gray-50 transition-all ">
+                  {getAmenityIcon(amenity)}
+                  {amenity}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
+        {/* Row 2: Amenities + Contact Form */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+
+          {/* Contact Form */}
+          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+
+            <ContactForm propertyId={property.id} />
+          </div>
+        </div>
       </div>
     </div>
   );

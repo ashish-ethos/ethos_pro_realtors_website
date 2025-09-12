@@ -39,6 +39,7 @@ import Trinity from "../../assets/images/exploreproperties/Trinity-Sky-Palazzos.
 import CustomButton from '../ui/Button';
 import './ExploreProperties.css';
 import CustomInput from '../ui/Input';
+import ContactForm from '../../pages/Contact/ContactForm';
 
 const ExploreProperties = ({ filters = {} }) => {
   const [activeTab, setActiveTab] = useState('all');
@@ -46,7 +47,11 @@ const ExploreProperties = ({ filters = {} }) => {
   const [favorites, setFavorites] = useState(new Set());
   const [visibleProperties, setVisibleProperties] = useState(6);
   const [showAll, setShowAll] = useState(false);
-  const [shareCounts, setShareCounts] = useState({});
+  const [shareCounts, setShareCounts] = useState(() => {
+    // Initialize shareCounts from localStorage, or use an empty object if none exists
+    const saved = localStorage.getItem('shareCounts');
+    return saved ? JSON.parse(saved) : {};
+  });
   const navigate = useNavigate();
   const { propertyName } = useParams();
 
@@ -482,7 +487,10 @@ const ExploreProperties = ({ filters = {} }) => {
     setTimeout(() => setIsLoading(false), 1500);
     setVisibleProperties(6);
   }, [activeTab]);
-
+  useEffect(() => {
+    // Save shareCounts to localStorage whenever it changes
+    localStorage.setItem('shareCounts', JSON.stringify(shareCounts));
+  }, [shareCounts]);
   const handleViewMore = () => {
     setVisibleProperties(filteredProperties.length);
     setShowAll(true);
@@ -557,10 +565,14 @@ const ExploreProperties = ({ filters = {} }) => {
 
     // Increment share count
     const incrementShareCount = () => {
-      setShareCounts(prev => ({
-        ...prev,
-        [property.id]: (prev[property.id] || 0) + 1
-      }));
+      setShareCounts(prev => {
+        const newCounts = {
+          ...prev,
+          [property.id]: (prev[property.id] || 0) + 1
+        };
+        localStorage.setItem('shareCounts', JSON.stringify(newCounts));
+        return newCounts;
+      });
     };
 
     // Handle PDF generation and download
@@ -811,119 +823,40 @@ const ExploreProperties = ({ filters = {} }) => {
                   <h3 className="text-base font-semibold text-gray-900 fontFamily-Content mb-2">Description</h3>
                   <p className="text-gray-700 text-sm leading-relaxed fontFamily-bebas">{property.description}</p>
                 </div>
-                <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-4">
-                  <h3 className="text-base font-semibold text-gray-900 mb-2 fontFamily-Content">Features</h3>
-                  <div className="absolute top-3 left-3 flex flex-wrap gap-1 sm:gap-2">
-                    {property.options.map((option, idx) => (
-                      <span
-                        key={option + idx}
-                        className={`option-tag ${option.toLowerCase().replace(/\s+/g, '-')}`}
-                        style={{ animationDelay: `${idx * 100}ms` }}
-                      >
-                        {option}
-                      </span>
-                    ))}
+                <div className="get-in-touch-section border-[#d3d3d382] border-1 p-2 sm:p-3 rounded-xl shadow-md">
+                  <h3 className="text-base font-semibold text-gray-900 mb-3 fontFamily-bebas">Get in Touch</h3>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <CustomButton
+                      onClick={() => window.location.href = 'tel:+918744964496'}
+                      className="flex-1 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center group"
+                    >
+                      <FiPhone className="w-4 h-4 group-hover:animate-pulse fontFamily-bebas" />
+                      <span>Call Now</span>
+                    </CustomButton>
+                    <CustomButton
+                      onClick={() => window.open('https://wa.me/918744964496', '_blank', 'noopener,noreferrer')}
+                      className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center group"
+                    >
+                      <MdOutlineWhatsapp className="w-4 h-4 group-hover:animate-pulse" />
+                      <span>WhatsApp</span>
+                    </CustomButton>
+                    <CustomButton
+                      onClick={() => window.location.href = 'mailto:info@ethosprorealtors.com'}
+                      className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center group"
+                    >
+                      <MdOutlineEmail className="w-4 h-4 group-hover:animate-pulse" />
+                      <span>Email</span>
+                    </CustomButton>
                   </div>
                 </div>
               </div>
-              <div className="get-in-touch-section border-[#d3d3d382] border-1 p-2 sm:p-3 rounded-xl shadow-md">
-                <h3 className="text-base font-semibold text-gray-900 mb-3 fontFamily-bebas">Get in Touch</h3>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <CustomButton
-                    onClick={() => window.location.href = 'tel:+918744964496'}
-                    className="flex-1 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center group"
-                  >
-                    <FiPhone className="w-4 h-4 group-hover:animate-pulse fontFamily-bebas" />
-                    <span>Call Now</span>
-                  </CustomButton>
-                  <CustomButton
-                    onClick={() => window.open('https://wa.me/918744964496', '_blank', 'noopener,noreferrer')}
-                    className="flex-1 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center group"
-                  >
-                    <MdOutlineWhatsapp className="w-4 h-4 group-hover:animate-pulse" />
-                    <span>WhatsApp</span>
-                  </CustomButton>
-                  <CustomButton
-                    onClick={() => window.location.href = 'mailto:info@ethosprorealtors.com'}
-                    className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 hover:shadow-lg flex items-center justify-center group"
-                  >
-                    <MdOutlineEmail className="w-4 h-4 group-hover:animate-pulse" />
-                    <span>Email</span>
-                  </CustomButton>
-                </div>
-              </div>
+
             </div>
 
             {/* Action Forms */}
             <div className="contact-section-property-modal mt-6 flex flex-col sm:flex-row">
-              <div className="left-side border-[#d3d3d382] border-1 p-4 sm:p-6 rounded-xl shadow-md mb-6 sm:mr-6 sm:mb-0 sm:w-1/2">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 fontFamily-bebas">Contact Us</h3>
-                <form className="space-y-4" onSubmit={handleContactSubmit}>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="fullName">
-                      Full Name
-                    </label>
-                    <CustomInput
-                      type="text"
-                      id="fullName"
-                      name="fullName"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                      placeholder="Enter your full name"
-                      value={contactForm.fullName}
-                      onChange={handleContactChange}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="phone">
-                      Phone
-                    </label>
-                    <CustomInput
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                      placeholder="Enter your phone number"
-                      value={contactForm.phone}
-                      onChange={handleContactChange}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">
-                      Email
-                    </label>
-                    <CustomInput
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                      placeholder="Enter your email address"
-                      value={contactForm.email}
-                      onChange={handleContactChange}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="message">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-area-contact"
-                      placeholder="Type your message"
-                      value={contactForm.message}
-                      onChange={handleContactChange}
-                    />
-                  </div>
-                  <div className="w-full flex justify-center items-center">
-                    <CustomButton
-                      type="submit"
-                      className="w-auto text-black font-semibold py-3 px-4 rounded-xl property-card-action-button"
-                    >
-                      Send Message
-                    </CustomButton>
-                  </div>
-                </form>
+              <div className="left-side border-[#d3d3d382] border-1 rounded-xl shadow-md h-full sm:mr-6 sm:w-1/2">
+               <ContactForm  className="h-full"/>
               </div>
               <div className="right-side border-[#d3d3d382] border-1 p-4 sm:p-6 rounded-xl shadow-md sm:w-1/2">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 fontFamily-bebas">Schedule a Tour</h3>

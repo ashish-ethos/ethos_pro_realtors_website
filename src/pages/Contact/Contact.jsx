@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     Phone,
     Mail,
-
     MapPinned,
     Facebook,
     Instagram,
@@ -11,41 +10,11 @@ import {
     Youtube,
     MapPin,
 } from 'lucide-react';
-import { Input } from 'antd';
-
 import ContactImg from '../../assets/images/about/4.png';
-import CustomInput from '../../components/ui/Input';
-import CustomButton from '../../components/ui/Button';
-
+import ContactForm from './ContactForm'; 
 const Contact = () => {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        mobile: '',
-        email: '',
-        message: '',
-    });
-
-    const [submitted, setSubmitted] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const { TextArea } = Input;
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-
-        setTimeout(() => {
-            setLoading(false);
-            setSubmitted(true);
-            setTimeout(() => setSubmitted(false), 3000);
-        }, 1500);
+    const handleSubmitSuccess = () => {
+        console.log('Form submission success callback triggered');
     };
 
     return (
@@ -56,12 +25,6 @@ const Contact = () => {
                 style={{ backgroundImage: `url(${ContactImg})` }}
             >
                 <div className="absolute inset-0 z-0" />
-                {/* <div className="relative z-10 text-right text-white px-4 max-w-xl">
-                    <h1 className="text-4xl lg:text-6xl font-bold mb-2">Contact Us</h1>
-                    <p className="text-lg lg:text-xl font-medium">
-                        We'd love to connect with you — Let's talk!
-                    </p>
-                </div> */}
             </div>
 
             {/* Main Section */}
@@ -70,133 +33,15 @@ const Contact = () => {
                     {/* Left Column: Form + Map */}
                     <div className="space-y-8">
                         {/* Contact Form */}
-                        <div className="bg-white rounded-3xl shadow-2xl p-4 lg:p-6 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-100 to-transparent rounded-full -mr-16 -mt-16"></div>
-                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-indigo-100 to-transparent rounded-full -ml-12 -mb-12"></div>
-
-                            <div className="relative z-10">
-                                <h4 className="text-2xl  font-bold text-gray-800 mb-1">
-                                    Get In Touch
-                                </h4>
-
-                                {submitted ? (
-                                    <div className="text-center py-12">
-                                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                            <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                        <h3 className="text-xl font-semibold text-gray-800 mb-2">Thank You!</h3>
-                                        <p className="text-gray-600">We'll get back to you soon.</p>
-                                    </div>
-                                ) : (
-                                    <form onSubmit={handleSubmit} className="space-y-4">
-                                        <div className="grid md:grid-cols-2 gap-4">
-                                            <div>
-                                                <label className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    First Name <span className="text-red-500">*</span>
-                                                </label>
-                                                <CustomInput
-                                                    type="text"
-                                                    name="firstName"
-                                                    value={formData.firstName}
-                                                    onChange={handleChange}
-                                                    placeholder="First Name"
-                                                    required
-                                                    className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-sm font-semibold text-gray-700 mb-1">
-                                                    Last Name <span className="text-red-500">*</span>
-                                                </label>
-                                                <CustomInput
-                                                    type="text"
-                                                    name="lastName"
-                                                    value={formData.lastName}
-                                                    onChange={handleChange}
-                                                    placeholder="Last Name"
-                                                    required
-                                                    className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
-                                                />
-                                            </div>
-                                        </div>
-
-                                        <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-1">
-                                                Mobile <span className="text-red-500">*</span>
-                                            </label>
-                                            <CustomInput
-                                                type="tel"
-                                                name="mobile"
-                                                value={formData.mobile}
-                                                onChange={handleChange}
-                                                placeholder="Mobile Number"
-                                                required
-                                                className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-1">
-                                                Email <span className="text-red-500">*</span>
-                                            </label>
-                                            <CustomInput
-                                                type="email"
-                                                name="email"
-                                                value={formData.email}
-                                                onChange={handleChange}
-                                                placeholder="Email Address"
-                                                required
-                                                className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label className="block text-sm font-semibold text-gray-700 mb-1">Message</label>
-                                            <TextArea
-                                                name="message"
-                                                value={formData.message}
-                                                onChange={handleChange}
-                                                placeholder="Write your message..."
-                                                rows={4}
-                                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition resize-none placeholder-gray-400"
-                                            />
-                                        </div>
-
-                                        <div className='flex justify-center'>
-                                            <CustomButton
-                                                type="submit"
-                                                disabled={loading}
-                                                className="property-card-action-button w-auto"
-
-                                            >
-                                                {loading ? (
-                                                    <div className="flex items-center justify-center">
-                                                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                                                        Submitting...
-                                                    </div>
-                                                ) : (
-                                                    'Submit'
-                                                )}
-                                            </CustomButton>
-
-                                        </div>
-                                    </form>
-                                )}
-                            </div>
-                        </div>
+                        <ContactForm onSubmitSuccess={handleSubmitSuccess} />
 
                         {/* Map Card below form */}
                         <div className="bg-white rounded-xl shadow-xl overflow-hidden max-w-4xl mx-auto mt-12">
-                            {/* Gradient Header */}
                             <div className="bg-transparent flex items-center gap-1 from-black p-2">
-                                <MapPinned className='text-gray-800' />
+                                <MapPinned className="text-gray-800" />
                                 <h2 className="text-xl font-bold text-black font-[Inter]">Our Location</h2>
                             </div>
 
-
-                            {/* Map Embed */}
                             <div className="h-[400px] w-full">
                                 <iframe
                                     title="Ethos Pro Realtors Location"
@@ -313,7 +158,6 @@ const Contact = () => {
                                 </a>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

@@ -9,6 +9,7 @@ import DeepakBhati from "../../assets/images/home/Deepak-Bhati-150x150.png";
 import Prerna from "../../assets/images/home/Prerna-150x150.jpg";
 import Avantika from "../../assets/images/home/Avantika-150x150.jpg";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
+import { Modal } from "antd";
 import {
   FaFacebookF,
   FaXTwitter,
@@ -19,6 +20,7 @@ import {
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import './OurTeam.css';
 import CustomButton from '../ui/Button';
+import ContactForm from '../../pages/Contact/ContactForm';
 
 const teamMembers = [
   {
@@ -29,17 +31,17 @@ const teamMembers = [
     bio: "Visionary leader with years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
     skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
     projects: "500+ Properties",
-    phone: "+91 98765 43213",
+    phone: "+91 8744964496",
     email: "mohit.sharma@ethosprorealtors.com",
     rating: 5.0,
     achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
     specializations: ["Strategic Planning", "Business Development", "Team Leadership"],
     socialIcons: [
-      { icon: "FaFacebookF", link: "https://www.facebook.com/mohitsharma" },
-      { icon: "FaXTwitter", link: "https://www.twitter.com/mohitsharma" },
-      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/in/mohitsharma" },
+      { icon: "FaFacebookF", link: "https://www.facebook.com/ethosprorealtors/" },
+      { icon: "FaXTwitter", link: "https://x.com/ethosprorealtor" },
+      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/company/ethos-pro-realtors/" },
       { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
-      { icon: "FaInstagram", link: "https://www.instagram.com/mohitsharma" }
+      { icon: "FaInstagram", link: "https://www.instagram.com/ethosprorealtors/" }
     ]
   },
   {
@@ -57,11 +59,11 @@ const teamMembers = [
     achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
     specializations: ["Strategic Planning", "Business Development", "Team Leadership"],
     socialIcons: [
-      { icon: "FaFacebookF", link: "https://www.facebook.com/arungodara" },
-      { icon: "FaXTwitter", link: "https://www.twitter.com/arungodara" },
-      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/in/arungodara" },
+      { icon: "FaFacebookF", link: "https://www.facebook.com/ethosprorealtors/" },
+      { icon: "FaXTwitter", link: "https://x.com/ethosprorealtor" },
+      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/company/ethos-pro-realtors/" },
       { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
-      { icon: "FaInstagram", link: "https://www.instagram.com/arungodara" }
+      { icon: "FaInstagram", link: "https://www.instagram.com/ethosprorealtors/" }
     ]
   },
   {
@@ -79,11 +81,11 @@ const teamMembers = [
     achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
     specializations: ["Strategic Planning", "Business Development", "Team Leadership"],
     socialIcons: [
-      { icon: "FaFacebookF", link: "https://www.facebook.com/satyamandal" },
-      { icon: "FaXTwitter", link: "https://www.twitter.com/satyamandal" },
-      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/in/satyamandal" },
+      { icon: "FaFacebookF", link: "https://www.facebook.com/ethosprorealtors/" },
+      { icon: "FaXTwitter", link: "https://x.com/ethosprorealtor" },
+      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/company/ethos-pro-realtors/" },
       { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
-      { icon: "FaInstagram", link: "https://www.instagram.com/satyamandal" }
+      { icon: "FaInstagram", link: "https://www.instagram.com/ethosprorealtors/" }
     ]
   },
   {
@@ -101,11 +103,11 @@ const teamMembers = [
     achievements: ["Top Performer 2023", "Client Choice Award", "Luxury Sales Expert"],
     specializations: ["Residential", "Commercial", "Luxury Properties"],
     socialIcons: [
-      { icon: "FaFacebookF", link: "https://www.facebook.com/deepakbhati" },
-      { icon: "FaXTwitter", link: "https://www.twitter.com/deepakbhati" },
-      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/in/deepakbhati" },
+      { icon: "FaFacebookF", link: "https://www.facebook.com/ethosprorealtors/" },
+      { icon: "FaXTwitter", link: "https://x.com/ethosprorealtor" },
+      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/company/ethos-pro-realtors/" },
       { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
-      { icon: "FaInstagram", link: "https://www.instagram.com/deepakbhati" }
+      { icon: "FaInstagram", link: "https://www.instagram.com/ethosprorealtors/" }
     ]
   },
   {
@@ -123,11 +125,11 @@ const teamMembers = [
     achievements: ["Rising Star 2023", "Customer Satisfaction Award", "Investment Specialist"],
     specializations: ["Residential", "Investment Properties", "First-time Buyers"],
     socialIcons: [
-      { icon: "FaFacebookF", link: "https://www.facebook.com/prernakapuria" },
-      { icon: "FaXTwitter", link: "https://www.twitter.com/prernakapuria" },
-      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/in/prernakapuria" },
+      { icon: "FaFacebookF", link: "https://www.facebook.com/ethosprorealtors/" },
+      { icon: "FaXTwitter", link: "https://x.com/ethosprorealtor" },
+      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/company/ethos-pro-realtors/" },
       { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
-      { icon: "FaInstagram", link: "https://www.instagram.com/prernakapuria" }
+      { icon: "FaInstagram", link: "https://www.instagram.com/ethosprorealtors/" }
     ]
   },
   {
@@ -145,11 +147,11 @@ const teamMembers = [
     achievements: ["Commercial Expert 2023", "Deal Maker Award", "Market Analyst"],
     specializations: ["Commercial", "Office Spaces", "Retail Properties"],
     socialIcons: [
-      { icon: "FaFacebookF", link: "https://www.facebook.com/avantikakapuria" },
-      { icon: "FaXTwitter", link: "https://www.twitter.com/avantikakapuria" },
-      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/in/avantikakapuria" },
+      { icon: "FaFacebookF", link: "https://www.facebook.com/ethosprorealtors/" },
+      { icon: "FaXTwitter", link: "https://x.com/ethosprorealtor" },
+      { icon: "FaLinkedinIn", link: "https://www.linkedin.com/company/ethos-pro-realtors/" },
       { icon: "FaWhatsapp", link: "https://wa.me/918744964496" },
-      { icon: "FaInstagram", link: "https://www.instagram.com/avantikakapuria" }
+      { icon: "FaInstagram", link: "https://www.instagram.com/ethosprorealtors/" }
     ]
   },
 ];
@@ -157,6 +159,8 @@ const teamMembers = [
 const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+
+
 
   return (
     <div
@@ -266,6 +270,10 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
 
 const ProfileDrawer = ({ member, visible, onClose }) => {
   if (!member) return null;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   return (
     <Drawer
@@ -289,8 +297,8 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
           <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
           <div className="absolute inset-0 flex items-end p-6">
             <div className="text-white">
-              <h2 className="text-2xl font-black mb-1">{member.name}</h2>
-              <p className="text-[#c99913] font-semibold">{member.position}</p>
+              <h2 className="text-2xl font-black mb-1 fontFamily-bebas">{member.name}</h2>
+              <p className="text-[#c99913] font-semibold fontFamily-bebas">{member.position}</p>
             </div>
           </div>
           <button
@@ -314,12 +322,12 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
               <span className="text-sm font-semibold text-gray-600">{member.rating}</span>
             </div>
             <div className="text-right">
-              <div className="text-lg font-bold text-[#474236]">{member.projects}</div>
-              <div className="text-xs text-gray-500">Projects Completed</div>
+              <div className="text-lg font-bold text-[#474236] fontFamily-bebas">{member.projects}</div>
+              <div className="text-xs text-gray-500 fontFamily-bebas">Projects Completed</div>
             </div>
           </div>
           <div className="space-y-3">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Contact Information</h3>
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-bebas">Contact Information</h3>
             <div className="space-y-2">
               <div className="flex items-center gap-3 text-gray-600">
                 <PhoneOutlined className="text-[#c99913]" />
@@ -327,20 +335,20 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
               </div>
               <div className="flex items-center gap-3 text-gray-600">
                 <MailOutlined className="text-[#c99913]" />
-                <span className="text-sm">{member.email}</span>
+                <span className="text-sm fontFamily-bebas">{member.email}</span>
               </div>
             </div>
           </div>
           <Divider />
           <div className="space-y-3">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">About</h3>
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-bebas">About</h3>
             <p className="text-gray-700 leading-relaxed text-sm break-words">
               {member.bio}
             </p>
           </div>
           <Divider />
           <div className="space-y-3">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Skills & Expertise</h3>
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-bebas">Skills & Expertise</h3>
             <div className="flex flex-wrap gap-2">
               {member.skills.map((skill, index) => (
                 <Tag
@@ -355,7 +363,7 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
           </div>
           <Divider />
           <div className="space-y-3">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Achievements</h3>
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-bebas">Achievements</h3>
             <div className="flex flex-wrap gap-2">
               {member.achievements.map((achievement, index) => (
                 <div key={index} className="flex items-center gap-2">
@@ -367,7 +375,7 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
           </div>
           <Divider />
           <div className="space-y-2">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm">Specializations</h3>
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-bebas">Specializations</h3>
             <div className="flex flex-wrap gap-2">
               {member.specializations.map((spec, index) => (
                 <div
@@ -380,16 +388,32 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
             </div>
           </div>
 
-          <div className='flex justify-center items-center'>
-            <CustomButton className="w-auto py-3 gradient-border font-bold rounded-xl">
+          <div className="flex justify-center items-center">
+            {/* Button */}
+            <CustomButton
+              onClick={handleOpenModal}
+              className="w-auto py-3 gradient-border font-bold rounded-xl"
+            >
               <span className="flex items-center justify-center gap-2">
                 <PhoneOutlined />
-                Contact {member.name.split(' ')[0]}
+                Contact {member.name.split(" ")[0]}
               </span>
             </CustomButton>
+
+            {/* Modal */}
+            <Modal
+              open={isModalOpen}
+              onCancel={handleCloseModal}
+              footer={null}
+              centered
+              width={500}
+              className="rounded-2xl"
+            >
+              <ContactForm onClose={handleCloseModal} />
+            </Modal>
           </div>
           <div className="w-full items-center justify-center flex flex-col">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm mb-2">
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm mb-2 fontFamily-bebas">
               Follow on Social Media
             </h3>
             <div className="flex items-center gap-3">
@@ -404,11 +428,11 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
                   }[icon.icon];
 
                   const iconColors = {
-                    FaFacebookF: "text-[#1877F2] hover:text-[#474236]",  
-                    FaXTwitter: "text-[#000] hover:text-[#474236]",   
-                    FaLinkedinIn: "text-[#0A66C2] hover:text-[#474236]", 
-                    FaInstagram: "text-[#E4405F] hover:text-[#474236]",  
-                    FaWhatsapp: "text-[#25D366] hover:text-[#474236]",   
+                    FaFacebookF: "text-[#1877F2] hover:text-[#474236]",
+                    FaXTwitter: "text-[#000] hover:text-[#474236]",
+                    FaLinkedinIn: "text-[#0A66C2] hover:text-[#474236]",
+                    FaInstagram: "text-[#E4405F] hover:text-[#474236]",
+                    FaWhatsapp: "text-[#25D366] hover:text-[#474236]",
                   };
 
                   return IconComponent ? (

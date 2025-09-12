@@ -20,6 +20,7 @@ import CustomButton from '../../components/ui/Button';
 import CustomInput from '../../components/ui/Input';
 import { Facebook, Instagram, Linkedin, Twitter, X, Share2, Heart } from 'lucide-react';
 import { BsWhatsapp } from "react-icons/bs";
+import ContactForm from '../Contact/ContactForm';
 
 const { Title, Text } = Typography;
 const { TextArea } = Input;
@@ -36,8 +37,24 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
   const [form] = Form.useForm();
   const [activeTab, setActiveTab] = useState('overview');
   const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
-  const [shareCount, setShareCount] = useState(0); 
+  const [shareCount, setShareCount] = useState(0);
 
+  useEffect(() => {
+    if (project?.id) {
+      const saved = localStorage.getItem(`shareCount_${project.id}`);
+      setShareCount(saved ? parseInt(saved, 10) : 0);
+    }
+  }, [project?.id]);
+
+  useEffect(() => {
+    if (project?.id) {
+      localStorage.setItem(`shareCount_${project.id}`, shareCount.toString());
+    }
+  }, [shareCount, project?.id]);
+
+  const incrementShareCount = () => {
+    setShareCount(prev => prev + 1);
+  };
 
   useEffect(() => {
     console.log('ViewDetailsDrawer props:', { open, project, isLiked, onToggleLike });
@@ -141,9 +158,9 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
     return icons[key] || icons.default;
   };
 
-  const incrementShareCount = () => {
-    setShareCount(prev => prev + 1);
-  };
+  // const incrementShareCount = () => {
+  //   setShareCount(prev => prev + 1);
+  // };
 
   const PremiumCard = ({ children, className = '', gradient = false, hover = true }) => (
     <div className={`
@@ -200,7 +217,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
                 className={isLiked ? 'text-red-500 fill-red-500' : 'text-gray-600 hover:text-red-500'}
               />
             </button>
-            <div className="relative">
+            <div className="relative flex items-center w-full">
               <button
                 onClick={() => setIsSharePopupOpen(!isSharePopupOpen)}
                 className="p-2 cursor-pointer bg-white/90 rounded-full hover:bg-white transition-colors"
@@ -496,82 +513,8 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
   );
 
   const contactContent = (
-    <PremiumCard>
-      <Title level={4} className="mb-6 flex items-center">
-        <PhoneOutlined className="mr-3 text-green-600" />
-        Get In Touch
-      </Title>
-
-      <Form form={form} layout="vertical" onFinish={handleContactSubmit} className="space-y-4 mt-2">
-        <div className="grid grid-cols-1 mt-2 sm:grid-cols-2 gap-4">
-          <Form.Item
-            name="name"
-            label={<Text strong>Full Name</Text>}
-            rules={[{ required: true, message: 'Please enter your name' }]}
-          >
-            <CustomInput
-              placeholder="Enter your full name"
-              size="large"
-              prefix={<UserOutlined className="text-gray-400 mr-1" />}
-              className="rounded-xl"
-            />
-          </Form.Item>
-
-          <Form.Item
-            name="phone"
-            label={<Text strong>Phone Number</Text>}
-            rules={[{ required: true, message: 'Please enter your phone' }]}
-          >
-            <CustomInput
-              placeholder="Enter your phone number"
-              size="large"
-              prefix={<PhoneOutlined className="text-gray-400 mr-1" />}
-              className="rounded-xl"
-            />
-          </Form.Item>
-        </div>
-
-        <Form.Item
-          name="email"
-          label={<Text strong>Email Address</Text>}
-          rules={[
-            { required: true, message: 'Please enter your email' },
-            { type: 'email', message: 'Enter valid email' }
-          ]}
-        >
-          <CustomInput
-            placeholder="Enter your email address"
-            size="large"
-            prefix={<MailOutlined className="text-gray-400 mr-1" />}
-            className="rounded-xl"
-          />
-        </Form.Item>
-
-        <Form.Item
-          name="message"
-          label={<Text strong>Message</Text>}
-          rules={[{ required: true, message: 'Please enter a message' }]}
-        >
-          <TextArea
-            rows={4}
-            placeholder="Tell us about your requirements or ask any questions..."
-            className="rounded-xl"
-          />
-        </Form.Item>
-
-        <Form.Item>
-          <div className='w-full flex justify-center'>
-            <CustomButton
-              type="primary"
-              htmlType="submit"
-              size="large"
-              className="w-auto h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 border-0 font-semibold shadow-lg hover:shadow-xl"
-            >
-              Send Message
-            </CustomButton>
-          </div>
-        </Form.Item>
-      </Form>
+    <PremiumCard className='p-0 m-0'>
+      <ContactForm className="p-0 m-0"/>
     </PremiumCard>
   );
 

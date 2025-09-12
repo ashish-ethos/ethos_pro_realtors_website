@@ -41,3 +41,13 @@ Clone the repository:
 ```bash
 git clone https://github.com/ashish-ethos/ethos_pro_realtors_website.git
 cd ethos-pro-realtors
+
+```
+---
+
+## Backend Setup 
+
+
+- [https://thespitihomes.in/ethoswebsite/enquiry-form.php]
+- [SpitiHomes - thespitihomes folder]
+- [SpitiHomes - ethoswebsite - enquiry-form]

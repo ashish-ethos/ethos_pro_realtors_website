@@ -445,8 +445,6 @@ const Commercial = () => {
               <button
                 onClick={() => handleViewDetails(property)}
                 className="bg-white text-black px-5 py-2 rounded-[10px] cursor-pointer font-semibold flex items-center justify-center gap-2 hover:shadow-md transition-all duration-200"
-
-              // className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors"
               >
                 View Details
               </button>
