@@ -68,7 +68,7 @@ const About = () => {
             <div className="relative w-full overflow-hidden">
                 {/* Full-width Background Image Section */}
                 <div
-                    className="w-full h-[500px] border-2 border-red bg-cover bg-center bg-no-repeat"
+                    className="about-image w-full h-[500px] border-2 border-red bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: `url(${backgroundImg})` }}
                 ></div>
 
@@ -109,24 +109,24 @@ const About = () => {
             {/* Main Content */}
             <div className="pt-10">
                 <div className="container mx-auto px-6">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                    <div className="main-about grid lg:grid-cols-2 gap-16 items-center mb-20">
                         <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
                             <p className="text-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4 tracking-wider uppercase">
                                 Our Story
                             </p>
-                            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6 mr-1 leading-tight">
+                            <h3 className="mobile-title-text text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6 mr-1 leading-tight">
                                 Building Dreams
                                 <span className="bg-gradient-to-r ml-2 from-blue-400 to-purple-400 bg-clip-text text-transparent">
                                     Creating Futures
                                 </span>
                             </h3>
-                            <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                            <p className="mobile-subtitle-text text-lg text-slate-600 mb-6 leading-relaxed">
                                 Welcome to Ethos Pro Realtors, your trusted partner in real estate. As a leading channel partner with top developers,
                                 we specialize in connecting clients with exceptional properties that suit their lifestyle and investment goals. With a deep understanding of the real estate market,
                                 we pride ourselves on offering personalized guidance, transparent processes, and unparalleled service.
                                 Whether you’re looking for a dream home, a lucrative investment, or commercial spaces, our expert team is here to make your journey seamless and rewarding.
                             </p>
-                            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                            <p className=" mobile-subtitle-text text-lg text-slate-600 mb-8 leading-relaxed">
                                 At Ethos Pro Realtors, we believe in building lasting relationships founded on trust, integrity, and client satisfaction.
                                 Explore with us and discover opportunities that bring your vision to life.
                             </p>
@@ -138,7 +138,7 @@ const About = () => {
                                     <img
                                         src={AboutImg}
                                         alt="Modern home interior"
-                                        className="w-full h-96 object-cover rounded-2xl"
+                                        className="modern-home w-full h-96 object-cover rounded-2xl"
                                     />
                                 </div>
                                 <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-2xl">
@@ -155,7 +155,7 @@ const About = () => {
 
                     {/* Mission & Vision */}
                     <div className="grid lg:grid-cols-2 gap-12 mb-20">
-                        <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300">
+                        <div className=" bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300">
                             <div
                                 className="w-12 h-12 flex items-center justify-center rounded-xl"
                                 style={{
@@ -166,15 +166,15 @@ const About = () => {
                             >
                                 <Award className="w-6 h-6 text-black" />
                             </div>
-                            <h3 className="text-3xl font-bold text-slate-900 mb-4">Our Mission</h3>
-                            <p className="text-slate-600 leading-relaxed">
+                            <h3 className="mobile-title-text text-3xl font-bold text-slate-900 mb-4">Our Mission</h3>
+                            <p className="mobile-subtitle-text text-slate-600 leading-relaxed">
                                 At Ethos Pro Realtors, our mission is to empower clients with exceptional real estate solutions. We strive to connect people with properties that fulfill their dreams,
                                 deliver value, and enhance their lifestyles.
                                 Through trust, professionalism, and personalized service, we aim to simplify the property-buying journey and make it a rewarding experience for every client.
                             </p>
                         </div>
 
-                        <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300">
+                        <div className=" bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300">
                             <div
                                 className="w-12 h-12 flex items-center justify-center rounded-xl"
                                 style={{
@@ -186,8 +186,8 @@ const About = () => {
                             </div>
 
 
-                            <h3 className="text-3xl font-bold text-slate-900 mb-4">Our Vision</h3>
-                            <p className="text-slate-600 leading-relaxed">
+                            <h3 className="mobile-title-text text-3xl font-bold text-slate-900 mb-4">Our Vision</h3>
+                            <p className="mobile-subtitle-text text-slate-600 leading-relaxed">
                                 Our vision is to be a trusted leader in the real estate industry, setting new standards for excellence.
                                 We aspire to create lasting relationships, drive innovation, and deliver unparalleled value by transforming how people experience real estate.
                                 We see a future where every property decision leads to success and satisfaction.
@@ -209,8 +209,8 @@ const About = () => {
                                     Sell
                                 </span>
                             </div>
-                            <h3 className="text-4xl md:text-5xl font-bold text-slate-900">We help people Buy, Rent and Sell properties</h3>
-                            <p className="text-slate-600 p-4 text-xl font-[Inter]">Home buying can be a stressful process, but we take the guess work out of finding a real estate agent. We’ll help you find the perfect match to purchase your ideal home.</p>
+                            <h3 className="text-4xl md:text-5xl font-bold text-slate-900 mobile-subtitle-text">We help people Buy, Rent and Sell properties</h3>
+                            <p className="text-slate-600 p-4 text-xl fontFamily-Content mobile-subtitle-text">Home buying can be a stressful process, but we take the guess work out of finding a real estate agent. We’ll help you find the perfect match to purchase your ideal home.</p>
                         </div>
 
                         <div className="grid md:grid-cols-3 gap-8">

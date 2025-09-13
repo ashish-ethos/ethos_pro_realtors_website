@@ -252,3 +252,31 @@ body {
   color: #676869;
   font-weight: 300;
 }
+
+@media (max-width: 425px) {
+  .about-image {
+    height: 300px !important;
+  }
+  .main-about {
+    gap: 0px;
+  }
+  .modern-home {
+    height: auto !important;
+  }
+  .mobile-contact-image {
+    display: none;
+  }
+  .main-contact-section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .main-section-contact-grid {
+    display: block;
+  }
+  .right-column-contact {
+    margin-top: 10px;
+  }
+  .contact-info-cards {
+    padding: 15px !important;
+  }
+}

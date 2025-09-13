@@ -21,6 +21,7 @@ import CustomInput from '../../components/ui/Input';
 import { Facebook, Instagram, Linkedin, Twitter, X, Share2, Heart } from 'lucide-react';
 import { BsWhatsapp } from "react-icons/bs";
 import ContactForm from '../Contact/ContactForm';
+import './Project.css';
 
 const { Title, Text } = Typography;
 const { TextArea } = Input;
@@ -190,7 +191,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
     <div className="space-y-6">
       {/* Hero Section */}
       <PremiumCard gradient={true}>
-        <div className="flex justify-between items-start mb-4">
+        <div className="flex justify-between items-start mb-4 hero-section-header">
           <div>
             <Title level={3} className="m-0 text-gray-800 fontFamily-bebas">{project?.name || 'Property'}</Title>
             <div className="flex items-center mt-2 text-gray-600 fontFamily-bebas">

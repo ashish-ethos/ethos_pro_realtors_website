@@ -21,15 +21,15 @@ const Contact = () => {
         <div className="bg-gradient-to-br from-slate-50 to-blue-50">
             {/* Hero Section */}
             <div
-                className="relative h-[400px] w-full bg-cover bg-center flex items-center justify-end pr-10"
+                className="mobile-contact-image relative h-[400px] w-full bg-cover bg-center flex items-center justify-end pr-10"
                 style={{ backgroundImage: `url(${ContactImg})` }}
             >
                 <div className="absolute inset-0 z-0" />
             </div>
 
             {/* Main Section */}
-            <div className="container mx-auto px-4 py-10">
-                <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+            <div className="container mx-auto px-4 py-10 main-contact-section">
+                <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto main-section-contact-grid">
                     {/* Left Column: Form + Map */}
                     <div className="space-y-8">
                         {/* Contact Form */}
@@ -58,9 +58,9 @@ const Contact = () => {
                     </div>
 
                     {/* Right Column: Contact Cards, Office, Social */}
-                    <div className="space-y-8">
+                    <div className="space-y-8 right-column-contact">
                         {/* Contact Info Cards */}
-                        <div className="bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden">
+                        <div className="bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden contact-info-cards">
                             <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-blue-100 to-transparent rounded-full -mr-10 -mt-10"></div>
                             <h2 className="text-2xl font-bold text-gray-800 mb-6">For Inquiries Contact:</h2>
                             <div className="space-y-6">

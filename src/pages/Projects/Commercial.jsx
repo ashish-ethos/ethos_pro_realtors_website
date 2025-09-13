@@ -507,7 +507,7 @@ const Commercial = () => {
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Commercial Properties</h1>
+              <h1 className="mobile-title-text text-3xl font-bold text-gray-900">Commercial Properties</h1>
               <p className="text-gray-600 mt-1">{filteredProperties.length} properties available</p>
             </div>
             <div className="flex items-center gap-3">
@@ -536,7 +536,7 @@ const Commercial = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{ overflow: 'hidden' }}
             />
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               <CustomButton
                 onClick={() => setShowFilters(!showFilters)}
                 size="large"
