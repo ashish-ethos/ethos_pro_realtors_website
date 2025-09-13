@@ -175,6 +175,16 @@
   .blog-article-list{
     padding: 5px;
   }
+  .bottom-stats-content{
+    gap: 15px !important;
+    flex-direction: row !important;
+  }
+  .footer-bottom-links{
+    flex-direction: column;
+  }
+  .header-ourblog{
+    gap: 15px;
+  }
 }
 @keyframes float-right {
   0% {

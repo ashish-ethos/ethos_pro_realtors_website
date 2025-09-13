@@ -237,3 +237,18 @@ body {
 .react-tel-input .form-control:hover {
   border-color: #4096ff !important;
 }
+
+/* Mobile Responsive */
+@media (max-width: 425px) {
+  .mobile-title-text {
+    font-size: 30px !important;
+  }
+  .mobile-subtitle-text {
+    font-size: 16px !important;
+  }
+}
+
+.cross-mobile-icon {
+  color: #676869;
+  font-weight: 300;
+}

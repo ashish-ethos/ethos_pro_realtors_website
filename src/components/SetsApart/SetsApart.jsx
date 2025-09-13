@@ -101,7 +101,7 @@ const SetsApart = () => {
         transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
         className="relative z-10 max-w-6xl mx-auto text-center mb-12"
       >
-        <h2 className="text-3xl font-[Montserrat] md:text-5xl font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+        <h2 className="what-sets-text mobile-title-text text-3xl font-[Montserrat] md:text-5xl font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
           What Sets Us Apart
         </h2>
         

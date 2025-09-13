@@ -1146,11 +1146,11 @@ const ExploreProperties = ({ filters = {} }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-amber-50 to-amber-100 py-8 sm:py-12 px-4">
       <div className="max-w-full sm:max-w-7xl mx-auto mb-8 sm:mb-12 text-center">
-        <h1 className="text-3xl font-[Montserrat] sm:text-5xl md:text-6xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+        <h1 className="mobile-title-text text-3xl font-[Montserrat] sm:text-5xl md:text-6xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
           Explore Premium Properties
         </h1>
         <div className="h-1 bg-gradient-to-r from-transparent via-[#c99913] to-transparent rounded-full animate-pulse"></div>
-        <p className="text-gray-600 text-sm font-[sans-serif] sm:text-lg max-w-full sm:max-w-2xl mx-auto mt-2 font-[Inter]">
+        <p className="mobile-subtitle-text text-gray-600 text-sm font-[sans-serif] sm:text-lg max-w-full sm:max-w-2xl mx-auto mt-2 font-[Inter]">
           Discover a diverse collection of premium properties, from luxurious residences to high-end commercial spaces.
           Browse through the latest listings, featuring stunning architecture, prime locations,
           and exceptional investment opportunities. Discover the perfect investment or dream residence with ease.

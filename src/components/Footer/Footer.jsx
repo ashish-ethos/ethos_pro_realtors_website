@@ -3,6 +3,7 @@ import { MapPin, Phone, Mail, ArrowRight, Facebook, Instagram, MessageCircle, Li
 import { BsWhatsapp } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import logotab from "../../assets/images/logo/logotab.png";
+import "../OurTeam/OurTeam.css";
 
 function Footer() {
   const [email, setEmail] = useState("");
@@ -153,7 +154,7 @@ function Footer() {
               <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-blue-400 to-purple-400 rounded-lg blur opacity-20 animate-pulse" />
             </h2>
 
-            <p className="text-xl text-gray-300 mb-12 max-w-2xl font-bebas mx-auto leading-relaxed">
+            <p className="text-xl mobile-subtitle-text text-gray-300 mb-12 max-w-2xl font-bebas mx-auto leading-relaxed">
               Get exclusive property deals, market insights, and investment opportunities delivered to your inbox
             </p>
 
@@ -253,7 +254,7 @@ function Footer() {
               </div>
 
 
-              <p className="text-gray-300 leading-relaxed font-bebas text-lg mb-6">
+              <p className="text-gray-300 mobile-subtitle-text leading-relaxed font-bebas text-lg mb-6">
                 Your property, Our Priority. As trusted channel partners with top builders, we're dedicated to connecting you with the finest properties that meet your goals.
               </p>
 
@@ -462,7 +463,7 @@ function Footer() {
       <div className="relative border-t border-gray-800/50 bg-black/80 backdrop-blur-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-            <div className="flex flex-col sm:flex-row items-center text-center gap-4 text-sm text-gray-400">
+            <div className="flex flex-col sm:flex-row items-center text-center gap-4 text-sm text-gray-400 footer-bottom-links">
               <p className="fontFamily-bebas">© {new Date().getFullYear()} Ethos Pro Realtors. All Rights Reserved.</p>
               <div className="flex items-center gap-4">
                 <Link to="/privacy-policy" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>

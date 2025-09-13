@@ -327,7 +327,7 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
             </div>
           </div>
           <div className="space-y-3">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-bebas">Contact Information</h3>
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-Content">Contact Information</h3>
             <div className="space-y-2">
               <div className="flex items-center gap-3 text-gray-600">
                 <PhoneOutlined className="text-[#c99913]" />
@@ -341,14 +341,14 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
           </div>
           <Divider />
           <div className="space-y-3">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-bebas">About</h3>
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-Content">About</h3>
             <p className="text-gray-700 leading-relaxed text-sm break-words">
               {member.bio}
             </p>
           </div>
           <Divider />
           <div className="space-y-3">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-bebas">Skills & Expertise</h3>
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-Content">Skills & Expertise</h3>
             <div className="flex flex-wrap gap-2">
               {member.skills.map((skill, index) => (
                 <Tag
@@ -363,7 +363,7 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
           </div>
           <Divider />
           <div className="space-y-3">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-bebas">Achievements</h3>
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-Content">Achievements</h3>
             <div className="flex flex-wrap gap-2">
               {member.achievements.map((achievement, index) => (
                 <div key={index} className="flex items-center gap-2">
@@ -375,7 +375,7 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
           </div>
           <Divider />
           <div className="space-y-2">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-bebas">Specializations</h3>
+            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-Content">Specializations</h3>
             <div className="flex flex-wrap gap-2">
               {member.specializations.map((spec, index) => (
                 <div
@@ -521,11 +521,11 @@ const OurTeam = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16 our-team-text">
           <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h3 className="text-4xl font-[Montserrat] md:text-5xl font-black mb-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+            <h3 className="text-4xl mobile-title-text font-[Montserrat] md:text-5xl font-black mb-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
               Meet Our Team
             </h3>
             <div className="w-50 h-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] mx-auto mb-4 rounded-full"></div>
-            <p className="text-lg text-gray-600 font-bebas max-w-xl mx-auto leading-relaxed font-medium">
+            <p className="text-lg mobile-subtitle-text text-gray-600 font-bebas max-w-xl mx-auto leading-relaxed font-medium">
               "Your Real Estate Experts, Ready to Serve"
             </p>
           </div>

@@ -60,3 +60,19 @@
     padding-top: 10px;
   }
 }
+
+@media (max-width: 425px) {
+  .whychoose-subtitle {
+    font-size: 16px;
+    padding: 5px 10px;
+  }
+  .bottom-whychoose-content {
+    padding: 10px ;
+  }
+  .testimonial-text-content{
+    font-size: 20px;
+  }
+  .testimonial-subtitle{
+    font-size: 14px;
+  }
+}

@@ -5,6 +5,7 @@ import Rishi from "../../assets/images/home/rishi-dhawan.png";
 import Rahul from "../../assets/images/home/rahul-dewan.webp";
 import Paras from "../../assets/images/home/Paras-Dogra.jpg";
 import Kabir from "../../assets/images/home/kabir-duhan-singh.jpg";
+import '../WhyChooseus/WhyChooseus.css';
 
 const Testimonial = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -96,7 +97,7 @@ const Testimonial = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex flex-col items-center justify-center space-x-2 mb-6">
-            <p className="text-xl font-[Montserrat] md:text-2xl font-black bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+            <p className="text-xl mobile-title-text font-[Montserrat] md:text-2xl font-black bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
               TESTIMONIALS
             </p>
   
@@ -108,10 +109,10 @@ const Testimonial = () => {
               <Star key={i} className="w-6 h-6 text-yellow-400 fill-current mx-0.5" />
             ))}
           </div>
-          <h2 className="text-5xl md:text-6xl font-[Montserrat] font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent mb-6 testimonial-text-content">
+          <h2 className="text-5xl md:text-6xl  font-[Montserrat] font-bold bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent mb-6 testimonial-text-content">
             What Our Clients Have To Say About Us?
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl font-bebas mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 max-w-3xl font-bebas mx-auto leading-relaxed testimonial-subtitle">
             Discover why our clients trust us for their real estate needs. Their success is our greatest achievement.
             Read their stories to see how we've helped them find their perfect property.
           </p>

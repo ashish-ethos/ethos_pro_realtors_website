@@ -217,7 +217,7 @@ const ContactForm = ({ onSubmitSuccess }) => {
                                 type="submit"
                                 disabled={loading}
                                 className={`w-auto px-6 py-2 rounded-xl text-white font-semibold transition ${
-                                    loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+                                    loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:ring-sky-100'
                                 }`}
                             >
                                 {loading ? (

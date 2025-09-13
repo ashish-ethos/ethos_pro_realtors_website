@@ -179,18 +179,18 @@ function DifferentCities() {
           </div>
 
           <h1 className={`text-3xl sm:text-5xl lg:text-7xl font-black mb-6 sm:mb-8 transition-all duration-1200 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            <span className="bg-gradient-to-r font-[Montserrat] from-white via-yellow-200 to-yellow-400 bg-clip-text text-transparent animate-pulse">
+            <span className="mobile-title-text bg-gradient-to-r font-[Montserrat] from-white via-yellow-200 to-yellow-400 bg-clip-text text-transparent animate-pulse">
               Popular Places
             </span>
             <br />
-            <span className="bg-gradient-to-r font-[Montserrat] from-yellow-400 via-amber-300 to-white bg-clip-text text-transparent">
+            <span className="mobile-title-text bg-gradient-to-r font-[Montserrat] from-yellow-400 via-amber-300 to-white bg-clip-text text-transparent">
               to Invest
             </span>
           </h1>
 
           <div className={`max-w-full sm:max-w-4xl mx-auto mb-8 sm:mb-12 transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
             <div className="bg-black/20 backdrop-blur-md rounded-2xl p-4 sm:p-8 shadow-2xl border border-yellow-400/20">
-              <p className="text-sm sm:text-lg text-gray-200 leading-relaxed font-light">
+              <p className="mobile-subtitle-text text-sm sm:text-lg text-gray-200 leading-relaxed font-light">
                 Discover premium real estate opportunities with
                 <span className="text-yellow-400 font-medium"> Ethos Pro Realtors</span>.
                 Whether you're seeking a

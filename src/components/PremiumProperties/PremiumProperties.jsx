@@ -227,10 +227,10 @@ function PremiumProperties() {
       <div className="container mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="text-5xl md:text-6xl font-[Montserrat] font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+          <h1 className="mobile-title-text text-5xl md:text-6xl font-[Montserrat] font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
             Top Handpicked Deals
           </h1>
-          <p className="text-xl font-bebas text-gray-600 font-medium mt-6 font-light max-w-2xl mx-auto">
+          <p className="mobile-subtitle-text text-xl font-bebas text-gray-600 font-medium mt-6 font-light max-w-2xl mx-auto ">
             Premium Properties at the Best Prices!
           </p>
         </div>
@@ -252,7 +252,7 @@ function PremiumProperties() {
         {/* Carousel */}
         <div className="overflow-hidden py-4">
           <div
-            className="flex transition-transform duration-1000 ease-out gap-8"
+            className="flex transition-transform duration-1000 ease-out gap-8 main-carousel"
             style={{
               transform: `translateX(-${currentIndex * (100 / properties.length)}%)`,
               width: `${properties.length * (100 / visibleCards)}%`,
@@ -261,7 +261,7 @@ function PremiumProperties() {
             {properties.map((property) => (
               <div
                 key={property.id}
-                className={`relative flex-shrink-0 w-[calc(100%/${visibleCards}-2rem)] transition-all duration-700 ${hoveredCard === property.id ? "scale-105 z-20" : "scale-100"
+                className={`carousel-card relative flex-shrink-0 w-[calc(100%/${visibleCards}-2rem)] transition-all duration-700 ${hoveredCard === property.id ? "scale-105 z-20" : "scale-100"
                   }`}
                 onMouseEnter={() => setHoveredCard(property.id)}
                 onMouseLeave={() => setHoveredCard(null)}
@@ -288,7 +288,7 @@ function PremiumProperties() {
 
                   {/* Content */}
                   <div className="p-6">
-                    <div className="flex items-center gap-3 mb-4">
+                    <div className="flex items-center gap-3 mb-4 content-mobile-price">
                       <span className="text-2xl font-bold fontFamily-bebas">{property.price}</span>
                       <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1  rounded">Base Price {property.basePrice} </span>
                     </div>

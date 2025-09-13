@@ -60,7 +60,7 @@ const AssociatedDevelopers = () => {
         {/* Section Header */}
         <div className="text-center">
           <div className="inline-block relative mb-4 sm:mb-6">
-            <h2 className="text-2xl sm:text-4xl md:text-6xl font-black font-[Montserrat] text-transparent bg-clip-text bg-gradient-to-r from-slate-800 via-slate-600 to-slate-800 tracking-tight">
+            <h2 className="text-2xl mobile-title-text sm:text-4xl md:text-6xl font-black font-[Montserrat] text-transparent bg-clip-text bg-gradient-to-r from-slate-800 via-slate-600 to-slate-800 tracking-tight">
               Associated Developers
             </h2>
             <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full"></div>
@@ -104,10 +104,10 @@ const AssociatedDevelopers = () => {
         <div className="bottom-stats mt-4">
           <div className="text-center mb-8">
             <div className="inline-flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 bg-white/60 backdrop-blur-sm rounded-lg sm:rounded-full px-6 sm:px-8 py-4 border border-blue-200 shadow-lg">
-              <div className="flex flex-col sm:flex-row sm:space-x-8 text-slate-700">
+              <div className="flex flex-col sm:flex-row sm:space-x-8 text-slate-700 bottom-stats-content">
                 <div className="text-center group cursor-pointer">
                   <div className="text-lg sm:text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors duration-300">15+</div>
-                  <div className="text-xs sm:text-sm uppercase tracking-wider font-medium font-[Inter]">Partners</div>
+                  <div className="text-xs sm:text-sm uppercase tracking-wider font-medibottom-stats-contentum font-[Inter]">Partners</div>
                 </div>
                 <div className="w-full sm:w-px h-px sm:h-12 bg-gray-300 my-4 sm:my-0"></div>
                 <div className="text-center group cursor-pointer">

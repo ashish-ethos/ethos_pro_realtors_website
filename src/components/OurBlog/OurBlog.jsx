@@ -520,12 +520,12 @@ const OurBlog = () => {
 
             <div className="max-w-7xl mx-auto relative z-10">
                 {/* Header Section */}
-                <div className="w-full flex flex-col gap-12">
+                <div className="w-full flex flex-col gap-12 header-ourblog">
                     {/* Row 1 */}
                     <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
                         <div className="inline-flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-200">
                             <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                            <span className="text-gray-700 font-semibold text-lg">
+                            <span className="mobile-subtitle-text text-gray-700 font-semibold text-lg">
                                 Latest Real Estate Insights
                             </span>
                             <div className="w-12 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-xs font-bold text-white">
@@ -545,15 +545,15 @@ const OurBlog = () => {
                     </div>
 
                     {/* Row 2 */}
-                    <div className="flex flex-col lg:flex-row justify-between items-start gap-10">
+                    <div className="flex flex-col lg:flex-row justify-between items-start gap-10 header-ourblog">
                         {/* Left Section - Blog Heading + Content */}
                         <div className="flex-1 text-center lg:text-left">
                             <h1 className="text-5xl lg:text-7xl font-black mb-4 leading-none">
-                                <span className="block font-[Montserrat] bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent">
+                                <span className="block mobile-title-text font-[Montserrat] bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent">
                                     Our Blog
                                 </span>
                             </h1>
-                            <p className="text-lg lg:text-xl font-bebas text-gray-600 max-w-2xl leading-relaxed mx-auto lg:mx-0">
+                            <p className="text-lg mobile-subtitle-text lg:text-xl font-bebas text-gray-600 max-w-2xl leading-relaxed mx-auto lg:mx-0">
                                 Dive deep into the world of real estate with our expert insights,
                                 market analysis, and investment strategies that drive success.
                             </p>
@@ -562,15 +562,15 @@ const OurBlog = () => {
                         {/* Right Section - Stats */}
                         <div className="flex justify-center lg:justify-end gap-6 w-full lg:w-auto">
                             <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 px-4 shadow-lg border border-blue-200 text-center stats-section">
-                                <div className="text-3xl font-bold text-blue-600">50+</div>
+                                <div className="text-2xl font-bold text-blue-600">50+</div>
                                 <div className="text-gray-600 text-sm">Articles</div>
                             </div>
                             <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 px-4 shadow-lg border border-purple-200 text-center stats-section">
-                                <div className="text-3xl font-bold text-purple-600">10k+</div>
+                                <div className="text-2xl font-bold text-purple-600">10k+</div>
                                 <div className="text-gray-600 text-sm">Readers</div>
                             </div>
                             <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 px-4 shadow-lg border border-indigo-200 text-center stats-section">
-                                <div className="text-3xl font-bold text-indigo-600">5★</div>
+                                <div className="text-2xl font-bold text-indigo-600">5★</div>
                                 <div className="text-gray-600 text-sm">Rating</div>
                             </div>
                         </div>

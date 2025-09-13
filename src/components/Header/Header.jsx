@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { FaBars, FaTimes, FaCaretDown } from "react-icons/fa";
+import {  FaCaretDown } from "react-icons/fa";
+import { Menu ,X } from 'lucide-react';
 import { IoIosArrowDown } from "react-icons/io";
-import { Dropdown, Space } from "antd"; // Import Ant Design components
+import { Dropdown, Space } from "antd"; 
 import "./Header.css";
 import CompanyHeaderLogo from "../../assets/images/logo/ethos_pro_realtors_logo.jpg";
 import MobileHeaderLogo from "../../assets/images/logo/EPR_logo.png";
@@ -35,8 +36,7 @@ function Header() {
 
   // Handle dropdown item click
   const onClick = ({ key }) => {
-    // Optionally handle clicks (e.g., show a message or navigate)
-    // Since we're using NavLink for navigation, this can be empty or customized
+    
   };
 
   // Map dropdown items for Ant Design
@@ -94,7 +94,7 @@ function Header() {
                   menu={{ items: getDropdownItems(item.dropdown), onClick }}
                   trigger={["hover"]}
                   open={item.name === hoveredItem}
-                  overlayClassName="custom-dropdown" // Custom class for styling
+                  overlayClassName="custom-dropdown" 
                 >
                   <span className="flex items-center font-medium cursor-pointer">
                     {item.name} <IoIosArrowDown className="ml-1 mt-1" />
@@ -132,22 +132,22 @@ function Header() {
           className="md:hidden text-3xl"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <FaTimes /> : <FaBars className="w-6 h-6" />}
+          {mobileOpen ? <X className="w-6 h-6 text-gray-400 cross-mobile-icon" /> : <Menu className="w-6 h-6 cross-mobile-icon" />}
         </button>
       </div>
 
       {/* Mobile Nav */}
       <div
-        className={`md:hidden bg-white shadow-lg fixed top-16 right-0 w-64 h-screen transition-transform duration-500 ${
+        className={`md:hidden bg-white shadow-lg fixed top-12 right-0 w-64 h-screen transition-transform duration-500 ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <ul className="flex flex-col p-6 space-y-4">
+        <ul className="flex flex-col p-4 space-y-4">
           {navItems.map((item) =>
             item.dropdown ? (
               <li key={item.name}>
                 <button
-                  className="flex items-center justify-between w-full text-left font-medium"
+                  className="flex items-center justify-between fontFamily-bebas w-full text-left font-medium"
                   onClick={() => setProjectsOpen(!projectsOpen)}
                 >
                   {item.name} <FaCaretDown />
