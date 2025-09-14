@@ -1088,7 +1088,7 @@ const ExploreProperties = ({ filters = {} }) => {
                   rel={action.href ? 'noopener noreferrer' : undefined}
                 >
                   <action.icon className="w-3 h-3 sm:w-4 sm:h-4" />
-                  <span className="text-[10px] sm:text-sm font-medium">{action.label}</span>
+                  <span className="sm:text-sm font-medium">{action.label}</span>
                 </CustomButton>
               ))}
               <div>
