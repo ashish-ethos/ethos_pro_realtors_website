@@ -198,7 +198,7 @@ const Commercial = () => {
           </div>
           <div className="absolute top-4 right-4 flex gap-2">
             <button
-              className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors"
+              className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 onToggleLike(property.id);
@@ -208,7 +208,7 @@ const Commercial = () => {
             </button>
             <button
               onClick={handleShareClick}
-              className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors"
+              className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors cursor-pointer"
             >
               <Share2 size={16} className="text-gray-600" />
             </button>
@@ -217,7 +217,7 @@ const Commercial = () => {
             <div className="absolute top-12 right-4 bg-white rounded-lg shadow-xl w-40 z-50">
               <div className="flex justify-between items-center px-2 py-1">
                 <h4 className="text-xs font-semibold text-gray-800">Share Property</h4>
-                <button onClick={handleClosePopup} className="p-1 hover:bg-gray-100 rounded-full">
+                <button onClick={handleClosePopup} className="p-1 hover:bg-gray-100 rounded-full cursor-pointer transition-colors">
                   <X size={16} className="text-gray-600" />
                 </button>
               </div>
@@ -470,7 +470,7 @@ const Commercial = () => {
                 <div className="absolute right-0 bottom-full mt-2 bg-white rounded-lg shadow-xl w-40 z-50">
                   <div className="flex justify-between items-center px-2 py-1">
                     <h4 className="text-xs font-semibold text-gray-800">Share Property</h4>
-                    <button onClick={handleClosePopup} className="p-1 hover:bg-gray-100 rounded-full">
+                    <button onClick={handleClosePopup} className="p-1 hover:bg-gray-100 rounded-full cursor-pointer transition-colors">
                       <X size={16} className="text-gray-600" />
                     </button>
                   </div>

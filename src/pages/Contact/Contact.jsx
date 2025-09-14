@@ -37,7 +37,7 @@ const Contact = () => {
 
                         {/* Map Card below form */}
                         <div className="bg-white rounded-xl shadow-xl overflow-hidden max-w-4xl mx-auto mt-12">
-                            <div className="bg-transparent flex items-center gap-1 from-black p-2">
+                            <div className="bg-transparent flex items-center gap-1 from-black p-2 px-4 ">
                                 <MapPinned className="text-gray-800" />
                                 <h2 className="text-xl font-bold text-black font-[Inter]">Our Location</h2>
                             </div>

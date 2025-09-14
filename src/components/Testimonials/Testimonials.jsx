@@ -97,11 +97,11 @@ const Testimonial = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex flex-col items-center justify-center space-x-2 mb-6">
-            <p className="text-xl mobile-title-text font-[Montserrat] md:text-2xl font-black bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+            <p className="text-xl md:text-4xl mobile-title-text font-[Montserrat] md:text-2xl font-black bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
               TESTIMONIALS
             </p>
   
-            <div className="h-1 mt-2 w-60 bg-gradient-to-r from-black via-[#474236] to-[#c99913] rounded-full animate-pulse"></div>
+            <div className="h-1 mt-2 w-40 bg-gradient-to-r from-black via-[#474236] to-[#c99913] rounded-full animate-pulse"></div>
           </div>
 
           <div className="flex justify-center mb-6">

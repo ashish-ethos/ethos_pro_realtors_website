@@ -234,7 +234,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
                     <h4 className="text-xs font-semibold text-gray-800">Share Property</h4>
                     <button
                       onClick={() => setIsSharePopupOpen(false)}
-                      className="p-1 hover:bg-gray-100 rounded-full"
+                      className="p-1 hover:bg-gray-100 rounded-full cursor-pointer transition-colors"
                     >
                       <X size={16} className="text-gray-600" />
                     </button>

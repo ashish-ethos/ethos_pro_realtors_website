@@ -245,8 +245,8 @@ const Residentials = () => {
             <div className="absolute top-12 right-4 bg-white rounded-lg shadow-xl w-40 z-50">
               <div className="flex justify-between items-center px-2 py-1">
                 <h4 className="text-xs font-semibold text-gray-800">Share Property</h4>
-                <button onClick={handleClosePopup} className="p-1 hover:bg-gray-100 rounded-full">
-                  <X size={16} className="text-gray-600" />
+                <button onClick={handleClosePopup} className="p-1 hover:bg-gray-100 rounded-full cursor-pointer transition-colors">
+                  <X size={16} className="text-gray-600 cursor-pointer" />
                 </button>
               </div>
               <div className="flex flex-col mb-1 gap-1">
@@ -527,8 +527,8 @@ const Residentials = () => {
                 <div className="absolute right-0 bottom-full mt-2 bg-white rounded-lg shadow-xl w-40 z-50">
                   <div className="flex justify-between items-center px-2 py-1">
                     <h4 className="text-xs font-semibold text-gray-800">Share Property</h4>
-                    <button onClick={handleClosePopup} className="p-1 hover:bg-gray-100 rounded-full">
-                      <X size={16} className="text-gray-600" />
+                    <button onClick={handleClosePopup} className="p-1 hover:bg-gray-100 rounded-full cursor-pointer transition-colors">
+                      <X size={16} className="text-gray-600 cursor-pointer" />
                     </button>
                   </div>
                   <div className="flex flex-col gap-1 p-2">

@@ -114,9 +114,9 @@ const About = () => {
                             <p className="text-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4 tracking-wider uppercase">
                                 Our Story
                             </p>
-                            <h3 className="mobile-title-text text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6 mr-1 leading-tight">
+                            <h3 className="mobile-title-text text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6 mr-1 leading-tight fontFamily-bebas">
                                 Building Dreams
-                                <span className="bg-gradient-to-r ml-2 from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                                <span className="bg-gradient-to-r ml-2 from-blue-400 to-purple-400 bg-clip-text text-transparent fontFamily-bebas">
                                     Creating Futures
                                 </span>
                             </h3>
@@ -166,8 +166,8 @@ const About = () => {
                             >
                                 <Award className="w-6 h-6 text-black" />
                             </div>
-                            <h3 className="mobile-title-text text-3xl font-bold text-slate-900 mb-4">Our Mission</h3>
-                            <p className="mobile-subtitle-text text-slate-600 leading-relaxed">
+                            <h3 className="mobile-title-text text-3xl font-bold text-slate-900 mb-4 fontFamily-bebas">Our Mission</h3>
+                            <p className="mobile-subtitle-text text-slate-600 leading-relaxed fontFamily-Content">
                                 At Ethos Pro Realtors, our mission is to empower clients with exceptional real estate solutions. We strive to connect people with properties that fulfill their dreams,
                                 deliver value, and enhance their lifestyles.
                                 Through trust, professionalism, and personalized service, we aim to simplify the property-buying journey and make it a rewarding experience for every client.
@@ -186,8 +186,8 @@ const About = () => {
                             </div>
 
 
-                            <h3 className="mobile-title-text text-3xl font-bold text-slate-900 mb-4">Our Vision</h3>
-                            <p className="mobile-subtitle-text text-slate-600 leading-relaxed">
+                            <h3 className="mobile-title-text text-3xl font-bold text-slate-900 mb-4 fontFamily-bebas">Our Vision</h3>
+                            <p className="mobile-subtitle-text text-slate-600 leading-relaxed fontFamily-Content">
                                 Our vision is to be a trusted leader in the real estate industry, setting new standards for excellence.
                                 We aspire to create lasting relationships, drive innovation, and deliver unparalleled value by transforming how people experience real estate.
                                 We see a future where every property decision leads to success and satisfaction.
@@ -209,8 +209,8 @@ const About = () => {
                                     Sell
                                 </span>
                             </div>
-                            <h3 className="text-4xl md:text-5xl font-bold text-slate-900 mobile-subtitle-text">We help people Buy, Rent and Sell properties</h3>
-                            <p className="text-slate-600 p-4 text-xl fontFamily-Content mobile-subtitle-text">Home buying can be a stressful process, but we take the guess work out of finding a real estate agent. We’ll help you find the perfect match to purchase your ideal home.</p>
+                            <h3 className="text-4xl md:text-5xl font-bold text-slate-900 mobile-subtitle-text fontFamily-bebas">We help people Buy, Rent and Sell properties</h3>
+                            <p className="text-slate-600 p-4 text-xl fontFamily-Content mobile-subtitle-text fontFamily-Content">Home buying can be a stressful process, but we take the guess work out of finding a real estate agent. We’ll help you find the perfect match to purchase your ideal home.</p>
                         </div>
 
                         <div className="grid md:grid-cols-3 gap-8">
@@ -222,8 +222,8 @@ const About = () => {
                                     <div className="bg-gradient-to-br from-blue-500 to-purple-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
                                         <value.icon className="w-6 h-6 text-white" />
                                     </div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-4">{value.title}</h3>
-                                    <p className="text-slate-600 leading-relaxed">{value.description}</p>
+                                    <h3 className="text-2xl font-bold text-slate-900 mb-4 fontFamily-bebas">{value.title}</h3>
+                                    <p className="text-slate-600 leading-relaxed fontFamily-Content">{value.description}</p>
                                 </div>
                             ))}
                         </div>
