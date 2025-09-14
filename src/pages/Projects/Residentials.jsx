@@ -1,6 +1,5 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
-import { Input, Typography } from 'antd';
+import { Input, Typography, Pagination } from 'antd';
 import { FilterOutlined, DownOutlined, SearchOutlined as SearchIcon } from '@ant-design/icons';
 import { Grid, List, MapPinHouse, Bed, Bath, LandPlot, Heart, Share2, Eye, Star, X, Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 import ViewDetailsDrawer from './ViewDetailsDrawer';
@@ -26,11 +25,12 @@ const Residentials = () => {
   });
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilters, setShowFilters] = useState(false);
-  const [showAll, setShowAll] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [likedProperties, setLikedProperties] = useState([]);
   const [showLikedOnly, setShowLikedOnly] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
   const navigate = useNavigate();
   const location = useLocation();
   const { propertyName } = useParams();
@@ -49,6 +49,10 @@ const Residentials = () => {
       setSelectedProperty(null);
     }
   }, [propertyName]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, filters, sortBy, showLikedOnly]);
 
   const toggleLike = (propertyId) => {
     setLikedProperties((prev) =>
@@ -119,7 +123,10 @@ const Residentials = () => {
     }
   }, [searchTerm, filters, sortBy, likedProperties, showLikedOnly]);
 
-  const displayedProperties = showAll ? filteredProperties : filteredProperties.slice(0, 6);
+  const displayedProperties = filteredProperties.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   const handleViewDetails = (property) => {
     setSelectedProperty(property);
@@ -729,30 +736,15 @@ const Residentials = () => {
                 </div>
               ))}
             </div>
-            {filteredProperties.length > 6 && (
-              <div className="mt-8 flex justify-center gap-4">
-                {!showAll && (
-                  <CustomButton
-                    type="primary"
-                    size="large"
-                    onClick={() => setShowAll(true)}
-                    className="property-card-action-button"
-                  >
-                    View More
-                  </CustomButton>
-                )}
-                {showAll && (
-                  <CustomButton
-                    type="default"
-                    size="large"
-                    onClick={() => setShowAll(false)}
-                    className="property-card-action-button"
-                  >
-                    View Less
-                  </CustomButton>
-                )}
-              </div>
-            )}
+            <div className="mt-8 flex justify-center">
+              <Pagination
+                current={currentPage}
+                total={filteredProperties.length}
+                pageSize={itemsPerPage}
+                onChange={(page) => setCurrentPage(page)}
+                showSizeChanger={false}
+              />
+            </div>
           </>
         )}
       </div>

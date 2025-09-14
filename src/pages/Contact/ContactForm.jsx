@@ -8,7 +8,7 @@ import CustomInput from '../../components/ui/Input';
 const ContactForm = ({ onSubmitSuccess }) => {
     const [formData, setFormData] = useState({
         name: '',
-        phone: '+91', 
+        phone: '+91',
         email: '',
         message: '',
     });
@@ -19,7 +19,6 @@ const ContactForm = ({ onSubmitSuccess }) => {
     const { TextArea } = Input;
 
     const handleChange = (e) => {
-        console.log(`Input Changed: ${e.target.name} = ${e.target.value}`);
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
@@ -28,9 +27,7 @@ const ContactForm = ({ onSubmitSuccess }) => {
     };
 
     const handlePhoneChange = (value, countryData, e, formattedValue) => {
-        console.log('Phone Input Changed:', { value, countryData, formattedValue });
         const fullPhone = formattedValue ? formattedValue.replace(/[\s-]/g, '') : `+${countryData.dialCode}${value}`;
-        console.log('Cleaned Phone:', fullPhone);
         if (fullPhone.startsWith('+91') && fullPhone.length !== 12) {
             setError('Phone number must be 10 digits after +91');
         } else {
@@ -44,19 +41,16 @@ const ContactForm = ({ onSubmitSuccess }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Submit Button Clicked');
         setLoading(true);
         setError(null);
 
         if (!/^\+91\d{10}$/.test(formData.phone)) {
-            console.log('Phone Validation Failed:', formData.phone);
             setError('Phone number must be 10 digits after +91');
             setLoading(false);
             return;
         }
 
         try {
-            console.log('Form Submission Started:', formData);
 
             const formBody = new URLSearchParams({
                 name: formData.name,
@@ -65,7 +59,6 @@ const ContactForm = ({ onSubmitSuccess }) => {
                 message: formData.message,
             }).toString();
 
-            console.log('Form Data Sent:', formBody);
 
             const response = await fetch('https://thespitihomes.in/ethoswebsite/enquiry-form.php', {
                 method: 'POST',
@@ -77,14 +70,9 @@ const ContactForm = ({ onSubmitSuccess }) => {
                 redirect: 'manual',
             });
 
-            console.log('API Response Status:', response.status);
-            console.log('API Response Redirected:', response.redirected);
-            console.log('API Response Headers:', [...response.headers.entries()]);
 
             if (response.redirected) {
-                console.log('Redirect detected, status:', response.status);
                 const redirectedUrl = response.headers.get('location');
-                console.log('Redirected to:', redirectedUrl);
                 setSubmitted(true);
                 setFormData({ name: '', phone: '+91', email: '', message: '' });
                 if (onSubmitSuccess) onSubmitSuccess();
@@ -93,10 +81,8 @@ const ContactForm = ({ onSubmitSuccess }) => {
             }
 
             const result = await response.json();
-            console.log('API Response Body:', result);
 
             if (result.status === 'success') {
-                console.log('Form submission successful: API returned success');
                 setSubmitted(true);
                 setFormData({ name: '', phone: '+91', email: '', message: '' });
                 if (onSubmitSuccess) onSubmitSuccess();
@@ -105,7 +91,6 @@ const ContactForm = ({ onSubmitSuccess }) => {
                 const errorMessages = result.errors
                     ? Object.values(result.errors).join(' ')
                     : result.message || 'Something went wrong';
-                console.log('Form submission failed:', errorMessages);
                 throw new Error(errorMessages);
             }
         } catch (err) {
@@ -117,7 +102,6 @@ const ContactForm = ({ onSubmitSuccess }) => {
             setError(err.message || 'Failed to submit the form. Check your network or server configuration.');
         } finally {
             setLoading(false);
-            console.log('Form Submission Ended');
         }
     };
 
@@ -216,9 +200,8 @@ const ContactForm = ({ onSubmitSuccess }) => {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className={`w-auto px-6 py-2 rounded-xl text-white font-semibold transition ${
-                                    loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:ring-sky-100'
-                                }`}
+                                className={`w-auto px-6 py-2 rounded-xl text-white font-semibold transition ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:ring-sky-100'
+                                    }`}
                             >
                                 {loading ? (
                                     <div className="flex items-center justify-center">

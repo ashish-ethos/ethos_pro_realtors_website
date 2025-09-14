@@ -14,7 +14,6 @@ import ContactImg from '../../assets/images/about/4.png';
 import ContactForm from './ContactForm'; 
 const Contact = () => {
     const handleSubmitSuccess = () => {
-        console.log('Form submission success callback triggered');
     };
 
     return (

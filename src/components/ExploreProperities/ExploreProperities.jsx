@@ -33,6 +33,7 @@ import AIPLBusinessClub from "../../assets/images/exploreproperties/aipl-busines
 import Cygnett from "../../assets/images/exploreproperties/cygnett-retreat.jpg";
 import Sobha from "../../assets/images/exploreproperties/sobha-international.webp";
 import Elan from "../../assets/images/exploreproperties/Elan-The-Mark_img.webp";
+import PionerUrban from "../../assets/images/exploreproperties/pioneer_urban.jpg";
 import ElanThePersidential from "../../assets/images/exploreproperties/Elan-The-Presidential.jpg";
 import Trinity from "../../assets/images/exploreproperties/Trinity-Sky-Palazzos.jpg";
 
@@ -244,7 +245,7 @@ const ExploreProperties = ({ filters = {} }) => {
       name: 'The Omaxe State',
       location: 'The Omaxe State, Sector 198, Sector 24 Dwarka, Dwarka, Delhi, India',
       size: '50 – 10000 Sq Ft',
-      price: '₹30,000+ Sq Ft',
+      price: '₹ Price on Request',
       image: Omaxstate,
       options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
       rating: 4.8,
@@ -393,6 +394,19 @@ const ExploreProperties = ({ filters = {} }) => {
       rating: 4.8,
       views: 1400,
       description: 'Trinity Sky Palazzos provides premium residential living in Sector 88B.'
+    },
+    {
+      id: '27',
+      type: 'Apartment/Residential',
+      name: 'Pioneer Urban Presidia',
+      location: 'Pioneer Presidia, Sector 62, Gurugram, Ghata, Haryana, India',
+      size: 'Size on Request',
+      price: '₹ Price on Request',
+      image: PionerUrban,
+      options: ['FOR RENT', 'FOR SALE', 'HOT OFFER'],
+      rating: 4.8,
+      views: 1400,
+      description: 'Pioneer Urban Presidia provides premium residential living in Sector 62.'
     }
   ];
 
@@ -547,14 +561,12 @@ const ExploreProperties = ({ filters = {} }) => {
     // Handle contact form submission
     const handleContactSubmit = (e) => {
       e.preventDefault();
-      console.log('Contact Form Submitted:', contactForm);
       // Add your submission logic here (e.g., API call)
     };
 
     // Handle tour form submission
     const handleTourSubmit = (e) => {
       e.preventDefault();
-      console.log('Tour Form Submitted:', tourForm);
       // Add your submission logic here (e.g., API call)
     };
 

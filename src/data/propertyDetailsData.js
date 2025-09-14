@@ -10,6 +10,15 @@ import ReachAriaMall from "../assets/images/exploreproperties/aria-mall.jpg";
 import TrumpTower from "../assets/images/exploreproperties/trump-tower.jpg";
 import PioneerUrban from "../assets/images/exploreproperties/pioneer-urban.jpg";
 import PioneerAraya from "../assets/images/exploreproperties/pioner-araya.jpg";
+import AriaMall from "../assets/images/exploreproperties/aria-mall.jpg";
+import ElanEpic from "../assets/images/exploreproperties/elan_epic.webp";
+import Omaxstate from "../assets/images/exploreproperties/omaxstate.webp";
+import M3MMansion from "../assets/images/exploreproperties/m3m-mansion.jpg";
+import Tulip from "../assets/images/exploreproperties/tulip-monsella.jpg";
+import Trinity from "../assets/images/exploreproperties/Trinity-Sky-Palazzos.jpg";
+import ElanThePersidential from "../assets/images/exploreproperties/Elan-The-Presidential.jpg";
+import Krisumi from "../assets/images/exploreproperties/krisumi-waterfall.jpg";
+import SmartWorld from "../assets/images/exploreproperties/smartworld-dxp.jpg";
 
 export const allProjectPropertyDetails = [
   {
@@ -17,7 +26,7 @@ export const allProjectPropertyDetails = [
     name: "Central Park Flower Valley The Room",
     location: "Central Park II, Sector 48, Gurugram, Haryana, India",
     price: "₹On Request",
-    priceValue: null, // Added
+    priceValue: null, 
     pricePerSqft: "₹On Request",
     sqft: "2280 Sq Ft",
     bedrooms: 3,
@@ -37,7 +46,7 @@ export const allProjectPropertyDetails = [
     name: "M3M Antalya Hills",
     location: "M3M Antalya Hills, Sector 79, Gurgram, Haryana, India",
     price: "₹1.95 crore",
-    priceValue: 19500000, // Added
+    priceValue: 19500000, 
     pricePerSqft: "₹11,200",
     sqft: "1742 Sq Ft",
     bedrooms: 2,
@@ -57,7 +66,7 @@ export const allProjectPropertyDetails = [
     name: "DLF The Arbour",
     location: "DLF, Sector 63, Gurgram, Haryana, India",
     price: "₹On Request",
-    priceValue: null, // Added
+    priceValue: null, 
     pricePerSqft: "₹On Request",
     sqft: "3800 - 3956 Sq Ft",
     bedrooms: 4,
@@ -78,12 +87,12 @@ export const allProjectPropertyDetails = [
     location:
       "AIPL Autograph Corporate Office Space, Sector 66, Gurgram, Haryana",
     price: "₹On Request",
-    priceValue: null, // Added
+    priceValue: null, 
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 1,
     bathrooms: 1,
-    type: "STUDIO, RESIDENTIAL",
+    type: "STUDIO, RESIDENTIAL, COMMERCIAL",
     category: "COMPACT",
     status: ["FOR RENT", "READY TO MOVE"],
     rating: 4.4,
@@ -98,7 +107,7 @@ export const allProjectPropertyDetails = [
     name: "Pioneer Araya",
     location: "Pioneer Araya, Tower D, Pioneer, Haryana, India",
     price: "₹On Request",
-    priceValue: null, // Added
+    priceValue: null, 
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 5,
@@ -125,7 +134,7 @@ export const allProjectPropertyDetails = [
     location:
       "Trump Tower, Golf Course Extension Road, Sector 65, Gurgram, Haryana",
     price: "₹On Request",
-    priceValue: null, // Added
+    priceValue: null, 
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 5,
@@ -151,7 +160,7 @@ export const allProjectPropertyDetails = [
     name: "Pioneer Urban Presidia",
     location: "Pioneer Presidia, Sector 62, Gurgram, Ghata, Haryana, India",
     price: "₹On Request",
-    priceValue: null, // Added
+    priceValue: null, 
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 5,
@@ -177,7 +186,7 @@ export const allProjectPropertyDetails = [
     name: "Sobha International City",
     location: "Dwarka Expressway, Sector 109, Gurgram, Haryana, India",
     price: "₹On Request",
-    priceValue: null, // Added
+    priceValue: null, 
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 5,
@@ -203,7 +212,7 @@ export const allProjectPropertyDetails = [
     name: "M3M Golf Estate",
     location: "Golf Course Extension Road, Sector 65, Gurgram, Haryana",
     price: "₹On Request",
-    priceValue: null, // Added
+    priceValue: null, 
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 5,
@@ -229,7 +238,7 @@ export const allProjectPropertyDetails = [
     name: "Cygnett Retreat",
     location: "Pahadi Kothi, Bagar Road, Pangoot, Uttarakhand, India",
     price: "₹On Request",
-    priceValue: null, // Added
+    priceValue: null, 
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 5,
@@ -255,7 +264,7 @@ export const allProjectPropertyDetails = [
     name: "Elan The Emperor",
     location: "Sector 66, Gurugram, Haryana, India",
     price: "₹On Request",
-    priceValue: null, // Added
+    priceValue: null, 
     pricePerSqft: "₹On Request",
     sqft: "3500 Sq Ft",
     bedrooms: 4,
@@ -275,7 +284,7 @@ export const allProjectPropertyDetails = [
     name: "Reach Aria Mall",
     location: "Sector 56, Gurugram, Haryana, India",
     price: "₹50 L onwards",
-    priceValue: 5000000, // Added
+    priceValue: 5000000, 
     pricePerSqft: "₹On Request",
     sqft: "On Request Sq Ft",
     bedrooms: 1,
@@ -295,7 +304,7 @@ export const allProjectPropertyDetails = [
     name: "Elan The Mark",
     location: "Sector 77, Gurugram, Haryana, India",
     price: "₹1.2 Cr onwards",
-    priceValue: 12000000, // Added
+    priceValue: 12000000, 
     pricePerSqft: "₹On Request",
     sqft: "1800 Sq Ft",
     bedrooms: 3,
@@ -315,7 +324,7 @@ export const allProjectPropertyDetails = [
     name: "AIPL Business Club",
     location: "Sector 124, Noida, Uttar Pradesh, India",
     price: "₹9 Cr onwards",
-    priceValue: 90000000, // Added
+    priceValue: 90000000, 
     pricePerSqft: "₹On Request",
     sqft: "6000 Sq Ft",
     bedrooms: 5,
@@ -329,5 +338,273 @@ export const allProjectPropertyDetails = [
     amenities: ["Private Pool", "Spa", "Gym", "Concierge", "Security"],
     addressMap:
       '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.609709841506!2d77.08291657601029!3d28.400853894562918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d23d5f6b9dbd3%3A0x92e14f418c1c63a3!2sAIPL%20Business%20Club%20%7C%20AIPL%20Corporate%20Office!5e0!3m2!1sen!2sin!4v1757056995761!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+  },
+  {
+    id: 15,
+    name: "Reach Airia Mall",
+    location: "Airia Mall, Sector 68, Gurgaon, Haryana, India",
+    price: "₹ 9 Cr onwards",
+    priceValue: 90000000,
+    pricePerSqft: "₹On Request",
+    sqft: "300 - 8000 Sq Ft",
+    bedrooms: 5,
+    bathrooms: 5,
+    type: "APARTMENT, COMMERCIAL",
+    category: "ULTRA_LUXURY",
+    status: ["FOR SALE", "READY TO MOVE"],
+    rating: 4.8,
+    image: AriaMall,
+    featured: true,
+    amenities: ["Private Pool", "Spa", "Gym", "Concierge", "Security"],
+    addressMap:
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.1948247691957!2d77.05033447600975!3d28.38318299535935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d22fecb57f373%3A0xcc4398c9599fcdd7!2sAiria%20Mall!5e0!3m2!1sen!2sin!4v1757830312167!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+  },
+  {
+    id: 16,
+    name: "Elan Epic",
+    location: "Elan Epic Mall, Sector 70, Gurugram, Haryana, India",
+    price: "₹ On Request",
+    priceValue: 90000000,
+    pricePerSqft: "₹On Request",
+    sqft: "250 - 1609 Sq Ft",
+    bedrooms: 5,
+    bathrooms: 5,
+    type: "SHOP, COMMERCIAL",
+    category: "ULTRA_LUXURY",
+    status: ["FOR SALE", "FOR RENT", "READY TO MOVE"],
+    rating: 4.9,
+    image: ElanEpic,
+    featured: true,
+    amenities: ["Gym", "Concierge", "Security"],
+    addressMap:
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.89563185905!2d77.0304376!3d28.392220100000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d23007483c609%3A0x4bf398ae7e61c375!2sElan%20Epic!5e0!3m2!1sen!2sin!4v1757830225488!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+  },
+  {
+    id: 17,
+    name: "The Omaxe State",
+    location: "The Omaxe State, Sector 19B, Dwarka, Delhi, India",
+    price: "₹ On Request",
+    priceValue: 90000000,
+    pricePerSqft: "₹On Request",
+    sqft: "50 - 10000 Sq Ft",
+    bedrooms: 5,
+    bathrooms: 5,
+    type: "SHOP, COMMERCIAL",
+    category: "ULTRA_LUXURY",
+    status: ["FOR SALE", "FOR RENT", "READY TO MOVE"],
+    rating: 4.9,
+    image: Omaxstate,
+    featured: true,
+    amenities: ["Gym", "Concierge", "Security"],
+    addressMap:
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d112266.49041577676!2d77.06526584797331!3d28.439532557291592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sThe%20Omaxe%20State!5e0!3m2!1sen!2sin!4v1757831051702!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+  },
+  {
+    id: 18,
+    name: "M3M IFC",
+    location:
+      "M3M IFC, Golf Course Extension Road, Badshahpur, Sector 66, Gurugram, Haryana, India",
+    price: "₹ On Request",
+    priceValue: 90000000,
+    pricePerSqft: "₹On Request",
+    sqft: "50 - 10000 Sq Ft",
+    bedrooms: 5,
+    bathrooms: 5,
+    type: "SHOP, COMMERCIAL",
+    category: "ULTRA_LUXURY",
+    status: ["FOR SALE", "FOR RENT", "HOT OFFER"],
+    rating: 4.9,
+    image: M3MMansion,
+    featured: true,
+    amenities: ["Gym", "Concierge", "Security"],
+    addressMap:
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.457433649124!2d77.0559285260104!3d28.405451094355417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d232feac73921%3A0xf89506df3431ebf!2sM3M%20IFC!5e0!3m2!1sen!2sin!4v1757831862243!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+  },
+
+  {
+    id: 19,
+    name: "Tulip Monsella",
+    location: "Tulip Monsella, Sector 53, Gurugram, Haryana, India",
+    price: "₹On Request",
+    priceValue: null, 
+    pricePerSqft: "₹On Request",
+    sqft: "On Request Sq Ft",
+    bedrooms: 5,
+    bathrooms: 5,
+    type: "APARTMENT, RESIDENTIAL",
+    category: "ULTRA_LUXURY",
+    status: ["FOR SALE", "EXCLUSIVE"],
+    rating: 4.9,
+    image: Tulip,
+    featured: true,
+    amenities: [
+      "Private Pool",
+      "Garden",
+      "Home Theater",
+      "Wine Cellar",
+      "Security",
+    ],
+    addressMap:
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8344.828122566823!2d77.10560955762789!3d28.43228855790621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d18b2ad16cb25%3A0x53a7417010e02f99!2sTulip%20Monsella%20Luxury%20Residences!5e0!3m2!1sen!2sin!4v1757832397897!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+  },
+  {
+    id: 20,
+    name: "Trinity Sky Palazzos",
+    location:
+      "Trinity Sky Palazzos, On, Northern Peripheral Road, Sector 88B, Gurugram, Haryana, India",
+    price: "₹On Request",
+    priceValue: null, 
+    pricePerSqft: "₹On Request",
+    sqft: "On Request Sq Ft",
+    bedrooms: 5,
+    bathrooms: 5,
+    type: "APARTMENT, RESIDENTIAL",
+    category: "ULTRA_LUXURY",
+    status: ["FOR SALE", "EXCLUSIVE"],
+    rating: 4.9,
+    image: Trinity,
+    featured: true,
+    amenities: [
+      "Private Pool",
+      "Garden",
+      "Home Theater",
+      "Wine Cellar",
+      "Security",
+    ],
+    addressMap:
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1754.0811133637621!2d76.95199581744384!3d28.444525700000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d17b7bb627787%3A0xe726ba0fd10b0119!2sTrinity%20Sky%20Palazzos!5e0!3m2!1sen!2sin!4v1757833313430!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+  },
+  {
+    id: 21,
+    name: "Elan The Emperor",
+    location: "Sector 66, Gurugram, Haryana, India",
+    price: "₹On Request",
+    priceValue: null, 
+    pricePerSqft: "₹On Request",
+    sqft: "On Request Sq Ft",
+    bedrooms: 5,
+    bathrooms: 5,
+    type: "APARTMENT, RESIDENTIAL",
+    category: "ULTRA_LUXURY",
+    status: ["FOR SALE", "EXCLUSIVE"],
+    rating: 4.9,
+    image: ElanTheEmperor,
+    featured: true,
+    amenities: [
+      "Private Pool",
+      "Garden",
+      "Home Theater",
+      "Wine Cellar",
+      "Security",
+    ],
+    addressMap:
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.289921418064!2d77.00450517549602!3d28.500923775736812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1700b8332841%3A0x1a820bf6925742bd!2sElan%20The%20Mark!5e0!3m2!1sen!2sin!4v1757056323726!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+  },
+  {
+    id: 22,
+    name: "Elan The Presidential",
+    location: "Elan The Presidential, Sector 106, Gurugram, Haryana, India",
+    price: "₹On Request",
+    priceValue: null, 
+    pricePerSqft: "₹On Request",
+    sqft: "On Request Sq Ft",
+    bedrooms: 5,
+    bathrooms: 5,
+    type: "APARTMENT, RESIDENTIAL",
+    category: "ULTRA_LUXURY",
+    status: ["FOR SALE", "EXCLUSIVE"],
+    rating: 4.9,
+    image: ElanThePersidential,
+    featured: true,
+    amenities: [
+      "Private Pool",
+      "Garden",
+      "Home Theater",
+      "Wine Cellar",
+      "Security",
+    ],
+    addressMap:
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.289921418064!2d77.00450517549602!3d28.500923775736812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1700b8332841%3A0x1a820bf6925742bd!2sElan%20The%20Mark!5e0!3m2!1sen!2sin!4v1757056323726!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+  },
+  {
+    id: 23,
+    name: "Krisumi Waterfall Residences",
+    location:
+      "Krisumi Waterfall Residences, Sector 36A, Gurugram, Haryana, India",
+    price: "₹On Request",
+    priceValue: null, 
+    pricePerSqft: "₹On Request",
+    sqft: "On Request Sq Ft",
+    bedrooms: 5,
+    bathrooms: 5,
+    type: "APARTMENT, RESIDENTIAL",
+    category: "ULTRA_LUXURY",
+    status: ["FOR SALE", "EXCLUSIVE"],
+    rating: 4.9,
+    image: Krisumi,
+    featured: true,
+    amenities: [
+      "Private Pool",
+      "Garden",
+      "Home Theater",
+      "Wine Cellar",
+      "Security",
+    ],
+    addressMap:
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.042404124467!2d76.97323727530869!3d28.417977324206685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d3daba8918f95%3A0x5c81fa76593240e6!2sKrisumi%20Waterfall%20Residences%20Gurgaon!5e0!3m2!1sen!2sin!4v1757834271844!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+  },
+  {
+    id: 24,
+    name: "Smartworld One DXP",
+    location:
+      "Smartworld ONE DXP, Sector 113, Bajghera, Gurugram, Haryana, India",
+    price: "₹On Request",
+    priceValue: null, 
+    pricePerSqft: "₹On Request",
+    sqft: "On Request Sq Ft",
+    bedrooms: 5,
+    bathrooms: 5,
+    type: "APARTMENT, RESIDENTIAL",
+    category: "ULTRA_LUXURY",
+    status: ["FOR SALE", "EXCLUSIVE"],
+    rating: 4.9,
+    image: SmartWorld,
+    featured: true,
+    amenities: [
+      "Private Pool",
+      "Garden",
+      "Home Theater",
+      "Wine Cellar",
+      "Security",
+    ],
+    addressMap:
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.335131206927!2d77.02627907601368!3d28.52964488874452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b003439c981%3A0x483544ed2c5ee6f1!2sSmartworld%20One%20DXP!5e0!3m2!1sen!2sin!4v1757834459163!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+  },
+  {
+    id: 25,
+    name: "M3M Mansion Sector 113, Gurgaon",
+    location:
+      "M3M Mansion, Sector 113, Bajghera, Gurugram, Haryana, India",
+    price: "₹On Request",
+    priceValue: null, 
+    pricePerSqft: "₹On Request",
+    sqft: "On Request Sq Ft",
+    bedrooms: 5,
+    bathrooms: 5,
+    type: "APARTMENT, RESIDENTIAL",
+    category: "ULTRA_LUXURY",
+    status: ["FOR SALE", "EXCLUSIVE"],
+    rating: 4.9,
+    image: M3MMansion,
+    featured: true,
+    amenities: [
+      "Private Pool",
+      "Garden",
+      "Home Theater",
+      "Wine Cellar",
+      "Security",
+    ],
+    addressMap:
+      '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14021.337444733965!2d77.01855426399176!3d28.529668041185936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b89af3e9f25%3A0x933e8ef98fc61271!2sM3M%20MANSION!5e0!3m2!1sen!2sin!4v1757834670154!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
   },
 ];

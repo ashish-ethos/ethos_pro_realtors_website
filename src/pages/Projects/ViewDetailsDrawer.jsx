@@ -58,7 +58,6 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
   };
 
   useEffect(() => {
-    console.log('ViewDetailsDrawer props:', { open, project, isLiked, onToggleLike });
   }, [open, project, isLiked, onToggleLike]);
 
   const shareUrl = project ? encodeURIComponent(window.location.origin + `/projects/${isCommercial ? 'commercial' : 'residential'}/${project.name?.toLowerCase().replace(/\s+/g, '-')}`) : '';
@@ -127,7 +126,6 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
   };
 
   const handleContactSubmit = (values) => {
-    console.log('Contact Form Submitted:', values);
     alert(`Contact request sent for ${project?.name || 'property'}!`);
     form.resetFields();
   };
@@ -205,7 +203,6 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
               onClick={(e) => {
                 e.stopPropagation();
                 if (project?.id && onToggleLike) {
-                  console.log('Toggling like for property:', project.id, 'Current isLiked:', isLiked);
                   onToggleLike(project.id);
                 } else {
                   console.error('Cannot toggle like: project.id or onToggleLike is missing');
