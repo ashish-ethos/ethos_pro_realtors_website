@@ -37,7 +37,6 @@ import "./AdvancedPropertySearch.css";
 import { useNavigate } from "react-router-dom";
 
 const { Title, Text } = Typography;
-const { Panel } = Collapse;
 
 // Custom options for CustomSelect
 const areaOptions = [
@@ -108,8 +107,6 @@ const mockProperties = [
     area: "Sector 54, Gurgaon",
     price: 85000000,
     priceValue: 85000000,
-    // image:
-    //   "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=500&fit=crop",
     type: "Penthouse",
     status: "For Sale",
     bedrooms: 4,
@@ -178,8 +175,7 @@ const AdvancedPropertySearch = ({
   const [favoriteProperties, setFavoriteProperties] = useState(new Set());
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const displayProperties = properties.length > 0 ? properties : mockProperties;
-  const [filteredProperties, setFilteredProperties] =
-    useState(displayProperties);
+  const [filteredProperties, setFilteredProperties] = useState(displayProperties);
   const pageSize = 9;
   const navigate = useNavigate();
 
@@ -225,9 +221,7 @@ const AdvancedPropertySearch = ({
         const matchesSearch =
           !debouncedQuery ||
           property.name?.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-          property.location
-            ?.toLowerCase()
-            .includes(debouncedQuery.toLowerCase());
+          property.location?.toLowerCase().includes(debouncedQuery.toLowerCase());
 
         const matchesCountry =
           countryId.length === 0 ||
@@ -288,7 +282,9 @@ const AdvancedPropertySearch = ({
         const matchesAreaRange =
           property.areaValue >= effectiveMinArea &&
           property.areaValue <= effectiveMaxArea;
-        const matchesPriceRange = property.priceValue === null || property.priceValue === 0 ||
+        const matchesPriceRange =
+          property.priceValue === null ||
+          property.priceValue === 0 ||
           (property.priceValue >= priceRange[0] &&
             property.priceValue <= priceRange[1]);
 
@@ -586,289 +582,270 @@ const AdvancedPropertySearch = ({
                   )}
                 </div>
 
-
                 <Divider className="filters-divider" />
               </Space>
             </div>
 
-            <Collapse defaultActiveKey={["basic", "advanced"]} ghost>
-              <Panel header={<b>Basic Filters</b>} key="basic" className="fontFamily-bebas">
-                <Space
-                  direction="vertical"
-                  size="middle"
-                  className="filters-space"
-                >
-                  <div>
-                    <span className="filter-label flex items-center">
-                      <MapPinHouse className="filter-icon" />
-                      Location
-                    </span>
-                    <CustomSelect
-                      mode="multiple"
-                      placeholder="Select Areas"
-                      value={area}
-                      onChange={setArea}
-                      className="filter-select"
-                      allowClear
-                      showSearch
-                      options={areaOptions}
-                    />
-                  </div>
-
-                  <div>
-                    <span className="filter-label flex items-center">
-                      <House className="filter-icon" />
-                      Property Type
-                    </span>
-                    <CustomSelect
-                      mode="multiple"
-                      placeholder="Select Types"
-                      value={type}
-                      onChange={setType}
-                      className="filter-select"
-                      allowClear
-                      showSearch
-                      options={typeOptions}
-                    />
-                  </div>
-
-                  <div>
-                    <span className="filter-label flex items-center">
-                      <Star className="filter-icon" />
-                      Status
-                    </span>
-                    <CustomSelect
-                      mode="multiple"
-                      placeholder="Select Status"
-                      value={status}
-                      onChange={setStatus}
-                      className="filter-select"
-                      allowClear
-                      showSearch
-                      options={statusOptions}
-                    />
-                  </div>
-
-                  <div>
-                    <span className="filter-label flex items-center">
-                      <Bed className="filter-icon" />
-                      Bedrooms
-                    </span>
-                    <CustomSelect
-                      mode="multiple"
-                      placeholder="Select Bedrooms"
-                      value={bedrooms}
-                      onChange={setBedrooms}
-                      className="filter-select"
-                      allowClear
-                      showSearch
-                      options={bedroomOptions}
-                    />
-                  </div>
-
-                  <div>
-                    <span className="filter-label flex items-center">
-                      <Bath className="filter-icon" />
-                      Bathrooms
-                    </span>
-                    <CustomSelect
-                      mode="multiple"
-                      placeholder="Select Bathrooms"
-                      value={bathrooms}
-                      onChange={setBathrooms}
-                      className="filter-select"
-                      allowClear
-                      showSearch
-                      options={bathroomOptions}
-                    />
-                  </div>
-                </Space>
-              </Panel>
-
-              <Panel header={<b>Advanced Filters</b>} key="advanced" className="fontFamily-bebas">
-                <Space
-                  direction="vertical"
-                  size="middle"
-                  className="filters-space"
-                >
-                  <div>
-                    <Slider
-                      range
-                      min={1000000}
-                      max={1000000000}
-                      step={1000000}
-                      value={priceRange}
-                      onChange={(value) => {
-                        const [min, max] = value;
-                        handlePriceChange([
-                          Math.min(min, max),
-                          Math.max(min, max),
-                        ]);
-                      }}
-                      onAfterChange={(value) => {
-                        const [min, max] = value;
-                        handlePriceChange([
-                          Math.min(min, max),
-                          Math.max(min, max),
-                        ]);
-                      }}
-                      tooltip={{
-                        formatter: (value) => {
-                          const crores = value / 10000000;
-                          return Number.isInteger(crores)
-                            ? `₹${crores} Cr`
-                            : `₹${crores.toFixed(1)} Cr`;
-                        },
-                      }}
-                      className="price-slider"
-                    />
-                    <Space className="price-inputs">
-                      <InputNumber
-                        value={priceRange[0]}
-                        onChange={(value) =>
-                          handlePriceChange([value || 1000000, priceRange[1]])
-                        }
-                        formatter={(value) => {
-                          const crores = value / 10000000;
-                          return Number.isInteger(crores)
-                            ? `₹${crores} Cr`
-                            : `₹${crores.toFixed(1)} Cr`;
+            <Collapse defaultActiveKey={["basic", "advanced"]} ghost items={[
+              {
+                key: "basic",
+                label: <b>Basic Filters</b>,
+                children: (
+                  <Space direction="vertical" size="middle" className="filters-space">
+                    <div>
+                      <span className="filter-label flex items-center">
+                        <MapPinHouse className="filter-icon" />
+                        Location
+                      </span>
+                      <CustomSelect
+                        mode="multiple"
+                        placeholder="Select Areas"
+                        value={area}
+                        onChange={setArea}
+                        className="filter-select"
+                        allowClear
+                        showSearch
+                        options={areaOptions}
+                      />
+                    </div>
+                    <div>
+                      <span className="filter-label flex items-center">
+                        <House className="filter-icon" />
+                        Property Type
+                      </span>
+                      <CustomSelect
+                        mode="multiple"
+                        placeholder="Select Types"
+                        value={type}
+                        onChange={setType}
+                        className="filter-select"
+                        allowClear
+                        showSearch
+                        options={typeOptions}
+                      />
+                    </div>
+                    <div>
+                      <span className="filter-label flex items-center">
+                        <Star className="filter-icon" />
+                        Status
+                      </span>
+                      <CustomSelect
+                        mode="multiple"
+                        placeholder="Select Status"
+                        value={status}
+                        onChange={setStatus}
+                        className="filter-select"
+                        allowClear
+                        showSearch
+                        options={statusOptions}
+                      />
+                    </div>
+                    <div>
+                      <span className="filter-label flex items-center">
+                        <Bed className="filter-icon" />
+                        Bedrooms
+                      </span>
+                      <CustomSelect
+                        mode="multiple"
+                        placeholder="Select Bedrooms"
+                        value={bedrooms}
+                        onChange={setBedrooms}
+                        className="filter-select"
+                        allowClear
+                        showSearch
+                        options={bedroomOptions}
+                      />
+                    </div>
+                    <div>
+                      <span className="filter-label flex items-center">
+                        <Bath className="filter-icon" />
+                        Bathrooms
+                      </span>
+                      <CustomSelect
+                        mode="multiple"
+                        placeholder="Select Bathrooms"
+                        value={bathrooms}
+                        onChange={setBathrooms}
+                        className="filter-select"
+                        allowClear
+                        showSearch
+                        options={bathroomOptions}
+                      />
+                    </div>
+                  </Space>
+                ),
+                className: "fontFamily-bebas",
+              },
+              {
+                key: "advanced",
+                label: <b>Advanced Filters</b>,
+                children: (
+                  <Space direction="vertical" size="middle" className="filters-space">
+                    <div>
+                      <Slider
+                        range
+                        min={1000000}
+                        max={1000000000}
+                        step={1000000}
+                        value={priceRange}
+                        onChange={(value) => {
+                          const [min, max] = value;
+                          handlePriceChange([Math.min(min, max), Math.max(min, max)]);
                         }}
-                        parser={(value) =>
-                          parseFloat(value.replace(/[^0-9.]/g, "")) * 10000000
-                        }
-                        className="price-input"
-                      />
-                      <InputNumber
-                        value={priceRange[1]}
-                        onChange={(value) =>
-                          handlePriceChange([
-                            priceRange[0],
-                            value || 1000000000,
-                          ])
-                        }
-                        formatter={(value) => {
-                          const crores = value / 10000000;
-                          return Number.isInteger(crores)
-                            ? `₹${crores} Cr`
-                            : `₹${crores.toFixed(1)} Cr`;
+                        onAfterChange={(value) => {
+                          const [min, max] = value;
+                          handlePriceChange([Math.min(min, max), Math.max(min, max)]);
                         }}
-                        parser={(value) =>
-                          parseFloat(value.replace(/[^0-9.]/g, "")) * 10000000
-                        }
-                        className="price-input"
+                        tooltip={{
+                          formatter: (value) => {
+                            const crores = value / 10000000;
+                            return Number.isInteger(crores)
+                              ? `₹${crores} Cr`
+                              : `₹${crores.toFixed(1)} Cr`;
+                          },
+                        }}
+                        className="price-slider"
                       />
-                    </Space>
-                  </div>
-
-                  <div>
-                    <span className="filter-label flex items-center">
-                      <LandPlot className="filter-icon" />
-                      Area Range (Sq Ft)
-                    </span>
-                    <Space className="area-inputs">
-                      <InputNumber
-                        placeholder="Min"
-                        value={minArea}
-                        onChange={(value) => setMinArea(value || 0)}
-                        className="area-input"
+                      <Space className="price-inputs">
+                        <InputNumber
+                          value={priceRange[0]}
+                          onChange={(value) =>
+                            handlePriceChange([value || 1000000, priceRange[1]])
+                          }
+                          formatter={(value) => {
+                            const crores = value / 10000000;
+                            return Number.isInteger(crores)
+                              ? `₹${crores} Cr`
+                              : `₹${crores.toFixed(1)} Cr`;
+                          }}
+                          parser={(value) =>
+                            parseFloat(value.replace(/[^0-9.]/g, "")) * 10000000
+                          }
+                          className="price-input"
+                        />
+                        <InputNumber
+                          value={priceRange[1]}
+                          onChange={(value) =>
+                            handlePriceChange([priceRange[0], value || 1000000000])
+                          }
+                          formatter={(value) => {
+                            const crores = value / 10000000;
+                            return Number.isInteger(crores)
+                              ? `₹${crores} Cr`
+                              : `₹${crores.toFixed(1)} Cr`;
+                          }}
+                          parser={(value) =>
+                            parseFloat(value.replace(/[^0-9.]/g, "")) * 10000000
+                          }
+                          className="price-input"
+                        />
+                      </Space>
+                    </div>
+                    <div>
+                      <span className="filter-label flex items-center">
+                        <LandPlot className="filter-icon" />
+                        Area Range (Sq Ft)
+                      </span>
+                      <Space className="area-inputs">
+                        <InputNumber
+                          placeholder="Min"
+                          value={minArea}
+                          onChange={(value) => setMinArea(value || 0)}
+                          className="area-input"
+                        />
+                        <InputNumber
+                          placeholder="Max"
+                          value={maxArea}
+                          onChange={(value) => setMaxArea(value || 10000)}
+                          className="area-input"
+                        />
+                      </Space>
+                    </div>
+                    <div>
+                      <span className="filter-label flex items-center">
+                        <CalendarDays className="filter-icon" />
+                        Year Built
+                      </span>
+                      <CustomSelect
+                        mode="multiple"
+                        placeholder="Select Years"
+                        value={yearBuilt}
+                        onChange={setYearBuilt}
+                        className="filter-select"
+                        allowClear
+                        showSearch
+                        options={yearOptions}
                       />
-                      <InputNumber
-                        placeholder="Max"
-                        value={maxArea}
-                        onChange={(value) => setMaxArea(value || 10000)}
-                        className="area-input"
+                    </div>
+                    <div>
+                      <span className="filter-label flex items-center">
+                        <Star className="filter-icon" />
+                        Labels
+                      </span>
+                      <CustomSelect
+                        mode="multiple"
+                        placeholder="Select Labels"
+                        value={label}
+                        onChange={setLabel}
+                        className="filter-select"
+                        allowClear
+                        showSearch
+                        options={labelOptions}
                       />
-                    </Space>
-                  </div>
-
-                  <div>
-                    <span className="filter-label flex items-center">
-                      <CalendarDays className="filter-icon" />
-                      Year Built
-                    </span>
-                    <CustomSelect
-                      mode="multiple"
-                      placeholder="Select Years"
-                      value={yearBuilt}
-                      onChange={setYearBuilt}
-                      className="filter-select"
-                      allowClear
-                      showSearch
-                      options={yearOptions}
-                    />
-                  </div>
-
-                  <div>
-                    <span className="filter-label flex items-center">
-                      <Star className="filter-icon" />
-                      Labels
-                    </span>
-                    <CustomSelect
-                      mode="multiple"
-                      placeholder="Select Labels"
-                      value={label}
-                      onChange={setLabel}
-                      className="filter-select"
-                      allowClear
-                      showSearch
-                      options={labelOptions}
-                    />
-                  </div>
-
-                  <div>
-                    <span className="filter-label flex items-center">
-                      <MapPinHouse className="filter-icon" />
-                      Country
-                    </span>
-                    <CustomSelect
-                      mode="multiple"
-                      placeholder="Select Countries"
-                      value={countryId}
-                      onChange={setCountryId}
-                      className="filter-select"
-                      allowClear
-                      showSearch
-                      options={countryOptions}
-                    />
-                  </div>
-
-                  <div>
-                    <span className="filter-label flex items-center">
-                      <MapPinHouse className="filter-icon" />
-                      State
-                    </span>
-                    <CustomSelect
-                      mode="multiple"
-                      placeholder="Select States"
-                      value={stateId}
-                      onChange={setStateId}
-                      className="filter-select"
-                      allowClear
-                      showSearch
-                      options={stateOptions}
-                    />
-                  </div>
-
-                  <div>
-                    <span className="filter-label flex items-center">
-                      <MapPinHouse className="filter-icon" />
-                      City
-                    </span>
-                    <CustomSelect
-                      mode="multiple"
-                      placeholder="Select Cities"
-                      value={cityId}
-                      onChange={setCityId}
-                      className="filter-select"
-                      allowClear
-                      showSearch
-                      options={cityOptions}
-                    />
-                  </div>
-                </Space>
-              </Panel>
-            </Collapse>
+                    </div>
+                    <div>
+                      <span className="filter-label flex items-center">
+                        <MapPinHouse className="filter-icon" />
+                        Country
+                      </span>
+                      <CustomSelect
+                        mode="multiple"
+                        placeholder="Select Countries"
+                        value={countryId}
+                        onChange={setCountryId}
+                        className="filter-select"
+                        allowClear
+                        showSearch
+                        options={countryOptions}
+                      />
+                    </div>
+                    <div>
+                      <span className="filter-label flex items-center">
+                        <MapPinHouse className="filter-icon" />
+                        State
+                      </span>
+                      <CustomSelect
+                        mode="multiple"
+                        placeholder="Select States"
+                        value={stateId}
+                        onChange={setStateId}
+                        className="filter-select"
+                        allowClear
+                        showSearch
+                        options={stateOptions}
+                      />
+                    </div>
+                    <div>
+                      <span className="filter-label flex items-center">
+                        <MapPinHouse className="filter-icon" />
+                        City
+                      </span>
+                      <CustomSelect
+                        mode="multiple"
+                        placeholder="Select Cities"
+                        value={cityId}
+                        onChange={setCityId}
+                        className="filter-select"
+                        allowClear
+                        showSearch
+                        options={cityOptions}
+                      />
+                    </div>
+                  </Space>
+                ),
+                className: "fontFamily-bebas",
+              },
+            ]} />
 
             <div className="filters-footer">
               <Space className="filters-footer-buttons bg-white">
@@ -908,50 +885,7 @@ const AdvancedPropertySearch = ({
                   </Radio.Button>
                 </Radio.Group>
               </div>
-
-              {/* <div className="sort-select-wrapper">
-                <Text type="secondary">Sort</Text>
-                <CustomSelect
-                  value={sortBy}
-                  onChange={setSortBy}
-                  className="sort-select"
-                  placeholder="Sort by"
-                  options={[
-                    { value: "price-low", label: "Price: Low to High" },
-                    { value: "price-high", label: "Price: High to Low" },
-                    { value: "area-large", label: "Area: Large to Small" },
-                    { value: "area-small", label: "Area: Small to Large" },
-                    { value: "newest", label: "Newest First" },
-                  ]}
-                />
-              </div> */}
             </div>
-
-            {/* <div className="search-and-filters">
-              <CustomInput
-                prefix={<Search className="search-icon" />}
-                placeholder="Search properties..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="search-input"
-              />
-
-              <CustomButton
-                className="property-card-action-button"
-                onClick={() => setShowFilters(!showFilters)}
-                icon={<FaFilter />}
-              >
-                {showFilters ? "Hide Filters" : "Show Filters"}
-              </CustomButton>
-
-              <CustomButton
-                type="danger"
-                onClick={handleClearFilters}
-                className="cancelButton"
-              >
-                Clear
-              </CustomButton>
-            </div> */}
           </div>
 
           {activeChips.length > 0 && (
@@ -976,7 +910,7 @@ const AdvancedPropertySearch = ({
                     <Col xs={24} sm={12} lg={8} key={property.id}>
                       <Card
                         hoverable
-                        bodyStyle={{ padding: 18 }}
+                        styles={{ body: { padding: 18 } }}
                         className="property-card"
                         onMouseEnter={(e) =>
                           (e.currentTarget.style.transform = "translateY(-8px)")
@@ -991,14 +925,12 @@ const AdvancedPropertySearch = ({
                               src={property.image}
                               className="card-image"
                               onMouseEnter={(e) =>
-                              (e.currentTarget.style.transform =
-                                "scale(1.08)")
+                                (e.currentTarget.style.transform = "scale(1.08)")
                               }
                               onMouseLeave={(e) =>
                                 (e.currentTarget.style.transform = "scale(1)")
                               }
                             />
-
                             <div className="card-tags m-0 p-0">
                               {property.featured && (
                                 <Tag className="featured-tag">Featured</Tag>
@@ -1011,7 +943,6 @@ const AdvancedPropertySearch = ({
                                 {property.status}
                               </Tag>
                             </div>
-
                             <div className="card-actions">
                               <Tooltip title="Favorite">
                                 <div
@@ -1029,23 +960,27 @@ const AdvancedPropertySearch = ({
                               </Tooltip>
                               <Tooltip title="View">
                                 <div className="action-button">
-                                  <FaEye onClick={() => {
-                                    const propertyName = property.name.toLowerCase().replace(/\s+/g, '-');
-                                    const routeType = property.type.toLowerCase() === "commercial" ? "commercial" : "residential";
-                                    navigate(`/projects/${routeType}/${propertyName}`, { state: { from: location.pathname } });
-                                  }} />
+                                  <FaEye
+                                    onClick={() => {
+                                      const propertyName = property.name
+                                        .toLowerCase()
+                                        .replace(/\s+/g, "-");
+                                      const routeType =
+                                        property.type.toLowerCase() === "commercial"
+                                          ? "commercial"
+                                          : "residential";
+                                      navigate(`/projects/${routeType}/${propertyName}`, {
+                                        state: { from: location.pathname },
+                                      });
+                                    }}
+                                  />
                                 </div>
                               </Tooltip>
                             </div>
-
                             <div className="card-footer">
                               <div className="card-footer-content">
-                                <div className="card-price">
-                                  {getFormattedPrice(property)}
-                                </div>
-                                <div className="card-area">
-                                  {property.areaValue} sq ft
-                                </div>
+                                <div className="card-price">{getFormattedPrice(property)}</div>
+                                <div className="card-area">{property.areaValue} sq ft</div>
                               </div>
                             </div>
                           </div>
@@ -1064,10 +999,10 @@ const AdvancedPropertySearch = ({
                               <div className="card-details">
                                 <div className="card-details-content">
                                   <Text className="card-detail-item">
-                                    <Bed className='text-gray-500' /> {property.bedrooms} Beds
+                                    <Bed className="text-gray-500" /> {property.bedrooms} Beds
                                   </Text>
                                   <Text className="card-detail-item">
-                                    <Bath className='text-gray-500' /> {property.bathrooms} Baths
+                                    <Bath className="text-gray-500" /> {property.bathrooms} Baths
                                   </Text>
                                   <Tag color="default" className="capitalize">{property.type}</Tag>
                                 </div>
@@ -1075,9 +1010,16 @@ const AdvancedPropertySearch = ({
                                   type="primary"
                                   className="property-card-action-button"
                                   onClick={() => {
-                                    const propertyName = property.name.toLowerCase().replace(/\s+/g, '-');
-                                    const routeType = property.type.toLowerCase() === "commercial" ? "commercial" : "residential";
-                                    navigate(`/projects/${routeType}/${propertyName}`, { state: { from: location.pathname } });
+                                    const propertyName = property.name
+                                      .toLowerCase()
+                                      .replace(/\s+/g, "-");
+                                    const routeType =
+                                      property.type.toLowerCase() === "commercial"
+                                        ? "commercial"
+                                        : "residential";
+                                    navigate(`/projects/${routeType}/${propertyName}`, {
+                                      state: { from: location.pathname },
+                                    });
                                   }}
                                 >
                                   View Details
@@ -1103,9 +1045,16 @@ const AdvancedPropertySearch = ({
                           key="view"
                           className="property-card-action-button"
                           onClick={() => {
-                            const propertyName = property.name.toLowerCase().replace(/\s+/g, '-');
-                            const routeType = property.type.toLowerCase() === "commercial" ? "commercial" : "residential";
-                            navigate(`/projects/${routeType}/${propertyName}`, { state: { from: location.pathname } });
+                            const propertyName = property.name
+                              .toLowerCase()
+                              .replace(/\s+/g, "-");
+                            const routeType =
+                              property.type.toLowerCase() === "commercial"
+                                ? "commercial"
+                                : "residential";
+                            navigate(`/projects/${routeType}/${propertyName}`, {
+                              state: { from: location.pathname },
+                            });
                           }}
                         >
                           View Details
@@ -1125,7 +1074,7 @@ const AdvancedPropertySearch = ({
                           <div className="list-title">{property.name}</div>
                         }
                         description={
-                          <div className="checked ">
+                          <div className="checked">
                             <Text className="location-list flex gap-1">
                               <MapPinHouse />
                               <p className="m-0 p-0">{property.location}</p>
@@ -1137,7 +1086,7 @@ const AdvancedPropertySearch = ({
                               </div>
                               <div className="list-details-content flex items-center justify-center flex-col text-black">
                                 <Bath />
-                                <p> {property.bathrooms} Baths</p>
+                                <p>{property.bathrooms} Baths</p>
                               </div>
                               <div className="list-details-content flex items-center justify-center flex-col text-black">
                                 <LandPlot />

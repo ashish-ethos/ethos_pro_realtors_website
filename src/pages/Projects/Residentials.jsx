@@ -591,8 +591,9 @@ const Residentials = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col lg:flex-row gap-4">
-            <Search
+          <div className="flex flex-col lg:flex-row gap-4 w-full justify-between">
+            <div className='w-full '>
+              <Search
               placeholder="Search by property name or location..."
               enterButton="Search"
               size="large"
@@ -600,7 +601,8 @@ const Residentials = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{ overflow: 'hidden' }}
             />
-            <div className="flex flex-wrap gap-3">
+            </div>
+            <div className="flex flex-wrap gap-3 w-full justify-end">
               <CustomButton
                 onClick={() => setShowFilters(!showFilters)}
                 size="large"

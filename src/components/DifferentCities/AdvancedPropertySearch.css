@@ -810,3 +810,22 @@
     left: 150%;
   }
 }
+
+@media(max-width: 425px) {
+  .ant-card .ant-card-meta-detail >div:not(:last-child) {
+    margin-bottom: 0px !important;
+  }
+  .filters-panel-contain{
+    padding:0px !important;
+  }
+  .card-description{
+    padding: 0px !important
+  }
+  .card-title{
+    margin-top: 5px;
+    margin-bottom: 0px !important;
+  }
+  .ant-list .ant-list-item .ant-list-item-action{
+    margin-inline-start: 0px !important;
+  }
+}

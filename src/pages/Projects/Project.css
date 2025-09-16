@@ -1,10 +1,30 @@
-@media(max-width:425px){
-    .project-status-mobile{
-        flex-direction: column;
-    }
-    .hero-section-header{
-        flex-direction: column;
-        align-items: start;
-        gap: 5px;
-    }
+@media (max-width: 425px) {
+  .project-status-mobile {
+    flex-direction: column;
+  }
+  .hero-section-header {
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+  }
+  .drawer-title {
+    font-size: 13px;
+  }
+  .detail-project-name {
+    font-size: 20px !important;
+  }
+  .premium-image {
+    height: auto !important;
+  }
+  .emi-form-grid {
+    width: 100% !important;
+    justify-content: center !important;
+    gap: 0px !important;
+  }
+  .emi-title-text {
+    text-align: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 5px !important;
+  }
 }

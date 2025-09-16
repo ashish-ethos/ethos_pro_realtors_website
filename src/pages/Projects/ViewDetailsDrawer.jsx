@@ -169,7 +169,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
       } 
       rounded-2xl shadow-lg 
       ${hover ? 'hover:shadow-xl hover:scale-[1.02] transition-all duration-300' : ''} 
-      p-4 ${className}
+      p-4 premium-card ${className}
     `}>
       {children}
     </div>
@@ -191,7 +191,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
       <PremiumCard gradient={true}>
         <div className="flex justify-between items-start mb-4 hero-section-header">
           <div>
-            <Title level={3} className="m-0 text-gray-800 fontFamily-bebas">{project?.name || 'Property'}</Title>
+            <Title level={3} className="m-0 text-gray-800 fontFamily-bebas detail-project-name">{project?.name || 'Property'}</Title>
             <div className="flex items-center mt-2 text-gray-600 fontFamily-bebas">
               <EnvironmentOutlined className="mr-2" />
               <Text>{project?.location || 'N/A'}</Text>
@@ -340,7 +340,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
             <img
               src={project.image}
               alt={project.name || 'Property'}
-              className="w-full h-80 object-cover"
+              className="w-full h-80 object-cover premium-image"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </div>
@@ -388,13 +388,13 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
   const calculatorContent = (
     <div className="space-y-6">
       <PremiumCard gradient={true}>
-        <Title level={4} className="mb-6 flex items-center text-gray-800">
+        <Title level={4} className="mb-6 flex items-center text-gray-800 emi-title-text">
           <CalculatorOutlined className="mr-3 text-blue-600" />
           EMI Calculator
         </Title>
 
         <Form form={form} layout="vertical" onFinish={handleEMISubmit} className="space-y-4">
-          <div className="grid sm:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-3 gap-6 emi-form-grid">
             <div className="space-y-4">
               <Form.Item
                 name="loanAmount"
@@ -470,7 +470,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
 
       {emi && (
         <PremiumCard>
-          <div className="grid sm:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-3 gap-6 ">
             <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl">
               <div className="text-xl font-bold text-blue-600 mb-2">₹{formatPrice(emi)}</div>
               <div className="text-blue-800 font-medium">Monthly EMI</div>
@@ -495,10 +495,11 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
               </Text>
             </div>
             <Progress
-              percent={(loanAmount / totalAmount) * 100}
+              percent={Number(((loanAmount / totalAmount) * 100).toFixed(2))}
               strokeColor="#3b82f6"
               trailColor="#fbbf24"
               className="mb-2"
+              format={(percent) => `${percent}%`}
             />
             <div className="flex justify-between text-sm text-gray-600">
               <span>Principal: ₹{formatPrice(loanAmount)}</span>
@@ -571,7 +572,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
                 {project?.name?.charAt(0) || 'P'}
               </Avatar>
               <div className='px-2'>
-                <p className="m-0 p-0 text-lg font-medium fontFamily-bebas">{project?.name || 'Property Details'}</p>
+                <p className="m-0 p-0 text-lg font-medium fontFamily-bebas drawer-title">{project?.name || 'Property Details'}</p>
                 <Text className="text-gray-500 m-0 p-0 fontFamily-bebas">Premium Listing</Text>
               </div>
             </div>

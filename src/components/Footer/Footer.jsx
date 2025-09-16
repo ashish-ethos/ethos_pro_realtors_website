@@ -4,6 +4,7 @@ import { BsWhatsapp } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import logotab from "../../assets/images/logo/logotab.png";
 import "../OurTeam/OurTeam.css";
+import { FaXTwitter } from "react-icons/fa6";
 
 function Footer() {
   const [email, setEmail] = useState("");
@@ -312,6 +313,14 @@ function Footer() {
                     shadowColor: "hover:shadow-red-500/50",
                     label: "YouTube",
                     link: "https://www.youtube.com/@ethosprorealtors"
+                  },
+                  {
+                    icon: FaXTwitter,
+                    baseColor: "from-gray-700/20 to-gray-900/20",
+                    hoverColor: "hover:from-gray-700 hover:to-gray-900",
+                    shadowColor: "hover:shadow-gray-700/50",
+                    label: "Twitter",
+                    link: "https://x.com/ethosprorealtor"
                   }
                 ].map(({ icon: Icon, baseColor, hoverColor, shadowColor, label, link }) => (
                   <a

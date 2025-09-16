@@ -449,7 +449,7 @@ const Commercial = () => {
           <div className="flex justify-between items-center"
           >
             <div className='p-[2px] rounded-[12px]'
-            style={{ background: 'linear-gradient(to right, #c99913, #474236, #000000)' }}>
+              style={{ background: 'linear-gradient(to right, #c99913, #474236, #000000)' }}>
               <button
                 onClick={() => handleViewDetails(property)}
                 className="bg-white text-black px-5 py-2 rounded-[10px] cursor-pointer font-semibold flex items-center justify-center gap-2 hover:shadow-md transition-all duration-200"
@@ -535,16 +535,18 @@ const Commercial = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col lg:flex-row gap-4">
-            <Search
-              placeholder="Search by property name or location..."
-              enterButton="Search"
-              size="large"
-              onSearch={(value) => setSearchTerm(value)}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ overflow: 'hidden' }}
-            />
-            <div className="flex flex-wrap gap-3">
+          <div className="flex flex-col lg:flex-row gap-4 w-full justify-between">
+            <div className='w-full'>
+              <Search
+                placeholder="Search by property name or location..."
+                enterButton="Search"
+                size="large"
+                onSearch={(value) => setSearchTerm(value)}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{ overflow: 'hidden' }}
+              />
+            </div>
+            <div className="flex flex-wrap gap-3 w-full  justify-end">
               <CustomButton
                 onClick={() => setShowFilters(!showFilters)}
                 size="large"
