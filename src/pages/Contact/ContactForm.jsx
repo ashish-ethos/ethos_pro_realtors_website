@@ -51,14 +51,12 @@ const ContactForm = ({ onSubmitSuccess }) => {
         }
 
         try {
-
             const formBody = new URLSearchParams({
                 name: formData.name,
                 phone: formData.phone,
                 email: formData.email,
                 message: formData.message,
             }).toString();
-
 
             const response = await fetch('https://thespitihomes.in/ethoswebsite/enquiry-form.php', {
                 method: 'POST',
@@ -70,9 +68,7 @@ const ContactForm = ({ onSubmitSuccess }) => {
                 redirect: 'manual',
             });
 
-
             if (response.redirected) {
-                const redirectedUrl = response.headers.get('location');
                 setSubmitted(true);
                 setFormData({ name: '', phone: '+91', email: '', message: '' });
                 if (onSubmitSuccess) onSubmitSuccess();
@@ -106,18 +102,18 @@ const ContactForm = ({ onSubmitSuccess }) => {
     };
 
     return (
-        <div className="bg-white rounded-3xl shadow-2xl p-4 lg:p-6 relative overflow-hidden ">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-100 to-transparent rounded-full -mr-16 -mt-16"></div>
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-indigo-100 to-transparent rounded-full -ml-12 -mb-12"></div>
+        <div className="bg-[#333] rounded-3xl shadow-2xl p-4 lg:p-6 relative overflow-hidden border border-[#ffffff38]">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-gray-900/50 to-transparent rounded-full -mr-16 -mt-16"></div>
+            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-gray-800/50 to-transparent rounded-full -ml-12 -mb-12"></div>
 
             <div className="relative z-10">
-                <h4 className="text-2xl font-bold text-gray-800 mb-1">Get In Touch</h4>
+                <h4 className="text-2xl font-bold text-[#c2c6cb] mb-1">Get In Touch</h4>
 
                 {submitted ? (
                     <div className="text-center py-12">
-                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <div className="w-16 h-16 bg-[#444]/80 rounded-full flex items-center justify-center mx-auto mb-4">
                             <svg
-                                className="w-8 h-8 text-green-600"
+                                className="w-8 h-8 text-[#c99913]"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -130,16 +126,16 @@ const ContactForm = ({ onSubmitSuccess }) => {
                                 />
                             </svg>
                         </div>
-                        <h3 className="text-xl font-semibold text-gray-800 mb-2">Thank You!</h3>
-                        <p className="text-gray-600">We'll get back to you soon.</p>
+                        <h3 className="text-xl font-semibold text-[#c2c6cb] mb-2">Thank You!</h3>
+                        <p className="text-[#c2c6cb]">We'll get back to you soon.</p>
                     </div>
                 ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
-                        {error && <div className="text-red-600 text-center">{error}</div>}
+                        {error && <div className="text-[#f87171] text-center">{error}</div>}
                         <div className="grid gap-4">
                             <div>
-                                <label className="block text-sm font-semibold text-gray-700 mb-1">
-                                    Full Name <span className="text-red-500">*</span>
+                                <label className="block text-sm font-semibold text-[#c2c6cb] mb-1">
+                                    Full Name <span className="text-[#f87171]">*</span>
                                 </label>
                                 <CustomInput
                                     type="text"
@@ -148,14 +144,14 @@ const ContactForm = ({ onSubmitSuccess }) => {
                                     onChange={handleChange}
                                     placeholder="Full Name"
                                     required
-                                    className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
+                                    className="w-full px-4 py-2 border border-[#ffffff38] rounded-xl focus:border-[#c99913] focus:ring-4 focus:ring-[#c99913]/20 transition placeholder-[#c2c6cb] bg-[#333] text-[#c2c6cb]"
                                 />
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-1">
-                                Phone <span className="text-red-500">*</span>
+                            <label className="block text-sm font-semibold text-[#c2c6cb] mb-1">
+                                Phone <span className="text-[#f87171]">*</span>
                             </label>
                             <PhoneInput
                                 country={'in'}
@@ -165,34 +161,34 @@ const ContactForm = ({ onSubmitSuccess }) => {
                                 countryCodeEditable={false}
                                 inputProps={{ required: true }}
                                 onChange={handlePhoneChange}
-                                inputClass="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
-                                buttonClass="border-2 border-gray-200 rounded-l-xl"
-                                dropdownClass="border-2 border-gray-200 rounded-xl"
+                                inputClass="w-full px-4 py-2 border border-[#ffffff38] rounded-xl focus:border-[#c99913] focus:ring-4 focus:ring-[#c99913]/20 transition placeholder-[#c2c6cb] bg-[#333] text-[#c2c6cb]"
+                                buttonClass="border border-[#ffffff38] rounded-l-xl bg-[#333]"
+                                dropdownClass="border border-[#ffffff38] rounded-xl bg-[#333] text-[#c2c6cb]"
                                 placeholder="Mobile Number"
                             />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-1">Email</label>
+                            <label className="block text-sm font-semibold text-[#c2c6cb] mb-1">Email</label>
                             <CustomInput
                                 type="email"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
                                 placeholder="Email Address"
-                                className="w-full px-4 py-2 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition placeholder-gray-400"
+                                className="w-full px-4 py-2 border border-[#ffffff38] rounded-xl focus:border-[#c99913] focus:ring-4 focus:ring-[#c99913]/20 transition placeholder-[#c2c6cb] bg-[#333] text-[#c2c6cb]"
                             />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-1">Message</label>
+                            <label className="block text-sm font-semibold text-[#c2c6cb] mb-1">Message</label>
                             <TextArea
                                 name="message"
                                 value={formData.message}
                                 onChange={handleChange}
                                 placeholder="Write your message..."
                                 rows={4}
-                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition resize-none placeholder-gray-400"
+                                className="w-full px-4 py-3 border border-[#ffffff38] rounded-xl focus:border-[#c99913] focus:ring-4 focus:ring-[#c99913]/20 transition resize-none placeholder-[#c2c6cb] bg-[#333] text-[#c2c6cb]"
                             />
                         </div>
 
@@ -200,12 +196,11 @@ const ContactForm = ({ onSubmitSuccess }) => {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className={`w-auto px-6 py-2 cursor-pointer rounded-xl text-white font-semibold transition ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-sky-500 hover:bg-sky-600 focus:ring-4 focus:ring-sky-100'
-                                    }`}
+                                className={`w-auto px-6 py-2 cursor-pointer rounded-xl text-[#c2c6cb] font-semibold transition border border-[#ffffff38] ${loading ? 'bg-[#444] cursor-not-allowed' : 'bg-[#333] hover:bg-[#444] focus:ring-4 focus:ring-[#c99913]/20'}`}
                             >
                                 {loading ? (
                                     <div className="flex items-center justify-center">
-                                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                                        <div className="w-5 h-5 border-2 border-[#c2c6cb] border-t-transparent rounded-full animate-spin mr-2"></div>
                                         Submitting...
                                     </div>
                                 ) : (

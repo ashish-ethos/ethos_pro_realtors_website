@@ -54,7 +54,6 @@ const Hero = ({ onSearchChange }) => {
     "pune",
   ];
 
-  // Custom tag rendering for multiple select
   const tagRender = (props) => {
     const { label, closable, onClose } = props;
     return (
@@ -62,14 +61,12 @@ const Hero = ({ onSearchChange }) => {
         closable={closable}
         onClose={onClose}
         className="hero-tag"
-        
       >
         {label}
       </Tag>
     );
   };
 
-  // Calculate dynamic minWidth for selects
   const propertyMinWidth = propertyType.length > 0 ? Math.min(propertyType.length * 70 + 60, 400) : 150;
   const cityMinWidth = selectedCity.length > 0 ? Math.min(selectedCity.length * 70 + 60, 400) : 150;
 
@@ -78,49 +75,40 @@ const Hero = ({ onSearchChange }) => {
       className="relative w-full h-[60vh] overflow-hidden parallax hero-section"
       id="home"
     >
-      {/* Background */}
       <div className="absolute inset-0 h-full">
         <img
           src={BackgroundImage}
           alt="Real Estate Background"
-          className="w-full h-full object-cover brightness-85"
+          className="w-full h-full object-cover brightness-50"
         />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-white text-center hero-content">
+      <div className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-[#c08830] text-center hero-content">
         <h1 className="text-4xl font-[Montserrat] sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight text-gradient animate-fade-in-slide-up hero-section-title">
           Ethos Pro Realtors
         </h1>
-        <p className="mobile-hero-content text-base bg-[#4e4e4ed4] py-0 px-4 rounded-sm font-[sans-serif] sm:text-lg lg:text-xl mb-10 max-w-3xl text-white leading-relaxed animate-fade-in-delayed">
-          Discover luxury properties for sale and rent with advanced search
-          options.
+        <p className="mobile-hero-content text-base bg-[#1a1a1ad4] py-0 px-4 rounded-sm font-[sans-serif] sm:text-lg lg:text-xl mb-10 max-w-3xl text-[#c08830] leading-relaxed animate-fade-in-delayed">
+          YOUR PROPERTY, OUR PRIORITY  
         </p>
 
-        {/* Advanced Search Card */}
         <Card
-          className="hero-section-card w-full max-w-6xl mx-auto bg-gradient-to-r from-orange-400 to-orange-200 shadow-2xl rounded-2xl p-6 sm:p-8 animate-scale-in"
-          
+          className="hero-section-card w-full max-w-6xl mx-auto bg-gradient-to-r from-gray-800 to-gray-600 shadow-2xl rounded-2xl p-6 sm:p-8 animate-scale-in"
         >
           <Row gutter={[8, 8]} align="middle" justify="center" wrap className="p-4 hero-card-all">
-            {/* Location */}
             <Col xs={24} sm={12} md={undefined} style={screens.md ? { flex: '0 0 200px' } : {}}>
               <CustomInput
                 size="large"
                 placeholder="Search"
                 value={searchText}
                 onChange={handleSearch}
-                
-                className="w-full rounded-lg border-gray-200 hover:border-blue-400 transition-colors"
+                className="w-full rounded-lg border-gray-600 hover:border-[#c08830] transition-colors bg-gray-700 text-[#c08830]"
               />
             </Col>
 
-            {/* Property Type */}
             <Col xs={24} sm={12} md={undefined} style={screens.md ? { flex: '0 0 auto' } : {}}>
               <CustomSelect
                 size="large"
                 className="hero-select"
-
                 style={{
                   width: "auto",
                   height: 40,
@@ -132,7 +120,6 @@ const Hero = ({ onSearchChange }) => {
                 suffixIcon={<DownOutlined />}
                 onChange={handleTypeSelect}
                 styles={{ popup: { root: { width: 200 } } }}
-                // dropdownStyle={{ minWidth: 200 }}
                 optionFilterProp="label"
                 showSearch
                 mode="multiple"
@@ -161,7 +148,6 @@ const Hero = ({ onSearchChange }) => {
               </CustomSelect>
             </Col>
 
-            {/* City */}
             <Col xs={24} sm={12} md={undefined} style={screens.md ? { flex: '0 0 auto' } : {}}>
               <CustomSelect
                 size="large"
@@ -176,7 +162,6 @@ const Hero = ({ onSearchChange }) => {
                 placeholder="Select City"
                 onChange={handleCitySelect}
                 styles={{ popup: { root: { width: 200 } } }}
-                // dropdownStyle={{ minWidth: 200 }}
                 options={cityOptions.map((city) => ({
                   value: city,
                   label: city.charAt(0).toUpperCase() + city.slice(1),
@@ -188,7 +173,6 @@ const Hero = ({ onSearchChange }) => {
               />
             </Col>
 
-            {/* Search Button */}
             <Col xs={24} sm={12} md={undefined} style={screens.md ? { flex: '0 0 150px' } : {}}>
               <CustomButton
                 type="primary"

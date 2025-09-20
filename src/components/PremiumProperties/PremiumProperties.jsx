@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import DLFCamellias from "../../assets/images/premiumproperties/dlfthecamilias.jpg";
 import ElanTheEmperor from "../../assets/images/premiumproperties/Elan-The-Emperor.jpg";
@@ -9,7 +9,6 @@ import DLFTheCrest from "../../assets/images/premiumproperties/dlfthecrest.jpg";
 import { Drawer } from "antd";
 import "./PremiumProperties.css";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
 import CardPropertiesDetails from "./CardPropertiesDetails";
 import CustomButton from "../ui/Button";
 
@@ -43,7 +42,6 @@ function PremiumProperties() {
       featured: true,
       amenities: ["Swimming Pool", "Gym", "Garden", "Security"],
       updatedOn: "June 19, 2025",
-      
     },
     {
       id: 2,
@@ -67,7 +65,6 @@ function PremiumProperties() {
       featured: true,
       amenities: ["Rooftop Pool", "Spa", "Concierge", "Parking"],
       updatedOn: "June 20, 2025",
-      
     },
     {
       id: 3,
@@ -91,7 +88,6 @@ function PremiumProperties() {
       featured: false,
       amenities: ["Waterfall View", "Balcony", "Garden", "Clubhouse"],
       updatedOn: "June 21, 2025",
-     
     },
     {
       id: 4,
@@ -122,7 +118,6 @@ function PremiumProperties() {
       openArea: "70%",
       structure: "G + 21/38",
       configurations: "4, 5, 6 BHK Apartments",
-      
     },
     {
       id: 5,
@@ -152,7 +147,6 @@ function PremiumProperties() {
       towers: "8",
       structure: "G+32 Floors",
       configurations: "2, 3, 4, 5 BHK Apartments & Penthouse",
-      
     },
     {
       id: 6,
@@ -162,7 +156,7 @@ function PremiumProperties() {
       image: DLFTheCrest,
       location: {
         full: "DLF Phase 5, Sector 54, Gurgram, Haryana, India",
-        googleMap: `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.58548173569!2d77.02305912601354!3d28.522116639085294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b89af3e9f25%3A0x933e8ef98fc61271!2sDLF%20The%20Crest!5e0!3m2!1sen!2sin!4v1755071944004!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`,
+        googleMap: `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.58548173569!2d77.02305912601354!3d28.522116639085294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1b89af3e9f25%3A0x933e8ef98fc61271!2sDLF%20The%20Crest!5e0!3m2!1sen!2sin!4v1755071944004!5m2!2sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`,
         city: "Gurugram",
         state: "Haryana",
         area: "Golf Course Road",
@@ -176,7 +170,6 @@ function PremiumProperties() {
       featured: true,
       amenities: ["Park View", "Yoga Studio", "Library", "Cafe"],
       updatedOn: "June 20, 2025",
-     
     },
   ];
 
@@ -214,23 +207,23 @@ function PremiumProperties() {
 
   return (
     <div
-      className="premium-properties-main h-full bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 py-16 px-4 relative overflow-hidden"
+      className="premium-properties-main h-full bg-gradient-to-br from-gray-900 to-gray-800 py-16 px-4 relative overflow-hidden"
       id="premium-properties"
     >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-amber-400/10 to-orange-400/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-emerald-400/5 to-teal-400/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-gray-900/20 to-gray-800/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-gray-800/20 to-gray-700/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-gray-900/10 to-gray-800/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
       </div>
 
       <div className="container mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-10">
-          <h1 className="mobile-title-text text-5xl md:text-6xl font-[Montserrat] font-black mb-4 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+          <h1 className="mobile-title-text text-5xl md:text-6xl font-[Montserrat] font-black mb-4 bg-gradient-to-r from-[#c2c6cb] via-[#c99913] to-[#c2c6cb] bg-clip-text text-transparent animate-pulse">
             Top Handpicked Deals
           </h1>
-          <p className="mobile-subtitle-text text-xl font-bebas text-gray-600 font-medium mt-6 font-light max-w-2xl mx-auto ">
+          <p className="mobile-subtitle-text text-xl font-bebas text-[#c2c6cb] font-medium mt-6 font-light max-w-2xl mx-auto">
             Premium Properties at the Best Prices!
           </p>
         </div>
@@ -238,13 +231,13 @@ function PremiumProperties() {
         {/* Navigation Buttons */}
         <button
           onClick={prevProperty}
-          className="absolute cursor-pointer left-4 top-1/2 transform -translate-y-1/2 z-30 p-4 rounded-full bg-white/90 text-gray-800 shadow-xl hover:scale-110 transition-all permium-properties-right"
+          className="absolute cursor-pointer left-4 top-1/2 transform -translate-y-1/2 z-30 p-4 rounded-full bg-[#333]/90 text-[#c2c6cb] shadow-xl hover:scale-110 hover:bg-[#444] transition-all border border-[#ffffff38] permium-properties-right"
         >
           <ChevronLeft size={24} />
         </button>
         <button
           onClick={nextProperty}
-          className="absolute cursor-pointer right-4 top-1/2 transform -translate-y-1/2 z-30 p-4 rounded-full bg-white/90 text-gray-800 shadow-xl hover:scale-110 transition-all permium-properties-right"
+          className="absolute cursor-pointer right-4 top-1/2 transform -translate-y-1/2 z-30 p-4 rounded-full bg-[#333]/90 text-[#c2c6cb] shadow-xl hover:scale-110 hover:bg-[#444] transition-all border border-[#ffffff38] permium-properties-right"
         >
           <ChevronRight size={24} />
         </button>
@@ -261,12 +254,11 @@ function PremiumProperties() {
             {properties.map((property) => (
               <div
                 key={property.id}
-                className={`carousel-card relative flex-shrink-0 w-[calc(100%/${visibleCards}-2rem)] transition-all duration-700 ${hoveredCard === property.id ? "scale-105 z-20" : "scale-100"
-                  }`}
+                className={`carousel-card relative flex-shrink-0 w-[calc(100%/${visibleCards}-2rem)] transition-all duration-700 ${hoveredCard === property.id ? "scale-105 z-20" : "scale-100"}`}
                 onMouseEnter={() => setHoveredCard(property.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                <div className={`group relative bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 transition-all ${hoveredCard === property.id ? "-translate-y-4" : ""}`}>
+                <div className={`group relative bg-[#333] rounded-3xl shadow-xl overflow-hidden border border-[#ffffff38] transition-all ${hoveredCard === property.id ? "-translate-y-4" : ""}`}>
                   {/* Image */}
                   <div className="relative overflow-hidden">
                     <img
@@ -276,11 +268,11 @@ function PremiumProperties() {
                     />
                     <div className="absolute top-4 left-4 flex flex-col gap-2">
                       {property.featured && (
-                        <span className="px-3 py-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
+                        <span className="px-3 py-1 bg-[#333] text-[#c99913] text-xs font-bold rounded-full shadow-lg animate-pulse border border-[#ffffff38]">
                           FEATURED
                         </span>
                       )}
-                      <span className="px-3 py-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] text-white text-xs font-bold rounded-full shadow-lg">
+                      <span className="px-3 py-1 bg-[#333] text-[#c99913] text-xs font-bold rounded-full shadow-lg border border-[#ffffff38]">
                         {property.discount}
                       </span>
                     </div>
@@ -289,17 +281,17 @@ function PremiumProperties() {
                   {/* Content */}
                   <div className="p-6">
                     <div className="flex items-center gap-3 mb-4 content-mobile-price">
-                      <span className="text-2xl font-bold fontFamily-bebas">{property.price}</span>
-                      <span className="text-sm text-gray-500 bg-gray-100 px-2 py-1  rounded">Base Price {property.basePrice} </span>
+                      <span className="text-2xl font-bold fontFamily-bebas text-[#c99913]">{property.price}</span>
+                      <span className="text-sm text-[#c2c6cb] bg-[#444] px-2 py-1 rounded border border-[#ffffff38]">Base Price {property.basePrice}</span>
                     </div>
-                    <h3 className="text-xl font-medium fontFamily-bebas mb-2">{property.name}</h3>
+                    <h3 className="text-xl font-medium fontFamily-bebas text-[#c2c6cb] mb-2">{property.name}</h3>
                     <div className="flex items-start gap-2 mb-3">
-                      <MapPin size={16} className="text-gray-400 mt-1" />
-                      <p className="text-sm text-gray-600">{`${property.location.city}, ${property.location.area}`}</p>
+                      <MapPin size={16} className="text-[#c99913] mt-1" />
+                      <p className="text-sm text-[#c2c6cb]">{`${property.location.city}, ${property.location.area}`}</p>
                     </div>
                     <div className="flex flex-wrap gap-2 mb-6">
                       {property.amenities.slice(0, 3).map((a, i) => (
-                        <span key={i} className="px-2 py-1 bg-gray-100 text-xs rounded-full">
+                        <span key={i} className="px-2 py-1 bg-[#444] text-[#c2c6cb] text-xs rounded-full border border-[#ffffff38]">
                           {a}
                         </span>
                       ))}
@@ -307,10 +299,9 @@ function PremiumProperties() {
                     <div className="flex justify-end details-mobile">
                       <CustomButton
                         onClick={() => openDetails(property)}
-                        className="px-4 py-1 font-semibold rounded-xl cursor-pointer"
+                        className="px-4 py-1 font-semibold rounded-xl cursor-pointer bg-[#333] text-[#c2c6cb] hover:bg-[#444] border border-[#ffffff38]"
                         style={{
-                          background: "none",
-                          borderImage: "linear-gradient(to right, #000000, #474236, #c99913) 1",
+                          borderImage: "linear-gradient(to right, #333, #474236, #c99913) 1",
                           borderWidth: "2px",
                           borderStyle: "solid",
                         }}
@@ -328,14 +319,15 @@ function PremiumProperties() {
 
       {/* Drawer */}
       <Drawer
-        title={<span className="text-xl font-bold text-gray-800">Property Details</span>}
+        title={<span className="text-xl font-bold text-[#c2c6cb]">Property Details</span>}
         placement="right"
         width={1000}
         onClose={() => navigate("/")}
         open={drawerOpen}
         styles={{
-          header: { borderBottom: "1px solid #e5e7eb" },
-          body: { padding: 0 },
+          header: { background: "#333", borderBottom: "1px solid #ffffff38", color: "#c2c6cb" },
+          body: { background: "#333", padding: 0 },
+          mask: { background: "rgba(17, 24, 39, 0.5)" },
         }}
       >
         <CardPropertiesDetails property={selectedProperty} className="custom-scrollbar" />

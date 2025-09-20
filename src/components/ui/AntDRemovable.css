@@ -1,0 +1,106 @@
+/* ---------- BUTTON ---------- */
+.ant-btn-primary {
+  background-color: #c08830;
+  border-color: #c08830;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  border-color: #a36d25 !important;
+}
+
+/* ---------- INPUT ---------- */
+.ant-input:focus,
+.ant-input-focused {
+  border-color: #c08830 !important;
+  box-shadow: 0 0 0 2px rgba(192, 136, 48, 0.2) !important;
+}
+
+/* ---------- SELECT ---------- */
+.ant-select-selector:focus,
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:hover {
+  border-color: #c08830 !important;
+  box-shadow: 0 0 0 2px rgba(192, 136, 48, 0.2) !important;
+}
+
+/* Dropdown active option */
+.ant-select-item-option-active,
+.ant-select-item-option-selected {
+  background-color: rgba(192, 136, 48, 0.1) !important;
+  color: #c08830 !important;
+}
+
+.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  background: #333 !important;
+  color: #c2c6cb !important;
+  /* border: 1px solid  !important; */
+}
+.ant-input::placeholder {
+  color: #c2c6cb !important; 
+  opacity: 1; 
+}
+
+
+
+.ant-select-selector:focus, .ant-select-focused .ant-select-selector, .ant-select-selector:hover{
+    border: 1px solid #c08830 !important;
+}
+.ant-select-selection-placeholder {
+  color: #c2c6cb !important;
+}
+.ant-select-arrow {
+  color: #c2c6cb !important;
+}
+.ant-select-item .ant-select-item-group {
+  background: #333 !important;
+  color: #c2c6cb !important;
+}
+/* Placeholder text color */
+.ant-select-selection-placeholder {
+  color: #c2c6cb !important;
+}
+
+/* Dropdown arrow color */
+.ant-select-arrow {
+  color: #c2c6cb !important;
+}
+
+/* Dropdown group label background & color */
+.ant-select-item-group {
+  background: #333 !important;
+  color: #c2c6cb !important;
+}
+
+/* Dropdown container background */
+.ant-select-dropdown {
+  background: #333 !important;
+  border: 1px solid #333 !important;
+}
+
+/* Dropdown option text color */
+.ant-select-item {
+  background: #333 !important;
+  color: #c2c6cb !important;
+}
+
+/* Hover effect for options */
+.ant-select-item-option-active {
+  background: #444 !important;
+}
+
+/* Selected option */
+.ant-select-item-option-selected {
+  background: #555 !important;
+  font-weight: 600;
+}
+
+/* Selector box (visible input area) */
+.ant-select-selector {
+  background: #333 !important;
+  color: #c2c6cb !important;
+  border: 1px solid #333 !important;
+}
+.ant-drawer .ant-drawer-close{
+    color: #c2c6cb !important;
+}

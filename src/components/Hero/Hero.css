@@ -7,7 +7,7 @@
 
 /* Text gradient */
 .text-gradient {
-  background: linear-gradient(to right, #000000, #9b8862, #ccae73);
+  background: linear-gradient(to right, #c08830, #e6b800);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -21,10 +21,10 @@
   border-radius: 8px;
   font-weight: 600;
   font-size: 16px;
-  color: white;
+  color: #c2c6cb;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: linear-gradient(to right, #4a4a4a, #a68a64, #d9b67e);
+  background: linear-gradient(to right, #2a2a2a, #c08830, #e6b800);
   overflow: hidden;
 }
 
@@ -35,7 +35,7 @@
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(to right, #00c4cc, #ffd700);
+  background: linear-gradient(to right, #c08830, #e6b800);
   z-index: -1;
   border-radius: 10px;
   opacity: 0.3;
@@ -44,7 +44,7 @@
 
 .custom-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
   background: linear-gradient(to right, #1a1a1a, #a59770, #d9bc85);
 }
 
@@ -54,7 +54,7 @@
 
 .custom-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* Animations */
@@ -115,18 +115,21 @@ section {
 .ant-card {
   border: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #2a2a2a;
 }
 
 .ant-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 .ant-input,
 .ant-btn,
 .ant-input-number {
   font-size: 16px;
-  /* height: 40px; */
+  color: #c2c6cb;
+  background: #333333;
+  border-color: #444444;
 }
 
 .ant-input-number-input {
@@ -135,7 +138,6 @@ section {
 
 /* Ensure the select container expands with tags */
 .ant-select-selector {
-  /* height: 40px !important; */
   display: flex !important;
   align-items: center !important;
   padding: 0 8px !important;
@@ -144,6 +146,9 @@ section {
   white-space: nowrap !important;
   flex-wrap: nowrap !important;
   transition: min-width 0.3s ease !important;
+  background: #333333;
+  border-color: #444444;
+  color: #c2c6cb;
 }
 
 /* Hide scrollbar for smooth look */
@@ -157,13 +162,12 @@ section {
   .ant-btn,
   .ant-input-number {
     font-size: 14px;
-    /* height: 36px; */
   }
 
   .custom-button {
     font-size: 14px;
     padding: 10px 20px;
-    border: 1px solid rgb(156, 155, 155);
+    border: 1px solid #444444;
   }
 
   .ant-select-selector {
@@ -176,9 +180,6 @@ section {
 }
 
 @media (max-width: 576px) {
- 
- 
-
   .hero-content {
     padding: 12px;
   }
@@ -204,47 +205,42 @@ section {
 .hero-content {
   padding-top: 5vh;
 }
-@media (max-width : 768px){
-  /* .hero-section{
-    height: 80vh;
-  } */
-  .hero-section-title{
+
+@media (max-width: 768px) {
+  .hero-section-title {
     margin-bottom: 0px;
   }
-  .hero-section-card{
-    
-  }
-  .hero-card-all{
+  .hero-card-all {
     padding: 0px;
   }
- 
 }
-.hero-tag{
+
+.hero-tag {
   margin: 2px;
   border-radius: 8px;
-  background-color: #e6f7ff;
-  border: 1px solid #91d5ff;
-  color: #1890ff;
+  background-color: #444444;
+  border: 1px solid #c2c6cb;
+  color: #c2c6cb;
   padding: 1px 6px;
   font-size: 12px;
   line-height: 18px;
   white-space: nowrap;
 }
 
-@media(max-width:576px){
-   .hero-select{
+@media (max-width: 576px) {
+  .hero-select {
     min-width: 100% !important;
   }
-  .hero-section-card{
+  .hero-section-card {
     width: 300px;
   }
-  .mobile-hero-content{
+
+  .mobile-hero-content {
     font-size: 15px;
     padding: 5px;
     margin-bottom: 10px;
     margin-top: 10px;
     max-width: 90%;
-    /* background: none; */
     text-align: center;
   }
 }

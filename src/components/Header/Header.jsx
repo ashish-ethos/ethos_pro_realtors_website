@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
-import {  FaCaretDown } from "react-icons/fa";
-import { Menu ,X } from 'lucide-react';
+import { FaCaretDown } from "react-icons/fa";
+import { Menu, X } from 'lucide-react';
 import { IoIosArrowDown } from "react-icons/io";
 import { Dropdown, Space } from "antd"; 
 import "./Header.css";
-import CompanyHeaderLogo from "../../assets/images/logo/ethos_pro_realtors_logo.jpg";
+import CompanyHeaderLogo from "../../assets/images/logo/ethos_pro_darkmode.png";
 import MobileHeaderLogo from "../../assets/images/logo/EPR_logo.png";
 
 function Header() {
@@ -34,20 +34,16 @@ function Header() {
     { name: "Contact", path: "/contact" },
   ];
 
-  // Handle dropdown item click
-  const onClick = ({ key }) => {
-    
-  };
+  const onClick = ({ key }) => {};
 
-  // Map dropdown items for Ant Design
   const getDropdownItems = (dropdown) =>
     dropdown.map((sub) => ({
       label: (
         <NavLink
           to={sub.path}
           className={({ isActive }) =>
-            `block px-4 py-1 text-sm hover:bg-yellow-50 ${
-              isActive ? "text-yellow-600 font-semibold" : "text-gray-800"
+            `block px-4 py-1 text-sm hover:bg-gray-700 ${
+              isActive ? "text-[#c08830] font-semibold" : "text-[#c08830]"
             }`
           }
         >
@@ -60,19 +56,16 @@ function Header() {
   return (
     <header
       className={`fixed w-full top-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-white shadow-md" : "bg-transparent"
+        scrolled ? "bg-gray-900 shadow-md" : "bg-gray-800 bg-opacity-80"
       }`}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center header-mobile">
-        {/* Logo */}
         <Link to="/" className="flex items-center space-x-3">
-          {/* Desktop Logo */}
           <img
             src={CompanyHeaderLogo}
             alt="Logo"
             className="h-14 w-auto cursor-pointer hidden md:block"
           />
-          {/* Mobile Logo */}
           <img
             src={MobileHeaderLogo}
             alt="Mobile Logo"
@@ -80,7 +73,6 @@ function Header() {
           />
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) =>
             item.dropdown ? (
@@ -94,9 +86,9 @@ function Header() {
                   menu={{ items: getDropdownItems(item.dropdown), onClick }}
                   trigger={["hover"]}
                   open={item.name === hoveredItem}
-                  overlayClassName="custom-dropdown" 
+                  overlayClassName="custom-dropdown"
                 >
-                  <span className="flex items-center font-medium cursor-pointer">
+                  <span className="flex items-center font-medium cursor-pointer text-[#c08830] hover:text-[#e6b800]">
                     {item.name} <IoIosArrowDown className="ml-1 mt-1" />
                   </span>
                 </Dropdown>
@@ -106,8 +98,8 @@ function Header() {
                 key={item.name}
                 to={item.path}
                 className={({ isActive }) =>
-                  `relative font-medium hover:text-yellow-600 transition ${
-                    isActive ? "text-yellow-600" : "text-gray-800"
+                  `relative font-medium hover:text-[#e6b800] transition ${
+                    isActive ? "text-[#c08830]" : "text-[#c08830]"
                   }`
                 }
               >
@@ -117,7 +109,6 @@ function Header() {
           )}
         </nav>
 
-        {/* CTA Button */}
         <div className="hidden lg:flex items-center space-x-4 header-started">
           <a className="fancy" href="#">
             <span className="top-key"></span>
@@ -127,18 +118,16 @@ function Header() {
           </a>
         </div>
 
-        {/* Mobile Hamburger */}
         <button
           className="md:hidden text-3xl"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <X className="w-6 h-6 text-gray-400 cross-mobile-icon" /> : <Menu className="w-6 h-6 cross-mobile-icon" />}
+          {mobileOpen ? <X className="w-6 h-6 text-[#c08830] cross-mobile-icon" /> : <Menu className="w-6 h-6 text-[#c08830] cross-mobile-icon" />}
         </button>
       </div>
 
-      {/* Mobile Nav */}
       <div
-        className={`md:hidden bg-white shadow-lg fixed top-12 right-0 w-64 h-screen transition-transform duration-500 ${
+        className={`md:hidden bg-gray-900 shadow-lg fixed top-12 right-0 w-64 h-screen transition-transform duration-500 ${
           mobileOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -147,7 +136,7 @@ function Header() {
             item.dropdown ? (
               <li key={item.name}>
                 <button
-                  className="flex items-center justify-between fontFamily-bebas w-full text-left font-medium"
+                  className="flex items-center justify-between fontFamily-bebas w-full text-left font-medium text-[#c08830]"
                   onClick={() => setProjectsOpen(!projectsOpen)}
                 >
                   {item.name} <FaCaretDown />
@@ -159,7 +148,7 @@ function Header() {
                         key={sub.name}
                         to={sub.path}
                         onClick={() => setMobileOpen(false)}
-                        className="block text-gray-700 hover:text-yellow-600"
+                        className="block text-[#c08830] hover:text-[#e6b800]"
                       >
                         {sub.name}
                       </NavLink>
@@ -172,7 +161,7 @@ function Header() {
                 <NavLink
                   to={item.path}
                   onClick={() => setMobileOpen(false)}
-                  className="block font-medium text-gray-800 hover:text-yellow-600"
+                  className="block font-medium text-[#c08830] hover:text-[#e6b800]"
                 >
                   {item.name}
                 </NavLink>
@@ -183,7 +172,7 @@ function Header() {
             <Link
               to="/contact"
               onClick={() => setMobileOpen(false)}
-              className="block text-center bg-yellow-500 text-gray-900 font-semibold py-2 px-6 rounded-full hover:bg-yellow-400"
+              className="block text-center bg-[#c08830] text-gray-900 font-semibold py-2 px-6 rounded-full hover:bg-[#e6b800]"
             >
               +91 8744964496
             </Link>

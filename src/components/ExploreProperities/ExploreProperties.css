@@ -8,7 +8,7 @@
   inset: -2px;
   border-radius: 6px;
   padding: 1px;
-  background: linear-gradient(to right, #000000, #474236, #c99913);
+  background: linear-gradient(to right, #333, #474236, #c99913);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -41,75 +41,55 @@
     opacity: 1;
   }
 }
-.scrollbar-hidden {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-}
+
 .parent {
   perspective: 1200px;
 }
 .explore-card {
   transition: all 0.6s ease-in-out;
   transform-style: preserve-3d;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
-    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.2) 0px 4px 6px -2px;
 }
 .parent:hover .explore-card {
   transform: rotate3d(1, -1, 0, 25deg);
-  background: #fff;
-  /* box-shadow: rgba(30, 30, 60, 0.3) 30px 50px 25px -40px,
-    rgba(30, 30, 60, 0.15) 0px 25px 30px 0px; */
+  background: #333;
 }
 .property-card-action-button:hover {
-  border: 1px solid #4096ff !important;
+  border: 1px solid #c99913 !important;
 }
 
 .property-card-action-button svg {
-  width: 12px !important; /* w-3 */
-  height: 12px !important; /* h-3 */
+  width: 12px !important;
+  height: 12px !important;
 }
 
 @media (min-width: 640px) {
-  /* sm: */
   .property-card-action-button svg {
-    width: 16px !important; /* sm:w-4 */
-    height: 16px !important; /* sm:h-4 */
+    width: 16px !important;
+    height: 16px !important;
   }
 }
 
 .property-card-action-button span {
-  font-weight: 500 !important; 
+  font-weight: 500 !important;
 }
 
 @media (min-width: 640px) {
-
   .property-card-action-button span {
-    font-size: 14px !important; 
+    font-size: 14px !important;
   }
 }
-
-.scrollbar-hidden {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
-}
-
 
 .text-area-contact {
   &:focus {
-    border-color: #1677ff;
-    box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+    border-color: #c99913 !important;
+    box-shadow: 0 0 0 2px rgba(201, 153, 19, 0.2) !important;
     outline: 0;
-    background-color: #ffffff;
+    background-color: #333 !important;
+    color: #c2c6cb !important;
   }
   &:hover {
-    border-color: #4096ff;
+    border-color: #c99913 !important;
   }
 }
-

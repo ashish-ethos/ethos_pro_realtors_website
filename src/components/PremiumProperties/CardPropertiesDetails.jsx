@@ -15,14 +15,15 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import ContactForm from "../../pages/Contact/ContactForm";
+import "./PremiumProperties.css";
 
 const CardPropertiesDetails = ({ property }) => {
   if (!property) {
     return (
-      <div className="flex items-center justify-center p-8 bg-gray-50 rounded-lg">
+      <div className="flex items-center justify-center p-8 bg-[#333] rounded-lg border border-[#ffffff38]">
         <div className="text-center">
-          <Home className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-          <p className="text-gray-600 text-lg">No property details available.</p>
+          <Home className="mx-auto h-12 w-12 text-[#c2c6cb] mb-4" />
+          <p className="text-[#c2c6cb] text-lg">No property details available.</p>
         </div>
       </div>
     );
@@ -37,29 +38,29 @@ const CardPropertiesDetails = ({ property }) => {
 
   const getAmenityIcon = (amenity) => {
     const key = amenity.toLowerCase();
-    if (key.includes("gym") || key.includes("fitness")) return <Dumbbell className="w-4 h-4" />;
-    if (key.includes("parking")) return <Car className="w-4 h-4" />;
-    if (key.includes("garden") || key.includes("park")) return <Trees className="w-4 h-4" />;
-    if (key.includes("wifi") || key.includes("internet")) return <Wifi className="w-4 h-4" />;
-    if (key.includes("security")) return <ShieldCheck className="w-4 h-4" />;
-    return <CheckCircle className="w-4 h-4" />;
+    if (key.includes("gym") || key.includes("fitness")) return <Dumbbell className="w-4 h-4 text-[#c99913]" />;
+    if (key.includes("parking")) return <Car className="w-4 h-4 text-[#c99913]" />;
+    if (key.includes("garden") || key.includes("park")) return <Trees className="w-4 h-4 text-[#c99913]" />;
+    if (key.includes("wifi") || key.includes("internet")) return <Wifi className="w-4 h-4 text-[#c99913]" />;
+    if (key.includes("security")) return <ShieldCheck className="w-4 h-4 text-[#c99913]" />;
+    return <CheckCircle className="w-4 h-4 text-[#c99913]" />;
   };
 
   return (
-    <div className="max-w-7xl mx-auto bg-white shadow-sm border border-gray-200 overflow-y-auto custom-scrollbar scrollbar-thin rounded-xl">
+    <div className="max-w-7xl mx-auto bg-[#333] shadow-sm border border-[#ffffff38] overflow-y-auto custom-scrollbar scrollbar-thin ">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 border-b border-gray-200">
+      <div className="bg-[#1f2937] px-6 py-4 border-b border-[#ffffff38]">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-gray-900">{property.name}</h1>
+          <h1 className="text-2xl font-bold text-[#c2c6cb]">{property.name}</h1>
           {property.featured && (
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#c99913]/20 text-[#c99913]">
               <Star className="w-4 h-4 mr-1" />
               Featured
             </span>
           )}
         </div>
-        <div className="flex items-center mt-2 text-gray-600">
-          <MapPin className="w-5 h-5 mr-2 text-red-500" />
+        <div className="flex items-center mt-2 text-[#c2c6cb]">
+          <MapPin className="w-5 h-5 mr-2 text-[#c99913]" />
           <span className="text-sm">{property.location.full}</span>
         </div>
       </div>
@@ -74,22 +75,22 @@ const CardPropertiesDetails = ({ property }) => {
             className="w-full h-96 object-cover rounded-xl shadow-lg"
           />
           <div className="absolute top-4 left-4">
-            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-green-100 text-green-800 backdrop-blur-sm">
+            <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-[#16a34a]/20 text-[#c2c6cb] backdrop-blur-sm">
               {property.type}
             </span>
           </div>
           <div className="absolute top-4 right-4">
-            <div className="flex items-center bg-white/90 backdrop-blur-md rounded-full shadow-lg overflow-hidden border border-gray-200">
-              <div className="flex items-center gap-1 px-3 py-1 hover:bg-yellow-50">
-                <Star className="w-4 h-4 text-yellow-500" />
-                <span className="text-sm font-semibold text-gray-900">{property.rating}</span>
-                <span className="text-[11px] text-gray-600">Rating</span>
+            <div className="flex items-center bg-[#333]/90 backdrop-blur-md rounded-full shadow-lg overflow-hidden border border-[#ffffff38]">
+              <div className="flex items-center gap-1 px-3 py-1 hover:bg-[#444]">
+                <Star className="w-4 h-4 text-[#c99913]" />
+                <span className="text-sm font-semibold text-[#c2c6cb]">{property.rating}</span>
+                <span className="text-[11px] text-[#c2c6cb]/80">Rating</span>
               </div>
-              <div className="h-6 w-px bg-gray-300"></div>
-              <div className="flex items-center gap-1 px-3 py-1 hover:bg-blue-50">
-                <Eye className="w-4 h-4 text-blue-500" />
-                <span className="text-sm font-semibold text-gray-900">{property.views}</span>
-                <span className="text-[11px] text-gray-600">Views</span>
+              <div className="h-6 w-px bg-[#ffffff38]"></div>
+              <div className="flex items-center gap-1 px-3 py-1 hover:bg-[#444]">
+                <Eye className="w-4 h-4 text-[#c99913]" />
+                <span className="text-sm font-semibold text-[#c2c6cb]">{property.views}</span>
+                <span className="text-[11px] text-[#c2c6cb]/80">Views</span>
               </div>
             </div>
           </div>
@@ -98,74 +99,74 @@ const CardPropertiesDetails = ({ property }) => {
         {/* Row 1: Property Details + Location Details */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           {/* Property Details */}
-          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-            <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center border-b border-gray-300 pb-2">
-              <Home className="w-5 h-5 mr-2 text-indigo-600" />
+          <div className="bg-[#1f2937] rounded-lg p-3 border border-[#ffffff38]">
+            <h4 className="text-lg font-semibold text-[#c2c6cb] mb-4 flex items-center border-b border-[#ffffff38] pb-2">
+              <Home className="w-5 h-5 mr-2 text-[#c99913]" />
               Property Details
             </h4>
             <div className="space-y-3">
-              <div className="flex justify-between py-2 border-b border-gray-200">
-                <span className="text-sm font-medium text-gray-600">Price</span>
-                <span className="text-lg font-bold text-green-600">{property.price}</span>
+              <div className="flex justify-between py-2 border-b border-[#ffffff38]">
+                <span className="text-sm font-medium text-[#c2c6cb]/80">Price</span>
+                <span className="text-lg font-bold text-[#c99913]">{property.price}</span>
               </div>
-              <div className="flex justify-between py-2 border-b border-gray-200">
-                <span className="text-sm font-medium text-gray-600">Discount</span>
-                <span className="text-sm font-semibold text-red-600">{property.discount}</span>
+              <div className="flex justify-between py-2 border-b border-[#ffffff38]">
+                <span className="text-sm font-medium text-[#c2c6cb]/80">Discount</span>
+                <span className="text-sm font-semibold text-[#ef4444]">{property.discount}</span>
               </div>
-              <div className="flex justify-between py-2 border-b border-gray-200">
-                <span className="text-sm font-medium text-gray-600">Area</span>
-                <span className="text-sm text-gray-900">{property.area}</span>
+              <div className="flex justify-between py-2 border-b border-[#ffffff38]">
+                <span className="text-sm font-medium text-[#c2c6cb]/80">Area</span>
+                <span className="text-sm text-[#c2c6cb]">{property.area}</span>
               </div>
               {property.configurations && (
-                <div className="flex justify-between py-2 border-b border-gray-200">
-                  <span className="text-sm font-medium text-gray-600">Configurations</span>
-                  <span className="text-sm text-gray-900">{property.configurations}</span>
+                <div className="flex justify-between py-2 border-b border-[#ffffff38]">
+                  <span className="text-sm font-medium text-[#c2c6cb]/80">Configurations</span>
+                  <span className="text-sm text-[#c2c6cb]">{property.configurations}</span>
                 </div>
               )}
               <div className="flex justify-between py-2">
-                <span className="text-sm font-medium text-gray-600 flex items-center">
-                  <Calendar className="w-4 h-4 mr-1" />
+                <span className="text-sm font-medium text-[#c2c6cb]/80 flex items-center">
+                  <Calendar className="w-4 h-4 mr-1 text-[#c99913]" />
                   Updated
                 </span>
-                <span className="text-sm text-gray-900">{property.updatedOn}</span>
+                <span className="text-sm text-[#c2c6cb]">{property.updatedOn}</span>
               </div>
             </div>
           </div>
 
           {/* Location Details */}
-          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-            <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center border-b border-gray-300 pb-2">
-              <MapPin className="w-5 h-5 mr-2 text-red-600" />
+          <div className="bg-[#1f2937] rounded-lg p-3 border border-[#ffffff38]">
+            <h4 className="text-lg font-semibold text-[#c2c6cb] mb-4 flex items-center border-b border-[#ffffff38] pb-2">
+              <MapPin className="w-5 h-5 mr-2 text-[#c99913]" />
               Location Details
             </h4>
             <div className="space-y-3">
-              <p className="text-sm text-gray-700">{property.location.address}</p>
-              <div className="grid grid-cols-2 gap-2 text-sm text-gray-700">
-                <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-white rounded-md border border-gray-200 hover:shadow-md hover:bg-gray-50 transition-all">City : {property.location.city}</span>
-                <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-white rounded-md border border-gray-200 hover:shadow-md hover:bg-gray-50 transition-all">State : {property.location.state}</span>
-                <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-white rounded-md border border-gray-200 hover:shadow-md hover:bg-gray-50 transition-all">Area : {property.location.area}</span>
-                <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-white rounded-md border border-gray-200 hover:shadow-md hover:bg-gray-50 transition-all">Country : {property.location.country}</span>
+              <p className="text-sm text-[#c2c6cb]">{property.location.address || property.location.full}</p>
+              <div className="grid grid-cols-2 gap-2 text-sm text-[#c2c6cb]">
+                <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-[#333] rounded-md border border-[#ffffff38] hover:shadow-[0_0_10px_rgba(201,153,19,0.2)] hover:bg-[#444] transition-all">City: {property.location.city}</span>
+                <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-[#333] rounded-md border border-[#ffffff38] hover:shadow-[0_0_10px_rgba(201,153,19,0.2)] hover:bg-[#444] transition-all">State: {property.location.state}</span>
+                <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-[#333] rounded-md border border-[#ffffff38] hover:shadow-[0_0_10px_rgba(201,153,19,0.2)] hover:bg-[#444] transition-all">Area: {property.location.area}</span>
+                <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-[#333] rounded-md border border-[#ffffff38] hover:shadow-[0_0_10px_rgba(201,153,19,0.2)] hover:bg-[#444] transition-all">Country: {property.location.country}</span>
               </div>
               <button
                 onClick={handleViewMap}
-                className="inline-flex items-center gap-2 px-4 py-2 mt-3 bg-white text-gray-700 font-medium rounded-full border border-gray-300 shadow-sm hover:shadow-md hover:bg-gray-50 transition-all"
+                className="inline-flex items-center gap-2 px-4 py-2 mt-3 bg-[#333] text-[#c2c6cb] font-medium rounded-full border border-[#ffffff38] shadow-sm hover:shadow-[0_0_10px_rgba(201,153,19,0.2)] hover:bg-[#444] transition-all"
               >
-                <MapPinned className="w-5 h-5 text-red-500" />
+                <MapPinned className="w-5 h-5 text-[#c99913]" />
                 View on Map
-                <ExternalLink className="w-4 h-4 text-gray-400" />
+                <ExternalLink className="w-4 h-4 text-[#c2c6cb]/80" />
               </button>
             </div>
           </div>
 
           {/* Amenities */}
-          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-            <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center border-b border-gray-300 pb-2">
-              <Home className="w-5 h-5 mr-2 text-indigo-600  " />
+          <div className="bg-[#1f2937] rounded-lg p-3 border border-[#ffffff38]">
+            <h4 className="text-lg font-semibold text-[#c2c6cb] mb-4 flex items-center border-b border-[#ffffff38] pb-2">
+              <Home className="w-5 h-5 mr-2 text-[#c99913]" />
               Amenities
             </h4>
             <div className="grid grid-cols-2 gap-3">
               {property.amenities?.map((amenity, idx) => (
-                <div key={idx} className="flex items-center gap-2 text-sm text-gray-700 shadow-sm p-2 bg-white rounded-md border border-gray-200 hover:shadow-md hover:bg-gray-50 transition-all ">
+                <div key={idx} className="flex items-center gap-2 text-sm text-[#c2c6cb] shadow-sm p-2 bg-[#333] rounded-md border border-[#ffffff38] hover:shadow-[0_0_10px_rgba(201,153,19,0.2)] hover:bg-[#444] transition-all">
                   {getAmenityIcon(amenity)}
                   {amenity}
                 </div>
@@ -174,13 +175,9 @@ const CardPropertiesDetails = ({ property }) => {
           </div>
         </div>
 
-        {/* Row 2: Amenities + Contact Form */}
+        {/* Row 2: Contact Form */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-
-          {/* Contact Form */}
-          <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
-
+          <div className="bg-[#1f2937] rounded-xl p-2 border border-[#ffffff38]">
             <ContactForm propertyId={property.id} />
           </div>
         </div>
