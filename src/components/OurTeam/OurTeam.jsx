@@ -28,6 +28,7 @@ const teamMembers = [
     name: "Mohit Sharma",
     position: "Managing Director",
     image: MohitSharma,
+    experience: "10+ Years",
     bio: "Visionary leader with years in real estate industry, driving innovation and growth. Leading the company towards new heights with strategic vision and exceptional leadership skills.",
     skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
     projects: "500+ Properties",
@@ -75,7 +76,7 @@ const teamMembers = [
     skills: ["Leadership", "Strategic Planning", "Business Development", "Team Management", "Market Expansion"],
     experience: "8+ Years",
     projects: "500+ Properties",
-    phone: "+91 87449 64496",
+    phone: "+91 8744964496",
     email: "satya.mandal@ethosprorealtors.com",
     rating: 5.0,
     achievements: ["Industry Leader 2023", "Visionary Award", "Growth Champion", "Leadership Excellence"],
@@ -97,7 +98,7 @@ const teamMembers = [
     skills: ["Luxury Sales", "Client Relations", "Market Analysis", "Property Valuation", "Negotiation"],
     experience: "7+ Years",
     projects: "250+ Properties",
-    phone: "+91 87449 64496",
+    phone: "+91 8744964496",
     email: "deepak.bhati@ethosprorealtors.com",
     rating: 4.9,
     achievements: ["Top Performer 2023", "Client Choice Award", "Luxury Sales Expert"],
@@ -119,7 +120,7 @@ const teamMembers = [
     skills: ["Residential Sales", "Investment Advice", "Negotiation", "Market Research", "Client Management"],
     experience: "6+ Years",
     projects: "180+ Properties",
-    phone: "+91 87449 64496",
+    phone: "+91 8744964496",
     email: "prerna.kapuria@ethosprorealtors.com",
     rating: 4.8,
     achievements: ["Rising Star 2023", "Customer Satisfaction Award", "Investment Specialist"],
@@ -141,7 +142,7 @@ const teamMembers = [
     skills: ["Commercial Sales", "Property Valuation", "Market Research", "Corporate Deals", "Strategic Planning"],
     experience: "6+ Years",
     projects: "120+ Properties",
-    phone: "+91 87449 64496",
+    phone: "+91 8744964496",
     email: "avantika.kapuria@ethosprorealtors.com",
     rating: 4.9,
     achievements: ["Commercial Expert 2023", "Deal Maker Award", "Market Analyst"],
@@ -160,8 +161,6 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
 
-
-
   return (
     <div
       className={`group relative w-[280px] h-[420px] perspective-1000 transform transition-all duration-700 flex-shrink-0`}
@@ -170,41 +169,41 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div
-        className={` relative w-full h-full transform-style-preserve-3d transition-transform duration-700 ${isFlipped ? 'rotate-y-180' : ''}`}
+        className={`relative w-full h-full transform-style-preserve-3d transition-transform duration-700 ${isFlipped ? 'rotate-y-180' : ''}`}
       >
         {/* FRONT SIDE */}
         <div className="main-card-profile absolute inset-0 w-full h-full backface-hidden">
-          <div className="relative w-full h-full bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 transition-all duration-500">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913]"></div>
+          <div className="relative w-full h-full bg-[#444] rounded-3xl shadow-xl overflow-hidden border border-[#ffffff38] transition-all duration-500">
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#333] via-[#444] to-[#c2c6cb]"></div>
             <div className="relative h-56 overflow-hidden">
               <img
                 src={member.image}
                 alt={member.name}
                 className="w-full h-full object-contain transition-all duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-[#474236]/10 to-[#c99913]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#333]/70 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#444]/10 to-[#c2c6cb]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className={`absolute top-4 right-4 space-y-2 transform transition-all duration-500 ${isHovered ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}>
-                <div className="bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-[#474236] shadow-lg">
+                <div className="bg-[#333]/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold text-[#c2c6cb] shadow-lg">
                   {member.experience}
                 </div>
-                <div className="bg-gradient-to-r from-[#c99913] to-[#474236] text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
+                <div className="bg-gradient-to-r from-[#c2c6cb] to-[#444] text-[#333] px-3 py-1 rounded-full text-xs font-semibold shadow-lg">
                   {member.projects}
                 </div>
               </div>
               <button
                 onClick={() => setIsFlipped(!isFlipped)}
-                className={`absolute cursor-pointer bottom-4 right-4 w-10 h-10 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg transform transition-all duration-500 hover:scale-110 hover:bg-[#c99913] hover:text-white ${isHovered ? 'scale-100 rotate-0' : 'scale-0 rotate-180'}`}
+                className={`absolute cursor-pointer bottom-4 right-4 w-10 h-10 bg-[#333]/95 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg transform transition-all duration-500 hover:scale-110 hover:bg-[#444] hover:text-[#c2c6cb] ${isHovered ? 'scale-100 rotate-0' : 'scale-0 rotate-180'}`}
               >
                 <FaArrowRightArrowLeft />
               </button>
             </div>
             <div className="p-6 space-y-4">
               <div className="text-center space-y-2">
-                <h3 className="text-xl font-black bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent">
+                <h3 className="text-xl font-black  bg-gradient-to-r from-[#c2c6cb] via-[#c99913] to-[#c2c6cb] bg-clip-text text-transparent">
                   {member.name}
                 </h3>
-                <p className="text-[#474236] font-bold text-sm uppercase tracking-wider">
+                <p className="text-[#c2c6cb] font-bold text-sm uppercase tracking-wider">
                   {member.position}
                 </p>
               </div>
@@ -225,23 +224,23 @@ const TeamCard = ({ member, index, isVisible, onViewProfile }) => {
         </div>
         {/* BACK SIDE */}
         <div className="main-card-profile absolute inset-0 w-full h-full backface-hidden rotate-y-180">
-          <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 rounded-3xl shadow-xl border border-gray-200 flex flex-col">
+          <div className="w-full h-full bg-gradient-to-br from-[#444] to-[#333] rounded-3xl shadow-xl border border-[#ffffff38] flex flex-col">
             <div className="flex-1 overflow-y-auto p-4">
-              <h3 className="text-lg font-black mb-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent">
+              <h3 className="text-lg font-bold mb-1 bg-gradient-to-r from-[#c2c6cb] via-[#c99913] to-[#c2c6cb] bg-clip-text text-transparent ">
                 {member.name}
               </h3>
-              <p className="text-[#474236] font-semibold text-sm mb-2">
+              <p className="text-[#c2c6cb] font-semibold text-sm mb-2">
                 {member.position}
               </p>
-              <p className="text-gray-700 text-sm leading-relaxed mb-4">
+              <p className="text-[#c2c6cb] text-sm leading-relaxed mb-4">
                 {member.bio}
               </p>
-              <h4 className="text-[#474236] font-bold text-sm uppercase tracking-wide mb-2">Expertise</h4>
+              <h4 className="text-[#c2c6cb] font-bold text-sm uppercase tracking-wide mb-2">Expertise</h4>
               <div className="flex flex-wrap gap-2">
                 {member.skills.slice(0, 3).map((skill, skillIndex) => (
                   <span
                     key={skillIndex}
-                    className="px-3 py-1 bg-gradient-to-r from-[#c99913]/20 to-[#474236]/20 border border-[#c99913]/30 text-[#474236] text-xs rounded-full font-medium"
+                    className="px-3 py-1 bg-gradient-to-r from-[#c2c6cb]/20 to-[#444]/20 border border-[#ffffff38] text-[#c2c6cb] text-xs rounded-full font-medium"
                   >
                     {skill}
                   </span>
@@ -287,109 +286,106 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
         header: { display: 'none' }
       }}
     >
-      <div className="h-full bg-gradient-to-br from-white to-gray-50">
+      <div className="h-full bg-gradient-to-br from-[#444] to-[#333]">
         <div className="relative h-48 overflow-hidden">
           <img
             src={member.image}
             alt={member.name}
-            className="w-full h-full object-contain bg-gray-100"
+            className="w-full h-full object-contain bg-[#333]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#333]/70 to-transparent"></div>
           <div className="absolute inset-0 flex items-end p-6">
-            <div className="text-white">
+            <div className="text-[#c2c6cb]">
               <h2 className="text-2xl font-black mb-1 fontFamily-bebas">{member.name}</h2>
-              <p className="text-[#c99913] font-semibold fontFamily-bebas">{member.position}</p>
+              <p className="text-[#c2c6cb] font-semibold fontFamily-bebas">{member.position}</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="absolute cursor-pointer top-4 right-4 w-9 h-9 bg-gray/80 backdrop-blur-sm rounded-full flex items-center justify-center "
+            className="absolute cursor-pointer top-4 right-4 w-9 h-9 bg-[#333]/80 backdrop-blur-sm rounded-full flex items-center justify-center border-1 border-[#ffffff38] text-[#c2c6cb] hover:text-red-500 hover:border-red-500"
           >
-            <CloseOutlined />
+            <CloseOutlined className="text-[#c2c6cb]" />
           </button>
         </div>
-        <div className="p-6 space-y-6">
+        <div className="p-6 space-y-6 bg-[#333]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
                   <StarFilled
                     key={i}
-                    className={`text-sm ${i < Math.floor(member.rating) ? 'text-[#c99913]' : 'text-gray-300'}`}
+                    className={`text-sm ${i < Math.floor(member.rating) ? 'text-[#c2c6cb]' : 'text-[#444]'}`}
                   />
                 ))}
               </div>
-              <span className="text-sm font-semibold text-gray-600">{member.rating}</span>
+              <span className="text-sm font-semibold text-[#c2c6cb]">{member.rating}</span>
             </div>
             <div className="text-right">
-              <div className="text-lg font-bold text-[#474236] fontFamily-bebas">{member.projects}</div>
-              <div className="text-xs text-gray-500 fontFamily-bebas">Projects Completed</div>
+              <div className="text-lg font-bold text-[#c2c6cb] fontFamily-bebas">{member.projects}</div>
+              <div className="text-xs text-[#444] fontFamily-bebas">Projects Completed</div>
             </div>
           </div>
           <div className="space-y-3">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-Content">Contact Information</h3>
+            <h3 className="font-bold text-[#c2c6cb] uppercase tracking-wide text-sm fontFamily-Content">Contact Information</h3>
             <div className="space-y-2">
-              <div className="flex items-center gap-3 text-gray-600">
-                <PhoneOutlined className="text-[#c99913]" />
+              <div className="flex items-center gap-3 text-[#c2c6cb]">
+                <PhoneOutlined className="text-[#c2c6cb]" />
                 <span className="text-sm">{member.phone}</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-600">
-                <MailOutlined className="text-[#c99913]" />
+              <div className="flex items-center gap-3 text-[#c2c6cb]">
+                <MailOutlined className="text-[#c2c6cb]" />
                 <span className="text-sm fontFamily-bebas">{member.email}</span>
               </div>
             </div>
           </div>
-          <Divider />
+          <Divider className="bg-[#ffffff38]" />
           <div className="space-y-3">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-Content">About</h3>
-            <p className="text-gray-700 leading-relaxed text-sm break-words">
+            <h3 className="font-bold text-[#c2c6cb] uppercase tracking-wide text-sm fontFamily-Content">About</h3>
+            <p className="text-[#c2c6cb] leading-relaxed text-sm break-words">
               {member.bio}
             </p>
           </div>
-          <Divider />
+          <Divider className="bg-[#ffffff38]" />
           <div className="space-y-3">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-Content">Skills & Expertise</h3>
+            <h3 className="font-bold text-[#c2c6cb] uppercase tracking-wide text-sm fontFamily-Content">Skills & Expertise</h3>
             <div className="flex flex-wrap gap-2">
               {member.skills.map((skill, index) => (
                 <Tag
                   key={index}
-                  color="gold"
-                  className="border-[#c99913] text-[#474236] font-medium"
+                  className="border-[#ffffff38] text-[#c2c6cb] bg-[#333] font-medium"
                 >
                   {skill}
                 </Tag>
               ))}
             </div>
           </div>
-          <Divider />
+          <Divider className="bg-[#ffffff38]" />
           <div className="space-y-3">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-Content">Achievements</h3>
+            <h3 className="font-bold text-[#c2c6cb] uppercase tracking-wide text-sm fontFamily-Content">Achievements</h3>
             <div className="flex flex-wrap gap-2">
               {member.achievements.map((achievement, index) => (
                 <div key={index} className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-[#c99913] rounded-full"></div>
-                  <span className="text-sm text-gray-700">{achievement}</span>
+                  <div className="w-2 h-2 bg-[#c2c6cb] rounded-full"></div>
+                  <span className="text-sm text-[#c2c6cb]">{achievement}</span>
                 </div>
               ))}
             </div>
           </div>
-          <Divider />
+          <Divider className="bg-[#ffffff38]" />
           <div className="space-y-2">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm fontFamily-Content">Specializations</h3>
+            <h3 className="font-bold text-[#c2c6cb] uppercase tracking-wide text-sm fontFamily-Content">Specializations</h3>
             <div className="flex flex-wrap gap-2">
               {member.specializations.map((spec, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-r from-[#c99913]/10 to-[#474236]/10 px-3 py-1 rounded-lg border border-[#c99913]/20"
+                  className="bg-gradient-to-r from-[#c2c6cb]/10 to-[#444]/10 px-3 py-1 rounded-lg border border-[#ffffff38]"
                 >
-                  <span className="text-sm font-medium text-[#474236]">{spec}</span>
+                  <span className="text-sm font-medium text-[#c2c6cb]">{spec}</span>
                 </div>
               ))}
             </div>
           </div>
-
           <div className="flex justify-center items-center">
-            {/* Button */}
             <CustomButton
               onClick={handleOpenModal}
               className="w-auto py-3 gradient-border font-bold rounded-xl"
@@ -399,21 +395,19 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
                 Contact {member.name.split(" ")[0]}
               </span>
             </CustomButton>
-
-            {/* Modal */}
             <Modal
               open={isModalOpen}
               onCancel={handleCloseModal}
               footer={null}
               centered
               width={500}
-              className="rounded-2xl"
+              className="rounded-2xl bg-[#333]"
             >
               <ContactForm onClose={handleCloseModal} />
             </Modal>
           </div>
           <div className="w-full items-center justify-center flex flex-col">
-            <h3 className="font-bold text-[#474236] uppercase tracking-wide text-sm mb-2 fontFamily-bebas">
+            <h3 className="font-bold text-[#c2c6cb] uppercase tracking-wide text-sm mb-2 fontFamily-bebas">
               Follow on Social Media
             </h3>
             <div className="flex items-center gap-3">
@@ -426,15 +420,13 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
                     FaInstagram,
                     FaWhatsapp,
                   }[icon.icon];
-
                   const iconColors = {
-                    FaFacebookF: "text-[#1877F2] hover:text-[#474236]",
-                    FaXTwitter: "text-[#000] hover:text-[#474236]",
-                    FaLinkedinIn: "text-[#0A66C2] hover:text-[#474236]",
-                    FaInstagram: "text-[#E4405F] hover:text-[#474236]",
-                    FaWhatsapp: "text-[#25D366] hover:text-[#474236]",
+                    FaFacebookF: "text-[#1877F2] hover:text-[#c2c6cb]",
+                    FaXTwitter: "text-[#000] hover:text-[#c2c6cb]",
+                    FaLinkedinIn: "text-[#0A66C2] hover:text-[#c2c6cb]",
+                    FaInstagram: "text-[#E4405F] hover:text-[#c2c6cb]",
+                    FaWhatsapp: "text-[#25D366] hover:text-[#c2c6cb]",
                   };
-
                   return IconComponent ? (
                     <a
                       key={index}
@@ -443,15 +435,12 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
                       rel="noopener noreferrer"
                       className="transition-colors duration-300"
                     >
-                      <IconComponent
-                        className={`text-xl ${iconColors[icon.icon]}`}
-                      />
+                      <IconComponent className={`text-xl ${iconColors[icon.icon]}`} />
                     </a>
                   ) : null;
                 })}
             </div>
           </div>
-
         </div>
       </div>
     </Drawer>
@@ -474,8 +463,6 @@ const OurTeam = () => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 100);
-
-    // Check if name param exists in URL and set selectedMember and drawerVisible
     if (name) {
       const member = teamMembers.find(
         (m) => m.name.toLowerCase().replace(/\s+/g, "-") === name.toLowerCase()
@@ -485,7 +472,6 @@ const OurTeam = () => {
         setDrawerVisible(true);
       }
     }
-
     return () => clearTimeout(timer);
   }, [name]);
 
@@ -517,15 +503,15 @@ const OurTeam = () => {
   };
 
   return (
-    <div className="main-bg py-10 px-4 relative overflow-hidden" id='our-team'>
+    <div className="main-bg py-10 px-4 relative overflow-hidden" id="our-team">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16 our-team-text">
           <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            <h3 className="text-4xl mobile-title-text font-[Montserrat] md:text-5xl font-black mb-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] bg-clip-text text-transparent animate-pulse">
+            <h3 className="text-3xl mobile-title-text font-[Montserrat] sm:text-xl md:text-5xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-[#c2c6cb] via-[#c99913] to-[#c2c6cb] bg-clip-text text-transparent animate-pulse">
               Meet Our Team
             </h3>
-            <div className="w-50 h-1 bg-gradient-to-r from-black via-[#474236] to-[#c99913] mx-auto mb-4 rounded-full"></div>
-            <p className="text-lg mobile-subtitle-text text-gray-600 font-bebas max-w-xl mx-auto leading-relaxed font-medium">
+            <div className="h-1 bg-gradient-to-r from-transparent via-[#c99913] to-transparent rounded-full animate-pulse"></div>
+            <p className="text-xl mobile-subtitle-text font-bebas md:text-2xl text-[#c2c6cb] font-light max-w-4xl mx-auto leading-relaxed whychoose-subtitle">
               "Your Real Estate Experts, Ready to Serve"
             </p>
           </div>
@@ -536,7 +522,7 @@ const OurTeam = () => {
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {teamMembers.map((member, index) => (
-              <div key={member.id} className="w-full md: w-1/2 lg:w-1/4 flex-shrink-0 px-4">
+              <div key={member.id} className="w-full md:w-1/2 lg:w-1/4 flex-shrink-0 px-4">
                 <TeamCard
                   member={member}
                   index={index}

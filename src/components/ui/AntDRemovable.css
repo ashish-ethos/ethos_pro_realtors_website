@@ -37,14 +37,14 @@
   /* border: 1px solid  !important; */
 }
 .ant-input::placeholder {
-  color: #c2c6cb !important; 
-  opacity: 1; 
+  color: #c2c6cb !important;
+  opacity: 1;
 }
 
-
-
-.ant-select-selector:focus, .ant-select-focused .ant-select-selector, .ant-select-selector:hover{
-    border: 1px solid #c08830 !important;
+.ant-select-selector:focus,
+.ant-select-focused .ant-select-selector,
+.ant-select-selector:hover {
+  border: 1px solid #c08830 !important;
 }
 .ant-select-selection-placeholder {
   color: #c2c6cb !important;
@@ -101,6 +101,47 @@
   color: #c2c6cb !important;
   border: 1px solid #333 !important;
 }
-.ant-drawer .ant-drawer-close{
+.ant-drawer .ant-drawer-close {
+  color: #c2c6cb !important;
+}
+.ant-drawer .ant-drawer-header {
+  background: #2f2f2fb5 !important;
+}
+.ant-typography.ant-typography-secondary {
+  color: rgb(253 253 253 / 59%) !important;
+}
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  background: #333 !important;
+  color: #c2c6cb !important;
+}
+.ant-radio-button-wrapper-checked:not(
+    .ant-radio-button-wrapper-disabled
+  )::before {
+  background: #c2c6cb !important;
+}
+.ant-pagination .ant-pagination-item-active a {
+  color: #c08830 !important;
+}
+.ant-pagination .ant-pagination-item-active{
+  border-color: #c08830 !important;
+}
+
+.ant-typography{
+  color:rgb(253 253 253 / 59%) !important;  /*maybe this have to remove some place maybe it will effect */
+}
+ 
+.ant-input-number-outlined .ant-input-number-handler-wrap{
+  background: #444 !important;
+  color: #c2c6cb !important;
+}
+.ant-input-number .ant-input-number-input{
+  background: #555 !important;
+  border-color: #ffffff38 !important ;
     color: #c2c6cb !important;
+}
+.ant-progress .ant-progress-text {
+  color: rgb(255 255 255 / 49%);
+  border: 1px solid lightgray;
+    padding: 2px;
+    border-radius: 5px;
 }

@@ -291,3 +291,49 @@ body {
     padding: 15px !important;
   }
 }
+
+.text-gradient {
+  background: linear-gradient(to right, #c08830, #e6b800);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+
+@media (max-width: 1024px) {
+  .main-about {
+    grid-template-columns: 1fr;
+  }
+}
+
+.main-contact-section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.main-section-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-info-cards {
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .main-section-contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-contact-image {
+    height: 300px;
+    padding-right: 40px;
+  }
+}

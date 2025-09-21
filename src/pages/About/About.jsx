@@ -63,23 +63,25 @@ const About = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br  from-slate-50 via-blue-50 to-indigo-100">
+        <div className="min-h-screen bg-[#333]">
             {/* Hero Section */}
             <div className="relative w-full overflow-hidden">
                 {/* Full-width Background Image Section */}
                 <div
-                    className="about-image w-full h-[500px] border-2 border-red bg-cover bg-center bg-no-repeat"
+                    className="about-image w-full h-[500px] border-2 border-[#ffffff38] bg-cover bg-center bg-no-repeat"
                     style={{ backgroundImage: `url(${backgroundImg})` }}
-                ></div>
+                >
+                    <div className="absolute inset-0 bg-[#333]/40"></div> {/* Dark overlay for contrast */}
+                </div>
 
                 {/* Centered Chevron Icon */}
-                <div className="flex justify-center -mt-4">
-                    <ChevronDown className="w-8 h-8 text-white animate-bounce" />
+                <div className="flex justify-center -mt-8">
+                    <ChevronDown className="w-8 h-8 text-[#c2c6cb] animate-bounce" />
                 </div>
             </div>
 
             {/* Stats Section */}
-            <div className="py-10 bg-white/50 backdrop-blur-sm">
+            <div className="py-10 bg-[#444]/50 backdrop-blur-sm">
                 <div className="container mx-auto px-6">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         {stats.map((stat, index) => (
@@ -90,16 +92,16 @@ const About = () => {
                                         borderRadius: '24px',
                                         borderWidth: '3px',
                                         borderStyle: 'solid',
-                                        borderImage: 'linear-gradient(45deg, #c99913, #474236, #000000) 1',
+                                        borderImage: 'linear-gradient(45deg, #c2c6cb, #444, #333) 1',
                                         backgroundColor: 'transparent',
                                     }}
                                 >
-                                    <stat.icon className="w-8 h-8 text-black" />
+                                    <stat.icon className="w-8 h-8 text-[#c2c6cb]" />
                                 </div>
-                                <div className="text-4xl font-bold bg-gradient-to-r from-slate-700 to-slate-900 bg-clip-text text-transparent mb-2">
+                                <div className="text-4xl font-bold bg-gradient-to-r from-[#c2c6cb] to-[#444] bg-clip-text text-transparent mb-2">
                                     {stat.number}
                                 </div>
-                                <div className="text-slate-600 font-medium">{stat.label}</div>
+                                <div className="text-[#c2c6cb] font-medium">{stat.label}</div>
                             </div>
                         ))}
                     </div>
@@ -111,22 +113,22 @@ const About = () => {
                 <div className="container mx-auto px-6">
                     <div className="main-about grid lg:grid-cols-2 gap-16 items-center mb-20">
                         <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-                            <p className="text-md font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4 tracking-wider uppercase">
+                            <p className="text-xl font-semibold text-transparent text-gradient mb-1 tracking-wider uppercase">
                                 Our Story
                             </p>
-                            <h3 className="mobile-title-text text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6 mr-1 leading-tight fontFamily-bebas">
+                            <h3 className="mobile-title-text text-2xl sm:text-3xl md:text-4xl font-bold text-[#c2c6cb] mb-6 mr-1 leading-tight fontFamily-bebas">
                                 Building Dreams
-                                <span className="bg-gradient-to-r ml-2 from-blue-400 to-purple-400 bg-clip-text text-transparent fontFamily-bebas">
+                                <span className="bg-gradient-to-r ml-2 from-[#c2c6cb] to-[#444] bg-clip-text text-transparent fontFamily-bebas">
                                     Creating Futures
                                 </span>
                             </h3>
-                            <p className="mobile-subtitle-text text-lg text-slate-600 mb-6 leading-relaxed">
+                            <p className="mobile-subtitle-text text-lg text-[#c2c6cb] mb-6 leading-relaxed">
                                 Welcome to Ethos Pro Realtors, your trusted partner in real estate. As a leading channel partner with top developers,
                                 we specialize in connecting clients with exceptional properties that suit their lifestyle and investment goals. With a deep understanding of the real estate market,
                                 we pride ourselves on offering personalized guidance, transparent processes, and unparalleled service.
                                 Whether you’re looking for a dream home, a lucrative investment, or commercial spaces, our expert team is here to make your journey seamless and rewarding.
                             </p>
-                            <p className=" mobile-subtitle-text text-lg text-slate-600 mb-8 leading-relaxed">
+                            <p className="mobile-subtitle-text text-lg text-[#c2c6cb] mb-8 leading-relaxed">
                                 At Ethos Pro Realtors, we believe in building lasting relationships founded on trust, integrity, and client satisfaction.
                                 Explore with us and discover opportunities that bring your vision to life.
                             </p>
@@ -134,20 +136,20 @@ const About = () => {
 
                         <div className={`transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
                             <div className="relative">
-                                <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-md p-1">
+                                <div className="bg-gradient-to-br from-[#444] to-[#c2c6cb] rounded-md p-1">
                                     <img
                                         src={AboutImg}
                                         alt="Modern home interior"
                                         className="modern-home w-full h-96 object-cover rounded-2xl"
                                     />
                                 </div>
-                                <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-2xl">
+                                <div className="absolute -bottom-6 -left-6 bg-[#444]/70 rounded-2xl p-4 shadow-2xl border border-[#ffffff38]">
                                     <div className="flex items-center gap-2 mb-2">
                                         {[...Array(5)].map((_, i) => (
-                                            <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                                            <Star key={i} className="w-5 h-5 fill-[#c2c6cb] text-[#c2c6cb]" />
                                         ))}
                                     </div>
-                                    <div className="text-sm text-slate-600 font-[Inter]">4.9/5 Client Satisfaction</div>
+                                    <div className="text-sm text-[#c2c6cb] font-[Inter]">4.9/5 Client Satisfaction</div>
                                 </div>
                             </div>
                         </div>
@@ -155,39 +157,37 @@ const About = () => {
 
                     {/* Mission & Vision */}
                     <div className="grid lg:grid-cols-2 gap-12 mb-20">
-                        <div className=" bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300">
+                        <div className="bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38] hover:shadow-2xl transition-all duration-300">
                             <div
                                 className="w-12 h-12 flex items-center justify-center rounded-xl"
                                 style={{
                                     border: "3px solid transparent",
                                     background:
-                                        "linear-gradient(white, white) padding-box, linear-gradient(to bottom right, #3b82f6, #9333ea) border-box",
+                                        "linear-gradient(#444, #444) padding-box, linear-gradient(to bottom right, #c2c6cb, #333) border-box",
                                 }}
                             >
-                                <Award className="w-6 h-6 text-black" />
+                                <Award className="w-6 h-6 text-[#c2c6cb]" />
                             </div>
-                            <h3 className="mobile-title-text text-3xl font-bold text-slate-900 mb-4 fontFamily-bebas">Our Mission</h3>
-                            <p className="mobile-subtitle-text text-slate-600 leading-relaxed fontFamily-Content">
+                            <h3 className="mobile-title-text text-3xl font-bold text-[#c2c6cb] mb-4 fontFamily-bebas">Our Mission</h3>
+                            <p className="mobile-subtitle-text text-[#c2c6cb] leading-relaxed fontFamily-Content">
                                 At Ethos Pro Realtors, our mission is to empower clients with exceptional real estate solutions. We strive to connect people with properties that fulfill their dreams,
                                 deliver value, and enhance their lifestyles.
                                 Through trust, professionalism, and personalized service, we aim to simplify the property-buying journey and make it a rewarding experience for every client.
                             </p>
                         </div>
 
-                        <div className=" bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-300">
+                        <div className="bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38] hover:shadow-2xl transition-all duration-300">
                             <div
                                 className="w-12 h-12 flex items-center justify-center rounded-xl"
                                 style={{
                                     border: "3px solid transparent",
-                                    background: "linear-gradient(white, white) padding-box, linear-gradient(to bottom right, #a855f7, #ec4899) border-box",
+                                    background: "linear-gradient(#444, #444) padding-box, linear-gradient(to bottom right, #c2c6cb, #333) border-box",
                                 }}
                             >
-                                <TrendingUp className="w-6 h-6 text-black" />
+                                <TrendingUp className="w-6 h-6 text-[#c2c6cb]" />
                             </div>
-
-
-                            <h3 className="mobile-title-text text-3xl font-bold text-slate-900 mb-4 fontFamily-bebas">Our Vision</h3>
-                            <p className="mobile-subtitle-text text-slate-600 leading-relaxed fontFamily-Content">
+                            <h3 className="mobile-title-text text-3xl font-bold text-[#c2c6cb] mb-4 fontFamily-bebas">Our Vision</h3>
+                            <p className="mobile-subtitle-text text-[#c2c6cb] leading-relaxed fontFamily-Content">
                                 Our vision is to be a trusted leader in the real estate industry, setting new standards for excellence.
                                 We aspire to create lasting relationships, drive innovation, and deliver unparalleled value by transforming how people experience real estate.
                                 We see a future where every property decision leads to success and satisfaction.
@@ -199,31 +199,31 @@ const About = () => {
                     <div className="mb-20">
                         <div className="text-center mb-12">
                             <div className="flex items-center justify-center gap-3 mb-4">
-                                <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 tracking-wider uppercase">
+                                <span className="text-md font-bold text-transparent text-gradient tracking-wider uppercase">
                                     Buy
                                 </span>
-                                <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-gray-500 via-gray-700 to-gray-900 tracking-wider uppercase">
+                                <span className="text-md font-bold text-transparent text-gradient tracking-wider uppercase">
                                     Rent
                                 </span>
-                                <span className="text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-black via-gray-800 to-gray-600 tracking-wider uppercase">
+                                <span className="text-md font-bold text-transparent text-gradient tracking-wider uppercase">
                                     Sell
                                 </span>
                             </div>
-                            <h3 className="text-4xl md:text-5xl font-bold text-slate-900 mobile-subtitle-text fontFamily-bebas">We help people Buy, Rent and Sell properties</h3>
-                            <p className="text-slate-600 p-4 text-xl fontFamily-Content mobile-subtitle-text fontFamily-Content">Home buying can be a stressful process, but we take the guess work out of finding a real estate agent. We’ll help you find the perfect match to purchase your ideal home.</p>
+                            <h3 className="text-4xl md:text-5xl font-bold text-[#c2c6cb] mobile-subtitle-text fontFamily-bebas">We help people Buy, Rent and Sell properties</h3>
+                            <p className="text-[#c2c6cb] p-4 text-xl fontFamily-Content mobile-subtitle-text fontFamily-Content">Home buying can be a stressful process, but we take the guess work out of finding a real estate agent. We’ll help you find the perfect match to purchase your ideal home.</p>
                         </div>
 
                         <div className="grid md:grid-cols-3 gap-8">
                             {values.map((value, index) => (
                                 <div
                                     key={index}
-                                    className={`bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${activeSection === index ? 'ring-2 ring-blue-500/50 scale-105' : ''}`}
+                                    className={`bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38] hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${activeSection === index ? 'ring-2 ring-[#c2c6cb]/50 scale-105' : ''}`}
                                 >
-                                    <div className="bg-gradient-to-br from-blue-500 to-purple-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                                        <value.icon className="w-6 h-6 text-white" />
+                                    <div className="bg-gradient-to-br from-[#c2c6cb] to-[#333] w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                                        <value.icon className="w-6 h-6 text-[#333]" />
                                     </div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-4 fontFamily-bebas">{value.title}</h3>
-                                    <p className="text-slate-600 leading-relaxed fontFamily-Content">{value.description}</p>
+                                    <h3 className="text-2xl font-bold text-[#c2c6cb] mb-4 fontFamily-bebas">{value.title}</h3>
+                                    <p className="text-[#c2c6cb] leading-relaxed fontFamily-Content">{value.description}</p>
                                 </div>
                             ))}
                         </div>
@@ -241,19 +241,3 @@ const About = () => {
 };
 
 export default About;
-
-
-
-
-// <button
-//                                 className="px-6 py-3 rounded-2xl font-semibold text-black flex items-center gap-2 hover:shadow-xl hover:scale-105 transition-all duration-300"
-//                                 style={{
-//                                     border: '3px solid transparent',
-//                                     borderRadius: '1rem',
-//                                     background:
-//                                         'linear-gradient(white, white) padding-box, linear-gradient(to right, #3b82f6, #8b5cf6) border-box',
-//                                     backgroundClip: 'padding-box, border-box',
-//                                 }}
-//                             >
-//                                 Learn More <ArrowRight className="w-5 h-5" />
-//                             </button>

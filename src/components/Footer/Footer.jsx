@@ -136,7 +136,7 @@ function Footer() {
 
       {/* Hero Newsletter Section */}
       <div className="relative border-b border-gray-800/50">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 via-blue-600/20 to-purple-600/20 animate-gradient-x" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#444]/20 via-[#333]/20 to-[#c2c6cb]/10 animate-gradient-x" />
 
         <div className="relative container mx-auto px-4 sm:px-6 py-10 sm:py-20 ">
           <div className="max-w-5xl mx-auto text-center">
@@ -149,10 +149,10 @@ function Footer() {
             </div>
 
             <h2 className="text-5xl md:text-7xl font-black mb-6 relative">
-              <span className="bg-gradient-to-r font-[Montserrat] from-emerald-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-gradient-x">
+              <span className=" font-[Montserrat] text-gradient animate-gradient-x">
                 Ethos Pro Realtors
               </span>
-              <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-blue-400 to-purple-400 rounded-lg blur opacity-20 animate-pulse" />
+              {/* <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-orange-400 to-yellow-400 rounded-lg blur opacity-20 animate-pulse" /> */}
             </h2>
 
             <p className="text-xl mobile-subtitle-text text-gray-300 mb-12 max-w-2xl font-bebas mx-auto leading-relaxed">
@@ -249,7 +249,7 @@ function Footer() {
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-emerald-400 to-blue-400 flex items-center justify-center transition-transform group-hover:scale-105">
                   <img src={logotab} alt="Logo" className="w-11 h-11  rounded-xl" />
                 </div>
-                <h3 className="text-3xl font-[Montserrat] font-black bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent transition-all duration-300 group-hover:brightness-110">
+                <h3 className="text-3xl font-[Montserrat] font-black text-gradient text-transparent transition-all duration-300 group-hover:brightness-110">
                   Ethos Pro Realtors
                 </h3>
               </div>

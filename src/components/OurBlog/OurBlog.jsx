@@ -25,7 +25,6 @@ import "../OurTeam/OurTeam.css";
 import CustomButton from '../ui/Button';
 import { Tooltip } from 'antd';
 
-
 // Content for all four posts (asterisks and emojis removed)
 const roiContent = `
 Introduction
@@ -488,34 +487,34 @@ const OurBlog = () => {
             if (line.startsWith('**') && line.endsWith('**')) {
                 const text = line.replace(/\*\*/g, '');
                 if (text.startsWith('Introduction') || text.startsWith('Conclusion')) {
-                    return <h2 key={index} className="text-2xl font-bold mt-6 mb-4">{text}</h2>;
+                    return <h2 key={index} className="text-2xl font-bold mt-6 mb-4 text-[#c2c6cb]">{text}</h2>;
                 } else if (text.includes(':')) {
-                    return <h3 key={index} className="text-xl font-semibold mt-4 mb-2">{text}</h3>;
+                    return <h3 key={index} className="text-xl font-semibold mt-4 mb-2 text-[#c2c6cb]">{text}</h3>;
                 } else {
                     currentSection = text;
-                    return <h3 key={index} className="text-xl font-semibold mt-4 mb-2">{text}</h3>;
+                    return <h3 key={index} className="text-xl font-semibold mt-4 mb-2 text-[#c2c6cb]">{text}</h3>;
                 }
             }
             if (line.startsWith('- ')) {
-                return <li key={index} className="ml-6 list-disc">{line.replace('- ', '')}</li>;
+                return <li key={index} className="ml-6 list-disc text-[#c2c6cb]">{line.replace('- ', '')}</li>;
             }
             if (line.match(/^\d+\.\s/)) {
-                return <li key={index} className="ml-6 list-decimal">{line.replace(/^\d+\.\s/, '')}</li>;
+                return <li key={index} className="ml-6 list-decimal text-[#c2c6cb]">{line.replace(/^\d+\.\s/, '')}</li>;
             }
             if (line.trim() === '') {
                 return null;
             }
-            return <p key={index} className="mb-4">{line}</p>;
+            return <p key={index} className="mb-4 text-[#c2c6cb]">{line}</p>;
         });
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-24 px-4 relative overflow-hidden premium-properties-main" id='our-blog'>
+        <div className="min-h-screen bg-[#000000d9] py-10 px-4 relative overflow-hidden premium-properties-main" id='our-blog'>
             {/* Animated Background */}
             <div className="absolute inset-0">
-                <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-blue-200/40 to-purple-200/30 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-purple-200/30 to-pink-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-indigo-100/20 to-transparent rounded-full"></div>
+                <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-[#444]/50 to-[#c2c6cb]/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-[#c2c6cb]/20 to-[#444]/50 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-[#c2c6cb]/20 to-transparent rounded-full"></div>
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
@@ -523,23 +522,23 @@ const OurBlog = () => {
                 <div className="w-full flex flex-col gap-12 header-ourblog">
                     {/* Row 1 */}
                     <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
-                        <div className="inline-flex items-center gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-200">
-                            <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                            <span className="mobile-subtitle-text text-gray-700 font-semibold text-lg">
+                        <div className="inline-flex items-center gap-3 p-3 bg-[#444]/80 backdrop-blur-sm rounded-2xl shadow-lg border border-[#ffffff38]">
+                            <div className="w-3 h-3 bg-[#c2c6cb] rounded-full animate-pulse"></div>
+                            <span className="mobile-subtitle-text text-[#c2c6cb] font-semibold text-lg">
                                 Latest Real Estate Insights
                             </span>
-                            <div className="w-12 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-xs font-bold text-white">
+                            <div className="w-12 h-6 bg-gradient-to-r from-[#c2c6cb] to-[#444] rounded-full flex items-center justify-center text-xs font-bold text-[#333]">
                                 NEW
                             </div>
                         </div>
 
                         <CustomButton
                             onClick={openExploreDrawer}
-                            className="group explore-all-article relative overflow-hidden px-6 py-2 text-black font-bold rounded-2xl shadow-2xl transition-all duration-500 hover:scale-110 hover:shadow-2xl transform border-2"
+                            className="group explore-all-article relative overflow-hidden px-6 py-2 text-[#c2c6cb] font-bold rounded-2xl shadow-2xl transition-all duration-500 hover:scale-110 hover:shadow-2xl transform border border-[#ffffff38]"
                         >
                             <div className="relative flex items-center gap-3">
                                 <span className="text-lg">Explore All Articles</span>
-                                <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                                <ArrowRight className="w-5 h-5 text-[#c2c6cb] group-hover:translate-x-2 transition-transform duration-300" />
                             </div>
                         </CustomButton>
                     </div>
@@ -549,11 +548,11 @@ const OurBlog = () => {
                         {/* Left Section - Blog Heading + Content */}
                         <div className="flex-1 text-center lg:text-left">
                             <h1 className="text-5xl lg:text-7xl font-black mb-4 leading-none">
-                                <span className="block mobile-title-text font-[Montserrat] bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent">
+                                <span className="block mobile-title-text mobile-title-text font-[Montserrat] sm:text-xl md:text-5xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-[#c2c6cb] via-[#c99913] to-[#c2c6cb] bg-clip-text text-transparent animate-pulse">
                                     Our Blog
                                 </span>
                             </h1>
-                            <p className="text-lg mobile-subtitle-text lg:text-xl font-bebas text-gray-600 max-w-2xl leading-relaxed mx-auto lg:mx-0">
+                            <p className="text-lg mobile-subtitle-text lg:text-xl font-bebas text-[#c2c6cb] max-w-2xl leading-relaxed mx-auto lg:mx-0">
                                 Dive deep into the world of real estate with our expert insights,
                                 market analysis, and investment strategies that drive success.
                             </p>
@@ -561,40 +560,39 @@ const OurBlog = () => {
 
                         {/* Right Section - Stats */}
                         <div className="flex justify-center lg:justify-end gap-6 w-full lg:w-auto">
-                            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 px-4 shadow-lg border border-blue-200 text-center stats-section">
-                                <div className="text-2xl font-bold text-blue-600">50+</div>
-                                <div className="text-gray-600 text-sm">Articles</div>
+                            <div className="bg-[#444]/90 backdrop-blur-sm rounded-xl p-3 px-4 shadow-lg border border-[#ffffff38] text-center stats-section">
+                                <div className="text-2xl font-bold text-[#c2c6cb]">50+</div>
+                                <div className="text-[#c2c6cb] text-sm">Articles</div>
                             </div>
-                            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 px-4 shadow-lg border border-purple-200 text-center stats-section">
-                                <div className="text-2xl font-bold text-purple-600">10k+</div>
-                                <div className="text-gray-600 text-sm">Readers</div>
+                            <div className="bg-[#444]/90 backdrop-blur-sm rounded-xl p-3 px-4 shadow-lg border border-[#ffffff38] text-center stats-section">
+                                <div className="text-2xl font-bold text-[#c2c6cb]">10k+</div>
+                                <div className="text-[#c2c6cb] text-sm">Readers</div>
                             </div>
-                            <div className="bg-white/90 backdrop-blur-sm rounded-xl p-3 px-4 shadow-lg border border-indigo-200 text-center stats-section">
-                                <div className="text-2xl font-bold text-indigo-600">5★</div>
-                                <div className="text-gray-600 text-sm">Rating</div>
+                            <div className="bg-[#444]/90 backdrop-blur-sm rounded-xl p-3 px-4 shadow-lg border border-[#ffffff38] text-center stats-section">
+                                <div className="text-2xl font-bold text-[#c2c6cb]">5★</div>
+                                <div className="text-[#c2c6cb] text-sm">Rating</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-
                 {/* Blog Carousel */}
                 <div className="relative">
                     <div className="absolute -top-16 right-0 flex gap-4 z-20">
-                        <Button
+                        <CustomButton
                             onClick={prevSlide}
                             disabled={currentSlide === 0}
-                            className="group w-14 h-14 bg-white border-2 border-blue-200 rounded-full flex items-center justify-center transition-all duration-300 hover:border-blue-400 hover:bg-blue-50 disabled:opacity-40 disabled:cursor-not-allowed hover:scale-110 transform shadow-lg"
+                            className="group w-14 h-14 bg-[#333]/80 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:bg-[#444]/90 disabled:opacity-40 disabled:cursor-not-allowed hover:scale-110 transform shadow-lg border border-[#ffffff38]"
                         >
-                            <ChevronLeft className="w-6 h-6 text-gray-600 group-hover:text-blue-600 transition-colors" />
-                        </Button>
-                        <Button
+                            <ChevronLeft className="w-6 h-6 text-[#c2c6cb] group-hover:text-[#c2c6cb] transition-colors" />
+                        </CustomButton>
+                        <CustomButton
                             onClick={nextSlide}
                             disabled={currentSlide >= Math.max(0, blogPosts.length - visibleCards)}
-                            className="group w-14 h-14 bg-white border-2 border-blue-200 rounded-full flex items-center justify-center transition-all duration-300 hover:border-blue-400 hover:bg-blue-50 disabled:opacity-40 disabled:cursor-not-allowed hover:scale-110 transform shadow-lg"
+                            className="group w-14 h-14 bg-[#333]/80 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:bg-[#444]/90 disabled:opacity-40 disabled:cursor-not-allowed hover:scale-110 transform shadow-lg border border-[#ffffff38]"
                         >
-                            <ChevronRight className="w-6 h-6 text-gray-600 group-hover:text-blue-600 transition-colors" />
-                        </Button>
+                            <ChevronRight className="w-6 h-6 text-[#c2c6cb] group-hover:text-[#c2c6cb] transition-colors" />
+                        </CustomButton>
                     </div>
 
                     <div className="overflow-hidden py-4 ourblog-card-section">
@@ -610,9 +608,9 @@ const OurBlog = () => {
                                     onMouseLeave={() => setHoveredCard(null)}
                                     onClick={() => openDrawer(post)}
                                 >
-                                    <div className={`relative bg-white rounded-3xl overflow-hidden group transition-all duration-700 hover:scale-105 shadow-xl border-0 ${hoveredCard === post.id
-                                        ? 'shadow-2xl shadow-blue-500/20'
-                                        : 'hover:shadow-purple-500/20'
+                                    <div className={`relative bg-[#444] rounded-3xl overflow-hidden group transition-all duration-700 hover:scale-105 shadow-xl border border-[#ffffff38] ${hoveredCard === post.id
+                                        ? 'shadow-2xl shadow-[#c2c6cb]/20'
+                                        : 'hover:shadow-[#c2c6cb]/20'
                                         }`}
                                     >
                                         <div className="relative h-64 overflow-hidden">
@@ -622,58 +620,57 @@ const OurBlog = () => {
                                                 className={`w-full h-full object-cover transition-all duration-700 ${hoveredCard === post.id ? 'scale-110 brightness-110' : 'group-hover:scale-105'
                                                     }`}
                                             />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+                                            <div className="absolute inset-0 bg-gradient-to-t from-[#333]/60 via-[#333]/10 to-transparent"></div>
                                             <div className="absolute top-6 left-6">
-                                                <div className="px-4 category-label py-2 text-black font-[Inter] font-bold text-sm shadow-lg transform hover:scale-105 transition-transform border-1 bg-white/40 backdrop-blur-sm"
-                                                >
+                                                <div className="px-4 category-label py-2 text-[#c2c6cb] font-[Inter] font-bold text-sm shadow-lg transform hover:scale-105 transition-transform border border-[#ffffff38] bg-[#333]/40 backdrop-blur-sm">
                                                     {post.category}
                                                 </div>
                                             </div>
 
                                             <div className="absolute bottom-6 left-6 flex gap-4">
-                                                <div className="flex items-center gap-2 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full shadow-lg">
-                                                    <Eye className="w-4 h-4 text-blue-600" />
-                                                    <span className="text-gray-800 text-sm font-medium">{post.views}</span>
+                                                <div className="flex items-center gap-2 px-3 py-1 bg-[#333]/90 backdrop-blur-sm rounded-full shadow-lg">
+                                                    <Eye className="w-4 h-4 text-[#c2c6cb]" />
+                                                    <span className="text-[#c2c6cb] text-sm font-medium">{post.views}</span>
                                                 </div>
-                                                <div className="flex items-center gap-2 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full shadow-lg">
-                                                    <Clock className="w-4 h-4 text-purple-600" />
-                                                    <span className="text-gray-800 text-sm font-medium">{post.readTime}</span>
+                                                <div className="flex items-center gap-2 px-3 py-1 bg-[#333]/90 backdrop-blur-sm rounded-full shadow-lg">
+                                                    <Clock className="w-4 h-4 text-[#c2c6cb]" />
+                                                    <span className="text-[#c2c6cb] text-sm font-medium">{post.readTime}</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="p-8 relative bg-white">
+                                        <div className="p-8 relative bg-[#444]">
                                             <div className="flex gap-2 mb-4">
                                                 {post.tags.map((tag, idx) => (
-                                                    <span key={idx} className="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 rounded-lg text-xs border border-blue-200 hover:border-blue-400 hover:bg-blue-200 transition-all cursor-pointer font-medium">
+                                                    <span key={idx} className="px-3 py-1 bg-gradient-to-r from-[#c2c6cb]/20 to-[#444]/20 text-[#c2c6cb] rounded-lg text-xs border border-[#ffffff38] hover:border-[#c2c6cb] hover:bg-[#c2c6cb]/10 transition-all cursor-pointer font-medium">
                                                         #{tag}
                                                     </span>
                                                 ))}
                                             </div>
-                                            <div className="flex items-center gap-2 text-gray-600 text-sm mb-4">
-                                                <Calendar className="w-4 h-4 text-indigo-600" />
+                                            <div className="flex items-center gap-2 text-[#c2c6cb] text-sm mb-4">
+                                                <Calendar className="w-4 h-4 text-[#c2c6cb]" />
                                                 <span>{post.date}</span>
                                             </div>
 
                                             <Tooltip placement="topLeft" title={post.title} arrow={{ pointAtCenter: true }}>
                                                 <p
-                                                    className="text-2xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-indigo-700 transition-colors duration-300 line-clamp-2"
+                                                    className="text-2xl font-bold text-[#c2c6cb] mb-4 leading-tight group-hover:text-[#c2c6cb] transition-colors duration-300 line-clamp-2"
                                                 >
                                                     {post.title}
                                                 </p>
                                             </Tooltip>
-                                            <p className="text-gray-600 mb-6 leading-relaxed line-clamp-3">{post.excerpt}</p>
+                                            <p className="text-[#c2c6cb] mb-6 leading-relaxed line-clamp-3">{post.excerpt}</p>
                                             <div className="flex items-center gap-4">
-                                                <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg">
-                                                    <User className="w-6 h-6 text-white" />
+                                                <div className="w-12 h-12 bg-gradient-to-r from-[#c2c6cb] to-[#444] rounded-full flex items-center justify-center shadow-lg">
+                                                    <User className="w-6 h-6 text-[#333]" />
                                                 </div>
                                                 <div>
-                                                    <p className="font-semibold text-gray-900">{post.author}</p>
-                                                    <p className="text-gray-600 text-sm">Author</p>
+                                                    <p className="font-semibold text-[#c2c6cb]">{post.author}</p>
+                                                    <p className="text-[#c2c6cb] text-sm">Author</p>
                                                 </div>
                                             </div>
-                                            <div className={`absolute bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${hoveredCard === post.id ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+                                            <div className={`absolute bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-[#c2c6cb] to-[#444] rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${hoveredCard === post.id ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
                                                 }`}>
-                                                <ArrowRight className="w-6 h-6 text-white" />
+                                                <ArrowRight className="w-6 h-6 text-[#333]" />
                                             </div>
                                         </div>
                                     </div>
@@ -686,21 +683,20 @@ const OurBlog = () => {
                 {/* Article Content Drawer */}
                 <Drawer
                     title={
-                        <p className="text-xs md:text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent break-words whitespace-normal leading-snug">
+                        <p className="text-xs md:text-xl font-bold bg-gradient-to-r from-[#333] via-[#444] to-[#c2c6cb] bg-clip-text text-transparent break-words whitespace-normal leading-snug">
                             {selectedPost?.title}
                         </p>
                     }
-
                     placement="right"
                     closable={true}
                     onClose={closeDrawer}
                     open={isDrawerOpen}
                     width={screens.xs ? "80%" : "50%"}
                     styles={{
-                        body: { padding: '24px', overflowY: 'auto' },
-                        header: { borderBottom: '1px solid #e8e8e8' }
+                        body: { padding: '24px', overflowY: 'auto', background: '#333' },
+                        header: { borderBottom: '1px solid #ffffff38', background: '#333' }
                     }}
-                    closeIcon={<X className="w-6 h-6 text-gray-600" />}
+                    closeIcon={<X className="w-6 h-6 text-[#c2c6cb]" />}
                 >
                     {selectedPost && (
                         <div>
@@ -709,7 +705,7 @@ const OurBlog = () => {
                                 alt={selectedPost.title}
                                 className="w-full p-4 h-48 md:h-64 object-cover rounded-xl mb-6"
                             />
-                            <div className="prose p-4 prose-lg text-gray-700 max-w-none">
+                            <div className="prose p-4 prose-lg text-[#c2c6cb] max-w-none">
                                 {renderContent(contentMap[selectedPost.id].content)}
                             </div>
                         </div>
@@ -718,17 +714,17 @@ const OurBlog = () => {
 
                 {/* Explore Articles Drawer */}
                 <Drawer
-                    title={<h2 className="text-lg font-bold">Explore All Articles</h2>}
+                    title={<h2 className="text-lg font-bold text-[#c2c6cb]">Explore All Articles</h2>}
                     placement="right"
                     closable={true}
                     onClose={closeExploreDrawer}
                     open={isExploreDrawerOpen}
                     width="80%"
                     styles={{
-                        body: { padding: 0 },
-                        header: { borderBottom: '1px solid #e8e8e8' }
+                        body: { padding: 0, background: '#333' },
+                        header: { borderBottom: '1px solid #ffffff38', background: '#333' }
                     }}
-                    closeIcon={<X className="w-6 h-6 text-gray-600" />}
+                    closeIcon={<X className="w-6 h-6 text-[#c2c6cb]" />}
                 >
                     <BlogExploreArticles blogPosts={blogPosts} contentMap={contentMap} />
                 </Drawer>

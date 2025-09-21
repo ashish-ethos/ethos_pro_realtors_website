@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Drawer, Button, Typography, Tag, InputNumber, Input, Form, Tabs, Card, Space, Avatar, Progress } from 'antd';
 import {
   CloseOutlined,
@@ -164,8 +164,8 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
   const PremiumCard = ({ children, className = '', gradient = false, hover = true }) => (
     <div className={`
       ${gradient
-        ? 'bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-100'
-        : 'bg-white border border-gray-200'
+        ? 'bg-gradient-to-br from-[#333]/50 to-[#444]/50 border-2 border-[#ffffff38]'
+        : 'bg-[#333] border border-[#ffffff38]'
       } 
       rounded-2xl shadow-lg 
       ${hover ? 'hover:shadow-xl hover:scale-[1.02] transition-all duration-300' : ''} 
@@ -177,11 +177,11 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
 
   const StatCard = ({ icon, label, value, color = 'blue' }) => (
     <div className="text-center p-2">
-      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-${color}-100 text-${color}-600 mb-1`}>
+      <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-${color}-100/20 text-${color}-600 mb-1 border-1`}>
         {icon}
       </div>
-      <div className="text-xs text-gray-500 mb-1">{label}</div>
-      <div className="text-md font-bold text-gray-900">{value}</div>
+      <div className="text-xs text-[#c2c6cb]/80 mb-1">{label}</div>
+      <div className="text-md font-bold text-[#c2c6cb]">{value}</div>
     </div>
   );
 
@@ -191,15 +191,15 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
       <PremiumCard gradient={true}>
         <div className="flex justify-between items-start mb-4 hero-section-header">
           <div>
-            <Title level={3} className="m-0 text-gray-800 fontFamily-bebas detail-project-name">{project?.name || 'Property'}</Title>
-            <div className="flex items-center mt-2 text-gray-600 fontFamily-bebas">
+            <Title level={3} className="m-0 text-[#c2c6cb] fontFamily-bebas detail-project-name">{project?.name || 'Property'}</Title>
+            <div className="flex items-center mt-2 text-[#c2c6cb]/80 fontFamily-bebas">
               <EnvironmentOutlined className="mr-2" />
               <Text>{project?.location || 'N/A'}</Text>
             </div>
           </div>
           <div className="flex gap-2 items-center">
             <button
-              className="p-2 bg-white/90 rounded-full hover:bg-white transition-colors"
+              className="p-2 bg-[#333]/90 rounded-full hover:bg-[#444] transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
                 if (project?.id && onToggleLike) {
@@ -212,28 +212,29 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
             >
               <Heart
                 size={16}
-                className={isLiked ? 'text-red-500 fill-red-500' : 'text-gray-600 hover:text-red-500'}
+                className={isLiked ? 'text-red-500 fill-red-500' : 'text-[#c2c6cb] hover:text-red-500'}
               />
             </button>
             <div className="relative flex items-center w-full">
               <button
                 onClick={() => setIsSharePopupOpen(!isSharePopupOpen)}
-                className="p-2 cursor-pointer bg-white/90 rounded-full hover:bg-white transition-colors"
+                className="p-2 cursor-pointer bg-[#333]/90 rounded-full hover:bg-[#444] transition-colors"
               >
-                <Share2 size={16} className="text-gray-600" />
+                <Share2 size={16} className="text-[#c2c6cb]" />
               </button>
-              <span className="ml-2 text-sm text-gray-600 border-l border-gray-300 pl-2 shadow-sm bg-white rounded px-2 py-1 fontFamily-bebas">
-                {shareCount} {shareCount === 1 ? 'Share' : 'Shares'}
+              <span className="ml-2 text-sm flex gap-1 text-[#c2c6cb]/80 border-l border-[#ffffff38] pl-2 shadow-sm bg-[#333] rounded px-2 py-1 fontFamily-bebas">
+                <p>{shareCount}</p> 
+                <p>{shareCount === 1 ? 'Share' : 'Shares'}</p>
               </span>
               {isSharePopupOpen && (
-                <div className="absolute top-12 right-0 bg-white rounded-lg shadow-xl w-40 z-50">
+                <div className="absolute top-12 right-0 bg-[#444] rounded-lg shadow-xl w-40 z-50 border border-[#ffffff38]">
                   <div className="flex justify-between items-center px-2 py-1">
-                    <h4 className="text-xs font-semibold text-gray-800">Share Property</h4>
+                    <h4 className="text-xs font-semibold text-[#c2c6cb]">Share Property</h4>
                     <button
                       onClick={() => setIsSharePopupOpen(false)}
-                      className="p-1 hover:bg-gray-100 rounded-full cursor-pointer transition-colors"
+                      className="p-1 hover:bg-[#333] rounded-full cursor-pointer transition-colors"
                     >
-                      <X size={16} className="text-gray-600" />
+                      <X size={16} className="text-[#c2c6cb]" />
                     </button>
                   </div>
                   <div className="flex flex-col mb-1 gap-1">
@@ -246,10 +247,10 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
                           window.open(platform.url, '_blank', 'noopener,noreferrer');
                           setIsSharePopupOpen(false);
                         }}
-                        className="flex items-center gap-2 p-1 px-2 hover:bg-gray-100 rounded-lg transition-colors"
+                        className="flex items-center gap-2 p-1 px-2 hover:bg-[#333] rounded-lg transition-colors"
                       >
                         <platform.icon size={16} className={platform.color} />
-                        <span className="text-xs text-gray-700 font-[Inter] ml-1">{platform.name}</span>
+                        <span className="text-xs text-[#c2c6cb] font-[Inter] ml-1">{platform.name}</span>
                       </button>
                     ))}
                   </div>
@@ -262,11 +263,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
         <div className="flex flex-wrap gap-2 mb-4">
           {project?.status?.map((status, idx) => (
             <Tag key={idx} className={`
-              px-4 py-2 rounded-full fontFamily-content font-semibold text-white border-0 ${status === 'FOR SALE' ? 'bg-gradient-to-r from-blue-500 to-blue-600' :
-                status === 'FOR RENT' ? 'bg-gradient-to-r from-green-500 to-green-600' :
-                  status === 'HOT OFFER' ? 'bg-gradient-to-r from-red-500 to-red-600 animate-pulse' :
-                    'bg-gradient-to-r from-gray-500 to-gray-600'
-              }
+              px-4 py-2 rounded-full fontFamily-content font-semibold text-[#c2c6cb] border border-[#ffffff38] bg-[#333]/50
             `}>
               {status}
             </Tag>
@@ -274,40 +271,40 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
         </div>
 
         <div className="flex items-baseline gap-2">
-          <Title level={4} className="m-0 text-gray-900">{formatPrice(project?.price)}</Title>
+          <Title level={4} className="m-0 text-[#c2c6cb]">{formatPrice(project?.price)}</Title>
           {project?.pricePerSqft && (
-            <Text className="text-gray-500 text-lg">{project.pricePerSqft}/sqft</Text>
+            <Text className="text-[#c2c6cb]/80 text-lg">{project.pricePerSqft}/sqft</Text>
           )}
         </div>
       </PremiumCard>
 
       {/* Key Statistics */}
       <PremiumCard>
-        <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-100">
+        <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-[#ffffff38]">
           <StatCard
-            icon={<AreaChartOutlined />}
+            icon={<AreaChartOutlined className="text-[#c2c6cb]" />}
             label="Area"
             value={project?.sqft || 'N/A'}
             color="blue"
-            className="text-sm font-medium font-[Inter] text-gray-800"
+            className="text-sm font-medium font-[Inter] text-[#c2c6cb]"
           />
           <StatCard
-            icon={<HomeOutlined />}
+            icon={<HomeOutlined className="text-[#c2c6cb]" />}
             label="Type"
             value={project?.type || 'N/A'}
             color="green"
-            className="font-medium text-gray-800 font-[Inter]"
+            className="font-medium text-[#c2c6cb] font-[Inter]"
           />
           {!isCommercial && (
             <>
               <StatCard
-                icon={<UserOutlined />}
+                icon={<UserOutlined className="text-[#c2c6cb]" />}
                 label="Bedrooms"
                 value={project?.bedrooms || 'N/A'}
                 color="purple"
               />
               <StatCard
-                icon={<ThunderboltOutlined />}
+                icon={<ThunderboltOutlined className="text-[#c2c6cb]" />}
                 label="Bathrooms"
                 value={project?.bathrooms || 'N/A'}
                 color="orange"
@@ -317,13 +314,13 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
           {isCommercial && (
             <>
               <StatCard
-                icon={<BankOutlined />}
+                icon={<BankOutlined className="text-[#c2c6cb]" />}
                 label="Category"
                 value={project?.category?.replace('_', ' ') || 'N/A'}
                 color="purple"
               />
               <StatCard
-                icon={<StarOutlined />}
+                icon={<StarOutlined className="text-[#c2c6cb]" />}
                 label="Rating"
                 value={project?.rating || 'N/A'}
                 color="orange"
@@ -342,7 +339,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
               alt={project.name || 'Property'}
               className="w-full h-80 object-cover premium-image"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#333]/20 to-transparent" />
           </div>
         </PremiumCard>
       )}
@@ -350,17 +347,17 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
       {/* Amenities */}
       {project?.amenities?.length > 0 && (
         <PremiumCard>
-          <Title level={4} className="mb-4 flex fontFamily-bebas items-center">
-            <ThunderboltOutlined className="mr-2 text-blue-600" />
+          <Title level={4} className="mb-4 flex fontFamily-bebas items-center text-[#c2c6cb]">
+            <ThunderboltOutlined className="mr-2 text-[#c2c6cb]" />
             Amenities & Features
           </Title>
-          <div className="grid grid-cols-2 mt-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {project.amenities.map((amenity, i) => (
-              <div key={i} className="flex items-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
-                <div className="mr-3 text-blue-600">
+              <div key={i} className="flex items-center p-3 bg-[#333]/50 rounded-xl hover:bg-[#444]/50 transition-colors border border-[#ffffff38]">
+                <div className="mr-3 text-[#c2c6cb]">
                   {getAmenityIcon(amenity)}
                 </div>
-                <Text className="font-medium">{amenity}</Text>
+                <Text className="font-medium text-[#c2c6cb]">{amenity}</Text>
               </div>
             ))}
           </div>
@@ -370,8 +367,8 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
       {/* Map */}
       {project?.addressMap && (
         <PremiumCard>
-          <Title level={4} className="mb-4 flex fontFamily-bebas items-center">
-            <EnvironmentOutlined className="mr-2 text-green-600" />
+          <Title level={4} className="mb-4 flex fontFamily-bebas items-center text-[#c2c6cb]">
+            <EnvironmentOutlined className="mr-2 text-[#c2c6cb]" />
             Location
           </Title>
           <a href={getMapUrl()} target="_blank" rel="noopener noreferrer">
@@ -388,8 +385,8 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
   const calculatorContent = (
     <div className="space-y-6">
       <PremiumCard gradient={true}>
-        <Title level={4} className="mb-6 flex items-center text-gray-800 emi-title-text">
-          <CalculatorOutlined className="mr-3 text-blue-600" />
+        <Title level={4} className="mb-6 flex items-center text-[#c2c6cb] emi-title-text">
+          <CalculatorOutlined className="mr-3 text-[#c2c6cb]" />
           EMI Calculator
         </Title>
 
@@ -398,7 +395,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
             <div className="space-y-4">
               <Form.Item
                 name="loanAmount"
-                label={<Text strong>Loan Amount</Text>}
+                label={<Text strong className="text-[#c2c6cb]">Loan Amount</Text>}
                 initialValue={loanAmount}
                 rules={[{ required: true, message: 'Please enter loan amount' }]}
               >
@@ -418,7 +415,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
             <div className="space-y-4">
               <Form.Item
                 name="interestRate"
-                label={<Text strong>Interest Rate (%)</Text>}
+                label={<Text strong className="text-[#c2c6cb]">Interest Rate (%)</Text>}
                 initialValue={interestRate}
                 rules={[{ required: true, message: 'Please enter interest rate' }]}
               >
@@ -437,7 +434,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
             <div className="space-y-4">
               <Form.Item
                 name="tenure"
-                label={<Text strong>Tenure (Months)</Text>}
+                label={<Text strong className="text-[#c2c6cb]">Tenure (Months)</Text>}
                 initialValue={tenure}
                 rules={[{ required: true, message: 'Please enter tenure' }]}
               >
@@ -459,7 +456,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
                 type="primary"
                 htmlType="submit"
                 size="large"
-                className="h-12 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 border-0 font-semibold shadow-lg hover:shadow-xl"
+                className="h-12 rounded-xl bg-gradient-to-r from-[#c2c6cb]/20 to-[#444]/20 border border-[#ffffff38] font-semibold shadow-lg hover:shadow-xl text-[#c2c6cb]"
               >
                 Calculate EMI
               </CustomButton>
@@ -470,38 +467,38 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
 
       {emi && (
         <PremiumCard>
-          <div className="grid sm:grid-cols-3 gap-6 ">
-            <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl">
-              <div className="text-xl font-bold text-blue-600 mb-2">₹{formatPrice(emi)}</div>
-              <div className="text-blue-800 font-medium">Monthly EMI</div>
+          <div className="grid sm:grid-cols-3 gap-6">
+            <div className="text-center p-4 bg-gradient-to-br from-[#333]/50 to-[#444]/50 rounded-2xl border border-[#ffffff38]">
+              <div className="text-xl font-bold text-[#c2c6cb] mb-2">₹{formatPrice(emi)}</div>
+              <div className="text-[#c2c6cb] font-medium">Monthly EMI</div>
             </div>
 
-            <div className="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl">
-              <div className="text-xl font-bold text-green-600 mb-2">₹{formatPrice(totalAmount)}</div>
-              <div className="text-green-800 font-medium">Total Amount</div>
+            <div className="text-center p-4 bg-gradient-to-br from-[#333]/50 to-[#444]/50 rounded-2xl border border-[#ffffff38]">
+              <div className="text-xl font-bold text-[#c2c6cb] mb-2">₹{formatPrice(totalAmount)}</div>
+              <div className="text-[#c2c6cb] font-medium">Total Amount</div>
             </div>
 
-            <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl">
-              <div className="text-xl font-bold text-orange-600 mb-2">₹{formatPrice(totalInterest)}</div>
-              <div className="text-orange-800 font-medium">Total Interest</div>
+            <div className="text-center p-4 bg-gradient-to-br from-[#333]/50 to-[#444]/50 rounded-2xl border border-[#ffffff38]">
+              <div className="text-xl font-bold text-[#c2c6cb] mb-2">₹{formatPrice(totalInterest)}</div>
+              <div className="text-[#c2c6cb] font-medium">Total Interest</div>
             </div>
           </div>
 
           <div className="mt-6">
             <div className="flex justify-between items-center mb-3">
-              <Text strong>Principal vs Interest</Text>
-              <Text className="text-gray-500">
+              <Text strong className="text-[#c2c6cb]">Principal vs Interest</Text>
+              <Text className="text-[#c2c6cb]/80">
                 {((loanAmount / totalAmount) * 100).toFixed(1)}% Principal
               </Text>
             </div>
             <Progress
               percent={Number(((loanAmount / totalAmount) * 100).toFixed(2))}
-              strokeColor="#3b82f6"
-              trailColor="#fbbf24"
+              strokeColor="#c2c6cb"
+              trailColor="#444"
               className="mb-2"
               format={(percent) => `${percent}%`}
             />
-            <div className="flex justify-between text-sm text-gray-600">
+            <div className="flex justify-between text-sm text-[#c2c6cb]/80">
               <span>Principal: ₹{formatPrice(loanAmount)}</span>
               <span>Interest: ₹{formatPrice(totalInterest)}</span>
             </div>
@@ -521,7 +518,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
     {
       key: 'overview',
       label: (
-        <span className="flex items-center">
+        <span className="flex items-center text-[#c2c6cb]">
           <HomeOutlined className="mr-2" />
           Overview
         </span>
@@ -531,7 +528,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
     {
       key: 'calculator',
       label: (
-        <span className="flex items-center">
+        <span className="flex items-center text-[#c2c6cb]">
           <CalculatorOutlined className="mr-2" />
           EMI Calculator
         </span>
@@ -541,7 +538,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
     {
       key: 'contact',
       label: (
-        <span className="flex items-center">
+        <span className="flex items-center text-[#c2c6cb]">
           <PhoneOutlined className="mr-2" />
           Contact
         </span>
@@ -558,22 +555,22 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
       open={open}
       width={800}
       styles={{
-        body: { padding: 0 },
+        body: { padding: 0, background: '#333' },
         header: { display: 'none' }
       }}
       className="advanced-drawer"
     >
-      <div className="h-full bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="h-full bg-gradient-to-br from-[#333] to-[#444]">
         {/* Custom Header */}
-        <div className="bg-white border-b border-gray-200 p-2 sticky top-0 z-10 shadow-sm">
+        <div className="bg-[#444] border-b border-[#ffffff38] p-2 sticky top-0 z-10 shadow-sm">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-1 mr-3">
-              <Avatar size={40} className="bg-blue-600">
+              <Avatar size={40} className="bg-[#333]">
                 {project?.name?.charAt(0) || 'P'}
               </Avatar>
               <div className='px-2'>
-                <p className="m-0 p-0 text-lg font-medium fontFamily-bebas drawer-title">{project?.name || 'Property Details'}</p>
-                <Text className="text-gray-500 m-0 p-0 fontFamily-bebas">Premium Listing</Text>
+                <p className="m-0 p-0 text-lg font-medium fontFamily-bebas drawer-title text-[#c2c6cb]">{project?.name || 'Property Details'}</p>
+                <Text className="text-[#c2c6cb]/80 m-0 p-0 fontFamily-bebas">Premium Listing</Text>
               </div>
             </div>
             <Button
@@ -581,7 +578,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
               shape="circle"
               icon={<CloseOutlined />}
               onClick={onClose}
-              className="hover:bg-gray-100"
+              className="hover:bg-[#333]"
               size="large"
             />
           </div>

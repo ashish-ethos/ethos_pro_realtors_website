@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useMemo } from "react";
 import {
   Drawer,
@@ -518,14 +519,14 @@ const AdvancedPropertySearch = ({
             <Title level={4} className="m-0 advanced-text font-[Inter]">
               Advanced Property Search
             </Title>
-            <Text type="secondary">
+            <Text type="secondary" className="text-[#c2c6cb]">
               {filteredProperties.length} properties found
             </Text>
           </Space>
           <Space className="property-button-section">
             <CustomButton
               className="property-card-action-button"
-              icon={<FaFilter />}
+              icon={<FaFilter className="text-[#c2c6cb]" />}
               onClick={() => setShowFilters(!showFilters)}
             >
               {showFilters ? "Hide Filters" : "Show Filters"}
@@ -556,7 +557,7 @@ const AdvancedPropertySearch = ({
                 className="filters-space"
               >
                 <CustomInput
-                  prefix={<Search />}
+                  prefix={<Search className="text-[#c2c6cb]" />}
                   placeholder="Search by name or location..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -565,7 +566,7 @@ const AdvancedPropertySearch = ({
 
                 <div className="chips-container">
                   {activeChips.length === 0 ? (
-                    <Text type="secondary">No active filters</Text>
+                    <Text type="secondary" className="text-[#c2c6cb]">No active filters</Text>
                   ) : (
                     activeChips.slice(0, 6).map((chip) => (
                       <Tag
@@ -589,12 +590,12 @@ const AdvancedPropertySearch = ({
             <Collapse defaultActiveKey={["basic", "advanced"]} ghost items={[
               {
                 key: "basic",
-                label: <b>Basic Filters</b>,
+                label: <b className="text-[#c2c6cb]">Basic Filters</b>,
                 children: (
                   <Space direction="vertical" size="middle" className="filters-space">
                     <div>
-                      <span className="filter-label flex items-center">
-                        <MapPinHouse className="filter-icon" />
+                      <span className="filter-label flex items-center text-[#c2c6cb]">
+                        <MapPinHouse className="filter-icon text-[#c2c6cb]" />
                         Location
                       </span>
                       <CustomSelect
@@ -609,8 +610,8 @@ const AdvancedPropertySearch = ({
                       />
                     </div>
                     <div>
-                      <span className="filter-label flex items-center">
-                        <House className="filter-icon" />
+                      <span className="filter-label flex items-center text-[#c2c6cb]">
+                        <House className="filter-icon text-[#c2c6cb]" />
                         Property Type
                       </span>
                       <CustomSelect
@@ -625,8 +626,8 @@ const AdvancedPropertySearch = ({
                       />
                     </div>
                     <div>
-                      <span className="filter-label flex items-center">
-                        <Star className="filter-icon" />
+                      <span className="filter-label flex items-center text-[#c2c6cb]">
+                        <Star className="filter-icon text-[#c2c6cb]" />
                         Status
                       </span>
                       <CustomSelect
@@ -641,8 +642,8 @@ const AdvancedPropertySearch = ({
                       />
                     </div>
                     <div>
-                      <span className="filter-label flex items-center">
-                        <Bed className="filter-icon" />
+                      <span className="filter-label flex items-center text-[#c2c6cb]">
+                        <Bed className="filter-icon text-[#c2c6cb]" />
                         Bedrooms
                       </span>
                       <CustomSelect
@@ -657,8 +658,8 @@ const AdvancedPropertySearch = ({
                       />
                     </div>
                     <div>
-                      <span className="filter-label flex items-center">
-                        <Bath className="filter-icon" />
+                      <span className="filter-label flex items-center text-[#c2c6cb]">
+                        <Bath className="filter-icon text-[#c2c6cb]" />
                         Bathrooms
                       </span>
                       <CustomSelect
@@ -678,7 +679,7 @@ const AdvancedPropertySearch = ({
               },
               {
                 key: "advanced",
-                label: <b>Advanced Filters</b>,
+                label: <b className="text-[#c2c6cb]">Advanced Filters</b>,
                 children: (
                   <Space direction="vertical" size="middle" className="filters-space">
                     <div>
@@ -742,8 +743,8 @@ const AdvancedPropertySearch = ({
                       </Space>
                     </div>
                     <div>
-                      <span className="filter-label flex items-center">
-                        <LandPlot className="filter-icon" />
+                      <span className="filter-label flex items-center text-[#c2c6cb]">
+                        <LandPlot className="filter-icon text-[#c2c6cb]" />
                         Area Range (Sq Ft)
                       </span>
                       <Space className="area-inputs">
@@ -762,8 +763,8 @@ const AdvancedPropertySearch = ({
                       </Space>
                     </div>
                     <div>
-                      <span className="filter-label flex items-center">
-                        <CalendarDays className="filter-icon" />
+                      <span className="filter-label flex items-center text-[#c2c6cb]">
+                        <CalendarDays className="filter-icon text-[#c2c6cb]" />
                         Year Built
                       </span>
                       <CustomSelect
@@ -778,8 +779,8 @@ const AdvancedPropertySearch = ({
                       />
                     </div>
                     <div>
-                      <span className="filter-label flex items-center">
-                        <Star className="filter-icon" />
+                      <span className="filter-label flex items-center text-[#c2c6cb]">
+                        <Star className="filter-icon text-[#c2c6cb]" />
                         Labels
                       </span>
                       <CustomSelect
@@ -794,8 +795,8 @@ const AdvancedPropertySearch = ({
                       />
                     </div>
                     <div>
-                      <span className="filter-label flex items-center">
-                        <MapPinHouse className="filter-icon" />
+                      <span className="filter-label flex items-center text-[#c2c6cb]">
+                        <MapPinHouse className="filter-icon text-[#c2c6cb]" />
                         Country
                       </span>
                       <CustomSelect
@@ -810,8 +811,8 @@ const AdvancedPropertySearch = ({
                       />
                     </div>
                     <div>
-                      <span className="filter-label flex items-center">
-                        <MapPinHouse className="filter-icon" />
+                      <span className="filter-label flex items-center text-[#c2c6cb]">
+                        <MapPinHouse className="filter-icon text-[#c2c6cb]" />
                         State
                       </span>
                       <CustomSelect
@@ -826,8 +827,8 @@ const AdvancedPropertySearch = ({
                       />
                     </div>
                     <div>
-                      <span className="filter-label flex items-center">
-                        <MapPinHouse className="filter-icon" />
+                      <span className="filter-label flex items-center text-[#c2c6cb]">
+                        <MapPinHouse className="filter-icon text-[#c2c6cb]" />
                         City
                       </span>
                       <CustomSelect
@@ -848,7 +849,7 @@ const AdvancedPropertySearch = ({
             ]} />
 
             <div className="filters-footer">
-              <Space className="filters-footer-buttons bg-white">
+              <Space className="filters-footer-buttons">
                 <CustomButton
                   onClick={handleClearFilters}
                   className="property-card-action-button"
@@ -878,10 +879,10 @@ const AdvancedPropertySearch = ({
                   className="view-mode-radio"
                 >
                   <Radio.Button value="grid" className="radio-button">
-                    <FaTh />
+                    <FaTh className="text-[#c2c6cb]" />
                   </Radio.Button>
                   <Radio.Button value="list" className="radio-button">
-                    <FaList />
+                    <FaList className="text-[#c2c6cb]" />
                   </Radio.Button>
                 </Radio.Group>
               </div>
@@ -895,6 +896,7 @@ const AdvancedPropertySearch = ({
                   key={chip.key}
                   closable
                   onClose={() => removeFilterValue(chip.filterKey, chip.label)}
+                  className="chip-tag"
                 >
                   {chip.label}
                 </Tag>
@@ -999,10 +1001,10 @@ const AdvancedPropertySearch = ({
                               <div className="card-details">
                                 <div className="card-details-content">
                                   <Text className="card-detail-item">
-                                    <Bed className="text-gray-500" /> {property.bedrooms} Beds
+                                    <Bed className="text-[#c2c6cb]" /> {property.bedrooms} Beds
                                   </Text>
                                   <Text className="card-detail-item">
-                                    <Bath className="text-gray-500" /> {property.bathrooms} Baths
+                                    <Bath className="text-[#c2c6cb]" /> {property.bathrooms} Baths
                                   </Text>
                                   <Tag color="default" className="capitalize">{property.type}</Tag>
                                 </div>
@@ -1076,29 +1078,29 @@ const AdvancedPropertySearch = ({
                         description={
                           <div className="checked">
                             <Text className="location-list flex gap-1">
-                              <MapPinHouse />
+                              <MapPinHouse className="text-[#c2c6cb]" />
                               <p className="m-0 p-0">{property.location}</p>
                             </Text>
                             <div className="list-details">
-                              <div className="list-details-content flex items-center justify-center flex-col text-black">
-                                <Bed className="text-black" />
+                              <div className="list-details-content flex items-center justify-center flex-col text-[#c2c6cb]">
+                                <Bed className="text-[#c2c6cb]" />
                                 <p>{property.bedrooms} Beds</p>
                               </div>
-                              <div className="list-details-content flex items-center justify-center flex-col text-black">
-                                <Bath />
+                              <div className="list-details-content flex items-center justify-center flex-col text-[#c2c6cb]">
+                                <Bath className="text-[#c2c6cb]" />
                                 <p>{property.bathrooms} Baths</p>
                               </div>
-                              <div className="list-details-content flex items-center justify-center flex-col text-black">
-                                <LandPlot />
+                              <div className="list-details-content flex items-center justify-center flex-col text-[#c2c6cb]">
+                                <LandPlot className="text-[#c2c6cb]" />
                                 <p>{property.areaValue} sq ft</p>
                               </div>
-                              <div className="list-details-content flex items-center justify-center flex-col text-black">
-                                <CalendarDays />
+                              <div className="list-details-content flex items-center justify-center flex-col text-[#c2c6cb]">
+                                <CalendarDays className="text-[#c2c6cb]" />
                                 <p>{property.yearBuilt} Year</p>
                               </div>
                             </div>
                             <div className="list-tags">
-                              <Tag color="gray" className="capitalize">{property.type}</Tag>
+                              <Tag color="default" className="capitalize">{property.type}</Tag>
                               <Tag color={getStatusColor(property.status)}>
                                 {property.status}
                               </Tag>
@@ -1123,8 +1125,8 @@ const AdvancedPropertySearch = ({
           ) : (
             <div className="no-properties">
               <House className="no-properties-icon" />
-              <Title level={3}>No Properties Found</Title>
-              <Text>
+              <Title level={3} className="text-[#c2c6cb]">No Properties Found</Title>
+              <Text className="text-[#c2c6cb]">
                 We couldn't find any properties matching your search criteria.
                 Try adjusting your filters or search terms.
               </Text>
