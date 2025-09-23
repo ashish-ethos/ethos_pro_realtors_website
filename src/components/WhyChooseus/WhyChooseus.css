@@ -72,6 +72,12 @@
   .testimonial-subtitle {
     font-size: 14px;
   }
+  .mobile-chose-card{
+    padding: 15px;
+  }
+  .mobile-testimonial-section{
+    margin-bottom: 15px;
+  }
 }
 
 

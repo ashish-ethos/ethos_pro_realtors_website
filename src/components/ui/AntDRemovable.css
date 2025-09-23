@@ -145,3 +145,10 @@
     padding: 2px;
     border-radius: 5px;
 }
+.ant-picker .ant-picker-input > input::placeholder {
+  color: #c2c6cb !important;
+  opacity: 1; 
+}
+.ant-picker .ant-picker-suffix {
+  color: #c2c6cb !important;
+}

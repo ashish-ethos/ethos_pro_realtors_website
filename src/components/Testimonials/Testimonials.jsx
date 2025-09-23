@@ -95,7 +95,7 @@ const Testimonial = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 mobile-testimonial-section">
           <div className="inline-flex flex-col items-center justify-center space-x-2 mb-6">
             <p className="text-3xl mobile-title-text font-[Montserrat] sm:text-xl md:text-5xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-[#c2c6cb] via-[#c99913] to-[#c2c6cb] bg-clip-text text-transparent animate-pulse">
               TESTIMONIALS
@@ -124,7 +124,7 @@ const Testimonial = () => {
           onMouseEnter={() => setPause(true)}
           onMouseLeave={() => setPause(false)}
         >
-          <div className="flex justify-center items-start space-x-8 mb-12">
+          <div className="flex justify-center items-start space-x-8 mb-12  mobile-testimonial-section">
             {getVisibleTestimonials().map((testimonial, index) => (
               <div
                 key={testimonial.id}
@@ -136,7 +136,7 @@ const Testimonial = () => {
                   transform: `translateX(${(index - 1) * 320}px)`
                 }}
               >
-                <div className="w-80 min-h-[440px] relative group">
+                <div className="w-70 min-h-[440px] relative group">
                   <div className="absolute inset-0 bg-[#444]/40 backdrop-blur-xl rounded-3xl shadow-2xl border border-[#ffffff38] group-hover:bg-[#444]/50 transition-all duration-300" />
                   <div className="absolute inset-0 bg-gradient-to-br from-[#333]/20 to-transparent rounded-3xl" />
                   <div className="relative z-10 p-8 h-full flex flex-col">

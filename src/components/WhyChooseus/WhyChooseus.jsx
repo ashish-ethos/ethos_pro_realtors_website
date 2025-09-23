@@ -80,7 +80,7 @@ const WhyChooseUs = () => {
                   <div className="h-full w-full rounded-3xl bg-[#333]"></div>
                 </div>
 
-                <div className="relative p-8 h-full flex flex-col z-10">
+                <div className="relative p-8 h-full flex flex-col z-10 mobile-chose-card">
                   {/* Icon Container */}
                   <div className="w-20 h-20 border border-[#ffffff38] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 relative overflow-hidden group-hover:border-[#c99913]">
                     {/* Icon Border Shine */}

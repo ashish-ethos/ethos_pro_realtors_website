@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
     ChevronLeft,
@@ -25,7 +25,7 @@ import "../OurTeam/OurTeam.css";
 import CustomButton from '../ui/Button';
 import { Tooltip } from 'antd';
 
-// Content for all four posts (asterisks and emojis removed)
+// Content for all four posts (unchanged)
 const roiContent = `
 Introduction
 Understanding the Return on Investment (ROI) is crucial when it comes to real estate investing. Whether you're buying a rental property, a commercial space, or a residential apartment for appreciation, knowing how to calculate ROI can help you evaluate the profitability of your investment. This guide will break down the concept of ROI, its formulas, and practical examples so you can make informed real estate decisions.
@@ -403,49 +403,71 @@ const blogPosts = [
 
 const OurBlog = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [isAutoPlay, setIsAutoPlay] = useState(true);
     const [hoveredCard, setHoveredCard] = useState(null);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [selectedPost, setSelectedPost] = useState(null);
     const [isExploreDrawerOpen, setIsExploreDrawerOpen] = useState(false);
-    const visibleCards = 4;
+    const touchStartX = useRef(null);
+    const touchEndX = useRef(null);
+    const carouselRef = useRef(null);
     const navigate = useNavigate();
     const location = useLocation();
     const { useBreakpoint } = Grid;
     const screens = useBreakpoint();
 
-    // Auto-play functionality
+    // Adjust visible cards based on screen size
+    const getVisibleCards = () => {
+        if (window.innerWidth < 640) return 1; // Mobile: 1 card
+        if (window.innerWidth < 1024) return 2; // Tablet: 2 cards
+        return 4; // Desktop: 4 cards
+    };
+
+    const [visibleCards, setVisibleCards] = useState(getVisibleCards());
+
     useEffect(() => {
-        if (!isAutoPlay) return;
-
-        const interval = setInterval(() => {
-            setCurrentSlide((prev) => {
-                const maxSlide = Math.max(0, blogPosts.length - visibleCards);
-                return prev >= maxSlide ? 0 : prev + 1;
-            });
-        }, 5000);
-
-        return () => clearInterval(interval);
-    }, [isAutoPlay, blogPosts.length]);
+        const handleResize = () => {
+            setVisibleCards(getVisibleCards());
+            setCurrentSlide(0); // Reset to first slide on resize
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const nextSlide = () => {
-        const maxSlide = Math.max(0, blogPosts.length - visibleCards);
-        if (currentSlide < maxSlide) {
-            setCurrentSlide((prev) => prev + 1);
-        }
-        setIsAutoPlay(false);
+        setCurrentSlide((prev) =>
+            prev >= blogPosts.length - visibleCards ? 0 : prev + 1
+        );
     };
 
     const prevSlide = () => {
-        if (currentSlide > 0) {
-            setCurrentSlide((prev) => prev - 1);
-        }
-        setIsAutoPlay(false);
+        setCurrentSlide((prev) => (prev <= 0 ? blogPosts.length - visibleCards : prev - 1));
     };
 
     const goToSlide = (index) => {
         setCurrentSlide(index);
-        setIsAutoPlay(false);
+    };
+
+    // Touch event handlers for swipe
+    const handleTouchStart = (e) => {
+        touchStartX.current = e.targetTouches[0].clientX;
+    };
+
+    const handleTouchMove = (e) => {
+        touchEndX.current = e.targetTouches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        if (!touchStartX.current || !touchEndX.current) return;
+        const diff = touchStartX.current - touchEndX.current;
+        if (Math.abs(diff) > 50) { // Swipe threshold
+            if (diff > 0) {
+                nextSlide(); // Swipe left
+            } else {
+                prevSlide(); // Swipe right
+            }
+        }
+        touchStartX.current = null;
+        touchEndX.current = null;
     };
 
     const openDrawer = (post) => {
@@ -588,22 +610,28 @@ const OurBlog = () => {
                         </CustomButton>
                         <CustomButton
                             onClick={nextSlide}
-                            disabled={currentSlide >= Math.max(0, blogPosts.length - visibleCards)}
+                            disabled={currentSlide >= blogPosts.length - visibleCards}
                             className="group w-14 h-14 bg-[#333]/80 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:bg-[#444]/90 disabled:opacity-40 disabled:cursor-not-allowed hover:scale-110 transform shadow-lg border border-[#ffffff38]"
                         >
                             <ChevronRight className="w-6 h-6 text-[#c2c6cb] group-hover:text-[#c2c6cb] transition-colors" />
                         </CustomButton>
                     </div>
 
-                    <div className="overflow-hidden py-4 ourblog-card-section">
+                    <div
+                        className="overflow-hidden py-4 ourblog-card-section"
+                        ref={carouselRef}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                    >
                         <div
-                            className="flex transition-transform duration-1000 ease-out main-ourblogcard"
-                            style={{ transform: `translateX(-${currentSlide * (100 / visibleCards)}%)` }}
+                            className="flex transition-transform duration-700 ease-out main-ourblogcard"
+                            style={{ transform: `translateX(-${(currentSlide * 100) / visibleCards}%)` }}
                         >
                             {blogPosts.map((post) => (
                                 <div
                                     key={post.id}
-                                    className="w-1/4 flex-shrink-0 px-4 cursor-pointer all-ourblog-card"
+                                    className={`flex-shrink-0 px-4 cursor-pointer all-ourblog-card w-full sm:w-1/2 lg:w-1/${visibleCards}`}
                                     onMouseEnter={() => setHoveredCard(post.id)}
                                     onMouseLeave={() => setHoveredCard(null)}
                                     onClick={() => openDrawer(post)}
@@ -691,7 +719,7 @@ const OurBlog = () => {
                     closable={true}
                     onClose={closeDrawer}
                     open={isDrawerOpen}
-                    width={screens.xs ? "80%" : "50%"}
+                    width={screens.xs ? "100%" : "50%"}
                     styles={{
                         body: { padding: '24px', overflowY: 'auto', background: '#333' },
                         header: { borderBottom: '1px solid #ffffff38', background: '#333' }
@@ -719,7 +747,7 @@ const OurBlog = () => {
                     closable={true}
                     onClose={closeExploreDrawer}
                     open={isExploreDrawerOpen}
-                    width="80%"
+                    width={screens.xs ? "100%" : "80%"}
                     styles={{
                         body: { padding: 0, background: '#333' },
                         header: { borderBottom: '1px solid #ffffff38', background: '#333' }

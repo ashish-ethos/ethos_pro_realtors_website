@@ -56,7 +56,7 @@ function Header() {
   return (
     <header
       className={`fixed w-full top-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-gray-900 shadow-md" : "bg-gray-800 bg-opacity-80"
+        scrolled ? "bg-gray-900 shadow-md" : "bg-black bg-opacity-80"
       }`}
     >
       <div className="container mx-auto px-6 py-4 flex justify-between items-center header-mobile">

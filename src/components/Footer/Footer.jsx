@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import logotab from "../../assets/images/logo/logotab.png";
 import "../OurTeam/OurTeam.css";
 import { FaXTwitter } from "react-icons/fa6";
+import CustomButton from "../ui/Button";
 
 function Footer() {
   const [email, setEmail] = useState("");
@@ -81,10 +82,10 @@ function Footer() {
   };
 
   const stats = [
-    { icon: Building, value: "500+", label: "Properties Sold", color: "from-blue-400 to-cyan-400" },
-    { icon: Users, value: "1000+", label: "Happy Clients", color: "from-emerald-400 to-teal-400" },
-    { icon: Award, value: "15+", label: "Awards Won", color: "from-purple-400 to-pink-400" },
-    { icon: TrendingUp, value: "98%", label: "Success Rate", color: "from-orange-400 to-red-400" }
+    { icon: Building, value: "500+", label: "Properties Sold", color: "" },
+    { icon: Users, value: "1000+", label: "Happy Clients", color: "" },
+    { icon: Award, value: "15+", label: "Awards Won", color: "" },
+    { icon: TrendingUp, value: "98%", label: "Success Rate", color: "" }
   ];
 
   return (
@@ -155,38 +156,31 @@ function Footer() {
               {/* <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 via-orange-400 to-yellow-400 rounded-lg blur opacity-20 animate-pulse" /> */}
             </h2>
 
-            <p className="text-xl mobile-subtitle-text text-gray-300 mb-12 max-w-2xl font-bebas mx-auto leading-relaxed">
+            <p className="text-xl mobile-subtitle-text text-gray-300 mb-6 max-w-2xl font-bebas mx-auto leading-relaxed">
               Get exclusive property deals, market insights, and investment opportunities delivered to your inbox
             </p>
 
             {/* Advanced Newsletter Form */}
-            <div className="max-w-2xl mx-auto relative">
-              <div className="flex gap-4 p-2 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 shadow-2xl">
-                <div className="flex-1 relative">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email for exclusive deals..."
-                    className="w-full px-6 py-2 bg-transparent text-white placeholder-gray-400 focus:outline-none text-lg"
-                  />
-                  <div className="absolute bottom-0 left-6 right-6 h-0.5 bg-gradient-to-r from-emerald-400 to-blue-400 transform scale-x-0 transition-transform duration-300 focus-within:scale-x-100" />
-                </div>
-                <button
+            <div className="max-w-xl mx-auto relative">
+              <div className="flex items-center bg-[#080808] p-2 rounded">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email for exclusive deals..."
+                  className="flex-1 px-3 py-1.5  text-gray-200 placeholder-gray-500 text-sm rounded-l focus:outline-none"
+                />
+                <CustomButton
                   onClick={handleNewsletterSubmit}
                   disabled={isSubmitting}
-                  className="px-6 py-2 bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-400 hover:to-blue-400 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 disabled:opacity-70 flex items-center gap-3 relative overflow-hidden group"
+                  className="px-3 py-1.5 bg-gray-600 text-gray-300 rounded-r flex items-center gap-1 hover:bg-gray-500 transition-colors duration-200"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                   {isSubmitting ? (
-                    <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <div className="w-3 h-3 border-2 border-gray-400/30 border-t-gray-200 rounded-full animate-spin" />
                   ) : (
-                    <>
-                      <Send className="w-5 h-5" />
-                      Send
-                    </>
+                    <Send className="w-3 h-3" />
                   )}
-                </button>
+                </CustomButton>
               </div>
 
               {/* Trust Indicators */}
@@ -224,13 +218,13 @@ function Footer() {
                     } ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${stat.color} mb-4 transform transition-all duration-300 hover:scale-110 hover:rotate-12`}>
-                    <Icon className="w-8 h-8 text-white" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#555] mb-4 transform transition-all duration-300 hover:scale-110 hover:rotate-12 border-2 border-[#c08830]">
+                    <Icon className="w-8 h-8 text-[#c2c6cb]" />
                   </div>
-                  <div className={`text-4xl font-black mb-2 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                  <div className="text-4xl font-black mb-2 text-[#c2c6cb]">
                     {stat.value}
                   </div>
-                  <div className="text-gray-400 font-medium">{stat.label}</div>
+                  <div className="text-[#c2c6cb] font-medium">{stat.label}</div>
                 </div>
               );
             })}
@@ -246,7 +240,7 @@ function Footer() {
           <div className="lg:col-span-5 space-y-8">
             <div>
               <div className="flex items-center gap-3 mb-6 group">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-emerald-400 to-blue-400 flex items-center justify-center transition-transform group-hover:scale-105">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#bd852e] to-yellow-400 flex items-center justify-center transition-transform group-hover:scale-105">
                   <img src={logotab} alt="Logo" className="w-11 h-11  rounded-xl" />
                 </div>
                 <h3 className="text-3xl font-[Montserrat] font-black text-gradient text-transparent transition-all duration-300 group-hover:brightness-110">
@@ -264,7 +258,7 @@ function Footer() {
                 {["Top Rated", "Verified", "Trusted Partner", "Award Winner"].map((badge, index) => (
                   <span
                     key={badge}
-                    className="px-3 py-1 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 border border-emerald-500/30 rounded-full text-sm font-medium text-emerald-300 animate-pulse"
+                    className="px-3 py-1 bg-[#555] border border-[#c08830] rounded-full text-sm font-medium text-[#c2c6cb] animate-pulse"
                     style={{ animationDelay: `${index * 200}ms` }}
                   >
                     {badge}
@@ -276,7 +270,7 @@ function Footer() {
             {/* Social Media Icons */}
             <div>
               <h4 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-emerald-400 fontFamily-bebas" />
+                <Sparkles className="w-5 h-5 text-[#c08830] fontFamily-bebas" />
                 Follow Us
               </h4>
               <div className="flex flex-wrap gap-4">
@@ -370,7 +364,7 @@ function Footer() {
             <div>
               <h4 className="text-xl font-bold fontFamily-bebas mb-6 relative">
                 Quick Links
-                <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500" />
+                <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-transparent via-[#c99913] to-transparent" />
               </h4>
               <ul className="space-y-4 fontFamily-bebas">
                 {[
@@ -387,15 +381,15 @@ function Footer() {
                   <li key={idx}>
                     <Link
                       to={item.to}
-                      className="group flex items-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
+                      className="group flex items-center text-gray-400 hover:text-[#c08830] transition-all duration-300"
                     >
                       {/* Arrow */}
-                      <ArrowRight className="w-4 h-4 mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-emerald-400" />
+                      <ArrowRight className="w-4 h-4 mr-2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#c08830]" />
 
                       {/* Label + underline wrapper */}
                       <span className="relative inline-block">
                         {item.label}
-                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-400 to-blue-400 group-hover:w-full transition-all duration-300"></span>
+                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-transparent via-[#c99913] to-transparent group-hover:w-full transition-all duration-300"></span>
                       </span>
                     </Link>
                   </li>
@@ -409,7 +403,7 @@ function Footer() {
           <div className="lg:col-span-3">
             <h4 className="text-xl font-bold mb-6 fontFamily-bebas relative">
               Get In Touch
-              <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500" />
+              <div className="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-transparent via-[#c99913] to-transparent" />
             </h4>
 
             <div className="space-y-6">
@@ -443,7 +437,7 @@ function Footer() {
                 }
               ].map(({ icon: Icon, title, content, action, color, onClick }) => (
                 <div key={title} className="group relative">
-                  <div className="p-4 bg-gradient-to-r from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 hover:border-emerald-500/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
+                  <div className="p-4 bg-gradient-to-r from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 hover:border-[#c08830] transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
                     <div className="flex items-start gap-4">
                       <div className={`w-12 h-12 bg-gradient-to-r ${color} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
                         <Icon className="w-5 h-5 text-white" />
@@ -452,7 +446,7 @@ function Footer() {
                         <h5 className="font-semibold text-white mb-1 fontFamily-bebas">{title}</h5>
                         <p className="text-gray-400 text-sm mb-2 fontFamily-bebas">{content}</p>
                         <button
-                          className="text-emerald-400 cursor-pointer text-sm font-medium hover:text-emerald-300 transition-colors"
+                          className="text-[#c08830] cursor-pointer text-sm font-medium hover:text-emerald-300 transition-colors"
                           onClick={onClick}
                           type="button"
                         >
@@ -475,11 +469,11 @@ function Footer() {
             <div className="flex flex-col sm:flex-row items-center text-center gap-4 text-sm text-gray-400 footer-bottom-links">
               <p className="fontFamily-bebas">© {new Date().getFullYear()} Ethos Pro Realtors. All Rights Reserved.</p>
               <div className="flex items-center gap-4">
-                <Link to="/privacy-policy" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
+                <Link to="/privacy-policy" className="hover:text-[#c08830] transition-colors">Privacy Policy</Link>
                 <span>•</span>
-                <Link to="/terms&conditions" className="hover:text-emerald-400 transition-colors">Terms</Link>
+                <Link to="/terms&conditions" className="hover:text-[#c08830] transition-colors">Terms</Link>
                 <span>•</span>
-                <Link to="/f&qs" className="hover:text-emerald-400 transition-colors">F&Q</Link>
+                <Link to="/f&qs" className="hover:text-[#c08830] transition-colors">F&Q</Link>
               </div>
             </div>
           </div>

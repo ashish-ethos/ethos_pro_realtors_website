@@ -82,7 +82,7 @@
 
 @media (max-width: 425px) {
   .carousel-card {
-    width: 100% !important;
+    width: 96% !important;
   }
   .main-carousel {
     width: 100% !important;
@@ -91,11 +91,12 @@
     flex-direction: column;
     align-items: start;
   }
-  .premium-properties-main {
-    margin-top: 10px;
-  }
+  
   .what-sets-text {
     margin-bottom: 0px;
+  }
+  .mobile-premium-section{
+    margin-bottom: 10px;
   }
 }
 

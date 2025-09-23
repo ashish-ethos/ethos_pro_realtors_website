@@ -180,7 +180,7 @@ body {
 
 @media (max-width: 768px) {
   .main-app {
-    padding-top: 60px;
+    padding-top: 40px;
   }
   .setaspart-content {
     padding: 10px;
@@ -256,6 +256,16 @@ body {
   }
   .mobile-subtitle-text {
     font-size: 16px !important;
+  }
+  .mobile-about-star{
+    width: 15px;
+  }
+  .mobile-about-text{
+    font-size: 10px;
+  }
+  .mobile-star-section{
+    left: -10px;
+    bottom: -30px;
   }
 }
 

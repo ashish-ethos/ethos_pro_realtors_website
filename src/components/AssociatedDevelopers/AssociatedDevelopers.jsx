@@ -55,7 +55,7 @@ const AssociatedDevelopers = () => {
         }
       `}</style>
 
-      <div className="relative mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto px-4 sm:px-6 lg:px-8 mobile-associate-section">
         {/* Section Header */}
         <div className="text-center">
           <div className="inline-block relative mb-4 sm:mb-6">

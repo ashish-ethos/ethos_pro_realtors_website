@@ -697,7 +697,7 @@ const ExploreProperties = ({ filters = {} }) => {
                                 ))}
                             </div>
 
-                            <div className="absolute bottom-4 flex items-center w-full justify-between px-4 space-x-3">
+                            <div className="absolute bottom-4 flex items-center w-full justify-between px-4 space-x-3 mobile-share-section">
                                 <div className='bottom-left-image-stats flex items-center space-x-3'>
                                     <div className="flex items-center space-x-1 bg-[#333]/80 backdrop-blur-md rounded-full px-3 py-1">
                                         <Eye className="w-4 h-4 text-[#c2c6cb]" />
@@ -787,7 +787,7 @@ const ExploreProperties = ({ filters = {} }) => {
                                     </div>
                                 </div>
                                 <div className="text-right ml-3">
-                                    <p className="text-xl fontFamily-Content sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent">
+                                    <p className="mobile-text-price text-xl fontFamily-Content sm:text-2xl md:text-3xl font-bold bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent">
                                         {property.price}
                                     </p>
                                 </div>
@@ -1027,7 +1027,7 @@ const ExploreProperties = ({ filters = {} }) => {
                     </div>
                     <div className="p-4 sm:p-6">
                         <div className="mb-2 sm:mb-3">
-                            <h3 className="text-base sm:text-lg font-[Montserrat] font-bold text-[#c2c6cb] mb-1 group-hover:text-amber-400 transition-colors duration-300 line-clamp-1">
+                            <h3 className="text-base sm:text-lg font-[Montserrat] font-bold text-amber-400 mb-1 group-hover:text-amber-400 transition-colors duration-300 line-clamp-1">
                                 {property.name}
                             </h3>
                             <p className="text-xs sm:text-sm text-[#c2c6cb] uppercase tracking-wide font-medium line-clamp-1">
@@ -1036,7 +1036,7 @@ const ExploreProperties = ({ filters = {} }) => {
                         </div>
                         <div className="space-y-1 sm:space-y-2 mb-3 sm:mb-4">
                             <div className="flex items-start space-x-2 text-[#c2c6cb]">
-                                <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 text-amber-400" />
+                                <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 text-amber-400" /> 
                                 <p className="text-xs sm:text-sm leading-relaxed line-clamp-2 font-[sans-serif]">{property.location}</p>
                             </div>
                             <div className="flex items-center space-x-2 text-[#c2c6cb]">
@@ -1153,7 +1153,7 @@ const ExploreProperties = ({ filters = {} }) => {
             </div>
 
             <div className="max-w-full sm:max-w-7xl mx-auto mb-8 sm:mb-12">
-                <div className="flex bg-[#333] overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 sm:gap-4 p-2 bg-[#333]/80 backdrop-blur-sm rounded-2xl shadow-lg scrollbar-hidden border border-[#ffffff38]">
+                <div className="flex bg-[#333] mobile-tab-container overflow-x-auto sm:flex-wrap justify-start sm:justify-center gap-2 sm:gap-4 p-2 bg-[#333]/80 backdrop-blur-sm rounded-2xl shadow-lg scrollbar-hidden border border-[#ffffff38]">
                     {tabs.map((tab) => (
                         <CustomButton
                             key={tab.key}

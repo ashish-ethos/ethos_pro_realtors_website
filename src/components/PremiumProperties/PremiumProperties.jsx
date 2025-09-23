@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import DLFCamellias from "../../assets/images/premiumproperties/dlfthecamilias.jpg";
 import ElanTheEmperor from "../../assets/images/premiumproperties/Elan-The-Emperor.jpg";
@@ -15,9 +15,11 @@ import CustomButton from "../ui/Button";
 function PremiumProperties() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [hoveredCard, setHoveredCard] = useState(null);
-  const visibleCards = 3;
   const navigate = useNavigate();
   const { propertyName } = useParams();
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
+  const carouselRef = useRef(null);
 
   const properties = [
     {
@@ -173,6 +175,24 @@ function PremiumProperties() {
     },
   ];
 
+
+  const getVisibleCards = () => {
+    if (window.innerWidth < 640) return 1; 
+    if (window.innerWidth < 1024) return 2; 
+    return 3;
+  };
+
+  const [visibleCards, setVisibleCards] = useState(getVisibleCards());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setVisibleCards(getVisibleCards());
+      setCurrentIndex(0);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   useEffect(() => {
     if (propertyName) {
       const property = properties.find(
@@ -198,11 +218,36 @@ function PremiumProperties() {
   };
 
   const nextProperty = () => {
-    setCurrentIndex((prev) => (prev >= properties.length - visibleCards ? 0 : prev + 1));
+    setCurrentIndex((prev) =>
+      prev >= properties.length - visibleCards ? 0 : prev + 1
+    );
   };
 
   const prevProperty = () => {
     setCurrentIndex((prev) => (prev <= 0 ? properties.length - visibleCards : prev - 1));
+  };
+
+  // Touch event handlers for swipe
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) { // Swipe threshold
+      if (diff > 0) {
+        nextProperty(); // Swipe left
+      } else {
+        prevProperty(); // Swipe right
+      }
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
   };
 
   return (
@@ -219,7 +264,7 @@ function PremiumProperties() {
 
       <div className="container mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-10 mobile-premium-section">
           <h1 className="mobile-title-text text-5xl md:text-6xl font-[Montserrat] font-black mb-4 bg-gradient-to-r from-[#c2c6cb] via-[#c99913] to-[#c2c6cb] bg-clip-text text-transparent animate-pulse">
             Top Handpicked Deals
           </h1>
@@ -231,24 +276,32 @@ function PremiumProperties() {
         {/* Navigation Buttons */}
         <button
           onClick={prevProperty}
+          disabled={currentIndex === 0}
           className="absolute cursor-pointer left-4 top-1/2 transform -translate-y-1/2 z-30 p-4 rounded-full bg-[#333]/90 text-[#c2c6cb] shadow-xl hover:scale-110 hover:bg-[#444] transition-all border border-[#ffffff38] permium-properties-right"
         >
           <ChevronLeft size={24} />
         </button>
         <button
           onClick={nextProperty}
+          disabled={currentIndex >= properties.length - visibleCards}
           className="absolute cursor-pointer right-4 top-1/2 transform -translate-y-1/2 z-30 p-4 rounded-full bg-[#333]/90 text-[#c2c6cb] shadow-xl hover:scale-110 hover:bg-[#444] transition-all border border-[#ffffff38] permium-properties-right"
         >
           <ChevronRight size={24} />
         </button>
 
         {/* Carousel */}
-        <div className="overflow-hidden py-4">
+        <div
+          className="overflow-hidden py-4"
+          ref={carouselRef}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <div
-            className="flex transition-transform duration-1000 ease-out gap-8 main-carousel"
+            className="flex transition-transform duration-700 ease-out gap-8 main-carousel"
             style={{
-              transform: `translateX(-${currentIndex * (100 / properties.length)}%)`,
-              width: `${properties.length * (100 / visibleCards)}%`,
+              transform: `translateX(-${(currentIndex * 100) / visibleCards}%)`,
+              width: `${(properties.length / visibleCards) * 100}%`,
             }}
           >
             {properties.map((property) => (
@@ -321,7 +374,7 @@ function PremiumProperties() {
       <Drawer
         title={<span className="text-xl font-bold text-[#c2c6cb]">Property Details</span>}
         placement="right"
-        width={1000}
+        width={window.innerWidth < 640 ? "100%" : 1000}
         onClose={() => navigate("/")}
         open={drawerOpen}
         styles={{
