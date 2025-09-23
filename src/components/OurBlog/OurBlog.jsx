@@ -473,12 +473,29 @@ const OurBlog = () => {
     const openDrawer = (post) => {
         setSelectedPost(post);
         setIsDrawerOpen(true);
+        navigate(`/blog/${post.id}/${post.title.toLowerCase().replace(/ /g, '-')}`, { replace: false });
     };
 
     const closeDrawer = () => {
         setIsDrawerOpen(false);
         setSelectedPost(null);
+        navigate(-1, { replace: false });
     };
+
+    useEffect(() => {
+        if (location.pathname === "/all-articles") {
+            setIsDrawerOpen(false);
+            setSelectedPost(null);
+            setIsExploreDrawerOpen(true);
+        } else if (location.pathname.startsWith('/blog/')) {
+            const postId = parseInt(location.pathname.split('/')[2], 10);
+            const post = blogPosts.find(p => p.id === postId);
+            if (post) {
+                setSelectedPost(post);
+                setIsDrawerOpen(true);
+            }
+        }
+    }, [location.pathname]);
 
     const openExploreDrawer = () => {
         setIsDrawerOpen(false);
@@ -491,14 +508,6 @@ const OurBlog = () => {
         setIsExploreDrawerOpen(false);
         navigate(-1);
     };
-
-    useEffect(() => {
-        if (location.pathname === "/all-articles") {
-            setIsDrawerOpen(false);
-            setSelectedPost(null);
-            setIsExploreDrawerOpen(true);
-        }
-    }, [location.pathname]);
 
     // Convert markdown-like content to JSX
     const renderContent = (content) => {
@@ -711,7 +720,7 @@ const OurBlog = () => {
                 {/* Article Content Drawer */}
                 <Drawer
                     title={
-                        <p className="text-xs md:text-xl font-bold bg-gradient-to-r from-[#333] via-[#444] to-[#c2c6cb] bg-clip-text text-transparent break-words whitespace-normal leading-snug">
+                        <p className="text-xs md:text-xl font-bold text-[#c2c6cb]">
                             {selectedPost?.title}
                         </p>
                     }

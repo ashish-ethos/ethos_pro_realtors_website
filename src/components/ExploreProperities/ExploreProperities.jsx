@@ -661,7 +661,7 @@ const ExploreProperties = ({ filters = {} }) => {
         const shareText = `${property.description} Check out this property at ${property.location}!`;
 
         return (
-            <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4">
+            <div className="fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center z-50 p-2 sm:p-4">
                 <div
                     className="modal-content bg-[#333] rounded-2xl max-w-4xl w-full max-h-[95vh] overflow-y-auto shadow-2xl transform animate-in fade-in zoom-in duration-300 relative"
                     style={{
@@ -1135,7 +1135,7 @@ const ExploreProperties = ({ filters = {} }) => {
         : null;
 
     const handleCloseModal = () => {
-        navigate('/explore-properties', { replace: true });
+        navigate(-1, { replace: true });
     };
 
     return (

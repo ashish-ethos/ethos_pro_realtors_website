@@ -152,3 +152,6 @@
 .ant-picker .ant-picker-suffix {
   color: #c2c6cb !important;
 }
+.ant-drawer .ant-drawer-header{
+  padding: 10px 15px !important;
+}

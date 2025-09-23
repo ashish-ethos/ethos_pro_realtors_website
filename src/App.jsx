@@ -58,6 +58,7 @@ function App() {
           <Route path="/about/:name" element={<About />} />
           <Route path="/explore-properties" element={<ExploreProperties />} />
           <Route path="/property/:propertyName" element={<ExploreProperties/>}/>
+          <Route path="/blog/:id/:title" element={<Blog />} />
           {/* <Route path="/team" element={<OurTeam />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
