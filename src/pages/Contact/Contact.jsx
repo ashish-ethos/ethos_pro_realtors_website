@@ -31,7 +31,7 @@ const Contact = () => {
             <div className="container mx-auto px-4 py-10 main-contact-section">
                 <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto main-section-contact-grid">
                     {/* Left Column: Form + Map */}
-                    <div className="space-y-8">
+                    <div className="space-y-8 mobile-conatiner-width">
                         {/* Contact Form */}
                         <ContactForm onSubmitSuccess={handleSubmitSuccess} />
 
@@ -60,7 +60,7 @@ const Contact = () => {
                     {/* Right Column: Contact Cards, Office, Social */}
                     <div className="space-y-8 right-column-contact">
                         {/* Contact Info Cards */}
-                        <div className="bg-[#444]/70 rounded-3xl shadow-xl p-8 relative overflow-hidden contact-info-cards border border-[#ffffff38]">
+                        <div className="bg-[#333] rounded-3xl shadow-xl p-8 relative overflow-hidden contact-info-cards border border-[#ffffff38]">
                             <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#c2c6cb]/20 to-transparent rounded-full -mr-10 -mt-10"></div>
                             <h2 className="text-2xl font-bold text-[#c2c6cb] mb-6">For Inquiries Contact:</h2>
                             <div className="space-y-6">

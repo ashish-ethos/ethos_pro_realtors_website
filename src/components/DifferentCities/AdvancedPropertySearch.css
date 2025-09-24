@@ -821,4 +821,15 @@
   .ant-list .ant-list-item .ant-list-item-action {
     margin-inline-start: 0px !important;
   }
+  .filters-footer{
+    padding: 0px ;
+  }
+}
+.property-advanced{
+  background: #444 !important;
+  color: #c2c6cb;
+}
+.for-list-tag{
+   background: #444 !important;
+  color: #c2c6cb !important;
 }

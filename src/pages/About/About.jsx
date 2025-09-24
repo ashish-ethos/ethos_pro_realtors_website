@@ -157,7 +157,7 @@ const About = () => {
 
                     {/* Mission & Vision */}
                     <div className="grid lg:grid-cols-2 gap-12 mb-20">
-                        <div className="bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38] hover:shadow-2xl transition-all duration-300">
+                        <div className="bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38] hover:shadow-2xl transition-all duration-300 ">
                             <div
                                 className="w-12 h-12 flex items-center justify-center rounded-xl"
                                 style={{
@@ -176,7 +176,7 @@ const About = () => {
                             </p>
                         </div>
 
-                        <div className="bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38] hover:shadow-2xl transition-all duration-300">
+                        <div className="bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38] hover:shadow-2xl transition-all duration-300 mobile-our-vision">
                             <div
                                 className="w-12 h-12 flex items-center justify-center rounded-xl"
                                 style={{
@@ -217,7 +217,7 @@ const About = () => {
                             {values.map((value, index) => (
                                 <div
                                     key={index}
-                                    className={`bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38] hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${activeSection === index ? 'ring-2 ring-[#c2c6cb]/50 scale-105' : ''}`}
+                                    className={`bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38] hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 mobile-our-vision ${activeSection === index ? 'ring-2 ring-[#c2c6cb]/50 scale-105' : ''}`}
                                 >
                                     <div className="bg-gradient-to-br from-[#c2c6cb] to-[#333] w-12 h-12 rounded-xl flex items-center justify-center mb-4">
                                         <value.icon className="w-6 h-6 text-[#333]" />

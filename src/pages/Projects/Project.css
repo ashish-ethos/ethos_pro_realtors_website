@@ -98,3 +98,30 @@
 .custom-pagination .ant-pagination-next:hover {
   background-color: #555 !important;
 }
+
+@media(max-width : 425px){
+  .mobile-open-filter{
+    gap: 5px;
+  }
+  .mobile-icons-bbl{
+    flex-direction: unset;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .mobile-project-type{
+    flex-direction: unset;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .mobile-resdientail-title{
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+  .mobile-title-project-text{
+    font-size: 20px;
+  }
+  .mobile-project-container{
+    padding: 10px;
+  }
+  
+}

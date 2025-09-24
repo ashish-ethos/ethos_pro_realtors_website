@@ -284,7 +284,7 @@ const Commercial = () => {
               <LandPlot className="text-[#c2c6cb]" /> {property.sqft}
             </span>
           </div>
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4  mobile-project-title ">
             <div>
               <div className="text-2xl font-bold text-[#c2c6cb]">{property.price}</div>
               <div className="text-sm text-[#c2c6cb]/80">{property.pricePerSqft}/sq ft</div>
@@ -310,7 +310,7 @@ const Commercial = () => {
           <div className="flex w-full justify-center gap-3">
             <div
               className="inline-block rounded-[12px] p-[2px]"
-             
+
             >
               <CustomButton
                 onClick={() => handleViewDetails(property)}
@@ -405,11 +405,50 @@ const Commercial = () => {
             ))}
           </div>
           {property.featured && (
-            <div className="absolute bottom-2 left-2">
-              <span className="bg-gradient-to-r from-[#c2c6cb]/20 to-[#444]/20 text-[#c2c6cb] px-2 py-1 rounded-full text-xs font-semibold flex items-center gap-1 border border-[#ffffff38]">
+            <div className="absolute bottom-2 left-2 flex justify-between w-full px-4">
+              <span className="bg-gradient-to-r from-[#c2c6cb]/20 to-[#444]/20 text-[#c2c6cb] px-2 py-1 rounded-full text-xs font-semibold flex items-center gap-1 border border-[#ffffffde]">
                 <Star size={12} fill="currentColor" />
                 Featured
               </span>
+              <div className="relative flex gap-2">
+                <button
+                  className="p-2 bg-[#333]/50 cursor-pointer rounded-full hover:bg-[#444]/50 transition-colors border border-[#ffffffde]"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onToggleLike(property.id);
+                  }}
+                >
+                  <Heart size={16} className={isLiked ? 'text-red-500 fill-red-500' : 'text-[#c2c6cb]'} />
+                </button>
+                <button
+                  onClick={handleShareClick}
+                  className="p-2 bg-[#333]/50 cursor-pointer rounded-full hover:bg-[#444]/50 transition-colors border border-[#ffffffde]"
+                >
+                  <Share2 size={16} className="text-[#c2c6cb]" />
+                </button>
+                {isSharePopupOpen && (
+                  <div className="absolute right-0 bottom-full mt-2 bg-[#444] rounded-lg shadow-xl w-40 z-50 border border-[#ffffff38]">
+                    <div className="flex justify-between items-center px-2 py-1">
+                      <h4 className="text-xs font-semibold text-[#c2c6cb]">Share Property</h4>
+                      <button onClick={handleClosePopup} className="p-1 hover:bg-[#333] rounded-full cursor-pointer transition-colors">
+                        <X size={16} className="text-[#c2c6cb]" />
+                      </button>
+                    </div>
+                    <div className="flex flex-col gap-1 p-2">
+                      {socialMediaLinks.map((platform) => (
+                        <button
+                          key={platform.name}
+                          onClick={(e) => handleSocialShare(e, platform.url)}
+                          className="flex items-center gap-2 p-1 px-2 hover:bg-[#333] rounded-lg transition-colors"
+                        >
+                          <platform.icon size={16} className={platform.color} />
+                          <span className="text-xs text-[#c2c6cb]">{platform.name}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
@@ -431,7 +470,7 @@ const Commercial = () => {
               <LandPlot className="text-[#c2c6cb]" /> {property.sqft}
             </span>
           </div>
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 mobile-project-type">
             <div>
               <div className="text-lg md:text-xl font-bold text-[#c2c6cb]">{property.price}</div>
               <div className="text-sm text-[#c2c6cb]/80">{property.pricePerSqft || 'On Request'}/sq ft</div>
@@ -463,45 +502,7 @@ const Commercial = () => {
                 <Eye size={18} /> View Details
               </CustomButton>
             </div>
-            <div className="relative flex gap-2">
-              <button
-                className="p-2 bg-[#333]/50 rounded-full hover:bg-[#444]/50 transition-colors border border-[#ffffff38]"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onToggleLike(property.id);
-                }}
-              >
-                <Heart size={16} className={isLiked ? 'text-red-500 fill-red-500' : 'text-[#c2c6cb]'} />
-              </button>
-              <button
-                onClick={handleShareClick}
-                className="p-2 bg-[#333]/50 rounded-full hover:bg-[#444]/50 transition-colors border border-[#ffffff38]"
-              >
-                <Share2 size={16} className="text-[#c2c6cb]" />
-              </button>
-              {isSharePopupOpen && (
-                <div className="absolute right-0 bottom-full mt-2 bg-[#444] rounded-lg shadow-xl w-40 z-50 border border-[#ffffff38]">
-                  <div className="flex justify-between items-center px-2 py-1">
-                    <h4 className="text-xs font-semibold text-[#c2c6cb]">Share Property</h4>
-                    <button onClick={handleClosePopup} className="p-1 hover:bg-[#333] rounded-full cursor-pointer transition-colors">
-                      <X size={16} className="text-[#c2c6cb]" />
-                    </button>
-                  </div>
-                  <div className="flex flex-col gap-1 p-2">
-                    {socialMediaLinks.map((platform) => (
-                      <button
-                        key={platform.name}
-                        onClick={(e) => handleSocialShare(e, platform.url)}
-                        className="flex items-center gap-2 p-1 px-2 hover:bg-[#333] rounded-lg transition-colors"
-                      >
-                        <platform.icon size={16} className={platform.color} />
-                        <span className="text-xs text-[#c2c6cb]">{platform.name}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+
           </div>
         </div>
       </div>
@@ -518,9 +519,9 @@ const Commercial = () => {
     <div className="min-h-screen bg-[#333]">
       <div className="bg-[#444] border-b border-t border-[#ffffff38] top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-4  mobile-project-title">
             <div>
-              <h1 className="mobile-title-text text-3xl font-bold text-[#c2c6cb]">Commercial Properties</h1>
+              <h1 className="mobile-title-project-text text-3xl font-bold text-[#c2c6cb]">Commercial Properties</h1>
               <p className="text-[#c2c6cb]/80 mt-1">{filteredProperties.length} properties available</p>
             </div>
             <div className="flex items-center gap-3">
@@ -552,7 +553,7 @@ const Commercial = () => {
                 className="custom-search"
               />
             </div>
-            <div className="flex flex-wrap gap-3 w-full justify-end">
+            <div className="flex flex-wrap gap-3 w-full justify-end mobile-open-filter">
               <CustomButton
                 onClick={() => setShowFilters(!showFilters)}
                 size="large"
@@ -593,7 +594,7 @@ const Commercial = () => {
           </div>
           {showFilters && (
             <div className="mt-4 p-4 bg-[#333]/50 rounded-xl border border-[#ffffff38]">
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mobile-open-filter">
                 <CustomSelect
                   showSearch
                   value={filters.propertyType}
@@ -662,7 +663,7 @@ const Commercial = () => {
           )}
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="max-w-7xl mx-auto px-6 py-8 mobile-project-container">
         {filteredProperties.length === 0 ? (
           <div className="text-center py-16">
             <div className="text-[#c2c6cb]/80 mb-4">

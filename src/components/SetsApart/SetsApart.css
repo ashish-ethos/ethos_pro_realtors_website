@@ -46,3 +46,9 @@
 .animate-float-fast {
   animation: float-fast 3s ease-in-out infinite;
 }
+
+@media(max-width: 425px){
+  .mobile-card-setaspart{
+    padding: 15px;
+  }
+}

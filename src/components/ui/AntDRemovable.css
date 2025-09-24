@@ -155,3 +155,12 @@
 .ant-drawer .ant-drawer-header{
   padding: 10px 15px !important;
 }
+.ant-tag .ant-tag-close-icon{
+  color: #c2c6cb !important;
+}
+.ant-empty-description {
+  color: #fff !important;
+}
+.ant-icon{
+  color: #c2c6cb !important;
+}

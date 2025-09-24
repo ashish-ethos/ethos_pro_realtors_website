@@ -55,7 +55,7 @@ const StatCard = ({ value, label, delay, numericValue }) => {
   return (
     <div
       id={`stat-card-${numericValue}`}
-      className="group relative bg-[#333] border border-[#ffffff38] rounded-2xl p-8 hover:border-[#c99913] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-black/40 overflow-hidden"
+      className=" mobile-card-setaspart group relative bg-[#333] border border-[#ffffff38] rounded-2xl p-8 hover:border-[#c99913] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-black/40 overflow-hidden"
       style={{
         animation: `slideUp 0.8s ease-out forwards ${delay}s`,
         opacity: 0,

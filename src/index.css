@@ -257,13 +257,13 @@ body {
   .mobile-subtitle-text {
     font-size: 16px !important;
   }
-  .mobile-about-star{
+  .mobile-about-star {
     width: 15px;
   }
-  .mobile-about-text{
+  .mobile-about-text {
     font-size: 10px;
   }
-  .mobile-star-section{
+  .mobile-star-section {
     left: -10px;
     bottom: -30px;
   }
@@ -300,6 +300,9 @@ body {
   .contact-info-cards {
     padding: 15px !important;
   }
+  .mobile-our-vision {
+    padding: 15px 20px;
+  }
 }
 
 .text-gradient {
@@ -308,7 +311,6 @@ body {
   background-clip: text;
   color: transparent;
 }
-
 
 @media (max-width: 1024px) {
   .main-about {
@@ -345,5 +347,16 @@ body {
   .mobile-contact-image {
     height: 300px;
     padding-right: 40px;
+  }
+}
+
+@media (max-width: 350px) {
+  .mobile-conatiner-width {
+    max-width: 300px;
+  }
+}
+@media (min-width: 360px) and (max-width: 410px) {
+  .mobile-conatiner-width {
+    max-width: 350px;
   }
 }

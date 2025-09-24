@@ -42,7 +42,7 @@ const { Title, Text } = Typography;
 // Custom options for CustomSelect
 const areaOptions = [
   { value: "All Areas", label: "All Areas" },
-  { value: "Sector 54, Gurgaon", label: "Sector 54, Gurgaon" },
+  { value: " Gurgaon", label: "Gurgaon" },
   { value: "Marine Drive, Mumbai", label: "Marine Drive, Mumbai" },
   { value: "Electronic City, Bangalore", label: "Electronic City, Bangalore" },
 ];
@@ -1006,7 +1006,7 @@ const AdvancedPropertySearch = ({
                                   <Text className="card-detail-item">
                                     <Bath className="text-[#c2c6cb]" /> {property.bathrooms} Baths
                                   </Text>
-                                  <Tag color="default" className="capitalize">{property.type}</Tag>
+                                  <Tag color="default" className="capitalize bg-[#444] property-advanced">{property.type} </Tag>
                                 </div>
                                 <CustomButton
                                   type="primary"
@@ -1100,8 +1100,8 @@ const AdvancedPropertySearch = ({
                               </div>
                             </div>
                             <div className="list-tags">
-                              <Tag color="default" className="capitalize">{property.type}</Tag>
-                              <Tag color={getStatusColor(property.status)}>
+                              <Tag color="default" className="capitalize property-advanced">{property.type}</Tag>
+                              <Tag color={getStatusColor(property.status)} className="for-list-tag">
                                 {property.status}
                               </Tag>
                             </div>
