@@ -33,7 +33,7 @@
 .custom-search .ant-input {
   background-color: #444 !important;
   color: #c2c6cb !important;
-  border-color: #ffffff38 !important;
+  /* border-color: #ffffff38 !important; */
 }
 
 .custom-search .ant-input::placeholder {
@@ -53,7 +53,7 @@
 .custom-select .ant-select-selector {
   background-color: #444 !important;
   color: #c2c6cb !important;
-  border-color: #ffffff38 !important;
+  /* border-color: #ffffff38 !important; */
 }
 
 .custom-select .ant-select-arrow {
@@ -124,4 +124,8 @@
     padding: 10px;
   }
   
+}
+.close-icons-project:hover{
+  color: #ff0000 !important;
+  border: 1px solid #ff0000 !important;
 }

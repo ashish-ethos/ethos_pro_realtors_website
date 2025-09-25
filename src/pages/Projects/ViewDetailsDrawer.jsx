@@ -223,7 +223,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
                 <Share2 size={16} className="text-[#c2c6cb]" />
               </button>
               <span className="ml-2 text-sm flex gap-1 text-[#c2c6cb]/80 border-l border-[#ffffff38] pl-2 shadow-sm bg-[#333] rounded px-2 py-1 fontFamily-bebas">
-                <p>{shareCount}</p> 
+                <p>{shareCount}</p>
                 <p>{shareCount === 1 ? 'Share' : 'Shares'}</p>
               </span>
               {isSharePopupOpen && (
@@ -510,7 +510,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
 
   const contactContent = (
     <PremiumCard className='p-0 m-0'>
-      <ContactForm className="p-0 m-0"/>
+      <ContactForm className="p-0 m-0" />
     </PremiumCard>
   );
 
@@ -558,7 +558,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
         body: { padding: 0, background: '#333' },
         header: { display: 'none' }
       }}
-      className="advanced-drawer"
+      className="advanced-drawer scrollbars-thin"
     >
       <div className="h-full bg-gradient-to-br from-[#333] to-[#444]">
         {/* Custom Header */}
@@ -578,8 +578,9 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
               shape="circle"
               icon={<CloseOutlined />}
               onClick={onClose}
-              className="hover:bg-[#333]"
+             className="border border-1 hover:bg-red-500 hover:border-red-500 close-icons-project"
               size="large"
+
             />
           </div>
         </div>

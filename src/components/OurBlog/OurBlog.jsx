@@ -25,7 +25,7 @@ import "../OurTeam/OurTeam.css";
 import CustomButton from '../ui/Button';
 import { Tooltip } from 'antd';
 
-// Content for all four posts (unchanged)
+
 const roiContent = `
 Introduction
 Understanding the Return on Investment (ROI) is crucial when it comes to real estate investing. Whether you're buying a rental property, a commercial space, or a residential apartment for appreciation, knowing how to calculate ROI can help you evaluate the profitability of your investment. This guide will break down the concept of ROI, its formulas, and practical examples so you can make informed real estate decisions.
@@ -321,7 +321,6 @@ Whether you're investing in a commercial property for rental returns or a reside
 A wise property decision today can build long-term wealth tomorrow.
 `;
 
-// Content map for all posts
 const contentMap = {
     1: { content: roiContent, image: CalculateROI },
     2: { content: channelPartnerContent, image: BuyProperties },
@@ -415,11 +414,11 @@ const OurBlog = () => {
     const { useBreakpoint } = Grid;
     const screens = useBreakpoint();
 
-    // Adjust visible cards based on screen size
+
     const getVisibleCards = () => {
-        if (window.innerWidth < 640) return 1; // Mobile: 1 card
-        if (window.innerWidth < 1024) return 2; // Tablet: 2 cards
-        return 4; // Desktop: 4 cards
+        if (window.innerWidth < 640) return 1; 
+        if (window.innerWidth < 1024) return 2; 
+        return 4; 
     };
 
     const [visibleCards, setVisibleCards] = useState(getVisibleCards());
@@ -447,7 +446,6 @@ const OurBlog = () => {
         setCurrentSlide(index);
     };
 
-    // Touch event handlers for swipe
     const handleTouchStart = (e) => {
         touchStartX.current = e.targetTouches[0].clientX;
     };
@@ -459,11 +457,11 @@ const OurBlog = () => {
     const handleTouchEnd = () => {
         if (!touchStartX.current || !touchEndX.current) return;
         const diff = touchStartX.current - touchEndX.current;
-        if (Math.abs(diff) > 50) { // Swipe threshold
+        if (Math.abs(diff) > 50) { 
             if (diff > 0) {
-                nextSlide(); // Swipe left
+                nextSlide();
             } else {
-                prevSlide(); // Swipe right
+                prevSlide(); 
             }
         }
         touchStartX.current = null;
@@ -509,7 +507,6 @@ const OurBlog = () => {
         navigate(-1);
     };
 
-    // Convert markdown-like content to JSX
     const renderContent = (content) => {
         const lines = content.split('\n');
         let currentSection = '';
@@ -724,23 +721,21 @@ const OurBlog = () => {
                             {selectedPost?.title}
                         </p>
                     }
+                    className="custom-scrollbar bg-[#444]"
                     placement="right"
                     closable={true}
                     onClose={closeDrawer}
                     open={isDrawerOpen}
                     width={screens.xs ? "100%" : "50%"}
-                    styles={{
-                        body: { padding: '24px', overflowY: 'auto', background: '#333' },
-                        header: { borderBottom: '1px solid #ffffff38', background: '#333' }
-                    }}
+                  
                     closeIcon={<X className="w-6 h-6 text-[#c2c6cb]" />}
                 >
                     {selectedPost && (
-                        <div>
+                        <div className='bg-[#444]'>
                             <img
                                 src={contentMap[selectedPost.id].image}
                                 alt={selectedPost.title}
-                                className="w-full p-4 h-48 md:h-64 object-cover rounded-xl mb-6"
+                                className="w-full p-4 h-48 md:h-64 object-cover rounded-xl mb-2"
                             />
                             <div className="prose p-4 prose-lg text-[#c2c6cb] max-w-none">
                                 {renderContent(contentMap[selectedPost.id].content)}
@@ -757,10 +752,7 @@ const OurBlog = () => {
                     onClose={closeExploreDrawer}
                     open={isExploreDrawerOpen}
                     width={screens.xs ? "100%" : "80%"}
-                    styles={{
-                        body: { padding: 0, background: '#333' },
-                        header: { borderBottom: '1px solid #ffffff38', background: '#333' }
-                    }}
+                   className='custom-scrollbar '
                     closeIcon={<X className="w-6 h-6 text-[#c2c6cb]" />}
                 >
                     <BlogExploreArticles blogPosts={blogPosts} contentMap={contentMap} />

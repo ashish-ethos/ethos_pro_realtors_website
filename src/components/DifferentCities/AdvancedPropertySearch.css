@@ -594,9 +594,9 @@
 
 .card-title {
   font-weight: 700;
-  font-size: 16px;
-  margin-bottom: 6px;
-  color: #c2c6cb; /* Dark mode text */
+  font-size: 20px;
+  /* margin-bottom: 6px; */
+  color: #c08830; 
 }
 
 .card-location {
@@ -763,7 +763,7 @@
 
 .custom-select .ant-select-selector {
   background-color: #333 !important; /* Dark mode background */
-  border-color: #ffffff38 !important; /* Dark mode border */
+ 
   color: #c2c6cb !important; /* Dark mode text */
   height: 40px !important;
   display: flex;

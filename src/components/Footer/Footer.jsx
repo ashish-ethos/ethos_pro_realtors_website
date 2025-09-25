@@ -491,14 +491,16 @@ function Footer() {
         </button>
 
         {/* Chat Button */}
-        <button className="relative w-14 h-14 bg-gradient-to-r cursor-pointer from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 rounded-full shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 flex items-center justify-center transition-all duration-300 transform hover:scale-110 group overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform rotate-45 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-          <BsWhatsapp className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300 relative z-10" />
-          <div className="absolute top-2 right-3 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center z-20">
-            <span className="text-xs text-white font-bold">3</span>
-          </div>
-          <div className="absolute top-2 right-3 w-4 h-4 bg-red-500 rounded-full animate-ping" />
-        </button>
+        <a href="https://wa.me/+918744964496" target="_blank" rel="noopener noreferrer">
+          <button className="relative w-14 h-14 bg-gradient-to-r cursor-pointer from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 rounded-full shadow-xl hover:shadow-2xl hover:shadow-emerald-500/25 flex items-center justify-center transition-all duration-300 transform hover:scale-110 group overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform rotate-45 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            <BsWhatsapp className="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-300 relative z-10" />
+            <div className="absolute top-2 right-3 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center z-20">
+              <span className="text-xs text-white font-bold">3</span>
+            </div>
+            <div className="absolute top-2 right-3 w-4 h-4 bg-red-500 rounded-full animate-ping" />
+          </button>
+        </a>
       </div>
     </footer>
   );

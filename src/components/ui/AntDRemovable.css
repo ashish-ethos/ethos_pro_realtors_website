@@ -127,7 +127,7 @@
 }
 
 .ant-typography{
-  color:rgb(253 253 253 / 59%) !important;  /*maybe this have to remove some place maybe it will effect */
+  color:rgb(253 253 253 / 59%) !important;  
 }
  
 .ant-input-number-outlined .ant-input-number-handler-wrap{
@@ -163,4 +163,22 @@
 }
 .ant-icon{
   color: #c2c6cb !important;
+}
+.ant-pagination .ant-pagination-item-active{
+  background: #555 !important;
+}
+.ant-pagination .ant-pagination-item{
+  background: #444 !important;
+  color: #c2c6cb !important;
+}
+
+.ant-input-affix-wrapper{
+  color: #c2c6cb !important;
+}
+
+.ant-input-affix-wrapper .ant-input-clear-icon {
+  color: #c2c6cb !important;
+}
+.ant-tabs .ant-tabs-ink-bar{
+  background: #c08830 !important;
 }

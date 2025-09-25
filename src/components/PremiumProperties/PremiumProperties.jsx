@@ -177,8 +177,8 @@ function PremiumProperties() {
 
 
   const getVisibleCards = () => {
-    if (window.innerWidth < 640) return 1; 
-    if (window.innerWidth < 1024) return 2; 
+    if (window.innerWidth < 640) return 1;
+    if (window.innerWidth < 1024) return 2;
     return 3;
   };
 
@@ -382,8 +382,10 @@ function PremiumProperties() {
           body: { background: "#333", padding: 0 },
           mask: { background: "rgba(17, 24, 39, 0.5)" },
         }}
+        className=" scrollbars-thin overflow-y-scroll "
+       
       >
-        <CardPropertiesDetails property={selectedProperty} className="custom-scrollbar" />
+        <CardPropertiesDetails property={selectedProperty} />
       </Drawer>
     </div>
   );

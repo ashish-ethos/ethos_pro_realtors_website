@@ -65,6 +65,7 @@ body {
   margin-bottom: 0px !important;
 }
 .ant-input-outlined {
+  background: #333 !important;
   border: 1px solid #ffffff38 !important;
 }
 .ant-input-outlined:hover {
@@ -359,4 +360,23 @@ body {
   .mobile-conatiner-width {
     max-width: 350px;
   }
+}
+
+.scrollbars-thin {
+  scrollbar-width: thin;            
+  scrollbar-color: #c08830 transparent; 
+}
+
+.scrollbars-thin::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+
+.scrollbars-thin::-webkit-scrollbar-thumb {
+  background-color: #c08830; 
+  border-radius: 9999px;
+}
+
+.scrollbars-thin::-webkit-scrollbar-track {
+  background: transparent;
 }

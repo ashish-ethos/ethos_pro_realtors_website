@@ -631,7 +631,7 @@ const Residentials = () => {
                   filterSort={filterSort}
                   size="large"
                   className="custom-select"
-                  style={{ background: '#444', color: '#c2c6cb', borderColor: '#ffffff38' }}
+                  
                   options={[
                     { value: '', label: 'All Property Types' },
                     { value: 'APARTMENT', label: 'Apartment' },
@@ -648,7 +648,6 @@ const Residentials = () => {
                   filterSort={filterSort}
                   size="large"
                   className="custom-select"
-                  style={{ background: '#444', color: '#c2c6cb', borderColor: '#ffffff38' }}
                   options={[
                     { value: '', label: 'Any Bedrooms' },
                     { value: '1', label: '1 Bedroom' },
@@ -667,7 +666,6 @@ const Residentials = () => {
                   filterSort={filterSort}
                   size="large"
                   className="custom-select"
-                  style={{ background: '#444', color: '#c2c6cb', borderColor: '#ffffff38' }}
                   options={[
                     { value: '', label: 'All Categories' },
                     { value: 'COMPACT', label: 'Compact' },
@@ -679,7 +677,7 @@ const Residentials = () => {
                 <CustomButton
                   onClick={() => setFilters({ priceRange: '', propertyType: '', bedrooms: '', category: '' })}
                   size="large"
-                  className="bg-[#444] text-[#c2c6cb] border-[#ffffff38] hover:bg-[#555] max-w-[200px]"
+                  className=" max-w-[200px]"
                 >
                   Clear Filters
                 </CustomButton>

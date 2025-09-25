@@ -166,9 +166,9 @@ const About = () => {
                                         "linear-gradient(#444, #444) padding-box, linear-gradient(to bottom right, #c2c6cb, #333) border-box",
                                 }}
                             >
-                                <Award className="w-6 h-6 text-[#c2c6cb]" />
+                                <Award className="w-6 h-6 text-[#c2c6cb] " />
                             </div>
-                            <h3 className="mobile-title-text text-3xl font-bold text-[#c2c6cb] mb-4 fontFamily-bebas">Our Mission</h3>
+                            <h3 className="mobile-title-text text-3xl font-bold text-[#c2c6cb] mt-2 mb-4 fontFamily-bebas">Our Mission</h3>
                             <p className="mobile-subtitle-text text-[#c2c6cb] leading-relaxed fontFamily-Content">
                                 At Ethos Pro Realtors, our mission is to empower clients with exceptional real estate solutions. We strive to connect people with properties that fulfill their dreams,
                                 deliver value, and enhance their lifestyles.
@@ -186,7 +186,7 @@ const About = () => {
                             >
                                 <TrendingUp className="w-6 h-6 text-[#c2c6cb]" />
                             </div>
-                            <h3 className="mobile-title-text text-3xl font-bold text-[#c2c6cb] mb-4 fontFamily-bebas">Our Vision</h3>
+                            <h3 className="mobile-title-text text-3xl font-bold text-[#c2c6cb] mb-4 fontFamily-bebas mt-2">Our Vision</h3>
                             <p className="mobile-subtitle-text text-[#c2c6cb] leading-relaxed fontFamily-Content">
                                 Our vision is to be a trusted leader in the real estate industry, setting new standards for excellence.
                                 We aspire to create lasting relationships, drive innovation, and deliver unparalleled value by transforming how people experience real estate.
