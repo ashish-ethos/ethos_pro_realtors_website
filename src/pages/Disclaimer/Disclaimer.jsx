@@ -1,12 +1,12 @@
 import React from "react";
 
 const Disclaimer = () => (
-  <div className="max-w-4xl mx-auto mt-4 p-8 mb-4 bg-white border border-gray-200 rounded-2xl shadow-lg">
-    <h1 className="text-3xl font-bold text-gray-900 mb-6 border-b border-gray-300 pb-3">
+  <div className="max-w-4xl mx-auto mt-4 p-8 mb-4 bg-white dark:bg-[#333] border  rounded-2xl shadow-lg border-[#c08830] transition-colors duration-200">
+    <h1 className="text-3xl font-bebas font-bold text-gray-900 dark:text-[#c2c6cb] mb-6 border-b border-[#c08830] pb-3">
       Disclaimer
     </h1>
 
-    <div className="space-y-5 text-gray-700 leading-relaxed">
+    <div className="space-y-5 fontFamily-bebas text-gray-700 dark:text-[#c2c6cb] leading-relaxed">
       <p>
         By accessing this website, the viewer/user confirms that the information
         including brochures and marketing collaterals on this website are solely

@@ -178,6 +178,12 @@ body {
 .ant-drawer .ant-drawer-body {
   padding: 0px !important;
 }
+.main-app{
+  background: #333;
+}
+#root{
+  background: #333;
+}
 
 @media (max-width: 768px) {
   .main-app {
@@ -303,6 +309,28 @@ body {
   }
   .mobile-our-vision {
     padding: 15px 20px;
+  }
+  .mobile-faq-screen{
+    padding: 10px !important;
+  }
+  .mobile-faq-header{
+    font-size: 25px;
+  }
+  .mobile-faq-title{
+    font-size: 20px;
+  }
+  .mobile-faq-question{
+    font-size: 15px;
+  }
+  .mobile-faq-answer{
+    font-size: 15px;
+  }
+  .mobile-termcondition{
+    flex-direction: column;
+    gap: 5px;
+  }
+  .mobile-footer-card{
+    padding: 15px;
   }
 }
 

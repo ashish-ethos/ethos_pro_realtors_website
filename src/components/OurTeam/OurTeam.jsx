@@ -285,6 +285,7 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
         body: { padding: 0 },
         header: { display: 'none' }
       }}
+      className='custom-scrollbar '
     >
       <div className="h-full bg-gradient-to-br from-[#444] to-[#333]">
         <div className="relative h-48 overflow-hidden">
@@ -294,7 +295,7 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
             className="w-full h-full object-contain bg-[#333]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#333]/70 to-transparent"></div>
-          <div className="absolute inset-0 flex items-end p-6">
+          <div className="absolute inset-0 flex items-end p-6 border-b border-[#c2c6cb]">
             <div className="text-[#c2c6cb]">
               <h2 className="text-2xl font-black mb-1 fontFamily-bebas">{member.name}</h2>
               <p className="text-[#c2c6cb] font-semibold fontFamily-bebas">{member.position}</p>
@@ -314,7 +315,7 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
                 {[...Array(5)].map((_, i) => (
                   <StarFilled
                     key={i}
-                    className={`text-sm ${i < Math.floor(member.rating) ? 'text-[#c2c6cb]' : 'text-[#444]'}`}
+                    className={`text-sm ${i < Math.floor(member.rating) ? 'text-[#c2c6cb] rating-icons' : 'text-[#444]'}`}
                   />
                 ))}
               </div>
@@ -322,7 +323,7 @@ const ProfileDrawer = ({ member, visible, onClose }) => {
             </div>
             <div className="text-right">
               <div className="text-lg font-bold text-[#c2c6cb] fontFamily-bebas">{member.projects}</div>
-              <div className="text-xs text-[#444] fontFamily-bebas">Projects Completed</div>
+              <div className="text-xs text-[#c2c6cb] fontFamily-bebas">Projects Completed</div>
             </div>
           </div>
           <div className="space-y-3">

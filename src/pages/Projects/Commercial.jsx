@@ -524,17 +524,17 @@ const Commercial = () => {
               <h1 className="mobile-title-project-text text-3xl font-bold text-[#c2c6cb]">Commercial Properties</h1>
               <p className="text-[#c2c6cb]/80 mt-1">{filteredProperties.length} properties available</p>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 ">
               <div className="flex bg-[#333]/50 rounded-lg border border-[#ffffff38]">
                 <button
                   onClick={() => setViewMode('grid')}
-                  className={`p-2 rounded-lg transition-colors ${viewMode === 'grid' ? 'bg-[#444] shadow-sm' : 'hover:bg-[#444]'}`}
+                  className={`p-2 rounded-lg cursor-pointer transition-colors ${viewMode === 'grid' ? 'bg-[#444] shadow-sm' : 'hover:bg-[#444]'}`}
                 >
                   <Grid size={20} className="text-[#c2c6cb]" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
-                  className={`p-2 rounded-lg transition-colors ${viewMode === 'list' ? 'bg-[#444] shadow-sm' : 'hover:bg-[#444]'}`}
+                  className={`p-2 rounded-lg cursor-pointer transition-colors ${viewMode === 'list' ? 'bg-[#444] shadow-sm' : 'hover:bg-[#444]'}`}
                 >
                   <List size={20} className="text-[#c2c6cb]" />
                 </button>

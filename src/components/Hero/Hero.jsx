@@ -79,7 +79,7 @@ const Hero = ({ onSearchChange }) => {
         <img
           src={BackgroundImage}
           alt="Real Estate Background"
-          className="w-full h-full object-cover brightness-50"
+          className="w-full h-full object-cover brightness-60"
         />
       </div>
 
