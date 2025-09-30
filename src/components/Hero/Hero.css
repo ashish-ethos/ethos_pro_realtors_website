@@ -187,7 +187,7 @@ section {
   .ant-card {
     padding: 10px !important;
   }
-  .ant-card .ant-card-body{
+  .ant-card .ant-card-body {
     padding: 0px !important;
   }
 
@@ -210,11 +210,13 @@ section {
   .hero-section-title {
     margin-bottom: 0px;
   }
+}
+
+@media (max-width: 500px) {
   .hero-card-all {
     padding: 0px;
   }
 }
-
 .hero-tag {
   margin: 2px;
   border-radius: 8px;

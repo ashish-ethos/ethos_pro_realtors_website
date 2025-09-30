@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Row, Col, Card, Tag } from "antd";
 import useBreakpoint from 'antd/es/grid/hooks/useBreakpoint';
 import { DownOutlined } from "@ant-design/icons";
-import BackgroundImage from "../../assets/images/home/main_background.jpg";
+// import BackgroundImage from "../../assets/images/home/banner_video.mp4";
+import backgroundVideo from "../../assets/images/home/banner_video.mp4";
 import "./Hero.css";
 import CustomInput from "../ui/Input";
 import CustomSelect from "../ui/Select";
@@ -76,10 +77,13 @@ const Hero = ({ onSearchChange }) => {
       id="home"
     >
       <div className="absolute inset-0 h-full">
-        <img
-          src={BackgroundImage}
-          alt="Real Estate Background"
+        <video
+          src={backgroundVideo}
           className="w-full h-full object-cover brightness-60"
+          autoPlay
+          loop
+          muted
+          playsInline
         />
       </div>
 
@@ -88,7 +92,7 @@ const Hero = ({ onSearchChange }) => {
           Ethos Pro Realtors
         </h1>
         <p className="mobile-hero-content text-base bg-[#1a1a1ad4] py-0 px-4 rounded-sm font-[sans-serif] sm:text-lg lg:text-xl mb-10 max-w-3xl text-[#c08830] leading-relaxed animate-fade-in-delayed">
-          YOUR PROPERTY, OUR PRIORITY  
+          YOUR PROPERTY, OUR PRIORITY
         </p>
 
         <Card
