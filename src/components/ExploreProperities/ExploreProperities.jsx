@@ -553,11 +553,6 @@ const ExploreProperties = ({ filters = {} }) => {
             setTourForm((prev) => ({ ...prev, tourDate: date }));
         };
 
-        const handleContactSubmit = (e) => {
-            e.preventDefault();
-            // Add your submission logic here
-        };
-
         const handleTourSubmit = (e) => {
             e.preventDefault();
             // Add your submission logic here

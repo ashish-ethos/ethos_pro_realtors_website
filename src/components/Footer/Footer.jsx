@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { MapPin, Phone, Mail, ArrowRight, Facebook, Instagram, MessageCircle, Linkedin, Youtube, Send, Sparkles, Building, Users, Award, TrendingUp, ChevronUp } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowRight, Facebook, Instagram, Linkedin, Youtube, Send, Sparkles, Building, Users, Award, TrendingUp, ChevronUp } from "lucide-react";
 import { BsWhatsapp } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import logotab from "../../assets/images/logo/logotab.png";
@@ -143,7 +143,7 @@ function Footer() {
           <div className="max-w-5xl mx-auto text-center">
             {/* Live Clock */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8">
-              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+              <div className="w-2 h-2 bg-[#c99913] rounded-full animate-pulse" />
               <span className="text-sm font-mono">
                 {currentTime.toLocaleTimeString()} • Gurugram, India
               </span>

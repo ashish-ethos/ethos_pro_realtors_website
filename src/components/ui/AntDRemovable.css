@@ -182,3 +182,9 @@
 .ant-tabs .ant-tabs-ink-bar{
   background: #c08830 !important;
 }
+.ant-select-multiple .ant-select-selection-overflow .ant-select-selection-item-remove >*{
+  color: #c2c6cb !important;
+}
+.ant-drawer .ant-drawer-content{
+  background: #444 !important;
+}

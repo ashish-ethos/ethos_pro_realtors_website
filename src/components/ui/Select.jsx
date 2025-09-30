@@ -11,16 +11,16 @@ const CustomSelect = ({
   disabled = false,
   name,
   className = '',
-  mode, 
+  mode,
   children,
-  styles = {}, 
+  styles = {},
   dropdownStyle, 
   ...rest
 }) => {
-
   const filteredRest = { ...rest };
+
+  // backwards support for dropdownStyle but no warning
   if (dropdownStyle) {
-    console.warn('dropdownStyle is deprecated; use styles.popup.root instead.');
     filteredRest.styles = {
       ...styles,
       popup: {
@@ -39,7 +39,7 @@ const CustomSelect = ({
       placeholder={placeholder}
       className={`common-select ${className}`}
       mode={mode}
-      styles={styles} 
+      styles={styles}
       {...filteredRest}
     >
       {children ||
@@ -57,6 +57,7 @@ const CustomSelect = ({
     </Select>
   );
 };
+
 
 // Expose OptGroup and Option as static properties
 CustomSelect.OptGroup = OptGroup;

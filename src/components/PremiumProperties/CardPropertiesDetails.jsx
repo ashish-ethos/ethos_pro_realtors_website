@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import ContactForm from "../../pages/Contact/ContactForm";
 import "./PremiumProperties.css";
+import CustomButton from "../ui/Button";
 
 const CardPropertiesDetails = ({ property }) => {
   if (!property) {
@@ -147,14 +148,14 @@ const CardPropertiesDetails = ({ property }) => {
                 <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-[#333] rounded-md border border-[#ffffff38] hover:shadow-[0_0_10px_rgba(201,153,19,0.2)] hover:bg-[#444] transition-all">Area: {property.location.area}</span>
                 <span className="text-sm fontFamily-bebas text-center shadow-sm p-2 bg-[#333] rounded-md border border-[#ffffff38] hover:shadow-[0_0_10px_rgba(201,153,19,0.2)] hover:bg-[#444] transition-all">Country: {property.location.country}</span>
               </div>
-              <button
+              <CustomButton
                 onClick={handleViewMap}
-                className="inline-flex items-center gap-2 px-4 py-2 mt-3 bg-[#333] text-[#c2c6cb] font-medium rounded-full border border-[#ffffff38] shadow-sm hover:shadow-[0_0_10px_rgba(201,153,19,0.2)] hover:bg-[#444] transition-all"
+                className="inline-flex cursor-pointer items-center gap-2 px-4 py-2 mt-3 bg-[#333] text-[#c2c6cb] font-medium rounded-full border border-[#ffffff38] "
               >
                 <MapPinned className="w-5 h-5 text-[#c99913]" />
                 View on Map
                 <ExternalLink className="w-4 h-4 text-[#c2c6cb]/80" />
-              </button>
+              </CustomButton>
             </div>
           </div>
 

@@ -10,21 +10,18 @@ import {
   ThunderboltOutlined,
   CalculatorOutlined,
   PhoneOutlined,
-  MailOutlined,
   UserOutlined,
   AreaChartOutlined,
   StarOutlined,
   BankOutlined
 } from '@ant-design/icons';
 import CustomButton from '../../components/ui/Button';
-import CustomInput from '../../components/ui/Input';
 import { Facebook, Instagram, Linkedin, Twitter, X, Share2, Heart } from 'lucide-react';
 import { BsWhatsapp } from "react-icons/bs";
 import ContactForm from '../Contact/ContactForm';
 import './Project.css';
 
 const { Title, Text } = Typography;
-const { TextArea } = Input;
 
 const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLike }) => {
   const isCommercial = project?.type?.toLowerCase().includes('shop') || project?.type?.toLowerCase().includes('office');
@@ -123,11 +120,6 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
 
   const handleEMISubmit = () => {
     calculateEMI();
-  };
-
-  const handleContactSubmit = (values) => {
-    alert(`Contact request sent for ${project?.name || 'property'}!`);
-    form.resetFields();
   };
 
   const getMapUrl = () => {
@@ -351,7 +343,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
             <ThunderboltOutlined className="mr-2 text-[#c2c6cb]" />
             Amenities & Features
           </Title>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 mt-2 sm:grid-cols-3 gap-4">
             {project.amenities.map((amenity, i) => (
               <div key={i} className="flex items-center p-3 bg-[#333]/50 rounded-xl hover:bg-[#444]/50 transition-colors border border-[#ffffff38]">
                 <div className="mr-3 text-[#c2c6cb]">
@@ -373,7 +365,7 @@ const ViewDetailsDrawer = ({ open, onClose, project, isLiked = false, onToggleLi
           </Title>
           <a href={getMapUrl()} target="_blank" rel="noopener noreferrer">
             <div
-              className="w-full h-64 mt-1 rounded-xl overflow-hidden hover:opacity-90 transition-opacity shadow-inner"
+              className="w-full h-64 mt-2 rounded-xl overflow-hidden hover:opacity-90 transition-opacity shadow-inner"
               dangerouslySetInnerHTML={{ __html: project.addressMap }}
             />
           </a>
