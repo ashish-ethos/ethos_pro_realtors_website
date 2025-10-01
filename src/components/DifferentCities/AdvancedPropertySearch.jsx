@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Drawer,
   Typography,
@@ -13,24 +13,20 @@ import {
   Tag,
   Radio,
   Tooltip,
-  Checkbox,
+  
   Divider,
   Collapse,
   List,
 } from "antd";
 import {
   FaFilter,
-  FaTimes,
-  FaMapMarkerAlt,
-  FaDollarSign,
   FaEye,
   FaHeart,
   FaTh,
-  FaList as FaListIcon,
+  FaList 
 } from "react-icons/fa";
 import { Bed, Bath, Star, House, LandPlot, MapPinHouse, CalendarDays, Search } from 'lucide-react';
-import { FaList } from "react-icons/fa";
-import { IndianRupee } from "lucide-react";
+
 import CustomInput from "../ui/Input";
 import CustomSelect from "../ui/Select";
 import CustomButton from "../ui/Button";
@@ -179,6 +175,8 @@ const AdvancedPropertySearch = ({
   const [filteredProperties, setFilteredProperties] = useState(displayProperties);
   const pageSize = 9;
   const navigate = useNavigate();
+  const isMobile =  window.innerWidth < 800;
+  
 
   const currentYear = new Date().getFullYear();
 
@@ -187,6 +185,8 @@ const AdvancedPropertySearch = ({
     const t = setTimeout(() => setDebouncedQuery(searchQuery), 250);
     return () => clearTimeout(t);
   }, [searchQuery]);
+
+  
 
   const formatPrice = (price, priceValue) => {
     const rawPrice = price ?? priceValue;
@@ -587,7 +587,7 @@ const AdvancedPropertySearch = ({
               </Space>
             </div>
 
-            <Collapse defaultActiveKey={["basic", "advanced"]} ghost items={[
+            <Collapse defaultActiveKey={isMobile ? [] : ["basic", "advanced"]} ghost items={[
               {
                 key: "basic",
                 label: <b className="text-[#c2c6cb]">Basic Filters</b>,

@@ -672,7 +672,7 @@ const OurBlog = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="p-8 relative bg-[#444]">
+                                        <div className="p-8 relative bg-[#444] ourblog-card-mobile">
                                             <div className="flex gap-2 mb-4">
                                                 {post.tags.map((tag, idx) => (
                                                     <span key={idx} className="px-3 py-1 bg-gradient-to-r from-[#c2c6cb]/20 to-[#444]/20 text-[#c2c6cb] rounded-lg text-xs border border-[#ffffff38] hover:border-[#c2c6cb] hover:bg-[#c2c6cb]/10 transition-all cursor-pointer font-medium">

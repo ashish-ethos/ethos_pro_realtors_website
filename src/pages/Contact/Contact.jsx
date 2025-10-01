@@ -10,8 +10,9 @@ import {
     Youtube,
     MapPin,
 } from 'lucide-react';
-import ContactImg from '../../assets/images/about/4.png';
-import ContactForm from './ContactForm'; 
+import ContactImg from '../../assets/images/about/contact_background.png';
+import ContactMobileImg from '../../assets/images/about/contact_mobile.png'
+import ContactForm from './ContactForm';
 
 const Contact = () => {
     const handleSubmitSuccess = () => {
@@ -22,10 +23,13 @@ const Contact = () => {
             {/* Hero Section */}
             <div
                 className="mobile-contact-image relative h-[400px] w-full bg-cover bg-center flex items-center justify-end pr-10"
-                style={{ backgroundImage: `url(${ContactImg})` }}
+                style={{
+                    backgroundImage: `url(${window.innerWidth < 640 ? ContactMobileImg : ContactImg})`
+                }}
             >
-                <div className="absolute inset-0 bg-[#333]/40 z-0" /> {/* Dark overlay for contrast */}
+                <div className="absolute inset-0 bg-[#333]/40 z-0" />
             </div>
+
 
             {/* Main Section */}
             <div className="container mx-auto px-4 py-10 main-contact-section">

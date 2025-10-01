@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Award, Users, TrendingUp, MapPin, Phone, Mail, Star, ArrowRight, Home, FileText, DollarSign } from 'lucide-react';
+import { ChevronDown, Award, Users, TrendingUp, MapPin,   Star,  Home,  DollarSign } from 'lucide-react';
 import { IoDocumentAttachOutline } from "react-icons/io5";
 import { BiSupport } from "react-icons/bi";
 import { TbHomeBitcoin } from "react-icons/tb";
 import OurTeam from '../../components/OurTeam/OurTeam';
 import AboutImg from '../../assets/images/about/office.jpg';
 import backgroundImg from '../../assets/images/about/about_background.png';
+import backgroundMobileImg from '../../assets/images/about/about_mobile.png';
 import SetsApart from '../../components/SetsApart/SetsApart';
 import Testimonial from '../../components/Testimonials/Testimonials';
 import OurBlog from '../../components/OurBlog/OurBlog';
@@ -69,7 +70,7 @@ const About = () => {
                 {/* Full-width Background Image Section */}
                 <div
                     className="about-image w-full h-[500px] border-2 border-[#ffffff38] bg-cover bg-center bg-no-repeat"
-                    style={{ backgroundImage: `url(${backgroundImg})` }}
+                    style={{ backgroundImage: `url(${window.innerWidth < 640 ? backgroundMobileImg : backgroundImg})` }}
                 >
                     <div className="absolute inset-0 bg-[#333]/40"></div> {/* Dark overlay for contrast */}
                 </div>
@@ -157,7 +158,7 @@ const About = () => {
 
                     {/* Mission & Vision */}
                     <div className="grid lg:grid-cols-2 gap-12 mb-20">
-                        <div className="bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38] hover:shadow-2xl transition-all duration-300 ">
+                        <div className="bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38] hover:shadow-2xl transition-all duration-300 mobile-our-vision">
                             <div
                                 className="w-12 h-12 flex items-center justify-center rounded-xl"
                                 style={{

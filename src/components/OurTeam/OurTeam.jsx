@@ -523,7 +523,7 @@ const OurTeam = () => {
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
             {teamMembers.map((member, index) => (
-              <div key={member.id} className="w-full md:w-1/2 lg:w-1/4 flex-shrink-0 px-4">
+              <div key={member.id} className="w-full md:w-1/2 lg:w-1/4 flex-shrink-0 px-4 teamcard-mobile" >
                 <TeamCard
                   member={member}
                   index={index}

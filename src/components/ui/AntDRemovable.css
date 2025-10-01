@@ -135,7 +135,7 @@
   color: #c2c6cb !important;
 }
 .ant-input-number .ant-input-number-input{
-  background: #555 !important;
+  /* background: #555 !important; */
   border-color: #ffffff38 !important ;
     color: #c2c6cb !important;
 }
@@ -187,4 +187,11 @@
 }
 .ant-drawer .ant-drawer-content{
   background: #444 !important;
+}
+
+@media (min-width: 768px) and (max-width: 1124px) {
+  .ant-col-lg-8 {
+    max-width: 50% !important;
+    flex: 0 0 50% !important;
+  }
 }
