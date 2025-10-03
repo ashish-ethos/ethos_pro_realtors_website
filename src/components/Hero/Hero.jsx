@@ -79,7 +79,7 @@ const Hero = ({ onSearchChange }) => {
       <div className="absolute inset-0 h-full">
         <video
           src={backgroundVideo}
-          className="w-full h-full object-cover brightness-60"
+          className="w-full h-full object-cover brightness-90"
           autoPlay
           loop
           muted

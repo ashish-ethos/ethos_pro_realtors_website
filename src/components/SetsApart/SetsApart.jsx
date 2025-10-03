@@ -55,7 +55,7 @@ const StatCard = ({ value, label, delay, numericValue }) => {
   return (
     <div
       id={`stat-card-${numericValue}`}
-      className=" mobile-card-setaspart group relative bg-[#333] border border-[#ffffff38] rounded-2xl p-8 hover:border-[#c99913] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-black/40 overflow-hidden"
+      className=" mobile-card-setaspart group relative bg-[#333] border border-[#ffffff38] rounded-2xl p-8 sm:p-4 hover:border-[#c99913] transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-black/40 overflow-hidden"
       style={{
         animation: `slideUp 0.8s ease-out forwards ${delay}s`,
         opacity: 0,
@@ -89,7 +89,7 @@ const StatCard = ({ value, label, delay, numericValue }) => {
 
 const SetsApart = () => {
   return (
-    <div className="relative bg-gradient-to-br from-gray-900 via-[#333] to-gray-800 py-13 px-4" id="sets-apart">
+    <div className="relative bg-gradient-to-br from-gray-900 via-[#333] to-gray-800 py-10 px-4" id="sets-apart">
       
       {/* Clean Square Grid Background */}
       <div className="absolute inset-0 overflow-hidden">

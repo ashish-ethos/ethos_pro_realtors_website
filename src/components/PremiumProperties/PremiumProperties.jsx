@@ -252,7 +252,7 @@ function PremiumProperties() {
 
   return (
     <div
-      className="premium-properties-main h-full bg-gradient-to-br from-gray-900 to-gray-800 py-16 px-4 relative overflow-hidden"
+      className="premium-properties-main h-full bg-gradient-to-br from-gray-900 to-gray-800 py-16 px-4 relative overflow-hidden laptop-mode-screen"
       id="premium-properties"
     >
       {/* Background Decorative Elements */}

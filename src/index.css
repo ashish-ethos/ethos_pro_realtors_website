@@ -276,6 +276,9 @@ body {
   .ourblog-card-mobile {
     padding: 15px !important;
   }
+  .mobile-logo-footer{
+    justify-content: center !important;
+  }
 }
 
 .cross-mobile-icon {
@@ -412,4 +415,14 @@ body {
 
 .scrollbars-thin::-webkit-scrollbar-track {
   background: transparent;
+}
+
+@media (min-width:1024px) and (max-width: 1280px) {
+  .laptop-mode-screen {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  .laptop-about-banner{
+    height: 250px !important;
+  }
 }

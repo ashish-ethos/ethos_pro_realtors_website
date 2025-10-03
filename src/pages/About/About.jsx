@@ -69,7 +69,7 @@ const About = () => {
             <div className="relative w-full overflow-hidden">
                 {/* Full-width Background Image Section */}
                 <div
-                    className="about-image w-full h-[500px] border-2 border-[#ffffff38] bg-cover bg-center bg-no-repeat"
+                    className="about-image w-full h-[500px] border-2 border-[#ffffff38] bg-cover bg-center bg-no-repeat laptop-about-banner"
                     style={{ backgroundImage: `url(${window.innerWidth < 640 ? backgroundMobileImg : backgroundImg})` }}
                 >
                     <div className="absolute inset-0 bg-[#333]/40"></div> {/* Dark overlay for contrast */}
@@ -110,8 +110,8 @@ const About = () => {
             </div>
 
             {/* Main Content */}
-            <div className="pt-10">
-                <div className="container mx-auto px-6">
+            <div className="pt-10 ">
+                <div className="container mx-auto px-6 laptop-mode-screen">
                     <div className="main-about grid lg:grid-cols-2 gap-16 items-center mb-20">
                         <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
                             <p className="text-xl font-semibold text-transparent text-gradient mb-1 tracking-wider uppercase">

@@ -11,11 +11,9 @@ import {
     Home,
     Clock,
     Eye,
-    Bookmark,
-    Share2,
     X
 } from 'lucide-react';
-import { Drawer, Button, Grid } from 'antd';
+import { Drawer, Grid } from 'antd';
 import BlogExploreArticles from './BlogExploreArticles';
 import BuyProperties from "../../assets/images/premiumproperties/buying-properties.jpg";
 import CalculateROI from "../../assets/images/premiumproperties/Calculate-ROI.jpg";
@@ -537,7 +535,7 @@ const OurBlog = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#000000d9] py-10 px-4 relative overflow-hidden premium-properties-main" id='our-blog'>
+        <div className="min-h-screen bg-[#00000047] py-10 px-4 relative overflow-hidden premium-properties-main laptop-mode-screen" id='our-blog'>
             {/* Animated Background */}
             <div className="absolute inset-0">
                 <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-[#444]/50 to-[#c2c6cb]/20 rounded-full blur-3xl animate-pulse"></div>
@@ -672,7 +670,7 @@ const OurBlog = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="p-8 relative bg-[#444] ourblog-card-mobile">
+                                        <div className="p-8 sm:p-4 relative bg-[#444] ourblog-card-mobile">
                                             <div className="flex gap-2 mb-4">
                                                 {post.tags.map((tag, idx) => (
                                                     <span key={idx} className="px-3 py-1 bg-gradient-to-r from-[#c2c6cb]/20 to-[#444]/20 text-[#c2c6cb] rounded-lg text-xs border border-[#ffffff38] hover:border-[#c2c6cb] hover:bg-[#c2c6cb]/10 transition-all cursor-pointer font-medium">

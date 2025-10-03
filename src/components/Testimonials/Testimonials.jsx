@@ -85,7 +85,7 @@ const Testimonial = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#333] py-10 px-4 relative overflow-hidden" id='testimonials'>
+    <div className="min-h-screen bg-[#333] py-10 px-4 relative overflow-hidden laptop-mode-screen" id='testimonials'>
       {/* Background Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-[#444]/50 to-[#c2c6cb]/20 rounded-full opacity-20 blur-3xl animate-pulse"></div>

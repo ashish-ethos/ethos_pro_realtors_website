@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { MapPin, Phone, Mail, ArrowRight, Facebook, Instagram, Linkedin, Youtube, Send, Sparkles, Building, Users, Award, TrendingUp, ChevronUp } from "lucide-react";
 import { BsWhatsapp } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import logotab from "../../assets/images/logo/logotab.png";
+import logotab from "../../assets/images/logo/ethos_logo.png";
 import "../OurTeam/OurTeam.css";
 import { FaXTwitter } from "react-icons/fa6";
 import CustomButton from "../ui/Button";
@@ -233,23 +233,23 @@ function Footer() {
       </div>
 
       {/* Main Footer Content */}
-      <div className="relative container mx-auto px-6 py-10">
+      <div className="relative container mx-auto px-6 py-10 sm:py-16 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
 
           {/* Company Section - Enhanced */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <div className="flex items-center gap-3 mb-6 group">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-[#bd852e] to-yellow-400 flex items-center justify-center transition-transform group-hover:scale-105">
-                  <img src={logotab} alt="Logo" className="w-11 h-11  rounded-xl" />
+              <div className="flex items-center gap-3 mb-6 group w-full mobile-logo-footer">
+                <div className="  flex items-center justify-center ">
+                  <img src={logotab} alt="Logo" className=" w-40 items-center" />
                 </div>
-                <h3 className="text-3xl font-[Montserrat] font-black text-gradient text-transparent transition-all duration-300 group-hover:brightness-110">
+                {/* <h3 className="text-3xl font-[Montserrat] font-black text-gradient text-transparent transition-all duration-300 group-hover:brightness-110">
                   Ethos Pro Realtors
-                </h3>
+                </h3> */}
               </div>
 
 
-              <p className="text-gray-300 mobile-subtitle-text leading-relaxed font-bebas text-lg mb-6">
+              <p className="text-gray-300  leading-relaxed font-bebas text-sm mb-6">
                 Your property, Our Priority. As trusted channel partners with top builders, we're dedicated to connecting you with the finest properties that meet your goals.
               </p>
 
@@ -464,7 +464,7 @@ function Footer() {
 
       {/* Bottom Bar - Enhanced */}
       <div className="relative border-t border-gray-800/50 bg-black/80 backdrop-blur-sm">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-6 py-4 sm:px-8 lg:px-12">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
             <div className="flex flex-col sm:flex-row items-center text-center gap-4 text-sm text-gray-400 footer-bottom-links">
               <p className="fontFamily-bebas">© {new Date().getFullYear()} Ethos Pro Realtors. All Rights Reserved.</p>

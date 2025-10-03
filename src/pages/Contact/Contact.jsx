@@ -32,7 +32,7 @@ const Contact = () => {
 
 
             {/* Main Section */}
-            <div className="container mx-auto px-4 py-10 main-contact-section">
+            <div className="container mx-auto px-4 py-10 main-contact-section laptop-mode-screen">
                 <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto main-section-contact-grid">
                     {/* Left Column: Form + Map */}
                     <div className="space-y-8 mobile-conatiner-width">

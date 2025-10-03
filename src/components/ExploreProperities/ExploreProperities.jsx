@@ -1134,7 +1134,7 @@ const ExploreProperties = ({ filters = {} }) => {
     };
 
     return (
-        <div className="min-h-screen bg-[#2d2d2d] py-8 sm:py-12 px-4">
+        <div className="min-h-screen bg-[#2d2d2d] py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-full sm:max-w-7xl mx-auto mb-8 sm:mb-12 text-center">
                 <h1 className="mobile-title-text text-3xl font-[Montserrat] sm:text-5xl md:text-6xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-[#c2c6cb] via-[#c99913] to-[#c2c6cb] bg-clip-text text-transparent animate-pulse">
                     Explore Premium Properties

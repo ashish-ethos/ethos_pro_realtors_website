@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Drawer, Avatar, Tag, Divider } from 'antd';
 import { UserOutlined, PhoneOutlined, MailOutlined, StarFilled, CloseOutlined } from '@ant-design/icons';
-import { IoMdClose } from "react-icons/io";
 import MohitSharma from "../../assets/images/home/Mohit-Sharma.png";
 import ArunGodara from "../../assets/images/home/Arun-Godara.png";
 import Satya from "../../assets/images/home/Satya.jpg";

@@ -516,7 +516,7 @@ const Commercial = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#333]">
+    <div className="min-h-screen bg-[#333] ">
       <div className="bg-[#444] border-b border-t border-[#ffffff38] top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between mb-4  mobile-project-title">
@@ -661,7 +661,7 @@ const Commercial = () => {
           )}
         </div>
       </div>
-      <div className="max-w-7xl mx-auto px-6 py-8 mobile-project-container">
+      <div className="max-w-7xl mx-auto px-6 py-8 mobile-project-container laptop-mode-screen">
         {filteredProperties.length === 0 ? (
           <div className="text-center py-16">
             <div className="text-[#c2c6cb]/80 mb-4">
