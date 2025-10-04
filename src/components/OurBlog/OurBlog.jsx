@@ -635,10 +635,10 @@ const OurBlog = () => {
                             {blogPosts.map((post) => (
                                 <div
                                     key={post.id}
-                                    className={`flex-shrink-0 px-4 cursor-pointer all-ourblog-card w-full sm:w-1/2 lg:w-1/${visibleCards}`}
+                                    className={`flex-shrink-0 px-4  all-ourblog-card w-full sm:w-1/2 lg:w-1/${visibleCards}`}
                                     onMouseEnter={() => setHoveredCard(post.id)}
                                     onMouseLeave={() => setHoveredCard(null)}
-                                    onClick={() => openDrawer(post)}
+                                    
                                 >
                                     <div className={`relative bg-[#444] rounded-3xl overflow-hidden group transition-all duration-700 hover:scale-105 shadow-xl border border-[#ffffff38] ${hoveredCard === post.id
                                         ? 'shadow-2xl shadow-[#c2c6cb]/20'
@@ -700,7 +700,8 @@ const OurBlog = () => {
                                                     <p className="text-[#c2c6cb] text-sm">Author</p>
                                                 </div>
                                             </div>
-                                            <div className={`absolute bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-[#c2c6cb] to-[#444] rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${hoveredCard === post.id ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+                                            <div onClick={() => openDrawer(post)}
+                                             className={`absolute cursor-pointer bottom-4 right-8 w-12 h-12 bg-gradient-to-r from-[#c2c6cb] to-[#444] rounded-full flex items-center justify-center transition-all duration-300 shadow-lg ${hoveredCard === post.id ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
                                                 }`}>
                                                 <ArrowRight className="w-6 h-6 text-[#333]" />
                                             </div>

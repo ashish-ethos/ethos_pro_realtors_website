@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Award, Users, TrendingUp, MapPin,   Star,  Home,  DollarSign } from 'lucide-react';
+import { ChevronDown, Award, Users, TrendingUp, MapPin, Star, Home, DollarSign } from 'lucide-react';
 import { IoDocumentAttachOutline } from "react-icons/io5";
 import { BiSupport } from "react-icons/bi";
 import { TbHomeBitcoin } from "react-icons/tb";
@@ -218,7 +218,12 @@ const About = () => {
                             {values.map((value, index) => (
                                 <div
                                     key={index}
-                                    className={`bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38] hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 mobile-our-vision ${activeSection === index ? 'ring-2 ring-[#c2c6cb]/50 scale-105' : ''}`}
+                                    className="
+                                        bg-[#444]/70 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#ffffff38]
+                                        transition-all duration-500 
+                                        hover:-translate-y-2 hover:scale-105 
+                                        hover:shadow-[0_0_30px_rgba(194,198,203,0.25)] hover:ring-2 hover:ring-[#c2c6cb]/30
+                                    "
                                 >
                                     <div className="bg-gradient-to-br from-[#c2c6cb] to-[#333] w-12 h-12 rounded-xl flex items-center justify-center mb-4">
                                         <value.icon className="w-6 h-6 text-[#333]" />
@@ -228,6 +233,8 @@ const About = () => {
                                 </div>
                             ))}
                         </div>
+
+
                     </div>
 
                 </div>
